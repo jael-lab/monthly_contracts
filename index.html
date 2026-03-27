@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 MICA Firmas — Marzo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:#72DDA3; --agua:#BBE3E3; --yellow:#F3CE98; --coral:#FFB59C; --pink:#F9D3CD;
+    --bg:#F0F2F5; --text:#1F2937; --text2:#6B7280; --white:#ffffff;
+    --border:rgba(31,41,55,0.09); --shadow:0 2px 16px rgba(31,41,55,0.07);
+    --shadow-lg:0 8px 40px rgba(31,41,55,0.13);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Red Hat Display',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+  /* BG */
+  .bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);}
+  .blob:nth-child(1){width:500px;height:500px;background:rgba(114,221,163,0.13);top:-150px;right:-100px;animation:bf 20s ease-in-out infinite;}
+  .blob:nth-child(2){width:350px;height:350px;background:rgba(187,227,227,0.15);bottom:0;left:-80px;animation:bf 25s ease-in-out infinite reverse;}
+  .blob:nth-child(3){width:200px;height:200px;background:rgba(243,206,152,0.15);top:45%;right:8%;animation:bf 18s ease-in-out infinite 5s;}
+  @keyframes bf{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(15px,-20px) scale(1.05);}}
+
+  .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 80px;}
+
+  /* HEADER */
+  .header{padding:44px 0 28px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .header h1{font-size:clamp(32px,5vw,50px);font-weight:900;letter-spacing:-2px;line-height:1;}
+  .header h1 em{font-style:normal;color:var(--green);}
+  .header-sub{font-size:14px;color:var(--text2);margin-top:8px;font-weight:600;}
+  .header-pill{background:var(--text);color:var(--green);border-radius:100px;padding:8px 20px;font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;letter-spacing:0.5px;white-space:nowrap;animation:pg 2.5s ease-in-out infinite;}
+  @keyframes pg{0%,100%{box-shadow:0 0 0 0 rgba(114,221,163,0.4);}50%{box-shadow:0 0 0 8px rgba(114,221,163,0);}}
+
+  /* TABS */
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:28px;background:rgba(255,255,255,0.7);padding:5px;border-radius:18px;border:1px solid var(--border);backdrop-filter:blur(12px);width:fit-content;}
+  .tab{padding:9px 18px;border-radius:14px;border:none;cursor:pointer;font-family:'Red Hat Display',sans-serif;font-size:14px;font-weight:700;transition:all 0.2s ease;background:transparent;color:var(--text2);display:flex;align-items:center;gap:8px;white-space:nowrap;}
+  .tab:hover{background:rgba(255,255,255,0.8);color:var(--text);}
+  .tab.active{background:var(--text);color:var(--white);box-shadow:0 2px 12px rgba(31,41,55,0.2);}
+  .tab-ic{font-size:18px;line-height:1;}
+
+  /* PANELS */
+  .panel{display:none;}
+  .panel.active{display:block;animation:pi 0.3s ease;}
+  @keyframes pi{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  /* CARD */
+  .card{background:var(--white);border-radius:24px;border:1px solid var(--border);box-shadow:var(--shadow);transition:box-shadow 0.2s ease,transform 0.2s ease;overflow:hidden;}
+  .card:hover{box-shadow:var(--shadow-lg);}
+
+  /* META HERO */
+  .meta-hero{background:var(--text);border-radius:28px;padding:40px 44px;margin-bottom:20px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;}
+  .mh-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+  .mh-deco span{position:absolute;border-radius:50%;opacity:0.06;}
+  .mh-deco span:nth-child(1){width:360px;height:360px;background:var(--green);top:-80px;right:-60px;}
+  .mh-deco span:nth-child(2){width:160px;height:160px;background:var(--agua);bottom:20px;left:40%;opacity:0.08;}
+  .mh-deco span:nth-child(3){width:80px;height:80px;background:var(--yellow);bottom:30px;left:10%;opacity:0.12;}
+
+  .meta-label{font-size:12px;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:14px;}
+  .meta-nums{display:flex;align-items:baseline;gap:10px;}
+  .meta-big{font-size:clamp(64px,9vw,88px);font-weight:900;color:var(--white);line-height:1;font-feature-settings:'tnum';}
+  .meta-sep{font-size:44px;color:rgba(255,255,255,0.2);font-weight:300;}
+  .meta-goal{font-size:44px;font-weight:700;color:rgba(255,255,255,0.3);line-height:1;}
+  .meta-pct{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--text);padding:6px 16px;border-radius:100px;font-size:16px;font-weight:900;margin-top:14px;}
+  .bar-track{height:10px;background:rgba(255,255,255,0.08);border-radius:100px;margin-top:20px;overflow:hidden;position:relative;}
+  .bar-fill{height:100%;background:linear-gradient(90deg,var(--green),#5ed494);border-radius:100px;position:relative;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+  .bar-fill::after{content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:20px;height:20px;background:var(--white);border-radius:50%;box-shadow:0 0 0 4px var(--green);}
+
+  /* MINI METAS */
+  .mini-metas{display:flex;flex-direction:column;gap:12px;}
+  .mm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:18px 20px;}
+  .mm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .mm-name{font-size:14px;font-weight:700;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:8px;}
+  .mm-nums{font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+  .mm-track{height:6px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
+  .mm-fill{height:100%;border-radius:100px;transition:width 1.6s cubic-bezier(.4,0,.2,1);}
+  .mm-foot{font-size:11px;color:rgba(255,255,255,0.35);font-weight:700;margin-top:7px;}
+
+  /* ACHIEVEMENTS */
+  .ach-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+  .ach{background:var(--white);border-radius:18px;padding:16px 20px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;flex:1;min-width:175px;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+  .ach:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+  .ach-ic{font-size:28px;flex-shrink:0;}
+  .ach-t{font-size:14px;font-weight:800;}
+  .ach-d{font-size:11px;color:var(--text2);margin-top:2px;font-weight:600;}
+
+  /* STREAK */
+  .streak-card{padding:26px 28px;margin-bottom:20px;}
+  .streak-head{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;margin-bottom:18px;}
+  .day-grid{display:flex;gap:5px;flex-wrap:wrap;}
+  .dd{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;font-family:'Red Hat Mono',monospace;position:relative;transition:transform 0.15s ease;cursor:default;}
+  .dd:hover{transform:scale(1.2);z-index:2;}
+  .dd.empty{background:rgba(31,41,55,0.05);color:rgba(31,41,55,0.2);border:1.5px dashed rgba(31,41,55,0.12);}
+  .dd.has{background:var(--green);color:var(--text);}
+  .dd.hasmulti{background:var(--text);color:var(--green);}
+  .dd.today{outline:3px solid var(--text);outline-offset:2px;}
+  .dd.future{opacity:0.25;background:rgba(31,41,55,0.04);color:rgba(31,41,55,0.15);border:1.5px dashed rgba(31,41,55,0.08);}
+  .pip{position:absolute;top:-5px;right:-5px;background:var(--coral);color:var(--text);border-radius:100px;width:15px;height:15px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:900;border:2px solid var(--white);}
+
+  /* SCOREBOARD */
+  .sb-title{font-size:17px;font-weight:800;margin:28px 0 14px;display:flex;align-items:center;gap:8px;}
+  .sb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:20px;}
+  .sc{border-radius:24px;padding:24px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.22s ease,box-shadow 0.22s ease;border:2px solid transparent;}
+  .sc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+  .sc.r1{border-color:#FFD700;} .sc.r2{border-color:#C0C0C0;} .sc.r3{border-color:#CD7F32;}
+  .sc-rank{position:absolute;top:14px;right:14px;font-size:22px;}
+  .sc-name{font-size:20px;font-weight:900;margin-bottom:2px;}
+  .sc-role{font-size:11px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:18px;}
+  .sc-big{font-size:52px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
+  .sc-biglabel{font-size:11px;font-weight:700;opacity:0.55;margin-top:2px;margin-bottom:14px;}
+  .sc-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .chip{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:800;background:rgba(0,0,0,0.1);white-space:nowrap;}
+  .sc-barlabel{display:flex;justify-content:space-between;font-size:11px;font-weight:700;opacity:0.6;margin-bottom:5px;}
+  .sc-track{height:7px;background:rgba(0,0,0,0.1);border-radius:100px;overflow:hidden;}
+  .sc-fill{height:100%;border-radius:100px;background:rgba(0,0,0,0.2);transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+  /* character in scorecard */
+  .sc-char{position:absolute;bottom:0;right:-6px;width:110px;height:130px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
+
+  /* CHART */
+  .chart-card{padding:28px 28px 20px;margin-bottom:20px;}
+  .sec-t{font-size:15px;font-weight:800;margin-bottom:4px;}
+  .sec-s{font-size:12px;color:var(--text2);margin-bottom:20px;font-weight:600;}
+  .chart-area{position:relative;height:200px;}
+
+  /* 2 COL */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  @media(max-width:660px){.two-col{grid-template-columns:1fr;}.meta-hero{grid-template-columns:1fr;}}
+
+  /* BREAKDOWN */
+  .bk-card{padding:22px 24px;}
+  .bk-item{margin-bottom:14px;}
+  .bk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+  .bk-label{font-size:13px;font-weight:700;}
+  .bk-count{font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+  .bk-track{height:9px;background:var(--bg);border-radius:100px;overflow:hidden;}
+  .bk-fill{height:100%;border-radius:100px;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
+  .ag-list{list-style:none;}
+  .ag-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+  .ag-item:last-child{border-bottom:none;}
+  .ag-name{font-weight:700;display:flex;align-items:center;gap:8px;}
+  .ag-pill{background:var(--bg);border-radius:100px;padding:3px 10px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+
+  /* KAM HEADER */
+  .kam-head{border-radius:24px;padding:30px 36px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;position:relative;overflow:hidden;}
+  .kam-char{position:absolute;right:24px;bottom:0;height:160px;width:140px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
+  .kh-name{font-size:30px;font-weight:900;margin-bottom:4px;}
+  .kh-sub{font-size:13px;font-weight:700;opacity:0.6;}
+  .kpi-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;}
+  .kpi-val{font-size:28px;font-weight:900;line-height:1;}
+  .kpi-lab{font-size:11px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1px;}
+
+  /* TABLE */
+  .table-card{padding:22px 24px;}
+  .table-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{padding:9px 12px;text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text2);opacity:0.6;border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:11px 12px;border-bottom:1px solid var(--border);font-weight:500;vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(114,221,163,0.05);}
+  td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
+  .badge{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:800;display:inline-block;white-space:nowrap;}
+  .b-integral{background:#dcfce7;color:#166534;} .b-juridica{background:#dbeafe;color:#1e40af;}
+  .b-premium{background:#fef3c7;color:#92400e;} .b-primera{background:#f3e8ff;color:#6b21a8;}
+  .b-ren{background:#fce7f3;color:#9d174d;} .b-aka{background:#1F2937;color:#72DDA3;}
+  .b-dir{background:var(--bg);color:var(--text2);}
+
+  /* CONFETTI */
+  #cf-stage{position:fixed;inset:0;pointer-events:none;z-index:9999;}
+  .cf{position:absolute;border-radius:2px;animation:cff 3.5s ease-in forwards;opacity:0;}
+  @keyframes cff{0%{opacity:1;transform:translateY(-30px) rotate(0deg) scaleX(1);}100%{opacity:0;transform:translateY(105vh) rotate(800deg) scaleX(0.2);}}
+
+  .footer{text-align:center;padding:20px 0 0;font-size:12px;color:var(--text2);opacity:0.35;font-weight:700;letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+<div class="bg-deco"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
+<div id="cf-stage"></div>
+
+<div class="wrap">
+
+  <div class="header">
+    <div>
+      <h1>🏆 Firmas <em>Marzo</em></h1>
+      <p class="header-sub">MICA Operations · Actualizado 27 Mar 2026</p>
+    </div>
+    <div class="header-pill">⚡ MES EN CURSO</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="goTab('general')">🌟 General</button>
+    <button class="tab" onclick="goTab('pablo')"><span class="tab-ic">🚀</span>Pablo</button>
+    <button class="tab" onclick="goTab('majo')"><span class="tab-ic">🦋</span>Majo</button>
+    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐻</span>Gabo</button>
+    <button class="tab" onclick="goTab('leo')"><span class="tab-ic">🦁</span>Leo</button>
+  </div>
+
+  <!-- ══ GENERAL ══ -->
+  <div class="panel active" id="panel-general">
+
+    <div class="meta-hero">
+      <div class="mh-deco"><span></span><span></span><span></span></div>
+      <div style="position:relative;z-index:1">
+        <div class="meta-label">Meta del Mes</div>
+        <div class="meta-nums">
+          <div class="meta-big" id="ctr">0</div>
+          <div class="meta-sep">/</div>
+          <div class="meta-goal">114</div>
+        </div>
+        <div class="meta-pct" id="pct-badge">⚡ 0%</div>
+        <div class="bar-track"><div class="bar-fill" id="main-bar" style="width:0%"></div></div>
+      </div>
+      <div class="mini-metas" style="position:relative;z-index:1">
+        <div class="mm">
+          <div class="mm-top">
+            <div class="mm-name">🍦 Heladito — primera vez</div>
+            <div class="mm-nums" style="color:var(--agua)">53 / 70</div>
+          </div>
+          <div class="mm-track"><div class="mm-fill" id="h-bar" style="width:0%;background:var(--agua)"></div></div>
+          <div class="mm-foot"><span id="h-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">17</strong> para llegar</div>
+        </div>
+        <div class="mm">
+          <div class="mm-top">
+            <div class="mm-name">🎁 Sorpresa — renovación</div>
+            <div class="mm-nums" style="color:var(--coral)">12 / 80</div>
+          </div>
+          <div class="mm-track"><div class="mm-fill" id="s-bar" style="width:0%;background:var(--coral)"></div></div>
+          <div class="mm-foot"><span id="s-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">68</strong> para llegar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ach-row">
+      <div class="ach"><div class="ach-ic">🔥</div><div><div class="ach-t">Racha activa</div><div class="ach-d">+5 días seguidos cerrando</div></div></div>
+      <div class="ach"><div class="ach-ic">💰</div><div><div class="ach-t">$390,649 FEE</div><div class="ach-d">Acumulado en el mes</div></div></div>
+      <div class="ach"><div class="ach-ic">⚡</div><div><div class="ach-t">Mejor día: 5 firmas</div><div class="ach-d">Día 6 de marzo</div></div></div>
+      <div class="ach"><div class="ach-ic">📅</div><div><div class="ach-t">23 / 27 días activos</div><div class="ach-d">Consistencia del equipo</div></div></div>
+    </div>
+
+    <div class="card streak-card">
+      <div class="streak-head">🗓️ Actividad diaria — marzo</div>
+      <div class="day-grid" id="day-grid"></div>
+    </div>
+
+    <div class="sb-title">🏅 Ranking del Equipo</div>
+    <div class="sb-grid" id="scoreboard"></div>
+
+    <div class="card chart-card">
+      <div class="sec-t">📈 Firmas acumuladas</div>
+      <div class="sec-s">Progresión diaria del equipo · meta en punteado</div>
+      <div class="chart-area"><canvas id="mainChart"></canvas></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card bk-card">
+        <div class="sec-t" style="margin-bottom:16px">🛡️ Por protección</div>
+        <div class="bk-item">
+          <div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">42</span></div>
+          <div class="bk-track"><div class="bk-fill" style="width:0%;background:var(--green)" data-w="65.6"></div></div>
+        </div>
+        <div class="bk-item">
+          <div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">16</span></div>
+          <div class="bk-track"><div class="bk-fill" style="width:0%;background:var(--agua)" data-w="25"></div></div>
+        </div>
+        <div class="bk-item">
+          <div class="bk-head"><span class="bk-label">Premium ⭐</span><span class="bk-count">7</span></div>
+          <div class="bk-track"><div class="bk-fill" style="width:0%;background:var(--yellow)" data-w="10.9"></div></div>
+        </div>
+      </div>
+      <div class="card bk-card">
+        <div class="sec-t" style="margin-bottom:14px">🏢 Top Agencias</div>
+        <ul class="ag-list">
+          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">12</span></li>
+          <li class="ag-item"><span class="ag-name">🏢 Grupo Arvi</span><span class="ag-pill">4</span></li>
+          <li class="ag-item"><span class="ag-name">🏢 E-Inmob</span><span class="ag-pill">2</span></li>
+          <li class="ag-item"><span class="ag-name">🔒 ZuProteccion</span><span class="ag-pill">2</span></li>
+          <li class="ag-item"><span class="ag-name">📦 Otras (4)</span><span class="ag-pill">4</span></li>
+          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">40</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PABLO 🚀 ══ -->
+  <div class="panel" id="panel-pablo">
+    <div class="kam-head" style="background:linear-gradient(135deg,#b8f5d4,#72DDA3);color:#1F5C3A;">
+      <div style="max-width:65%">
+        <div class="kh-name">🚀 Pablo de la Puente</div>
+        <div class="kh-sub">El Astronauta · Explorador de nuevos contratos</div>
+        <div class="kpi-row">
+          <div><div class="kpi-val">27</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$170K</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">25</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">2</div><div class="kpi-lab">Renov.</div></div>
+        </div>
+      </div>
+      <div class="kam-char">
+        <svg viewBox="0 0 140 170" width="140" height="170">
+          <!-- Stars -->
+          <circle cx="22" cy="45" r="2.5" fill="#FFD700" opacity="0.9"/>
+          <circle cx="118" cy="68" r="2" fill="#FFD700" opacity="0.8"/>
+          <circle cx="12" cy="90" r="1.5" fill="white" opacity="0.7"/>
+          <circle cx="128" cy="40" r="2" fill="white" opacity="0.6"/>
+          <circle cx="30" cy="130" r="1.5" fill="#FFD700" opacity="0.5"/>
+          <!-- Rocket body -->
+          <ellipse cx="70" cy="108" rx="24" ry="38" fill="#1F5C3A"/>
+          <!-- Rocket nose -->
+          <path d="M70 24 Q44 64 44 80 Q70 74 96 80 Q96 64 70 24Z" fill="#72DDA3"/>
+          <!-- Nose highlight -->
+          <path d="M70 24 Q62 56 62 74 Q70 72 70 72L70 24Z" fill="rgba(255,255,255,0.2)"/>
+          <!-- Window -->
+          <circle cx="70" cy="90" r="13" fill="#BBE3E3"/>
+          <circle cx="70" cy="90" r="9" fill="#E8FFF5"/>
+          <circle cx="67" cy="87" r="3" fill="rgba(255,255,255,0.5)"/>
+          <!-- Flag on window -->
+          <text x="70" y="94" text-anchor="middle" font-size="10">✦</text>
+          <!-- Fins left -->
+          <path d="M46 116 L26 148 L46 136Z" fill="#4ecb7a"/>
+          <!-- Fins right -->
+          <path d="M94 116 L114 148 L94 136Z" fill="#4ecb7a"/>
+          <!-- Flame outer -->
+          <ellipse cx="70" cy="150" rx="16" ry="22" fill="#F3CE98" opacity="0.95"/>
+          <!-- Flame mid -->
+          <ellipse cx="70" cy="158" rx="10" ry="15" fill="#FFB59C" opacity="0.95"/>
+          <!-- Flame inner -->
+          <ellipse cx="70" cy="164" rx="5" ry="9" fill="white" opacity="0.8"/>
+          <!-- Side boosters -->
+          <ellipse cx="46" cy="115" rx="6" ry="14" fill="#165c30"/>
+          <ellipse cx="94" cy="115" rx="6" ry="14" fill="#165c30"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card table-card">
+      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="table-wrap"><table id="tbl-pablo"></table></div>
+    </div>
+  </div>
+
+  <!-- ══ MAJO 🦋 ══ -->
+  <div class="panel" id="panel-majo">
+    <div class="kam-head" style="background:linear-gradient(135deg,#d4f2f2,#BBE3E3);color:#1A4A4A;">
+      <div style="max-width:65%">
+        <div class="kh-name">🦋 Maria José Arriaga</div>
+        <div class="kh-sub">La Mariposa · Mayor FEE del mes</div>
+        <div class="kpi-row">
+          <div><div class="kpi-val">26</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$185K</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">26</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">0</div><div class="kpi-lab">Renov.</div></div>
+        </div>
+      </div>
+      <div class="kam-char">
+        <svg viewBox="0 0 140 170" width="140" height="170">
+          <!-- Wing shimmer dots -->
+          <circle cx="32" cy="68" r="8" fill="rgba(114,221,163,0.45)"/>
+          <circle cx="108" cy="68" r="8" fill="rgba(114,221,163,0.45)"/>
+          <circle cx="24" cy="100" r="5" fill="rgba(114,221,163,0.3)"/>
+          <circle cx="116" cy="100" r="5" fill="rgba(114,221,163,0.3)"/>
+          <!-- Left wing top -->
+          <path d="M56 92 Q20 68 16 42 Q30 36 56 60 Q66 76 66 88Z" fill="#BBE3E3" opacity="0.95"/>
+          <!-- Left wing bottom -->
+          <path d="M56 108 Q18 112 14 136 Q30 142 58 122Z" fill="#8ccece" opacity="0.85"/>
+          <!-- Right wing top -->
+          <path d="M84 92 Q120 68 124 42 Q110 36 84 60 Q74 76 74 88Z" fill="#BBE3E3" opacity="0.95"/>
+          <!-- Right wing bottom -->
+          <path d="M84 108 Q122 112 126 136 Q110 142 82 122Z" fill="#8ccece" opacity="0.85"/>
+          <!-- Wing patterns -->
+          <ellipse cx="36" cy="66" rx="10" ry="14" fill="rgba(31,41,55,0.08)" transform="rotate(-30,36,66)"/>
+          <ellipse cx="104" cy="66" rx="10" ry="14" fill="rgba(31,41,55,0.08)" transform="rotate(30,104,66)"/>
+          <!-- Body -->
+          <ellipse cx="70" cy="120" rx="13" ry="25" fill="#1A4A4A"/>
+          <!-- Body segments -->
+          <line x1="57" y1="112" x2="83" y2="112" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <line x1="57" y1="120" x2="83" y2="120" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <line x1="57" y1="128" x2="83" y2="128" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <!-- Head -->
+          <circle cx="70" cy="80" r="18" fill="#1A4A4A"/>
+          <!-- Eyes -->
+          <circle cx="63" cy="77" r="5" fill="white"/>
+          <circle cx="77" cy="77" r="5" fill="white"/>
+          <circle cx="64" cy="77.5" r="2.5" fill="#1A4A4A"/>
+          <circle cx="78" cy="77.5" r="2.5" fill="#1A4A4A"/>
+          <circle cx="63.5" cy="76" r="1" fill="white"/>
+          <circle cx="77.5" cy="76" r="1" fill="white"/>
+          <!-- Antennae -->
+          <line x1="63" y1="63" x2="54" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="54" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
+          <line x1="77" y1="63" x2="86" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="86" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
+          <!-- Smile -->
+          <path d="M63 85 Q70 92 77 85" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <!-- Legs -->
+          <line x1="60" y1="138" x2="54" y2="158" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
+          <line x1="80" y1="138" x2="86" y2="158" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card table-card">
+      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="table-wrap"><table id="tbl-majo"></table></div>
+    </div>
+  </div>
+
+  <!-- ══ GABO 🐻 ══ -->
+  <div class="panel" id="panel-gabo">
+    <div class="kam-head" style="background:linear-gradient(135deg,#fde8c0,#F3CE98);color:#5C3A00;">
+      <div style="max-width:65%">
+        <div class="kh-name">🐻 Gabriel Alvarado</div>
+        <div class="kh-sub">El Oso · King de renovaciones AKA</div>
+        <div class="kpi-row">
+          <div><div class="kpi-val">10</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$33K</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">0</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">10</div><div class="kpi-lab">Renov.</div></div>
+        </div>
+      </div>
+      <div class="kam-char">
+        <svg viewBox="0 0 140 170" width="140" height="170">
+          <!-- Body -->
+          <ellipse cx="70" cy="128" rx="34" ry="38" fill="#8B6914"/>
+          <!-- Belly -->
+          <ellipse cx="70" cy="132" rx="22" ry="27" fill="#C4961E" opacity="0.5"/>
+          <!-- Arms -->
+          <ellipse cx="32" cy="125" rx="14" ry="26" fill="#8B6914" transform="rotate(-18,32,125)"/>
+          <ellipse cx="108" cy="125" rx="14" ry="26" fill="#8B6914" transform="rotate(18,108,125)"/>
+          <!-- Paws -->
+          <ellipse cx="24" cy="148" rx="12" ry="8" fill="#7A5812"/>
+          <ellipse cx="116" cy="148" rx="12" ry="8" fill="#7A5812"/>
+          <!-- Honey jar in left paw -->
+          <rect x="14" y="136" width="20" height="22" rx="5" fill="#FFD700" opacity="0.85"/>
+          <rect x="14" y="136" width="20" height="8" rx="4" fill="#CC9900" opacity="0.85"/>
+          <text x="24" y="153" text-anchor="middle" font-size="8" fill="#5C3A00" font-weight="bold">🍯</text>
+          <!-- Head -->
+          <circle cx="70" cy="80" r="32" fill="#8B6914"/>
+          <!-- Ears -->
+          <circle cx="42" cy="52" r="16" fill="#8B6914"/>
+          <circle cx="42" cy="52" r="9" fill="#C4961E" opacity="0.5"/>
+          <circle cx="98" cy="52" r="16" fill="#8B6914"/>
+          <circle cx="98" cy="52" r="9" fill="#C4961E" opacity="0.5"/>
+          <!-- Snout -->
+          <ellipse cx="70" cy="90" rx="16" ry="12" fill="#C4961E" opacity="0.65"/>
+          <!-- Nose -->
+          <ellipse cx="70" cy="83" rx="8" ry="5.5" fill="#5C3A00"/>
+          <!-- Eyes -->
+          <circle cx="58" cy="74" r="6" fill="#5C3A00"/>
+          <circle cx="82" cy="74" r="6" fill="#5C3A00"/>
+          <circle cx="59" cy="72" r="2.5" fill="white"/>
+          <circle cx="83" cy="72" r="2.5" fill="white"/>
+          <!-- Smile -->
+          <path d="M60 94 Q70 103 80 94" fill="none" stroke="#5C3A00" stroke-width="3" stroke-linecap="round"/>
+          <!-- Legs / feet -->
+          <ellipse cx="52" cy="163" rx="16" ry="10" fill="#7A5812"/>
+          <ellipse cx="88" cy="163" rx="16" ry="10" fill="#7A5812"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card table-card">
+      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="table-wrap"><table id="tbl-gabo"></table></div>
+    </div>
+  </div>
+
+  <!-- ══ LEO 🦁 ══ -->
+  <div class="panel" id="panel-leo">
+    <div class="kam-head" style="background:linear-gradient(135deg,#ffd5c2,#FFB59C);color:#7A2800;">
+      <div style="max-width:65%">
+        <div class="kh-name">🦁 Leonardo Monzalvo</div>
+        <div class="kh-sub">El León · Rey en potencia, corona lista</div>
+        <div class="kpi-row">
+          <div><div class="kpi-val">1</div><div class="kpi-lab">Firma</div></div>
+          <div><div class="kpi-val">$2.7K</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">1</div><div class="kpi-lab">1ra vez</div></div>
+        </div>
+      </div>
+      <div class="kam-char">
+        <svg viewBox="0 0 140 170" width="140" height="170">
+          <!-- Crown (floating above) -->
+          <path d="M46 46 L52 30 L56 40 L62 24 L70 40 L78 24 L84 40 L88 30 L94 46Z" fill="#FFD700"/>
+          <circle cx="62" cy="24" r="4" fill="#FF6B35"/>
+          <circle cx="70" cy="20" r="4" fill="#E8001C"/>
+          <circle cx="78" cy="24" r="4" fill="#FF6B35"/>
+          <!-- Mane -->
+          <circle cx="70" cy="98" r="44" fill="#CC7A00" opacity="0.9"/>
+          <!-- Head -->
+          <circle cx="70" cy="96" r="30" fill="#E8961A"/>
+          <!-- Ear tufts -->
+          <circle cx="44" cy="72" r="10" fill="#CC7A00"/>
+          <circle cx="96" cy="72" r="10" fill="#CC7A00"/>
+          <!-- Face -->
+          <ellipse cx="70" cy="106" rx="18" ry="13" fill="#F3CE98"/>
+          <!-- Nose -->
+          <ellipse cx="70" cy="98" rx="8" ry="6" fill="#7A2800"/>
+          <!-- Nostrils -->
+          <ellipse cx="67" cy="100" rx="2" ry="1.5" fill="#5A1800"/>
+          <ellipse cx="73" cy="100" rx="2" ry="1.5" fill="#5A1800"/>
+          <!-- Eyes -->
+          <circle cx="58" cy="90" r="7" fill="#7A2800"/>
+          <circle cx="82" cy="90" r="7" fill="#7A2800"/>
+          <circle cx="59.5" cy="88" r="3" fill="white"/>
+          <circle cx="83.5" cy="88" r="3" fill="white"/>
+          <!-- Eye shine -->
+          <circle cx="60.5" cy="87" r="1.5" fill="white" opacity="0.9"/>
+          <circle cx="84.5" cy="87" r="1.5" fill="white" opacity="0.9"/>
+          <!-- Whiskers -->
+          <line x1="52" y1="103" x2="34" y2="99" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="52" y1="107" x2="32" y2="108" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="88" y1="103" x2="106" y2="99" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="88" y1="107" x2="108" y2="108" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Smile -->
+          <path d="M62 112 Q70 121 78 112" fill="none" stroke="#7A2800" stroke-width="3" stroke-linecap="round"/>
+          <!-- Tongue -->
+          <ellipse cx="70" cy="116" rx="5" ry="4" fill="#FF8FA3"/>
+          <!-- Body -->
+          <ellipse cx="70" cy="152" rx="28" ry="25" fill="#E8961A"/>
+          <!-- Tail -->
+          <path d="M98 148 Q124 136 122 158 Q118 168 110 164" fill="none" stroke="#E8961A" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="110" cy="165" rx="10" ry="7" fill="#CC7A00"/>
+        </svg>
+      </div>
+    </div>
+    <div class="card table-card">
+      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="table-wrap"><table id="tbl-leo"></table></div>
+    </div>
+  </div>
+
+  <div class="footer">MICA Operations · Pulso Firmas Marzo 2026 · jael-lab.github.io</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+const META=114,META_H=70,META_S=80,TOTAL=64,HEL=53,SOR=12;
+
+const dailyCum={2:3,3:8,4:10,5:12,6:16,7:17,9:20,10:22,11:26,12:30,13:33,16:34,17:37,18:42,19:44,20:48,21:49,22:50,23:54,24:56,25:60,26:62,27:64};
+
+const kams=[
+  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:27,fee:170036,primera:25,reno:2},
+  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:26,fee:184583,primera:26,reno:0},
+  {key:'gabo', name:'Gabo', ch:'🐻',color:'#F3CE98',dc:'#5C3A00',firmas:10,fee:33316, primera:0, reno:10},
+  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1, fee:2714,  primera:1, reno:0},
+];
+
+const details={
+  pablo:[
+    {day:"02/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Directa",monto:25980,fee:9041},
+    {day:"02/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15800,fee:5498},
+    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15000,fee:5220},
+    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:18000,fee:6264},
+    {day:"05/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:7500,fee:4350},
+    {day:"05/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:30000,fee:10440},
+    {day:"06/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7500,fee:2551},
+    {day:"07/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:5500,fee:2552},
+    {day:"09/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20850,fee:7255},
+    {day:"09/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Ungga",monto:12180,fee:2825},
+    {day:"10/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20000,fee:6959},
+    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:29000,fee:10092},
+    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
+    {day:"12/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Grupo Arvi",monto:16800,fee:5846},
+    {day:"13/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:17500,fee:6090},
+    {day:"13/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:10450,fee:3636},
+    {day:"18/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:8300,fee:2888},
+    {day:"19/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15000,fee:5220},
+    {day:"19/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"ZuProteccion",monto:90000,fee:20880},
+    {day:"20/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:21500,fee:7481},
+    {day:"23/03",ct:"primera_vez",pt:"proteccion_integral",ag:"ZuProteccion",monto:23625,fee:8221},
+    {day:"23/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Grupo Arvi",monto:8500,fee:4930},
+    {day:"24/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7500,fee:2552},
+    {day:"24/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Rentas Ok",monto:15950,fee:8772},
+    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:40000,fee:9280},
+    {day:"25/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:8500,fee:4930},
+    {day:"27/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:7500,fee:2610},
+  ],
+  majo:[
+    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:7000,fee:2784},
+    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:21150,fee:7360},
+    {day:"03/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:5500,fee:2552},
+    {day:"06/03",ct:"primera_vez",pt:"proteccion_integral",ag:"AKA",monto:8500,fee:2958},
+    {day:"06/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:11200,fee:2598},
+    {day:"06/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
+    {day:"09/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:16565,fee:8282},
+    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"E-Inmob",monto:32000,fee:11136},
+    {day:"12/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:12500,fee:4350},
+    {day:"12/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:9800,fee:2552},
+    {day:"17/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:42200,fee:9790},
+    {day:"17/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:7000,fee:4059},
+    {day:"18/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:6670,fee:2552},
+    {day:"18/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:16000,fee:9280},
+    {day:"18/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:16000,fee:9280},
+    {day:"18/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Tu lugar tu espacio",monto:19000,fee:6611},
+    {day:"20/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:8500,fee:2552},
+    {day:"20/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:11820,fee:2742},
+    {day:"20/03",ct:"primera_vez",pt:"proteccion_integral",ag:"AKA",monto:20000,fee:6959},
+    {day:"22/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
+    {day:"23/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:13000,fee:4524},
+    {day:"23/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:19400,fee:11252},
+    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"E-Inmob",monto:43000,fee:9976},
+    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:18000,fee:4176},
+    {day:"26/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:80000,fee:46400},
+    {day:"27/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:10243,fee:2552},
+  ],
+  gabo:[
+    {day:"02/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:13227,fee:4602},
+    {day:"04/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8716,fee:3033},
+    {day:"04/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:16412,fee:5711},
+    {day:"11/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:7848,fee:2731},
+    {day:"12/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6641,fee:2311},
+    {day:"13/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:9389,fee:3267},
+    {day:"16/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:3808,fee:1325},
+    {day:"17/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:9254,fee:3220},
+    {day:"21/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:7065,fee:2458},
+    {day:"26/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:13386,fee:4658},
+  ],
+  leo:[{day:"10/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:7800,fee:2714}]
+};
+
+// mini chars for scorecards
+const miniChars={
+  pablo:`<svg viewBox="0 0 100 120" width="100" height="120">
+    <ellipse cx="50" cy="78" rx="18" ry="30" fill="#1F5C3A"/>
+    <path d="M50 18 Q32 48 32 60 Q50 55 68 60 Q68 48 50 18Z" fill="#72DDA3"/>
+    <circle cx="50" cy="66" r="9" fill="#BBE3E3"/>
+    <path d="M32 86 L18 110 L32 100Z" fill="#4ecb7a"/>
+    <path d="M68 86 L82 110 L68 100Z" fill="#4ecb7a"/>
+    <ellipse cx="50" cy="112" rx="12" ry="17" fill="#F3CE98" opacity="0.9"/>
+    <ellipse cx="50" cy="118" rx="7" ry="10" fill="#FFB59C" opacity="0.9"/>
+  </svg>`,
+  majo:`<svg viewBox="0 0 100 120" width="100" height="120">
+    <path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/>
+    <path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/>
+    <path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/>
+    <path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/>
+    <circle cx="26" cy="48" r="8" fill="rgba(114,221,163,0.4)"/>
+    <circle cx="74" cy="48" r="8" fill="rgba(114,221,163,0.4)"/>
+    <ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/>
+    <circle cx="50" cy="60" r="14" fill="#1A4A4A"/>
+    <circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/>
+    <circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/>
+    <path d="M44 65 Q50 71 56 65" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="45" y1="47" x2="40" y2="36" stroke="#1A4A4A" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="40" cy="35" r="3.5" fill="#BBE3E3"/>
+    <line x1="55" y1="47" x2="60" y2="36" stroke="#1A4A4A" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="60" cy="35" r="3.5" fill="#BBE3E3"/>
+  </svg>`,
+  gabo:`<svg viewBox="0 0 100 120" width="100" height="120">
+    <ellipse cx="50" cy="96" rx="28" ry="30" fill="#8B6914"/>
+    <ellipse cx="50" cy="100" rx="18" ry="21" fill="#C4961E" opacity="0.5"/>
+    <ellipse cx="22" cy="96" rx="11" ry="20" fill="#8B6914" transform="rotate(-15,22,96)"/>
+    <ellipse cx="78" cy="96" rx="11" ry="20" fill="#8B6914" transform="rotate(15,78,96)"/>
+    <circle cx="50" cy="58" r="26" fill="#8B6914"/>
+    <circle cx="28" cy="36" r="13" fill="#8B6914"/><circle cx="28" cy="36" r="7" fill="#C4961E" opacity="0.5"/>
+    <circle cx="72" cy="36" r="13" fill="#8B6914"/><circle cx="72" cy="36" r="7" fill="#C4961E" opacity="0.5"/>
+    <ellipse cx="50" cy="68" rx="13" ry="9" fill="#C4961E" opacity="0.65"/>
+    <ellipse cx="50" cy="62" rx="7" ry="4.5" fill="#5C3A00"/>
+    <circle cx="41" cy="54" r="5" fill="#5C3A00"/><circle cx="59" cy="54" r="5" fill="#5C3A00"/>
+    <circle cx="42" cy="52.5" r="2" fill="white"/><circle cx="60" cy="52.5" r="2" fill="white"/>
+    <path d="M43 71 Q50 79 57 71" fill="none" stroke="#5C3A00" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="30" y="100" width="15" height="18" rx="4" fill="#FFD700" opacity="0.85"/>
+  </svg>`,
+  leo:`<svg viewBox="0 0 100 120" width="100" height="120">
+    <path d="M30 42 L34 28 L37 36 L40 22 L44 34 L50 20 L56 34 L60 22 L63 36 L66 28 L70 42Z" fill="#FFD700"/>
+    <circle cx="40" cy="22" r="3" fill="#FF6B35"/><circle cx="50" cy="18" r="3" fill="#E8001C"/><circle cx="60" cy="22" r="3" fill="#FF6B35"/>
+    <circle cx="50" cy="78" r="36" fill="#CC7A00" opacity="0.9"/>
+    <circle cx="50" cy="76" r="24" fill="#E8961A"/>
+    <circle cx="30" cy="56" r="8" fill="#CC7A00"/>
+    <circle cx="70" cy="56" r="8" fill="#CC7A00"/>
+    <ellipse cx="50" cy="85" rx="14" ry="10" fill="#F3CE98"/>
+    <ellipse cx="50" cy="79" rx="6" ry="4.5" fill="#7A2800"/>
+    <circle cx="41" cy="72" r="5.5" fill="#7A2800"/><circle cx="59" cy="72" r="5.5" fill="#7A2800"/>
+    <circle cx="42" cy="70.5" r="2.5" fill="white"/><circle cx="60" cy="70.5" r="2.5" fill="white"/>
+    <line x1="36" y1="83" x2="24" y2="80" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="36" y1="87" x2="22" y2="88" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="64" y1="83" x2="76" y2="80" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="64" y1="87" x2="78" y2="88" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M44 90 Q50 98 56 90" fill="none" stroke="#7A2800" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="50" cy="112" rx="22" ry="16" fill="#E8961A"/>
+  </svg>`
+};
+
+const $=id=>document.getElementById(id);
+const fmt=n=>'$'+Math.round(n).toLocaleString('es-MX');
+const ptB=pt=>pt==='proteccion_integral'?'<span class="badge b-integral">Integral</span>':pt==='proteccion_juridica'?'<span class="badge b-juridica">Jurídica</span>':pt==='proteccion_premium'?'<span class="badge b-premium">Premium ⭐</span>':`<span class="badge b-dir">${pt}</span>`;
+const ctB=ct=>ct==='primera_vez'?'<span class="badge b-primera">1ra vez</span>':ct==='renovacion_mica'?'<span class="badge b-ren">Renovación</span>':`<span class="badge b-dir">${ct}</span>`;
+const agB=ag=>ag==='AKA'?'<span class="badge b-aka">AKA</span>':ag==='Directa'?'<span class="badge b-dir">Directa</span>':`<span class="badge b-dir">${ag}</span>`;
+
+function animCount(el,to,ms=1300){
+  const t0=performance.now();
+  const go=t=>{const p=Math.min((t-t0)/ms,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*to);if(p<1)requestAnimationFrame(go);else el.textContent=to;};
+  requestAnimationFrame(go);
+}
+
+function buildDots(){
+  const dm={};
+  const dks=Object.keys(dailyCum).map(Number).sort((a,b)=>a-b);
+  dks.forEach((d,i)=>{dm[d]=dailyCum[d]-(i===0?0:dailyCum[dks[i-1]]);});
+  const g=$('day-grid');
+  for(let d=1;d<=31;d++){
+    const el=document.createElement('div');
+    el.className='dd';
+    const n=dm[d]||0;
+    if(d>27){el.classList.add('future');el.textContent=d;}
+    else if(!n){el.classList.add('empty');el.textContent=d;}
+    else if(n>=3){el.classList.add('hasmulti');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
+    else{el.classList.add('has');el.innerHTML=n>1?`${d}<span class="pip">${n}</span>`:d;}
+    if(d===27)el.classList.add('today');
+    el.title=n?`${n} firma${n>1?'s':''} el día ${d}`:`Sin firmas el día ${d}`;
+    g.appendChild(el);
+  }
+}
+
+function buildScoreboard(){
+  const ranks=['r1','r2','r3',''];
+  const rEmoji=['🥇','🥈','🥉','⭐'];
+  const sb=$('scoreboard');
+  kams.forEach((k,i)=>{
+    const c=document.createElement('div');
+    c.className=`sc card ${ranks[i]}`;
+    c.style.background=`linear-gradient(145deg,${k.color}30 0%,${k.color}10 100%)`;
+    c.onclick=()=>goTab(k.key);
+    const pct=Math.min(Math.round(k.firmas/35*100),100);
+    c.innerHTML=`
+      <div class="sc-rank">${rEmoji[i]}</div>
+      <div class="sc-name">${k.ch} ${k.name}</div>
+      <div class="sc-role">KAM</div>
+      <div class="sc-big" style="color:${k.dc}">${k.firmas}</div>
+      <div class="sc-biglabel">firmas totales</div>
+      <div class="sc-chips">
+        <span class="chip">1ra: ${k.primera}</span>
+        <span class="chip">Ren: ${k.reno}</span>
+        <span class="chip">${fmt(k.fee)}</span>
+      </div>
+      <div>
+        <div class="sc-barlabel"><span>Progreso</span><span>${pct}%</span></div>
+        <div class="sc-track"><div class="sc-fill" style="width:${pct}%;background:${k.color}cc"></div></div>
+      </div>
+      <div class="sc-char">${miniChars[k.key]}</div>
+    `;
+    sb.appendChild(c);
+  });
+}
+
+function buildChart(){
+  const dks=Object.keys(dailyCum).map(Number).sort((a,b)=>a-b);
+  new Chart($('mainChart'),{
+    type:'line',
+    data:{
+      labels:dks.map(d=>`${d} Mar`),
+      datasets:[
+        {label:'Firmas acumuladas',data:dks.map(d=>dailyCum[d]),borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.10)',fill:true,tension:0.45,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:4,pointHoverRadius:7},
+        {label:`Meta (${META})`,data:dks.map(()=>META),borderColor:'rgba(31,41,55,0.2)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:12},color:'#6B7280',usePointStyle:true}},tooltip:{mode:'index',intersect:false}},
+      scales:{
+        x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
+        y:{min:0,max:120,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
+      }
+    }
+  });
+}
+
+function buildTables(){
+  ['pablo','majo','gabo','leo'].forEach(k=>{
+    const t=$('tbl-'+k);
+    t.innerHTML=`<thead><tr><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th style="text-align:right">Renta</th><th style="text-align:right">FEE</th></tr></thead><tbody>${details[k].map(r=>`<tr><td class="mono">${r.day}</td><td>${ctB(r.ct)}</td><td>${ptB(r.pt)}</td><td>${agB(r.ag)}</td><td class="mono" style="text-align:right">${fmt(r.monto)}</td><td class="mono" style="text-align:right;color:#166534">${fmt(r.fee)}</td></tr>`).join('')}</tbody>`;
+  });
+}
+
+function animMeta(){
+  animCount($('ctr'),TOTAL);
+  const pct=Math.round(TOTAL/META*100);
+  setTimeout(()=>{$('pct-badge').textContent=`⚡ ${pct}%`;},300);
+  setTimeout(()=>{$('main-bar').style.width=(TOTAL/META*100)+'%';},300);
+  const hP=Math.round(HEL/META_H*100),sP=Math.round(SOR/META_S*100);
+  $('h-pct').textContent=hP+'%';$('s-pct').textContent=sP+'%';
+  setTimeout(()=>{$('h-bar').style.width=hP+'%';},600);
+  setTimeout(()=>{$('s-bar').style.width=sP+'%';},800);
+  document.querySelectorAll('.bk-fill[data-w]').forEach(el=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},500));
+  if(pct>=50)setTimeout(confetti,1100);
+}
+
+function confetti(){
+  const stage=$('cf-stage');
+  const cols=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937','#FFD700'];
+  for(let i=0;i<70;i++){
+    const p=document.createElement('div');
+    const sz=6+Math.random()*9;
+    p.className='cf';
+    p.style.cssText=`left:${Math.random()*100}%;top:0;width:${sz}px;height:${sz}px;background:${cols[i%cols.length]};animation-delay:${Math.random()*1.5}s;animation-duration:${2.5+Math.random()*2}s;border-radius:${Math.random()>.5?'50%':'2px'};`;
+    stage.appendChild(p);
+    setTimeout(()=>p.remove(),5000);
+  }
+}
+
+function goTab(key){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  $('panel-'+key).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>{if(t.getAttribute('onclick')===`goTab('${key}')`)t.classList.add('active');});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildDots();buildScoreboard();buildChart();buildTables();animMeta();
+});
+</script>
+</body>
+</html>
