@@ -214,18 +214,18 @@
         <div class="mm">
           <div class="mm-top">
             <div class="mm-name">🍦 Heladito — primera vez</div>
-            <div class="mm-nums" style="color:var(--agua)">53 / 70</div>
+            <div class="mm-nums" style="color:var(--agua)">64 / 70</div>
           </div>
           <div class="mm-track"><div class="mm-fill" id="h-bar" style="width:0%;background:var(--agua)"></div></div>
-          <div class="mm-foot"><span id="h-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">17</strong> para llegar</div>
+          <div class="mm-foot"><span id="h-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">6</strong> para llegar</div>
         </div>
         <div class="mm">
           <div class="mm-top">
             <div class="mm-name">🎁 Sorpresa — renovación</div>
-            <div class="mm-nums" style="color:var(--coral)">12 / 80</div>
+            <div class="mm-nums" style="color:var(--coral)">64 / 80</div>
           </div>
           <div class="mm-track"><div class="mm-fill" id="s-bar" style="width:0%;background:var(--coral)"></div></div>
-          <div class="mm-foot"><span id="s-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">68</strong> para llegar</div>
+          <div class="mm-foot"><span id="s-pct">0%</span> de meta · faltan <strong style="color:rgba(255,255,255,.65)">16</strong> para llegar</div>
         </div>
       </div>
     </div>
@@ -529,15 +529,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const META=114,META_H=70,META_S=80,TOTAL=64,HEL=53,SOR=12;
+const META=114,META_H=70,META_S=80,TOTAL=64,HEL=64,SOR=64;
 
 const dailyCum={2:3,3:8,4:10,5:12,6:16,7:17,9:20,10:22,11:26,12:30,13:33,16:34,17:37,18:42,19:44,20:48,21:49,22:50,23:54,24:56,25:60,26:62,27:64};
 
 const kams=[
-  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:27,fee:170036,primera:25,reno:2},
-  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:26,fee:184583,primera:26,reno:0},
-  {key:'gabo', name:'Gabo', ch:'🐻',color:'#F3CE98',dc:'#5C3A00',firmas:10,fee:33316, primera:0, reno:10},
-  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1, fee:2714,  primera:1, reno:0},
+  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:27,fee:170036},
+  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:26,fee:184583},
+  {key:'gabo', name:'Gabo', ch:'🐻',color:'#F3CE98',dc:'#5C3A00',firmas:10,fee:33316},
+  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1, fee:2714},
 ];
 
 const details={
