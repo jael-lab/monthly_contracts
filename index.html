@@ -3,483 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏆 MICA Firmas — Cierre Marzo 2026</title>
+<title>MICA Firmas — Abril 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;min-height:100vh;overflow-x:hidden;}
-
 .bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-.blob{position:absolute;border-radius:50%;filter:blur(60px);}
-.blob:nth-child(1){width:500px;height:500px;background:rgba(114,221,163,0.13);top:-150px;right:-100px;animation:bf 20s ease-in-out infinite;}
-.blob:nth-child(2){width:350px;height:350px;background:rgba(187,227,227,0.15);bottom:0;left:-80px;animation:bf 25s ease-in-out infinite reverse;}
-.blob:nth-child(3){width:220px;height:220px;background:rgba(243,206,152,0.15);top:45%;right:8%;animation:bf 18s ease-in-out infinite 5s;}
-@keyframes bf{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(15px,-20px) scale(1.05);}}
-
-.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 80px;}
-
-/* HEADER */
-.header{padding:44px 0 28px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.header h1{font-size:clamp(32px,5vw,50px);font-weight:900;letter-spacing:-2px;line-height:1;}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);}
+.blob:nth-child(1){width:500px;height:500px;background:rgba(114,221,163,0.12);top:-150px;right:-100px;animation:bf 22s ease-in-out infinite;}
+.blob:nth-child(2){width:380px;height:380px;background:rgba(187,227,227,0.13);bottom:0;left:-80px;animation:bf 28s ease-in-out infinite reverse;}
+.blob:nth-child(3){width:250px;height:250px;background:rgba(255,183,77,0.1);top:40%;right:10%;animation:bf 18s ease-in-out infinite 6s;}
+@keyframes bf{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(14px,-18px) scale(1.05);}}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 24px 80px;}
+.header{padding:40px 0 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.header h1{font-size:clamp(28px,4.5vw,46px);font-weight:900;letter-spacing:-2px;line-height:1;}
 .header h1 em{font-style:normal;color:#72DDA3;}
-.header-sub{font-size:14px;color:#6B7280;margin-top:8px;font-weight:600;}
-.cierre-pill{background:#1F2937;color:#72DDA3;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;letter-spacing:0.5px;white-space:nowrap;}
-
-/* TABS */
-.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:28px;background:rgba(255,255,255,0.7);padding:5px;border-radius:18px;border:1px solid rgba(31,41,55,0.09);backdrop-filter:blur(12px);width:fit-content;}
-.tab{padding:9px 18px;border-radius:14px;border:none;cursor:pointer;font-family:'Red Hat Display',sans-serif;font-size:14px;font-weight:700;transition:all 0.2s ease;background:transparent;color:#6B7280;display:flex;align-items:center;gap:8px;white-space:nowrap;}
-.tab:hover{background:rgba(255,255,255,0.8);color:#1F2937;}
-.tab.active{background:#1F2937;color:#ffffff;box-shadow:0 2px 12px rgba(31,41,55,0.2);}
-.tab-ic{font-size:18px;line-height:1;}
-
-/* PANELS */
+.header-sub{font-size:13px;color:#6B7280;margin-top:6px;font-weight:600;}
+.live-pill{background:#1F2937;color:#72DDA3;border-radius:100px;padding:8px 18px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;letter-spacing:0.5px;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#72DDA3;animation:blink 1.4s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:24px;background:rgba(255,255,255,0.72);padding:5px;border-radius:18px;border:1px solid rgba(31,41,55,0.09);backdrop-filter:blur(14px);width:fit-content;}
+.tab{padding:9px 18px;border-radius:13px;border:none;cursor:pointer;font-family:'Red Hat Display',sans-serif;font-size:13px;font-weight:700;transition:all 0.2s ease;background:transparent;color:#6B7280;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.tab:hover{background:rgba(255,255,255,0.85);color:#1F2937;}
+.tab.active{background:#1F2937;color:#fff;box-shadow:0 2px 12px rgba(31,41,55,0.2);}
+.tab-ic{font-size:17px;line-height:1;}
 .panel{display:none;}
-.panel.active{display:block;animation:pi 0.3s ease;}
-@keyframes pi{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-
-/* CARD */
-.card{background:#ffffff;border-radius:24px;border:1px solid rgba(31,41,55,0.09);box-shadow:0 2px 16px rgba(31,41,55,0.07);transition:box-shadow 0.2s ease;overflow:hidden;}
-.card:hover{box-shadow:0 8px 40px rgba(31,41,55,0.13);}
-
-/* ═══ RESULTADO DEL MES (hero especial de cierre) ═══ */
-.resultado-hero{
-  background:#1F2937;border-radius:28px;padding:40px 44px;
-  margin-bottom:20px;position:relative;overflow:hidden;
-}
-.rh-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.rh-deco span{position:absolute;border-radius:50%;}
-.rh-deco span:nth-child(1){width:400px;height:400px;background:#72DDA3;opacity:0.07;top:-100px;right:-80px;}
-.rh-deco span:nth-child(2){width:200px;height:200px;background:#F3CE98;opacity:0.08;bottom:-40px;left:30%;}
-.rh-deco span:nth-child(3){width:100px;height:100px;background:#BBE3E3;opacity:0.1;top:30px;left:10%;}
-
-.rh-label{font-size:12px;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:8px;}
-.rh-title{font-size:clamp(22px,3vw,30px);font-weight:900;color:#ffffff;margin-bottom:28px;}
-.rh-title span{color:#72DDA3;}
-
-.rh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px;}
-.rh-kpi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:18px 20px;}
-.rh-kpi-val{font-size:36px;font-weight:900;color:#ffffff;line-height:1;font-feature-settings:'tnum';}
-.rh-kpi-label{font-size:12px;font-weight:700;color:rgba(255,255,255,0.45);margin-top:4px;}
-.rh-kpi-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;font-weight:600;}
-
-/* meta bars en hero */
-.rh-metas{display:flex;flex-direction:column;gap:12px;}
-.rh-meta{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 18px;}
-.rh-meta-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.rh-meta-name{font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;}
-.rh-meta-nums{font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-.rh-meta-track{height:8px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
-.rh-meta-fill{height:100%;border-radius:100px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
-.rh-meta-foot{font-size:11px;color:rgba(255,255,255,0.35);font-weight:700;margin-top:6px;}
-
-/* ═══ PODIO ═══ */
-.podio-section{margin-bottom:20px;}
-.podio-title{font-size:17px;font-weight:800;margin:0 0 14px;display:flex;align-items:center;gap:8px;}
-.podio{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;}
-
-.podio-card{border-radius:24px;padding:24px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.22s ease,box-shadow 0.22s ease;border:2px solid transparent;}
-.podio-card:hover{transform:translateY(-6px);box-shadow:0 8px 40px rgba(31,41,55,0.13);}
-.podio-card.r1{border-color:#FFD700;}
-.podio-card.r2{border-color:#C0C0C0;}
-.podio-card.r3{border-color:#CD7F32;}
-
-.podio-rank{position:absolute;top:14px;right:14px;font-size:22px;}
-.podio-name{font-size:20px;font-weight:900;margin-bottom:2px;}
-.podio-role{font-size:11px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:18px;}
-.podio-big{font-size:52px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
-.podio-biglabel{font-size:11px;font-weight:700;opacity:0.55;margin-top:2px;margin-bottom:12px;}
-.podio-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
-.chip{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:800;background:rgba(0,0,0,0.1);white-space:nowrap;}
-.podio-bar-label{display:flex;justify-content:space-between;font-size:11px;font-weight:700;opacity:0.6;margin-bottom:5px;}
-.podio-bar-track{height:7px;background:rgba(0,0,0,0.1);border-radius:100px;overflow:hidden;}
-.podio-bar-fill{height:100%;border-radius:100px;background:rgba(0,0,0,0.2);transition:width 1.2s cubic-bezier(.4,0,.2,1);}
-.podio-char{position:absolute;bottom:0;right:-6px;width:110px;height:130px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
-
-/* ═══ HIGHLIGHTS / RECORDS ═══ */
-.highlights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px;}
-.hl{background:#ffffff;border-radius:18px;padding:18px 20px;border:1px solid rgba(31,41,55,0.09);box-shadow:0 2px 16px rgba(31,41,55,0.07);display:flex;align-items:center;gap:14px;transition:transform 0.2s ease;}
-.hl:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(31,41,55,0.13);}
-.hl-ic{font-size:28px;flex-shrink:0;}
-.hl-val{font-size:16px;font-weight:900;}
-.hl-label{font-size:11px;color:#6B7280;margin-top:2px;font-weight:600;}
-
-/* ═══ CHART ═══ */
-.chart-card{padding:28px 28px 20px;margin-bottom:20px;}
-.sec-t{font-size:15px;font-weight:800;margin-bottom:4px;}
-.sec-s{font-size:12px;color:#6B7280;margin-bottom:20px;font-weight:600;}
-.chart-area{position:relative;height:200px;}
-
-/* ═══ 2 COL ═══ */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
-@media(max-width:660px){.two-col{grid-template-columns:1fr;}.resultado-hero .rh-grid{grid-template-columns:1fr 1fr;}}
-
-/* BREAKDOWN */
-.bk-card{padding:22px 24px;}
-.bk-item{margin-bottom:14px;}
-.bk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
-.bk-label{font-size:13px;font-weight:700;}
-.bk-count{font-size:13px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-.bk-track{height:9px;background:#F0F2F5;border-radius:100px;overflow:hidden;}
+.panel.active{display:block;animation:pi 0.28s ease;}
+@keyframes pi{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.card{background:#fff;border-radius:22px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);overflow:hidden;}
+/* METRICS */
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:16px;}
+.metric{background:#fff;border-radius:18px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);padding:18px 20px;}
+.metric-val{font-size:30px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
+.metric-label{font-size:11px;font-weight:800;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.metric-sub{font-size:11px;color:#9CA3AF;font-weight:600;margin-top:2px;}
+/* META CARD */
+.meta-card{background:#1F2937;border-radius:22px;padding:28px 32px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;position:relative;overflow:hidden;}
+.meta-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.meta-deco span{position:absolute;border-radius:50%;opacity:0.07;}
+.meta-deco span:nth-child(1){width:320px;height:320px;background:#72DDA3;top:-80px;right:-60px;}
+.meta-deco span:nth-child(2){width:140px;height:140px;background:#BBE3E3;bottom:-20px;left:35%;}
+.meta-label{font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
+.meta-nums{display:flex;align-items:baseline;gap:8px;}
+.meta-big{font-size:clamp(52px,7vw,72px);font-weight:900;color:#fff;line-height:1;font-feature-settings:'tnum';}
+.meta-sep{font-size:36px;color:rgba(255,255,255,0.2);font-weight:300;}
+.meta-goal{font-size:36px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;}
+.meta-pct{display:inline-flex;align-items:center;gap:5px;background:#72DDA3;color:#1F2937;padding:5px 14px;border-radius:100px;font-size:14px;font-weight:900;margin-top:12px;}
+.mbar-track{height:8px;background:rgba(255,255,255,0.08);border-radius:100px;margin-top:16px;overflow:hidden;}
+.mbar-fill{height:100%;background:linear-gradient(90deg,#72DDA3,#5ed494);border-radius:100px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.mini-metas{display:flex;flex-direction:column;gap:10px;}
+.mm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 18px;}
+.mm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.mm-name{font-size:13px;font-weight:700;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:6px;}
+.mm-nums{font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+.mm-track{height:5px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
+.mm-fill{height:100%;border-radius:100px;transition:width 1.6s cubic-bezier(.4,0,.2,1);}
+.mm-foot{font-size:10px;color:rgba(255,255,255,0.3);font-weight:700;margin-top:5px;}
+/* SCOREBOARD */
+.sb-title{font-size:15px;font-weight:800;margin:20px 0 12px;display:flex;align-items:center;gap:8px;}
+.sb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:16px;}
+.sc{border-radius:20px;padding:20px;position:relative;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.sc:hover{transform:translateY(-5px);box-shadow:0 10px 40px rgba(31,41,55,0.14);}
+.sc.r1{border-color:#FFB74D;}.sc.r2{border-color:#BBE3E3;}.sc.r3{border-color:#72DDA3;}
+.sc-rank{position:absolute;top:12px;right:12px;font-size:20px;}
+.sc-name{font-size:18px;font-weight:900;margin-bottom:1px;}
+.sc-role{font-size:10px;font-weight:700;opacity:0.5;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.sc-big{font-size:44px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
+.sc-biglabel{font-size:10px;font-weight:700;opacity:0.5;margin-top:2px;margin-bottom:10px;}
+.sc-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.chip{padding:3px 9px;border-radius:100px;font-size:10px;font-weight:800;background:rgba(0,0,0,0.1);white-space:nowrap;}
+.sc-barlabel{display:flex;justify-content:space-between;font-size:10px;font-weight:700;opacity:0.55;margin-bottom:4px;}
+.sc-track{height:6px;background:rgba(0,0,0,0.1);border-radius:100px;overflow:hidden;}
+.sc-fill{height:100%;border-radius:100px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.sc-char{position:absolute;bottom:0;right:-4px;width:100px;height:120px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
+/* CHART */
+.chart-card{padding:24px 26px 18px;margin-bottom:16px;}
+.sec-t{font-size:14px;font-weight:800;margin-bottom:3px;}
+.sec-s{font-size:11px;color:#6B7280;margin-bottom:16px;font-weight:600;}
+.chart-area{position:relative;height:180px;}
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:640px){.two-col{grid-template-columns:1fr;}.meta-card{grid-template-columns:1fr;}}
+.bk-card{padding:20px 22px;}
+.bk-item{margin-bottom:12px;}
+.bk-head{display:flex;justify-content:space-between;margin-bottom:6px;}
+.bk-label{font-size:12px;font-weight:700;}
+.bk-count{font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+.bk-track{height:8px;background:#F0F2F5;border-radius:100px;overflow:hidden;}
 .bk-fill{height:100%;border-radius:100px;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
-
-/* AGENCIA LIST */
 .ag-list{list-style:none;}
-.ag-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(31,41,55,0.09);font-size:13px;}
+.ag-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(31,41,55,0.07);font-size:12px;}
 .ag-item:last-child{border-bottom:none;}
-.ag-name{font-weight:700;display:flex;align-items:center;gap:8px;}
-.ag-pill{background:#F0F2F5;border-radius:100px;padding:3px 10px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-
-/* ═══ STREAK ═══ */
-.streak-card{padding:26px 28px;margin-bottom:20px;}
-.streak-head{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;margin-bottom:18px;}
-.day-grid{display:flex;gap:5px;flex-wrap:wrap;}
-.dd{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;font-family:'Red Hat Mono',monospace;position:relative;transition:transform 0.15s ease;cursor:default;}
+.ag-name{font-weight:700;}
+.ag-pill{background:#F0F2F5;border-radius:100px;padding:2px 9px;font-size:11px;font-weight:800;font-family:'Red Hat Mono',monospace;}
+/* STREAK */
+.streak-card{padding:22px 24px;margin-bottom:16px;}
+.streak-head{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.day-grid{display:flex;gap:4px;flex-wrap:wrap;}
+.dd{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;font-family:'Red Hat Mono',monospace;position:relative;transition:transform 0.15s ease;cursor:default;}
 .dd:hover{transform:scale(1.2);z-index:2;}
-.dd.empty{background:rgba(31,41,55,0.05);color:rgba(31,41,55,0.2);border:1.5px dashed rgba(31,41,55,0.12);}
+.dd.empty{background:rgba(31,41,55,0.05);color:rgba(31,41,55,0.18);border:1.5px dashed rgba(31,41,55,0.1);}
 .dd.has{background:#72DDA3;color:#1F2937;}
 .dd.hasmulti{background:#1F2937;color:#72DDA3;}
-.pip{position:absolute;top:-5px;right:-5px;background:#FFB59C;color:#1F2937;border-radius:100px;width:15px;height:15px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:900;border:2px solid #ffffff;}
-
-/* ═══ KAM DETAIL ═══ */
-.kam-head{border-radius:24px;padding:30px 36px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;position:relative;overflow:hidden;}
-.kam-char{position:absolute;right:24px;bottom:0;height:160px;width:140px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
-.kh-name{font-size:30px;font-weight:900;margin-bottom:4px;}
-.kh-sub{font-size:13px;font-weight:700;opacity:0.6;}
-.kpi-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;}
-.kpi-val{font-size:28px;font-weight:900;line-height:1;}
-.kpi-lab{font-size:11px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1px;}
-
-/* KAM RESULT BANNER */
-.kam-result{border-radius:16px;padding:14px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;}
-.kam-result.great{background:#dcfce7;color:#166534;border:1.5px solid #86efac;}
-.kam-result.good{background:#dbeafe;color:#1e40af;border:1.5px solid #93c5fd;}
-.kam-result.ok{background:#fef3c7;color:#92400e;border:1.5px solid #fcd34d;}
-
-/* TABLE */
-.table-card{padding:22px 24px;}
+.dd.today{outline:3px solid #1F2937;outline-offset:2px;}
+.dd.future{opacity:0.2;background:rgba(31,41,55,0.03);border:1.5px dashed rgba(31,41,55,0.07);}
+.pip{position:absolute;top:-5px;right:-5px;background:#FFB59C;color:#1F2937;border-radius:100px;width:14px;height:14px;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:900;border:2px solid #fff;}
+/* KAM DETAIL */
+.kam-head{border-radius:22px;padding:26px 32px;margin-bottom:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.kam-char-big{position:absolute;right:20px;bottom:0;height:160px;width:140px;display:flex;align-items:flex-end;pointer-events:none;}
+.kh-name{font-size:28px;font-weight:900;margin-bottom:3px;}
+.kh-sub{font-size:12px;font-weight:700;opacity:0.6;}
+.kpi-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;}
+.kpi-val{font-size:26px;font-weight:900;line-height:1;}
+.kpi-lab{font-size:10px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1px;}
+.status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.status-chip{border-radius:12px;padding:8px 14px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:6px;}
+.s-ok{background:#dcfce7;color:#166534;}
+.s-warn{background:#FFFBEB;color:#92400e;border:1.5px solid #F59E0B;}
+.table-card{padding:20px 22px;}
 .table-wrap{overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{padding:9px 12px;text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#6B7280;opacity:0.7;border-bottom:1px solid rgba(31,41,55,0.09);white-space:nowrap;}
-td{padding:11px 12px;border-bottom:1px solid rgba(31,41,55,0.09);font-weight:500;vertical-align:middle;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{padding:8px 11px;text-align:left;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;border-bottom:1px solid rgba(31,41,55,0.08);white-space:nowrap;}
+td{padding:10px 11px;border-bottom:1px solid rgba(31,41,55,0.07);font-weight:500;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
-tr:hover td{background:rgba(114,221,163,0.05);}
+tr:hover td{background:rgba(114,221,163,0.04);}
 td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
-.badge{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:800;display:inline-block;white-space:nowrap;}
+.badge{padding:2px 9px;border-radius:100px;font-size:10px;font-weight:800;display:inline-block;white-space:nowrap;}
 .b-integral{background:#dcfce7;color:#166534;}.b-juridica{background:#dbeafe;color:#1e40af;}
 .b-premium{background:#fef3c7;color:#92400e;}.b-primera{background:#f3e8ff;color:#6b21a8;}
 .b-ren{background:#fce7f3;color:#9d174d;}.b-aka{background:#1F2937;color:#72DDA3;}
 .b-dir{background:#F0F2F5;color:#374151;}
-
-/* OBS */
-.obs-box{background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:16px;padding:16px 20px;margin-bottom:18px;}
-.obs-title{font-size:13px;font-weight:800;color:#92400e;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.obs-item{background:white;border:1px solid #FDE68A;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;}
+.b-pago{background:#FFFBEB;color:#92400e;}
+.b-firmado{background:#dcfce7;color:#166534;}
+.obs-box{background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:14px;padding:14px 18px;margin-bottom:14px;}
+.obs-title{font-size:12px;font-weight:800;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.obs-item{background:#fff;border:1px solid #FDE68A;border-radius:9px;padding:9px 12px;margin-bottom:6px;font-size:11px;}
 .obs-item:last-child{margin-bottom:0;}
-.obs-rid{font-family:'Red Hat Mono',monospace;font-weight:700;color:#92400e;font-size:11px;margin-bottom:4px;}
-.obs-nota{color:#78350f;font-weight:600;margin-top:2px;}
-
-/* CONFETTI */
-#cf-stage{position:fixed;inset:0;pointer-events:none;z-index:9999;}
-.cf{position:absolute;border-radius:2px;animation:cff 3.5s ease-in forwards;opacity:0;}
-@keyframes cff{0%{opacity:1;transform:translateY(-30px) rotate(0deg) scaleX(1);}100%{opacity:0;transform:translateY(105vh) rotate(800deg) scaleX(0.2);}}
-
-.footer{text-align:center;padding:20px 0 0;font-size:12px;color:#6B7280;opacity:0.35;font-weight:700;letter-spacing:0.5px;}
+.obs-rid{font-family:'Red Hat Mono',monospace;font-weight:700;color:#92400e;font-size:10px;margin-bottom:3px;}
+.obs-nota{color:#78350f;font-weight:600;margin-top:1px;}
+.footer{text-align:center;padding:18px 0 0;font-size:11px;color:#9CA3AF;font-weight:700;letter-spacing:0.5px;}
 </style>
 </head>
 <body>
 <div class="bg-deco"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
-<div id="cf-stage"></div>
 
 <div class="wrap">
-
-  <!-- HEADER -->
   <div class="header">
     <div>
-      <h1>🏆 Firmas <em>Marzo</em></h1>
-      <p class="header-sub">MICA Operations · Cierre de mes · 31 Mar 2026</p>
+      <h1>⚡ Firmas <em>Abril</em></h1>
+      <p class="header-sub">MICA Operations · Seguimiento operativo · Actualizado 06 Abr 2026</p>
     </div>
-    <div class="cierre-pill">✅ MES CERRADO</div>
+    <div class="live-pill"><div class="live-dot"></div>EN VIVO</div>
   </div>
 
-  <!-- TABS -->
   <div class="tabs">
-    <button class="tab active" onclick="goTab('general')">🌟 Resultado</button>
+    <button class="tab active" onclick="goTab('general')">🌟 General</button>
     <button class="tab" onclick="goTab('pablo')"><span class="tab-ic">🚀</span>Pablo</button>
     <button class="tab" onclick="goTab('majo')"><span class="tab-ic">🦋</span>Majo</button>
-    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐻</span>Gabo</button>
+    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐯</span>Gabo</button>
     <button class="tab" onclick="goTab('leo')"><span class="tab-ic">🦁</span>Leo</button>
   </div>
 
-  <!-- ══════════════ GENERAL ══════════════ -->
+  <!-- ══ GENERAL ══ -->
   <div class="panel active" id="panel-general">
 
-    <!-- RESULTADO HERO -->
-    <div class="resultado-hero">
-      <div class="rh-deco"><span></span><span></span><span></span></div>
-      <div style="position:relative;z-index:1;">
-        <div class="rh-label">Resultado del Mes</div>
-        <div class="rh-title">Marzo 2026 — <span>¡Dos metas superadas!</span> 🍦🎁</div>
+    <div class="metrics-row">
+      <div class="metric">
+        <div class="metric-val" id="ctr-main">0</div>
+        <div class="metric-label">Firmas totales</div>
+        <div class="metric-sub">Meta abril: 114</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val" style="font-size:22px;color:#166534">$21,052</div>
+        <div class="metric-label">FEE acumulado</div>
+        <div class="metric-sub">Equipo completo</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val" style="font-size:22px">🐯 Gabo</div>
+        <div class="metric-label">Líder del mes</div>
+        <div class="metric-sub">3 firmas · $6,223 FEE</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val" style="color:#92400e">2</div>
+        <div class="metric-label">Pendientes</div>
+        <div class="metric-sub">Falta primer pago</div>
+      </div>
+    </div>
 
-        <div class="rh-grid">
-          <div class="rh-kpi">
-            <div class="rh-kpi-val" id="ctr">0</div>
-            <div class="rh-kpi-label">Firmas totales</div>
-            <div class="rh-kpi-sub">Meta: 114 · 80% logrado</div>
-          </div>
-          <div class="rh-kpi">
-            <div class="rh-kpi-val">$534K</div>
-            <div class="rh-kpi-label">FEE generado</div>
-            <div class="rh-kpi-sub">$5,875 promedio / firma</div>
-          </div>
-          <div class="rh-kpi">
-            <div class="rh-kpi-val">🦋 Majo</div>
-            <div class="rh-kpi-label">Top del mes</div>
-            <div class="rh-kpi-sub">40 firmas · $268K FEE</div>
-          </div>
-          <div class="rh-kpi">
-            <div class="rh-kpi-val">31 Mar</div>
-            <div class="rh-kpi-label">Mejor día 🔥</div>
-            <div class="rh-kpi-sub">11 firmas en un solo día</div>
-          </div>
+    <div class="meta-card">
+      <div class="meta-deco"><span></span><span></span></div>
+      <div style="position:relative;z-index:1">
+        <div class="meta-label">Progreso · Meta General</div>
+        <div class="meta-nums">
+          <div class="meta-big" id="ctr-meta">0</div>
+          <div class="meta-sep">/</div>
+          <div class="meta-goal">114</div>
         </div>
-
-        <div class="rh-metas">
-          <div class="rh-meta">
-            <div class="rh-meta-top">
-              <div class="rh-meta-name">🏆 Meta General</div>
-              <div class="rh-meta-nums" style="color:#72DDA3">91 / 114</div>
-            </div>
-            <div class="rh-meta-track"><div class="rh-meta-fill" id="bar-general" style="width:0%;background:#72DDA3"></div></div>
-            <div class="rh-meta-foot">80% logrado · faltaron 23 firmas</div>
+        <div class="meta-pct" id="pct-badge">⚡ 0%</div>
+        <div class="mbar-track"><div class="mbar-fill" id="main-bar" style="width:0%"></div></div>
+      </div>
+      <div class="mini-metas" style="position:relative;z-index:1;">
+        <div class="mm">
+          <div class="mm-top">
+            <div class="mm-name">🍦 Heladito — meta 70</div>
+            <div class="mm-nums" style="color:#BBE3E3">5 / 70</div>
           </div>
-          <div class="rh-meta">
-            <div class="rh-meta-top">
-              <div class="rh-meta-name">🍦 Heladito — meta 70</div>
-              <div class="rh-meta-nums" style="color:#BBE3E3">91 / 70 ✅</div>
-            </div>
-            <div class="rh-meta-track"><div class="rh-meta-fill" id="bar-heladito" style="width:0%;background:#BBE3E3"></div></div>
-            <div class="rh-meta-foot">🎉 ¡Superada! +21 extra</div>
+          <div class="mm-track"><div class="mm-fill" id="h-bar" style="width:0%;background:#BBE3E3"></div></div>
+          <div class="mm-foot">7% · faltan <strong style="color:rgba(255,255,255,.6)">65</strong> para el helado</div>
+        </div>
+        <div class="mm">
+          <div class="mm-top">
+            <div class="mm-name">🎁 Sorpresa — meta 80</div>
+            <div class="mm-nums" style="color:#FFB59C">5 / 80</div>
           </div>
-          <div class="rh-meta">
-            <div class="rh-meta-top">
-              <div class="rh-meta-name">🎁 Sorpresa — meta 80</div>
-              <div class="rh-meta-nums" style="color:#FFB59C">91 / 80 ✅</div>
-            </div>
-            <div class="rh-meta-track"><div class="rh-meta-fill" id="bar-sorpresa" style="width:0%;background:#FFB59C"></div></div>
-            <div class="rh-meta-foot">🎉 ¡Superada! +11 extra</div>
-          </div>
+          <div class="mm-track"><div class="mm-fill" id="s-bar" style="width:0%;background:#FFB59C"></div></div>
+          <div class="mm-foot">6% · faltan <strong style="color:rgba(255,255,255,.6)">75</strong> para la sorpresa</div>
         </div>
       </div>
     </div>
 
-    <!-- HIGHLIGHTS -->
-    <div class="highlights-grid">
-      <div class="hl"><div class="hl-ic">🦋</div><div><div class="hl-val">Majo — MVP</div><div class="hl-label">40 firmas · $268K FEE</div></div></div>
-      <div class="hl"><div class="hl-ic">🔥</div><div><div class="hl-val">11 firmas en un día</div><div class="hl-label">31 de marzo</div></div></div>
-      <div class="hl"><div class="hl-ic">💰</div><div><div class="hl-val">$534,603 FEE</div><div class="hl-label">Equipo completo</div></div></div>
-      <div class="hl"><div class="hl-ic">🍦</div><div><div class="hl-val">¡Heladito y sorpresa!</div><div class="hl-label">Dos metas alcanzadas</div></div></div>
-      <div class="hl"><div class="hl-ic">📅</div><div><div class="hl-val">28 / 31 días activos</div><div class="hl-label">Consistencia del mes</div></div></div>
-      <div class="hl"><div class="hl-ic">🏢</div><div><div class="hl-val">AKA — top agencia</div><div class="hl-label">15 firmas en el mes</div></div></div>
-    </div>
-
-    <!-- STREAK -->
     <div class="card streak-card">
-      <div class="streak-head">🗓️ Actividad diaria — marzo completo</div>
+      <div class="streak-head">🗓️ Actividad diaria — abril 2026</div>
       <div class="day-grid" id="day-grid"></div>
     </div>
 
-    <!-- PODIO -->
-    <div class="podio-title">🏅 Podio Final del Equipo</div>
-    <div class="podio" id="podio"></div>
+    <div class="sb-title">🏅 Ranking en curso</div>
+    <div class="sb-grid" id="scoreboard"></div>
 
-    <!-- CHART -->
-    <div class="card chart-card" style="margin-top:20px;">
-      <div class="sec-t">📈 Progresión acumulada — Marzo 2026</div>
-      <div class="sec-s">Firmas diarias vs meta de 114</div>
+    <div class="card chart-card">
+      <div class="sec-t">📈 Firmas acumuladas — Abril</div>
+      <div class="sec-s">Progresión diaria vs metas</div>
       <div class="chart-area"><canvas id="mainChart"></canvas></div>
     </div>
 
-    <!-- BREAKDOWNS -->
     <div class="two-col">
       <div class="card bk-card">
-        <div class="sec-t" style="margin-bottom:16px">🛡️ Por tipo de protección</div>
+        <div class="sec-t" style="margin-bottom:14px">🛡️ Por protección</div>
         <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">63</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#72DDA3" data-w="69.2"></div></div>
+          <div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">4</span></div>
+          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#72DDA3" data-w="80"></div></div>
         </div>
         <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">20</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#BBE3E3" data-w="22"></div></div>
-        </div>
-        <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Premium ⭐</span><span class="bk-count">8</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#F3CE98" data-w="8.8"></div></div>
+          <div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">1</span></div>
+          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#BBE3E3" data-w="20"></div></div>
         </div>
       </div>
       <div class="card bk-card">
-        <div class="sec-t" style="margin-bottom:14px">🏢 Top Agencias</div>
+        <div class="sec-t" style="margin-bottom:12px">🏢 Agencias</div>
         <ul class="ag-list">
-          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">15</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 Grupo Arvi</span><span class="ag-pill">5</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 E-Inmob</span><span class="ag-pill">2</span></li>
-          <li class="ag-item"><span class="ag-name">🔒 ZuProteccion</span><span class="ag-pill">2</span></li>
-          <li class="ag-item"><span class="ag-name">🏠 Remax</span><span class="ag-pill">2</span></li>
-          <li class="ag-item"><span class="ag-name">📦 Otras (5)</span><span class="ag-pill">5</span></li>
-          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">60</span></li>
+          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">3</span></li>
+          <li class="ag-item"><span class="ag-name">🏢 Rentas Ok</span><span class="ag-pill">1</span></li>
+          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">1</span></li>
         </ul>
       </div>
     </div>
 
-  </div><!-- /general -->
+  </div>
 
-  <!-- ══════════════ PABLO ══════════════ -->
+  <!-- ══ PABLO ══ -->
   <div class="panel" id="panel-pablo">
     <div class="kam-head" style="background:linear-gradient(135deg,#b8f5d4,#72DDA3);color:#1F5C3A;">
       <div style="max-width:65%">
         <div class="kh-name">🚀 Pablo de la Puente</div>
-        <div class="kh-sub">El Astronauta · 31 firmas al cierre</div>
+        <div class="kh-sub">El Astronauta · Explorando nuevos contratos</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">31</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$192K</div><div class="kpi-lab">FEE</div></div>
-          <div><div class="kpi-val">28</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">3</div><div class="kpi-lab">Renov.</div></div>
+          <div><div class="kpi-val">1</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$2,900</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">1</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">0</div><div class="kpi-lab">Renov.</div></div>
         </div>
       </div>
-      <div class="kam-char">
+      <div class="kam-char-big">
         <svg viewBox="0 0 140 170" width="140" height="170">
-          <circle cx="22" cy="45" r="2.5" fill="#FFD700" opacity="0.9"/>
-          <circle cx="118" cy="68" r="2" fill="#FFD700" opacity="0.8"/>
-          <circle cx="12" cy="90" r="1.5" fill="white" opacity="0.7"/>
-          <circle cx="128" cy="40" r="2" fill="white" opacity="0.6"/>
+          <circle cx="22" cy="42" r="2.5" fill="#FFD700" opacity="0.9"/>
+          <circle cx="118" cy="28" r="2" fill="white" opacity="0.6"/>
           <ellipse cx="70" cy="108" rx="24" ry="38" fill="#1F5C3A"/>
           <path d="M70 24 Q44 64 44 80 Q70 74 96 80 Q96 64 70 24Z" fill="#72DDA3"/>
-          <path d="M70 24 Q62 56 62 74 Q70 72 70 72L70 24Z" fill="rgba(255,255,255,0.2)"/>
+          <path d="M70 24 Q62 56 62 74 Q70 72 70 72L70 24Z" fill="rgba(255,255,255,0.18)"/>
           <circle cx="70" cy="90" r="13" fill="#BBE3E3"/>
           <circle cx="70" cy="90" r="9" fill="#E8FFF5"/>
-          <circle cx="67" cy="87" r="3" fill="rgba(255,255,255,0.5)"/>
           <path d="M46 116 L26 148 L46 136Z" fill="#4ecb7a"/>
           <path d="M94 116 L114 148 L94 136Z" fill="#4ecb7a"/>
           <ellipse cx="70" cy="150" rx="16" ry="22" fill="#F3CE98" opacity="0.95"/>
-          <ellipse cx="70" cy="158" rx="10" ry="15" fill="#FFB59C" opacity="0.95"/>
-          <ellipse cx="70" cy="164" rx="5" ry="9" fill="white" opacity="0.8"/>
+          <ellipse cx="70" cy="158" rx="10" ry="15" fill="#FFB59C" opacity="0.9"/>
+          <ellipse cx="70" cy="164" rx="5" ry="9" fill="white" opacity="0.75"/>
           <ellipse cx="46" cy="115" rx="6" ry="14" fill="#165c30"/>
           <ellipse cx="94" cy="115" rx="6" ry="14" fill="#165c30"/>
         </svg>
       </div>
     </div>
-    <div class="kam-result great">🥈 2do lugar del equipo · 22 Integral · 6 Jurídica · 3 Premium</div>
-    <div id="obs-pablo"></div>
+    <div class="status-bar">
+      <div class="status-chip s-ok">✅ 1 Firmado</div>
+    </div>
     <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-pablo"></table></div>
     </div>
   </div>
 
-  <!-- ══════════════ MAJO ══════════════ -->
+  <!-- ══ MAJO ══ -->
   <div class="panel" id="panel-majo">
     <div class="kam-head" style="background:linear-gradient(135deg,#d4f2f2,#BBE3E3);color:#1A4A4A;">
       <div style="max-width:65%">
         <div class="kh-name">🦋 Maria José Arriaga</div>
-        <div class="kh-sub">La Mariposa · MVP del mes 🏆</div>
+        <div class="kh-sub">La Mariposa · Arrancando el mes fuerte</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">40</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$268K</div><div class="kpi-lab">FEE</div></div>
-          <div><div class="kpi-val">39</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">1</div><div class="kpi-lab">Renov.</div></div>
+          <div><div class="kpi-val">1</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$11,890</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">1</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">0</div><div class="kpi-lab">Renov.</div></div>
         </div>
       </div>
-      <div class="kam-char">
+      <div class="kam-char-big">
         <svg viewBox="0 0 140 170" width="140" height="170">
-          <circle cx="32" cy="68" r="8" fill="rgba(114,221,163,0.45)"/>
-          <circle cx="108" cy="68" r="8" fill="rgba(114,221,163,0.45)"/>
-          <path d="M56 92 Q20 68 16 42 Q30 36 56 60 Q66 76 66 88Z" fill="#BBE3E3" opacity="0.95"/>
-          <path d="M56 108 Q18 112 14 136 Q30 142 58 122Z" fill="#8ccece" opacity="0.85"/>
-          <path d="M84 92 Q120 68 124 42 Q110 36 84 60 Q74 76 74 88Z" fill="#BBE3E3" opacity="0.95"/>
-          <path d="M84 108 Q122 112 126 136 Q110 142 82 122Z" fill="#8ccece" opacity="0.85"/>
-          <ellipse cx="36" cy="66" rx="10" ry="14" fill="rgba(31,41,55,0.08)" transform="rotate(-30,36,66)"/>
-          <ellipse cx="104" cy="66" rx="10" ry="14" fill="rgba(31,41,55,0.08)" transform="rotate(30,104,66)"/>
+          <circle cx="30" cy="66" r="9" fill="rgba(114,221,163,0.4)"/>
+          <circle cx="110" cy="66" r="9" fill="rgba(114,221,163,0.4)"/>
+          <path d="M56 92 Q18 68 14 42 Q28 36 56 60 Q66 76 66 88Z" fill="#BBE3E3" opacity="0.95"/>
+          <path d="M56 108 Q16 112 12 136 Q28 142 58 122Z" fill="#8ccece" opacity="0.85"/>
+          <path d="M84 92 Q122 68 126 42 Q112 36 84 60 Q74 76 74 88Z" fill="#BBE3E3" opacity="0.95"/>
+          <path d="M84 108 Q124 112 128 136 Q112 142 82 122Z" fill="#8ccece" opacity="0.85"/>
           <ellipse cx="70" cy="120" rx="13" ry="25" fill="#1A4A4A"/>
-          <line x1="57" y1="112" x2="83" y2="112" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-          <line x1="57" y1="120" x2="83" y2="120" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
           <circle cx="70" cy="80" r="18" fill="#1A4A4A"/>
           <circle cx="63" cy="77" r="5" fill="white"/><circle cx="77" cy="77" r="5" fill="white"/>
           <circle cx="64" cy="77.5" r="2.5" fill="#1A4A4A"/><circle cx="78" cy="77.5" r="2.5" fill="#1A4A4A"/>
-          <circle cx="63.5" cy="76" r="1" fill="white"/><circle cx="77.5" cy="76" r="1" fill="white"/>
           <line x1="63" y1="63" x2="54" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="54" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
           <line x1="77" y1="63" x2="86" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="86" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
           <path d="M63 85 Q70 92 77 85" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <!-- Corona MVP -->
-          <path d="M54 58 L57 48 L60 55 L65 44 L70 55 L75 44 L80 55 L83 48 L86 58Z" fill="#FFD700" opacity="0.9"/>
+          <line x1="60" y1="143" x2="54" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
+          <line x1="80" y1="143" x2="86" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
         </svg>
       </div>
     </div>
-    <div class="kam-result great">🥇 MVP del mes · Mayor FEE · 21 Integral · 14 Jurídica · 4 Premium</div>
+    <div class="status-bar">
+      <div class="status-chip s-ok">✅ 1 Firmado</div>
+      <div class="status-chip s-warn">⚠️ Sin agencia registrada</div>
+    </div>
     <div id="obs-majo"></div>
     <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-majo"></table></div>
     </div>
   </div>
 
-  <!-- ══════════════ GABO ══════════════ -->
+  <!-- ══ GABO 🐯 ══ -->
   <div class="panel" id="panel-gabo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#fde8c0,#F3CE98);color:#5C3A00;">
+    <div class="kam-head" style="background:linear-gradient(135deg,#fff3e0,#FFB74D);color:#4a2000;">
       <div style="max-width:65%">
-        <div class="kh-name">🐻 Gabriel Alvarado</div>
-        <div class="kh-sub">El Oso · King de renovaciones AKA</div>
+        <div class="kh-name">🐯 Gabriel Alvarado</div>
+        <div class="kh-sub">El Tigre · Líder del mes · 100% AKA</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">18</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$69K</div><div class="kpi-lab">FEE</div></div>
+          <div><div class="kpi-val">3</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$6,223</div><div class="kpi-lab">FEE</div></div>
           <div><div class="kpi-val">0</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">18</div><div class="kpi-lab">Renov.</div></div>
+          <div><div class="kpi-val">3</div><div class="kpi-lab">Renov.</div></div>
         </div>
       </div>
-      <div class="kam-char">
+      <div class="kam-char-big">
         <svg viewBox="0 0 140 170" width="140" height="170">
-          <ellipse cx="70" cy="128" rx="34" ry="38" fill="#8B6914"/>
-          <ellipse cx="70" cy="132" rx="22" ry="27" fill="#C4961E" opacity="0.5"/>
-          <ellipse cx="32" cy="125" rx="14" ry="26" fill="#8B6914" transform="rotate(-18,32,125)"/>
-          <ellipse cx="108" cy="125" rx="14" ry="26" fill="#8B6914" transform="rotate(18,108,125)"/>
-          <ellipse cx="24" cy="148" rx="12" ry="8" fill="#7A5812"/>
-          <ellipse cx="116" cy="148" rx="12" ry="8" fill="#7A5812"/>
-          <rect x="14" y="136" width="20" height="22" rx="5" fill="#FFD700" opacity="0.85"/>
-          <rect x="14" y="136" width="20" height="8" rx="4" fill="#CC9900" opacity="0.85"/>
-          <circle cx="70" cy="80" r="32" fill="#8B6914"/>
-          <circle cx="42" cy="52" r="16" fill="#8B6914"/><circle cx="42" cy="52" r="9" fill="#C4961E" opacity="0.5"/>
-          <circle cx="98" cy="52" r="16" fill="#8B6914"/><circle cx="98" cy="52" r="9" fill="#C4961E" opacity="0.5"/>
-          <ellipse cx="70" cy="90" rx="16" ry="12" fill="#C4961E" opacity="0.65"/>
-          <ellipse cx="70" cy="83" rx="8" ry="5.5" fill="#5C3A00"/>
-          <circle cx="58" cy="74" r="6" fill="#5C3A00"/><circle cx="82" cy="74" r="6" fill="#5C3A00"/>
-          <circle cx="59" cy="72" r="2.5" fill="white"/><circle cx="83" cy="72" r="2.5" fill="white"/>
-          <path d="M60 94 Q70 103 80 94" fill="none" stroke="#5C3A00" stroke-width="3" stroke-linecap="round"/>
-          <ellipse cx="52" cy="163" rx="16" ry="10" fill="#7A5812"/>
-          <ellipse cx="88" cy="163" rx="16" ry="10" fill="#7A5812"/>
+          <path d="M105 140 Q132 124 130 148 Q126 162 118 158" fill="none" stroke="#E65100" stroke-width="9" stroke-linecap="round"/>
+          <ellipse cx="118" cy="159" rx="10" ry="7" fill="#FF8F00"/>
+          <ellipse cx="70" cy="132" rx="32" ry="34" fill="#FF8F00"/>
+          <ellipse cx="70" cy="136" rx="20" ry="23" fill="#FFCC80" opacity="0.7"/>
+          <path d="M48 118 Q55 108 62 118" fill="none" stroke="#E65100" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+          <path d="M78 118 Q85 108 92 118" fill="none" stroke="#E65100" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+          <path d="M44 128 Q50 136 44 144" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+          <path d="M96 128 Q90 136 96 144" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
+          <ellipse cx="34" cy="128" rx="13" ry="24" fill="#FF8F00" transform="rotate(-15,34,128)"/>
+          <ellipse cx="106" cy="128" rx="13" ry="24" fill="#FF8F00" transform="rotate(15,106,128)"/>
+          <ellipse cx="28" cy="150" rx="12" ry="8" fill="#E65100" opacity="0.85"/>
+          <ellipse cx="112" cy="150" rx="12" ry="8" fill="#E65100" opacity="0.85"/>
+          <circle cx="70" cy="82" r="30" fill="#FF8F00"/>
+          <path d="M52 62 Q56 52 60 62" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+          <path d="M80 62 Q84 52 88 62" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+          <path d="M64 58 Q70 48 76 58" fill="none" stroke="#E65100" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+          <path d="M42 58 L36 38 L54 50Z" fill="#FF8F00"/>
+          <path d="M42 58 L40 44 L52 52Z" fill="#FFB74D" opacity="0.6"/>
+          <path d="M98 58 L104 38 L86 50Z" fill="#FF8F00"/>
+          <path d="M98 58 L100 44 L88 52Z" fill="#FFB74D" opacity="0.6"/>
+          <ellipse cx="70" cy="92" rx="16" ry="12" fill="#FFCC80" opacity="0.85"/>
+          <ellipse cx="70" cy="86" rx="7" ry="5" fill="#4a2000"/>
+          <ellipse cx="58" cy="78" rx="7" ry="8" fill="#4a2000"/>
+          <ellipse cx="82" cy="78" rx="7" ry="8" fill="#4a2000"/>
+          <ellipse cx="58" cy="78" rx="4" ry="6" fill="#76FF03" opacity="0.9"/>
+          <ellipse cx="82" cy="78" rx="4" ry="6" fill="#76FF03" opacity="0.9"/>
+          <ellipse cx="58" cy="79" rx="2" ry="5" fill="#1a1a00"/>
+          <ellipse cx="82" cy="79" rx="2" ry="5" fill="#1a1a00"/>
+          <circle cx="60" cy="75" r="1.5" fill="white" opacity="0.9"/>
+          <circle cx="84" cy="75" r="1.5" fill="white" opacity="0.9"/>
+          <line x1="54" y1="90" x2="34" y2="86" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="54" y1="94" x2="32" y2="94" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="86" y1="90" x2="106" y2="86" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="86" y1="94" x2="108" y2="94" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <path d="M62 98 Q70 106 78 98" fill="none" stroke="#4a2000" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="52" cy="163" rx="15" ry="9" fill="#E65100" opacity="0.9"/>
+          <ellipse cx="88" cy="163" rx="15" ry="9" fill="#E65100" opacity="0.9"/>
         </svg>
       </div>
     </div>
-    <div class="kam-result good">🥉 Especialista en renovaciones · 100% AKA · 18/18 Integral</div>
+    <div class="status-bar">
+      <div class="status-chip s-ok">✅ 1 Firmado</div>
+      <div class="status-chip s-warn">⚠️ 2 Falta primer pago</div>
+    </div>
     <div id="obs-gabo"></div>
     <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
+      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-gabo"></table></div>
     </div>
   </div>
 
-  <!-- ══════════════ LEO ══════════════ -->
+  <!-- ══ LEO ══ -->
   <div class="panel" id="panel-leo">
     <div class="kam-head" style="background:linear-gradient(135deg,#ffd5c2,#FFB59C);color:#7A2800;">
       <div style="max-width:65%">
         <div class="kh-name">🦁 Leonardo Monzalvo</div>
         <div class="kh-sub">El León · Rey en training 👑</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">2</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$5.6K</div><div class="kpi-lab">FEE</div></div>
-          <div><div class="kpi-val">2</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">0</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$0</div><div class="kpi-lab">FEE</div></div>
         </div>
       </div>
-      <div class="kam-char">
+      <div class="kam-char-big">
         <svg viewBox="0 0 140 170" width="140" height="170">
           <path d="M46 46 L52 30 L56 40 L62 24 L70 40 L78 24 L84 40 L88 30 L94 46Z" fill="#FFD700"/>
           <circle cx="62" cy="24" r="4" fill="#FF6B35"/><circle cx="70" cy="20" r="4" fill="#E8001C"/><circle cx="78" cy="24" r="4" fill="#FF6B35"/>
@@ -495,162 +440,71 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
           <line x1="88" y1="103" x2="106" y2="99" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="88" y1="107" x2="108" y2="108" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
           <path d="M62 112 Q70 121 78 112" fill="none" stroke="#7A2800" stroke-width="3" stroke-linecap="round"/>
-          <ellipse cx="70" cy="116" rx="5" ry="4" fill="#FF8FA3"/>
           <ellipse cx="70" cy="152" rx="28" ry="25" fill="#E8961A"/>
           <path d="M98 148 Q124 136 122 158 Q118 168 110 164" fill="none" stroke="#E8961A" stroke-width="8" stroke-linecap="round"/>
           <ellipse cx="110" cy="165" rx="10" ry="7" fill="#CC7A00"/>
         </svg>
       </div>
     </div>
-    <div class="kam-result ok">⭐ Primer mes completo · 2 firmas · próximo mes a crecer 💪</div>
-    <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:14px">Detalle de firmas</div>
-      <div class="table-wrap"><table id="tbl-leo"></table></div>
+    <div class="status-bar">
+      <div class="status-chip s-warn">Sin firmas este mes aún — ¡a rugir León! 🦁</div>
+    </div>
+    <div class="card" style="padding:48px;text-align:center;">
+      <div style="font-size:48px;margin-bottom:14px">🦁</div>
+      <div style="font-size:16px;font-weight:800;color:#1F2937;margin-bottom:6px">Sin operaciones aún</div>
+      <div style="font-size:12px;font-weight:600;color:#9CA3AF">El mes acaba de empezar — ¡la corona te espera!</div>
     </div>
   </div>
 
-  <div class="footer">MICA Operations · Cierre Marzo 2026 · jael-lab.github.io/monthly_contracts</div>
+  <div class="footer">MICA Operations · Seguimiento Abril 2026 · jael-lab.github.io/monthly_contracts</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-// ══ DATA ══
-const META=114,META_H=70,META_S=80,TOTAL=91;
-const dailyCum={2:3,3:8,4:10,5:12,6:17,7:18,9:21,10:24,11:28,12:32,13:35,16:36,17:39,18:44,19:46,20:50,21:51,22:52,23:57,24:59,25:63,26:67,27:70,28:72,29:73,30:80,31:91};
+const META=114,TOTAL=5,TODAY=6;
+const dailyCum={1:2,6:5};
 
 const kams=[
-  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:40,fee:267911,primera:39,reno:1,rank:'r1',rankEmoji:'🥇'},
-  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:31,fee:192325,primera:28,reno:3,rank:'r2',rankEmoji:'🥈'},
-  {key:'gabo', name:'Gabo', ch:'🐻',color:'#F3CE98',dc:'#5C3A00',firmas:18,fee:68782, primera:0, reno:18,rank:'r3',rankEmoji:'🥉'},
-  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:2, fee:5585,  primera:2, reno:0, rank:'',  rankEmoji:'⭐'},
+  {key:'gabo', name:'Gabo', ch:'🐯',color:'#FFB74D',dc:'#4a2000',firmas:3,fee:6223, primera:0,reno:3,rank:'r1',rankEmoji:'🥇'},
+  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:1,fee:11890,primera:1,reno:0,rank:'r2',rankEmoji:'🥈'},
+  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:1,fee:2900, primera:1,reno:0,rank:'r3',rankEmoji:'🥉'},
+  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:0,fee:0,    primera:0,reno:0,rank:'',  rankEmoji:'⭐'},
 ];
 
-const obs={
-  pablo:[],
-  majo: [{rid:'1498d2c8',row:15,notas:['⚠️ Falta primer pago']},{rid:'078891b4',row:81,notas:['⚠️ Falta primer pago']}],
-  gabo: [{rid:'97b081d8',row:30,notas:['⚠️ Falta primer pago']},{rid:'7f5bcfa2',row:64,notas:['⚠️ Falta primer pago']},{rid:'ac3e59e3',row:75,notas:['⚠️ Falta primer pago']},{rid:'49d9f0b8',row:76,notas:['⚠️ Falta primer pago']}],
-  leo:  [],
-  sinasignar:[]
+const miniChars={
+  pablo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="78" rx="18" ry="30" fill="#1F5C3A"/><path d="M50 18 Q32 48 32 60 Q50 55 68 60 Q68 48 50 18Z" fill="#72DDA3"/><circle cx="50" cy="66" r="9" fill="#BBE3E3"/><path d="M32 86 L18 110 L32 100Z" fill="#4ecb7a"/><path d="M68 86 L82 110 L68 100Z" fill="#4ecb7a"/><ellipse cx="50" cy="112" rx="12" ry="17" fill="#F3CE98" opacity="0.9"/></svg>`,
+  majo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/><path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/><ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/><circle cx="50" cy="60" r="14" fill="#1A4A4A"/><circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/><circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/></svg>`,
+  gabo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="100" rx="28" ry="26" fill="#FF8F00"/><ellipse cx="50" cy="104" rx="17" ry="18" fill="#FFCC80" opacity="0.6"/><ellipse cx="24" cy="100" rx="10" ry="18" fill="#FF8F00" transform="rotate(-12,24,100)"/><ellipse cx="76" cy="100" rx="10" ry="18" fill="#FF8F00" transform="rotate(12,76,100)"/><circle cx="50" cy="56" r="24" fill="#FF8F00"/><path d="M36 44 L30 28 L44 38Z" fill="#FF8F00"/><path d="M36 44 L34 32 L42 40Z" fill="#FFB74D" opacity="0.6"/><path d="M64 44 L70 28 L56 38Z" fill="#FF8F00"/><path d="M64 44 L66 32 L58 40Z" fill="#FFB74D" opacity="0.6"/><path d="M34 36 Q38 28 42 36" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M58 36 Q62 28 66 36" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><ellipse cx="50" cy="65" rx="13" ry="10" fill="#FFCC80" opacity="0.85"/><ellipse cx="50" cy="60" rx="6" ry="4.5" fill="#4a2000"/><ellipse cx="40" cy="53" rx="5.5" ry="7" fill="#4a2000"/><ellipse cx="60" cy="53" rx="5.5" ry="7" fill="#4a2000"/><ellipse cx="40" cy="53" rx="3" ry="5" fill="#76FF03" opacity="0.85"/><ellipse cx="60" cy="53" rx="3" ry="5" fill="#76FF03" opacity="0.85"/><ellipse cx="40" cy="54" rx="1.5" ry="4" fill="#1a1a00"/><ellipse cx="60" cy="54" rx="1.5" ry="4" fill="#1a1a00"/><path d="M44 70 Q50 77 56 70" fill="none" stroke="#4a2000" stroke-width="2" stroke-linecap="round"/><ellipse cx="32" cy="116" rx="13" ry="8" fill="#E65100" opacity="0.9"/><ellipse cx="68" cy="116" rx="13" ry="8" fill="#E65100" opacity="0.9"/></svg>`,
+  leo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M30 42 L34 28 L37 36 L40 22 L44 34 L50 20 L56 34 L60 22 L63 36 L66 28 L70 42Z" fill="#FFD700"/><circle cx="50" cy="78" r="36" fill="#CC7A00" opacity="0.9"/><circle cx="50" cy="76" r="24" fill="#E8961A"/><circle cx="30" cy="56" r="8" fill="#CC7A00"/><circle cx="70" cy="56" r="8" fill="#CC7A00"/><ellipse cx="50" cy="85" rx="14" ry="10" fill="#F3CE98"/><ellipse cx="50" cy="79" rx="6" ry="4.5" fill="#7A2800"/><circle cx="41" cy="72" r="5.5" fill="#7A2800"/><circle cx="59" cy="72" r="5.5" fill="#7A2800"/><circle cx="42" cy="70.5" r="2.5" fill="white"/><circle cx="60" cy="70.5" r="2.5" fill="white"/><path d="M44 90 Q50 98 56 90" fill="none" stroke="#7A2800" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="50" cy="112" rx="22" ry="16" fill="#E8961A"/></svg>`
 };
 
-const details={
-  pablo:[
-    {day:"02/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Directa",monto:25980,fee:9041},
-    {day:"02/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15800,fee:5498},
-    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15000,fee:5220},
-    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:18000,fee:6264},
-    {day:"05/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:7500,fee:4350},
-    {day:"05/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:30000,fee:10440},
-    {day:"06/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7500,fee:2551},
-    {day:"07/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:5500,fee:2552},
-    {day:"09/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20850,fee:7255},
-    {day:"09/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Ungga",monto:12180,fee:2825},
-    {day:"10/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Directa",monto:7000,fee:2784},
-    {day:"10/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20000,fee:6959},
-    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:29000,fee:10092},
-    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
-    {day:"12/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Grupo Arvi",monto:16800,fee:5846},
-    {day:"13/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:17500,fee:6090},
-    {day:"13/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:10000,fee:3479},
-    {day:"18/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:8300,fee:2888},
-    {day:"19/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:15000,fee:5220},
-    {day:"19/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"ZuProteccion",monto:90000,fee:20880},
-    {day:"20/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:21500,fee:7481},
-    {day:"23/03",ct:"primera_vez",pt:"proteccion_integral",ag:"ZuProteccion",monto:23625,fee:8221},
-    {day:"23/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Grupo Arvi",monto:8500,fee:4930},
-    {day:"24/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7500,fee:2552},
-    {day:"24/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Rentas Ok",monto:15950,fee:8772},
-    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:40000,fee:9280},
-    {day:"25/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:8500,fee:4930},
-    {day:"27/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:7500,fee:2610},
-    {day:"28/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:18500,fee:6438},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:6700,fee:2784},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:30000,fee:10440},
-  ],
-  majo:[
-    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:7000,fee:2784},
-    {day:"03/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:21150,fee:7360},
-    {day:"03/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:5500,fee:2552},
-    {day:"06/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Proyecto Brokers Pulppo",monto:33000,fee:11484},
-    {day:"06/03",ct:"primera_vez",pt:"proteccion_integral",ag:"AKA",monto:8500,fee:2958},
-    {day:"06/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:11200,fee:2598},
-    {day:"06/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
-    {day:"09/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:16565,fee:8282},
-    {day:"11/03",ct:"primera_vez",pt:"proteccion_integral",ag:"E-Inmob",monto:32000,fee:11136},
-    {day:"12/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:12500,fee:4350},
-    {day:"12/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:9800,fee:2552},
-    {day:"17/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:42200,fee:9790},
-    {day:"17/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:7000,fee:4059},
-    {day:"18/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:6670,fee:2552},
-    {day:"18/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:16000,fee:9280},
-    {day:"18/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:16000,fee:9280},
-    {day:"18/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Tu lugar tu espacio",monto:19000,fee:6611},
-    {day:"20/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:8500,fee:2552},
-    {day:"20/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:11820,fee:2742},
-    {day:"20/03",ct:"primera_vez",pt:"proteccion_integral",ag:"AKA",monto:20000,fee:6959},
-    {day:"22/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
-    {day:"23/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:13000,fee:4524},
-    {day:"23/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:15000,fee:3479},
-    {day:"23/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:19400,fee:11252},
-    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"E-Inmob",monto:43000,fee:9976},
-    {day:"25/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:18000,fee:4176},
-    {day:"26/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:80000,fee:46400},
-    {day:"27/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:10243,fee:2552},
-    {day:"28/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10800,fee:3758},
-    {day:"30/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10300,fee:3584},
-    {day:"30/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:22000,fee:5104},
-    {day:"30/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:10500,fee:3653},
-    {day:"31/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Directa",monto:5850,fee:2784},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:20300,fee:4709},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:28000,fee:9744},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:11500,fee:4001},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:35500,fee:12354},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:24000,fee:8352},
-    {day:"31/03",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:15750,fee:3653},
-    {day:"30/03",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:11500,fee:6669},
-  ],
+const obs={
+  majo:[{rid:'836a65ca',row:2,notas:['⚠️ Sin agencia registrada']}],
   gabo:[
-    {day:"02/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:13227,fee:4602},
-    {day:"04/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8716,fee:3033},
-    {day:"04/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:16412,fee:5711},
-    {day:"11/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:7848,fee:2731},
-    {day:"12/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6641,fee:2311},
-    {day:"13/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:9389,fee:3267},
-    {day:"16/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:3808,fee:1325},
-    {day:"17/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:9254,fee:3220},
-    {day:"21/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:7065,fee:2458},
-    {day:"26/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:10822,fee:3766},
-    {day:"26/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:9032,fee:3088},
-    {day:"26/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:13386,fee:4658},
-    {day:"29/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8923,fee:3105},
-    {day:"30/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:12354,fee:4299},
-    {day:"30/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:23544,fee:8193},
-    {day:"30/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:12800,fee:4454},
-    {day:"31/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:16338,fee:5685},
-    {day:"31/03",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8267,fee:2876},
-  ],
-  leo:[
-    {day:"10/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:7800,fee:2714},
-    {day:"27/03",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:8250,fee:2871},
+    {rid:'e8187904',row:5,notas:['⚠️ Sin fecha de firma','⚠️ Falta primer pago']},
+    {rid:'9451bb2d',row:6,notas:['⚠️ Falta primer pago']},
   ]
 };
 
-// mini chars for podio
-const miniChars={
-  pablo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="78" rx="18" ry="30" fill="#1F5C3A"/><path d="M50 18 Q32 48 32 60 Q50 55 68 60 Q68 48 50 18Z" fill="#72DDA3"/><circle cx="50" cy="66" r="9" fill="#BBE3E3"/><path d="M32 86 L18 110 L32 100Z" fill="#4ecb7a"/><path d="M68 86 L82 110 L68 100Z" fill="#4ecb7a"/><ellipse cx="50" cy="112" rx="12" ry="17" fill="#F3CE98" opacity="0.9"/><ellipse cx="50" cy="118" rx="7" ry="10" fill="#FFB59C" opacity="0.9"/></svg>`,
-  majo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/><path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/><circle cx="26" cy="48" r="8" fill="rgba(114,221,163,0.4)"/><circle cx="74" cy="48" r="8" fill="rgba(114,221,163,0.4)"/><ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/><circle cx="50" cy="60" r="14" fill="#1A4A4A"/><circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/><circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/><path d="M44 65 Q50 71 56 65" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="45" y1="47" x2="40" y2="36" stroke="#1A4A4A" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="35" r="3.5" fill="#BBE3E3"/><line x1="55" y1="47" x2="60" y2="36" stroke="#1A4A4A" stroke-width="2" stroke-linecap="round"/><circle cx="60" cy="35" r="3.5" fill="#BBE3E3"/><path d="M38 48 L41 40 L43 45 L46 37 L50 44 L54 37 L57 45 L59 40 L62 48Z" fill="#FFD700"/></svg>`,
-  gabo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="96" rx="28" ry="30" fill="#8B6914"/><ellipse cx="50" cy="100" rx="18" ry="21" fill="#C4961E" opacity="0.5"/><ellipse cx="22" cy="96" rx="11" ry="20" fill="#8B6914" transform="rotate(-15,22,96)"/><ellipse cx="78" cy="96" rx="11" ry="20" fill="#8B6914" transform="rotate(15,78,96)"/><circle cx="50" cy="58" r="26" fill="#8B6914"/><circle cx="28" cy="36" r="13" fill="#8B6914"/><circle cx="28" cy="36" r="7" fill="#C4961E" opacity="0.5"/><circle cx="72" cy="36" r="13" fill="#8B6914"/><circle cx="72" cy="36" r="7" fill="#C4961E" opacity="0.5"/><ellipse cx="50" cy="68" rx="13" ry="9" fill="#C4961E" opacity="0.65"/><ellipse cx="50" cy="62" rx="7" ry="4.5" fill="#5C3A00"/><circle cx="41" cy="54" r="5" fill="#5C3A00"/><circle cx="59" cy="54" r="5" fill="#5C3A00"/><circle cx="42" cy="52.5" r="2" fill="white"/><circle cx="60" cy="52.5" r="2" fill="white"/><path d="M43 71 Q50 79 57 71" fill="none" stroke="#5C3A00" stroke-width="2.5" stroke-linecap="round"/><rect x="30" y="100" width="15" height="18" rx="4" fill="#FFD700" opacity="0.85"/></svg>`,
-  leo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M30 42 L34 28 L37 36 L40 22 L44 34 L50 20 L56 34 L60 22 L63 36 L66 28 L70 42Z" fill="#FFD700"/><circle cx="40" cy="22" r="3" fill="#FF6B35"/><circle cx="50" cy="18" r="3" fill="#E8001C"/><circle cx="60" cy="22" r="3" fill="#FF6B35"/><circle cx="50" cy="78" r="36" fill="#CC7A00" opacity="0.9"/><circle cx="50" cy="76" r="24" fill="#E8961A"/><circle cx="30" cy="56" r="8" fill="#CC7A00"/><circle cx="70" cy="56" r="8" fill="#CC7A00"/><ellipse cx="50" cy="85" rx="14" ry="10" fill="#F3CE98"/><ellipse cx="50" cy="79" rx="6" ry="4.5" fill="#7A2800"/><circle cx="41" cy="72" r="5.5" fill="#7A2800"/><circle cx="59" cy="72" r="5.5" fill="#7A2800"/><circle cx="42" cy="70.5" r="2.5" fill="white"/><circle cx="60" cy="70.5" r="2.5" fill="white"/><path d="M44 90 Q50 98 56 90" fill="none" stroke="#7A2800" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="50" cy="112" rx="22" ry="16" fill="#E8961A"/></svg>`
+const details={
+  pablo:[{day:"01/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Rentas Ok",monto:8000,fee:2900,status:"Firmado"}],
+  majo: [{day:"01/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20500,fee:11890,status:"Firmado"}],
+  gabo: [
+    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436,fee:2239,status:"Firmado"},
+    {day:"S/F",  ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752,fee:3045,status:"Falta primer pago"},
+    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616,fee:939, status:"Falta primer pago"},
+  ],
+  leo:[]
 };
 
-// ══ HELPERS ══
 const $=id=>document.getElementById(id);
 const fmt=n=>'$'+Math.round(n).toLocaleString('es-MX');
 const ptB=pt=>pt==='proteccion_integral'?'<span class="badge b-integral">Integral</span>':pt==='proteccion_juridica'?'<span class="badge b-juridica">Jurídica</span>':pt==='proteccion_premium'?'<span class="badge b-premium">Premium ⭐</span>':`<span class="badge b-dir">${pt||'—'}</span>`;
 const ctB=ct=>ct==='primera_vez'?'<span class="badge b-primera">1ra vez</span>':ct==='renovacion_mica'?'<span class="badge b-ren">Renovación</span>':`<span class="badge b-dir">${ct||'—'}</span>`;
 const agB=ag=>ag==='AKA'?'<span class="badge b-aka">AKA</span>':ag==='Directa'?'<span class="badge b-dir">Directa</span>':`<span class="badge b-dir">${ag}</span>`;
+const stB=s=>s==='Firmado'?'<span class="badge b-firmado">✅ Firmado</span>':'<span class="badge b-pago">⚠️ Falta pago</span>';
 
-function animCount(el,to,ms=1300){
+function animCount(el,to,ms=1200){
   const t0=performance.now();
   const go=t=>{const p=Math.min((t-t0)/ms,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*to);if(p<1)requestAnimationFrame(go);else el.textContent=to;};
   requestAnimationFrame(go);
@@ -661,64 +515,67 @@ function buildDots(){
   const dks=Object.keys(dailyCum).map(Number).sort((a,b)=>a-b);
   dks.forEach((d,i)=>{dm[d]=dailyCum[d]-(i===0?0:dailyCum[dks[i-1]]);});
   const g=$('day-grid');
-  for(let d=1;d<=31;d++){
-    const el=document.createElement('div');
-    el.className='dd';
+  for(let d=1;d<=30;d++){
+    const el=document.createElement('div');el.className='dd';
     const n=dm[d]||0;
-    if(!n){el.classList.add('empty');el.textContent=d;}
-    else if(n>=5){el.classList.add('hasmulti');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
+    if(d>TODAY){el.classList.add('future');el.textContent=d;}
+    else if(!n){el.classList.add('empty');el.textContent=d;}
+    else if(n>=3){el.classList.add('hasmulti');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
     else if(n>=2){el.classList.add('has');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
     else{el.classList.add('has');el.textContent=d;}
-    el.title=n?`${n} firma${n>1?'s':''} el día ${d}`:`Sin firmas el día ${d}`;
+    if(d===TODAY)el.classList.add('today');
+    el.title=n?`${n} firma${n>1?'s':''} el ${d} abr`:`Sin firmas el ${d} abr`;
     g.appendChild(el);
   }
 }
 
-function buildPodio(){
-  const p=$('podio');
+function buildScoreboard(){
+  const sb=$('scoreboard');
   kams.forEach(k=>{
     const c=document.createElement('div');
-    c.className=`podio-card card ${k.rank}`;
-    c.style.background=`linear-gradient(145deg,${k.color}30 0%,${k.color}10 100%)`;
+    c.className=`sc card ${k.rank}`;
+    c.style.background=`linear-gradient(145deg,${k.color}28 0%,${k.color}0a 100%)`;
     c.onclick=()=>goTab(k.key);
-    const pct=Math.min(Math.round(k.firmas/39*100),100);
+    const top=kams.find(x=>x.firmas>0)?.firmas||1;
+    const pct=k.firmas===0?0:Math.min(Math.round(k.firmas/top*100),100);
     c.innerHTML=`
-      <div class="podio-rank">${k.rankEmoji}</div>
-      <div class="podio-name">${k.ch} ${k.name}</div>
-      <div class="podio-role">KAM · Marzo 2026</div>
-      <div class="podio-big" style="color:${k.dc}">${k.firmas}</div>
-      <div class="podio-biglabel">firmas al cierre</div>
-      <div class="podio-chips">
-        <span class="chip">1ra: ${k.primera}</span>
-        <span class="chip">Ren: ${k.reno}</span>
-        <span class="chip">${fmt(k.fee)}</span>
-      </div>
+      <div class="sc-rank">${k.rankEmoji}</div>
+      <div class="sc-name">${k.ch} ${k.name}</div>
+      <div class="sc-role">KAM · Abril 2026</div>
+      <div class="sc-big" style="color:${k.dc}">${k.firmas}</div>
+      <div class="sc-biglabel">firmas</div>
+      <div class="sc-chips"><span class="chip">1ra: ${k.primera}</span><span class="chip">Ren: ${k.reno}</span><span class="chip">${fmt(k.fee)}</span></div>
       <div>
-        <div class="podio-bar-label"><span>vs. top del mes</span><span>${pct}%</span></div>
-        <div class="podio-bar-track"><div class="podio-bar-fill" style="width:${pct}%;background:${k.color}cc"></div></div>
+        <div class="sc-barlabel"><span>vs líder</span><span>${pct}%</span></div>
+        <div class="sc-track"><div class="sc-fill" style="width:${pct}%;background:${k.color}bb"></div></div>
       </div>
-      <div class="podio-char">${miniChars[k.key]}</div>
+      <div class="sc-char">${miniChars[k.key]}</div>
     `;
-    p.appendChild(c);
+    sb.appendChild(c);
   });
 }
 
 function buildChart(){
-  const dks=Object.keys(dailyCum).map(Number).sort((a,b)=>a-b);
+  const allDays=[],filled=[];
+  let last=0;
+  for(let d=1;d<=TODAY;d++){
+    allDays.push(`${d} Abr`);
+    if(dailyCum[d]!==undefined){last=dailyCum[d];filled.push(last);}
+    else{filled.push(last);}
+  }
   new Chart($('mainChart'),{
     type:'line',
     data:{
-      labels:dks.map(d=>`${d} Mar`),
+      labels:allDays,
       datasets:[
-        {label:'Firmas acumuladas',data:dks.map(d=>dailyCum[d]),borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.10)',fill:true,tension:0.45,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:4,pointHoverRadius:7},
-        {label:'Meta 114',data:dks.map(()=>114),borderColor:'rgba(31,41,55,0.2)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false},
-        {label:'Heladito 70',data:dks.map(()=>70),borderColor:'rgba(187,227,227,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false},
-        {label:'Sorpresa 80',data:dks.map(()=>80),borderColor:'rgba(255,181,156,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false},
+        {label:'Firmas',data:filled,borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.10)',fill:true,tension:0.4,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:6,pointHoverRadius:9},
+        {label:'Meta (114)',data:allDays.map(()=>114),borderColor:'rgba(31,41,55,0.18)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false},
+        {label:'Heladito (70)',data:allDays.map(()=>70),borderColor:'rgba(187,227,227,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false},
       ]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:12},color:'#6B7280',usePointStyle:true}},tooltip:{mode:'index',intersect:false}},
+      plugins:{legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:11},color:'#6B7280',usePointStyle:true}},tooltip:{mode:'index',intersect:false}},
       scales:{
         x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
         y:{min:0,max:120,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
@@ -728,51 +585,28 @@ function buildChart(){
 }
 
 function buildTables(){
-  ['pablo','majo','gabo','leo'].forEach(k=>{
-    const t=$('tbl-'+k);
-    t.innerHTML=`<thead><tr><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th style="text-align:right">Renta</th><th style="text-align:right">FEE</th></tr></thead><tbody>${details[k].map(r=>`<tr><td class="mono">${r.day}</td><td>${ctB(r.ct)}</td><td>${ptB(r.pt)}</td><td>${agB(r.ag)}</td><td class="mono" style="text-align:right">${fmt(r.monto)}</td><td class="mono" style="text-align:right;color:#166534">${fmt(r.fee)}</td></tr>`).join('')}</tbody>`;
+  ['pablo','majo','gabo'].forEach(k=>{
+    const t=$('tbl-'+k);if(!t)return;
+    t.innerHTML=`<thead><tr><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th style="text-align:right">Renta</th><th style="text-align:right">FEE</th></tr></thead><tbody>${details[k].map(r=>`<tr><td class="mono">${r.day}</td><td>${ctB(r.ct)}</td><td>${ptB(r.pt)}</td><td>${agB(r.ag)}</td><td>${stB(r.status)}</td><td class="mono" style="text-align:right">${fmt(r.monto)}</td><td class="mono" style="text-align:right;color:#166534">${fmt(r.fee)}</td></tr>`).join('')}</tbody>`;
   });
 }
 
 function buildObs(){
-  const sinA=obs.sinasignar;
-  if(sinA.length){
-    const wrap=document.createElement('div');
-    wrap.className='obs-box';
-    wrap.style.marginBottom='20px';
-    wrap.innerHTML=`<div class="obs-title">🔍 Sin asignar — requieren revisión</div>`+
-      sinA.map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('');
-    const streakCard=document.querySelector('.streak-card');
-    streakCard.parentNode.insertBefore(wrap,streakCard);
-  }
-  ['pablo','majo','gabo'].forEach(k=>{
-    const el=$('obs-'+k);
-    if(!el||!obs[k]||!obs[k].length) return;
-    el.innerHTML=`<div class="obs-box"><div class="obs-title">🔍 Pendiente de revisión</div>`+
-      obs[k].map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('')+`</div>`;
+  ['majo','gabo'].forEach(k=>{
+    const el=$('obs-'+k);if(!el||!obs[k]?.length)return;
+    el.innerHTML=`<div class="obs-box"><div class="obs-title">🔍 Pendiente de revisión</div>${obs[k].map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('')}</div>`;
   });
 }
 
 function animMeta(){
-  animCount($('ctr'),TOTAL);
-  setTimeout(()=>{$('bar-general').style.width=(91/114*100)+'%';},300);
-  setTimeout(()=>{$('bar-heladito').style.width='100%';},500);
-  setTimeout(()=>{$('bar-sorpresa').style.width='100%';},700);
+  animCount($('ctr-main'),TOTAL);
+  animCount($('ctr-meta'),TOTAL);
+  const pct=Math.round(TOTAL/META*100);
+  setTimeout(()=>{$('pct-badge').textContent=`⚡ ${pct}%`;},300);
+  setTimeout(()=>{$('main-bar').style.width=(TOTAL/META*100)+'%';},300);
+  setTimeout(()=>{$('h-bar').style.width=(5/70*100)+'%';},500);
+  setTimeout(()=>{$('s-bar').style.width=(5/80*100)+'%';},700);
   document.querySelectorAll('.bk-fill[data-w]').forEach(el=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},500));
-  setTimeout(confetti,1000);
-}
-
-function confetti(){
-  const stage=$('cf-stage');
-  const cols=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937','#FFD700'];
-  for(let i=0;i<80;i++){
-    const p=document.createElement('div');
-    const sz=6+Math.random()*9;
-    p.className='cf';
-    p.style.cssText=`left:${Math.random()*100}%;top:0;width:${sz}px;height:${sz}px;background:${cols[i%cols.length]};animation-delay:${Math.random()*2}s;animation-duration:${2.5+Math.random()*2}s;border-radius:${Math.random()>.5?'50%':'2px'};`;
-    stage.appendChild(p);
-    setTimeout(()=>p.remove(),6000);
-  }
 }
 
 function goTab(key){
@@ -783,7 +617,7 @@ function goTab(key){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  buildDots();buildPodio();buildChart();buildTables();animMeta();buildObs();
+  buildDots();buildScoreboard();buildChart();buildTables();buildObs();animMeta();
 });
 </script>
 </body>
