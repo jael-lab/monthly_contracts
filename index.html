@@ -171,7 +171,7 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
       <div class="metric">
         <div class="metric-val" id="ctr-main">0</div>
         <div class="metric-label">Firmas totales</div>
-        <div class="metric-sub">Meta abril: 114</div>
+        <div class="metric-sub">Meta abril: 120</div>
       </div>
       <div class="metric">
         <div class="metric-val" style="font-size:22px;color:#166534">$21,052</div>
@@ -197,27 +197,27 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
         <div class="meta-nums">
           <div class="meta-big" id="ctr-meta">0</div>
           <div class="meta-sep">/</div>
-          <div class="meta-goal">114</div>
+          <div class="meta-goal">120</div>
         </div>
         <div class="meta-pct" id="pct-badge">⚡ 0%</div>
         <div class="mbar-track"><div class="mbar-fill" id="main-bar" style="width:0%"></div></div>
       </div>
-      <div class="mini-metas" style="position:relative;z-index:1;">
+      <div style="position:relative;z-index:1;">
         <div class="mm">
           <div class="mm-top">
-            <div class="mm-name">🍦 Heladito — meta 70</div>
-            <div class="mm-nums" style="color:#BBE3E3">5 / 70</div>
+            <div class="mm-name">📅 Días transcurridos</div>
+            <div class="mm-nums" style="color:#BBE3E3">6 / 30</div>
           </div>
-          <div class="mm-track"><div class="mm-fill" id="h-bar" style="width:0%;background:#BBE3E3"></div></div>
-          <div class="mm-foot">7% · faltan <strong style="color:rgba(255,255,255,.6)">65</strong> para el helado</div>
+          <div class="mm-track"><div class="mm-fill" style="width:20%;background:#BBE3E3"></div></div>
+          <div class="mm-foot">Ritmo actual: ~0.8 firmas/día · necesario: 4/día</div>
         </div>
-        <div class="mm">
+        <div class="mm" style="margin-top:10px">
           <div class="mm-top">
-            <div class="mm-name">🎁 Sorpresa — meta 80</div>
-            <div class="mm-nums" style="color:#FFB59C">5 / 80</div>
+            <div class="mm-name">🎯 Proyección al mes</div>
+            <div class="mm-nums" style="color:#FFB59C">~25 firmas</div>
           </div>
-          <div class="mm-track"><div class="mm-fill" id="s-bar" style="width:0%;background:#FFB59C"></div></div>
-          <div class="mm-foot">6% · faltan <strong style="color:rgba(255,255,255,.6)">75</strong> para la sorpresa</div>
+          <div class="mm-track"><div class="mm-fill" style="width:21%;background:#FFB59C"></div></div>
+          <div class="mm-foot">Con el ritmo actual · hay que acelerar 💪</div>
         </div>
       </div>
     </div>
@@ -461,7 +461,7 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const META=114,TOTAL=5,TODAY=6;
+const META=120,TOTAL=5,TODAY=6;
 const dailyCum={1:2,6:5};
 
 const kams=[
@@ -569,8 +569,7 @@ function buildChart(){
       labels:allDays,
       datasets:[
         {label:'Firmas',data:filled,borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.10)',fill:true,tension:0.4,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:6,pointHoverRadius:9},
-        {label:'Meta (114)',data:allDays.map(()=>114),borderColor:'rgba(31,41,55,0.18)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false},
-        {label:'Heladito (70)',data:allDays.map(()=>70),borderColor:'rgba(187,227,227,0.5)',borderDash:[4,4],borderWidth:1.5,pointRadius:0,fill:false},
+        {label:'Meta (120)',data:allDays.map(()=>120),borderColor:'rgba(31,41,55,0.18)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false},
       ]
     },
     options:{
@@ -604,8 +603,6 @@ function animMeta(){
   const pct=Math.round(TOTAL/META*100);
   setTimeout(()=>{$('pct-badge').textContent=`⚡ ${pct}%`;},300);
   setTimeout(()=>{$('main-bar').style.width=(TOTAL/META*100)+'%';},300);
-  setTimeout(()=>{$('h-bar').style.width=(5/70*100)+'%';},500);
-  setTimeout(()=>{$('s-bar').style.width=(5/80*100)+'%';},700);
   document.querySelectorAll('.bk-fill[data-w]').forEach(el=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},500));
 }
 
