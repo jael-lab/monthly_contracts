@@ -12,14 +12,14 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .blob{position:absolute;border-radius:50%;filter:blur(70px);}
 .blob:nth-child(1){width:500px;height:500px;background:rgba(114,221,163,0.12);top:-150px;right:-100px;animation:bf 22s ease-in-out infinite;}
 .blob:nth-child(2){width:380px;height:380px;background:rgba(187,227,227,0.13);bottom:0;left:-80px;animation:bf 28s ease-in-out infinite reverse;}
-.blob:nth-child(3){width:250px;height:250px;background:rgba(255,183,77,0.1);top:40%;right:10%;animation:bf 18s ease-in-out infinite 6s;}
+.blob:nth-child(3){width:250px;height:250px;background:rgba(100,60,180,0.07);top:40%;right:10%;animation:bf 18s ease-in-out infinite 6s;}
 @keyframes bf{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(14px,-18px) scale(1.05);}}
 .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 24px 80px;}
 .header{padding:40px 0 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .header h1{font-size:clamp(28px,4.5vw,46px);font-weight:900;letter-spacing:-2px;line-height:1;}
 .header h1 em{font-style:normal;color:#72DDA3;}
 .header-sub{font-size:13px;color:#6B7280;margin-top:6px;font-weight:600;}
-.live-pill{background:#1F2937;color:#72DDA3;border-radius:100px;padding:8px 18px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;letter-spacing:0.5px;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.live-pill{background:#1F2937;color:#72DDA3;border-radius:100px;padding:8px 18px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#72DDA3;animation:blink 1.4s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:24px;background:rgba(255,255,255,0.72);padding:5px;border-radius:18px;border:1px solid rgba(31,41,55,0.09);backdrop-filter:blur(14px);width:fit-content;}
@@ -27,13 +27,12 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .tab:hover{background:rgba(255,255,255,0.85);color:#1F2937;}
 .tab.active{background:#1F2937;color:#fff;box-shadow:0 2px 12px rgba(31,41,55,0.2);}
 .tab-ic{font-size:17px;line-height:1;}
-.panel{display:none;}
-.panel.active{display:block;animation:pi 0.28s ease;}
+.panel{display:none;}.panel.active{display:block;animation:pi 0.28s ease;}
 @keyframes pi{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .card{background:#fff;border-radius:22px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);overflow:hidden;}
 .metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:16px;}
 .metric{background:#fff;border-radius:18px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);padding:18px 20px;}
-.metric-val{font-size:30px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
+.metric-val{font-size:30px;font-weight:900;line-height:1;}
 .metric-label{font-size:11px;font-weight:800;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
 .metric-sub{font-size:11px;color:#9CA3AF;font-weight:600;margin-top:2px;}
 .meta-card{background:#1F2937;border-radius:22px;padding:28px 32px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;position:relative;overflow:hidden;}
@@ -43,7 +42,7 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .meta-deco span:nth-child(2){width:140px;height:140px;background:#BBE3E3;bottom:-20px;left:35%;}
 .meta-label{font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
 .meta-nums{display:flex;align-items:baseline;gap:8px;}
-.meta-big{font-size:clamp(52px,7vw,72px);font-weight:900;color:#fff;line-height:1;font-feature-settings:'tnum';}
+.meta-big{font-size:clamp(52px,7vw,72px);font-weight:900;color:#fff;line-height:1;}
 .meta-sep{font-size:36px;color:rgba(255,255,255,0.2);font-weight:300;}
 .meta-goal{font-size:36px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;}
 .meta-pct{display:inline-flex;align-items:center;gap:5px;background:#72DDA3;color:#1F2937;padding:5px 14px;border-radius:100px;font-size:14px;font-weight:900;margin-top:12px;}
@@ -52,7 +51,7 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .mm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 18px;margin-bottom:10px;}
 .mm:last-child{margin-bottom:0;}
 .mm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.mm-name{font-size:13px;font-weight:700;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:6px;}
+.mm-name{font-size:13px;font-weight:700;color:rgba(255,255,255,0.65);}
 .mm-nums{font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
 .mm-track{height:5px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
 .mm-fill{height:100%;border-radius:100px;}
@@ -65,7 +64,7 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .sc-rank{position:absolute;top:12px;right:12px;font-size:20px;}
 .sc-name{font-size:18px;font-weight:900;margin-bottom:1px;}
 .sc-role{font-size:10px;font-weight:700;opacity:0.5;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
-.sc-big{font-size:44px;font-weight:900;line-height:1;font-feature-settings:'tnum';}
+.sc-big{font-size:44px;font-weight:900;line-height:1;}
 .sc-biglabel{font-size:10px;font-weight:700;opacity:0.5;margin-top:2px;margin-bottom:10px;}
 .sc-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
 .chip{padding:3px 9px;border-radius:100px;font-size:10px;font-weight:800;background:rgba(0,0,0,0.1);white-space:nowrap;}
@@ -110,7 +109,7 @@ body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;m
 .kpi-val{font-size:26px;font-weight:900;line-height:1;}
 .kpi-lab{font-size:10px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1px;}
 .status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.status-chip{border-radius:12px;padding:8px 14px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:6px;}
+.status-chip{border-radius:12px;padding:8px 14px;font-size:12px;font-weight:800;}
 .s-ok{background:#dcfce7;color:#166534;}
 .s-warn{background:#FFFBEB;color:#92400e;border:1.5px solid #F59E0B;}
 .table-card{padding:20px 22px;}
@@ -128,18 +127,18 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
 .b-dir{background:#F0F2F5;color:#374151;}.b-pago{background:#FFFBEB;color:#92400e;}
 .b-firmado{background:#dcfce7;color:#166534;}
 .obs-box{background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:14px;padding:14px 18px;margin-bottom:14px;}
-.obs-title{font-size:12px;font-weight:800;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.obs-title{font-size:12px;font-weight:800;color:#92400e;margin-bottom:8px;}
 .obs-item{background:#fff;border:1px solid #FDE68A;border-radius:9px;padding:9px 12px;margin-bottom:6px;font-size:11px;}
 .obs-item:last-child{margin-bottom:0;}
 .obs-rid{font-family:'Red Hat Mono',monospace;font-weight:700;color:#92400e;font-size:10px;margin-bottom:3px;}
-.obs-nota{color:#78350f;font-weight:600;margin-top:1px;}
-.footer{text-align:center;padding:18px 0 0;font-size:11px;color:#9CA3AF;font-weight:700;letter-spacing:0.5px;}
+.obs-nota{color:#78350f;font-weight:600;}
+.footer{text-align:center;padding:18px 0 0;font-size:11px;color:#9CA3AF;font-weight:700;}
 </style>
 </head>
 <body>
 <div class="bg-deco"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
-
 <div class="wrap">
+
   <div class="header">
     <div>
       <h1>⚡ Firmas <em>Abril</em></h1>
@@ -152,34 +151,17 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
     <button class="tab active" onclick="goTab('general')">🌟 General</button>
     <button class="tab" onclick="goTab('pablo')"><span class="tab-ic">🚀</span>Pablo</button>
     <button class="tab" onclick="goTab('majo')"><span class="tab-ic">🦋</span>Majo</button>
-    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐯</span>Gabo</button>
+    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐆</span>Gabo</button>
     <button class="tab" onclick="goTab('leo')"><span class="tab-ic">🦁</span>Leo</button>
   </div>
 
-  <!-- ══ GENERAL ══ -->
+  <!-- GENERAL -->
   <div class="panel active" id="panel-general">
-
     <div class="metrics-row">
-      <div class="metric">
-        <div class="metric-val" id="ctr-main">0</div>
-        <div class="metric-label">Firmas totales</div>
-        <div class="metric-sub">Meta abril: 120</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="font-size:22px;color:#166534">$260,359</div>
-        <div class="metric-label">Monto renta</div>
-        <div class="metric-sub">Equipo completo</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="font-size:20px">🚀=🦋</div>
-        <div class="metric-label">Empate en liderazgo</div>
-        <div class="metric-sub">Pablo y Majo · 6 firmas c/u</div>
-      </div>
-      <div class="metric">
-        <div class="metric-val" style="color:#92400e">3</div>
-        <div class="metric-label">Pendientes</div>
-        <div class="metric-sub">Falta primer pago · Gabo</div>
-      </div>
+      <div class="metric"><div class="metric-val" id="ctr-main">0</div><div class="metric-label">Firmas totales</div><div class="metric-sub">Meta abril: 120</div></div>
+      <div class="metric"><div class="metric-val" style="font-size:22px;color:#166534">$334,949</div><div class="metric-label">Monto renta</div><div class="metric-sub">Equipo completo</div></div>
+      <div class="metric"><div class="metric-val" style="font-size:20px">🦋 Majo</div><div class="metric-label">Líder del mes</div><div class="metric-sub">9 firmas · $177K monto</div></div>
+      <div class="metric"><div class="metric-val" style="color:#92400e">3</div><div class="metric-label">Pendientes</div><div class="metric-sub">Falta primer pago · Gabo</div></div>
     </div>
 
     <div class="meta-card">
@@ -196,20 +178,14 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
       </div>
       <div style="position:relative;z-index:1;">
         <div class="mm">
-          <div class="mm-top">
-            <div class="mm-name">📅 Días transcurridos</div>
-            <div class="mm-nums" style="color:#BBE3E3">9 / 30</div>
-          </div>
+          <div class="mm-top"><div class="mm-name">📅 Días transcurridos</div><div class="mm-nums" style="color:#BBE3E3">9 / 30</div></div>
           <div class="mm-track"><div class="mm-fill" style="width:30%;background:#BBE3E3"></div></div>
-          <div class="mm-foot">Ritmo actual: ~1.9 firmas/día · necesario: 4/día</div>
+          <div class="mm-foot">Ritmo actual: ~2.3 firmas/día · necesario: 4/día</div>
         </div>
         <div class="mm">
-          <div class="mm-top">
-            <div class="mm-name">🎯 Proyección al mes</div>
-            <div class="mm-nums" style="color:#FFB59C">~57 firmas</div>
-          </div>
-          <div class="mm-track"><div class="mm-fill" style="width:47%;background:#FFB59C"></div></div>
-          <div class="mm-foot">Con el ritmo actual · ¡hay que acelerar! 💪</div>
+          <div class="mm-top"><div class="mm-name">🎯 Proyección al mes</div><div class="mm-nums" style="color:#FFB59C">~70 firmas</div></div>
+          <div class="mm-track"><div class="mm-fill" style="width:58%;background:#FFB59C"></div></div>
+          <div class="mm-foot">Con ritmo actual · ¡hay que acelerar! 💪</div>
         </div>
       </div>
     </div>
@@ -231,45 +207,33 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
     <div class="two-col">
       <div class="card bk-card">
         <div class="sec-t" style="margin-bottom:14px">🛡️ Por protección</div>
-        <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">13</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#72DDA3" data-w="76.5"></div></div>
-        </div>
-        <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">2</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#BBE3E3" data-w="11.8"></div></div>
-        </div>
-        <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Premium ⭐</span><span class="bk-count">1</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#F3CE98" data-w="5.9"></div></div>
-        </div>
-        <div class="bk-item">
-          <div class="bk-head"><span class="bk-label">Renovación</span><span class="bk-count">1</span></div>
-          <div class="bk-track"><div class="bk-fill" style="width:0%;background:#F9D3CD" data-w="5.9"></div></div>
-        </div>
+        <div class="bk-item"><div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">14</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#72DDA3" data-w="66.7"></div></div></div>
+        <div class="bk-item"><div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">4</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#BBE3E3" data-w="19"></div></div></div>
+        <div class="bk-item"><div class="bk-head"><span class="bk-label">Premium ⭐</span><span class="bk-count">2</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#F3CE98" data-w="9.5"></div></div></div>
+        <div class="bk-item"><div class="bk-head"><span class="bk-label">Renovación</span><span class="bk-count">1</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#F9D3CD" data-w="4.8"></div></div></div>
       </div>
       <div class="card bk-card">
         <div class="sec-t" style="margin-bottom:12px">🏢 Agencias</div>
         <ul class="ag-list">
-          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">4</span></li>
+          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">5</span></li>
           <li class="ag-item"><span class="ag-name">🏢 Grupo Arvi</span><span class="ag-pill">2</span></li>
           <li class="ag-item"><span class="ag-name">🏢 Remax</span><span class="ag-pill">2</span></li>
           <li class="ag-item"><span class="ag-name">🏢 YoRento</span><span class="ag-pill">1</span></li>
           <li class="ag-item"><span class="ag-name">🏢 Rentas Ok</span><span class="ag-pill">1</span></li>
           <li class="ag-item"><span class="ag-name">🏢 En Casa</span><span class="ag-pill">1</span></li>
           <li class="ag-item"><span class="ag-name">🏢 Soy Rumi</span><span class="ag-pill">1</span></li>
-          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">5</span></li>
+          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">8</span></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- ══ PABLO ══ -->
+  <!-- PABLO -->
   <div class="panel" id="panel-pablo">
     <div class="kam-head" style="background:linear-gradient(135deg,#b8f5d4,#72DDA3);color:#1F5C3A;">
       <div style="max-width:65%">
         <div class="kh-name">🚀 Pablo de la Puente</div>
-        <div class="kh-sub">El Astronauta · Co-líder del mes 🥇</div>
+        <div class="kh-sub">El Astronauta · 2do lugar del mes</div>
         <div class="kpi-row">
           <div><div class="kpi-val">6</div><div class="kpi-lab">Firmas</div></div>
           <div><div class="kpi-val">$92K</div><div class="kpi-lab">Monto</div></div>
@@ -281,7 +245,6 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
         <svg viewBox="0 0 140 170" width="140" height="170">
           <circle cx="22" cy="42" r="2.5" fill="#FFD700" opacity="0.9"/>
           <circle cx="118" cy="28" r="2" fill="white" opacity="0.6"/>
-          <circle cx="130" cy="55" r="1.5" fill="#FFD700" opacity="0.7"/>
           <ellipse cx="70" cy="108" rx="24" ry="38" fill="#1F5C3A"/>
           <path d="M70 24 Q44 64 44 80 Q70 74 96 80 Q96 64 70 24Z" fill="#72DDA3"/>
           <path d="M70 24 Q62 56 62 74 Q70 72 70 72L70 24Z" fill="rgba(255,255,255,0.18)"/>
@@ -298,25 +261,23 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
         </svg>
       </div>
     </div>
-    <div class="status-bar">
-      <div class="status-chip s-ok">✅ 6 Firmados</div>
-    </div>
+    <div class="status-bar"><div class="status-chip s-ok">✅ 6 Firmados</div></div>
     <div class="card table-card">
       <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-pablo"></table></div>
     </div>
   </div>
 
-  <!-- ══ MAJO ══ -->
+  <!-- MAJO -->
   <div class="panel" id="panel-majo">
     <div class="kam-head" style="background:linear-gradient(135deg,#d4f2f2,#BBE3E3);color:#1A4A4A;">
       <div style="max-width:65%">
         <div class="kh-name">🦋 Maria José Arriaga</div>
-        <div class="kh-sub">La Mariposa · Co-líder del mes 🥇</div>
+        <div class="kh-sub">La Mariposa · Líder absoluta 🥇</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">6</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$109K</div><div class="kpi-lab">Monto</div></div>
-          <div><div class="kpi-val">5</div><div class="kpi-lab">1ra vez</div></div>
+          <div><div class="kpi-val">9</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$177K</div><div class="kpi-lab">Monto</div></div>
+          <div><div class="kpi-val">8</div><div class="kpi-lab">1ra vez</div></div>
           <div><div class="kpi-val">1</div><div class="kpi-lab">Renov.</div></div>
         </div>
       </div>
@@ -339,128 +300,126 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
           <path d="M63 85 Q70 92 77 85" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
           <line x1="60" y1="143" x2="54" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
           <line x1="80" y1="143" x2="86" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M54 58 L57 48 L61 55 L65 44 L70 55 L75 44 L79 55 L83 48 L86 58Z" fill="#FFD700"/>
+          <circle cx="65" cy="44" r="3" fill="#FF6B35"/><circle cx="70" cy="40" r="3" fill="#E8001C"/><circle cx="75" cy="44" r="3" fill="#FF6B35"/>
         </svg>
       </div>
     </div>
-    <div class="status-bar">
-      <div class="status-chip s-ok">✅ 6 Firmados</div>
-    </div>
+    <div class="status-bar"><div class="status-chip s-ok">✅ 9 Firmados</div></div>
     <div class="card table-card">
       <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-majo"></table></div>
     </div>
   </div>
 
-  <!-- ══ GABO 🐯 TIGRE MEJORADO ══ -->
+  <!-- GABO — PANTERA NEGRA -->
   <div class="panel" id="panel-gabo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#fff8e1,#FFD54F);color:#3e2000;">
+    <div class="kam-head" style="background:linear-gradient(135deg,#1a0a2e,#3d1a7a);color:#E8D5FF;">
       <div style="max-width:65%">
-        <div class="kh-name">🐯 Gabriel Alvarado</div>
-        <div class="kh-sub">El Tigre · 3er lugar · 100% AKA</div>
+        <div class="kh-name">🐆 Gabriel Alvarado</div>
+        <div class="kh-sub">La Pantera · Sigiloso · 100% AKA</div>
         <div class="kpi-row">
-          <div><div class="kpi-val">4</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$23K</div><div class="kpi-lab">Monto</div></div>
+          <div><div class="kpi-val">5</div><div class="kpi-lab">Firmas</div></div>
+          <div><div class="kpi-val">$30K</div><div class="kpi-lab">Monto</div></div>
           <div><div class="kpi-val">0</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">4</div><div class="kpi-lab">Renov.</div></div>
+          <div><div class="kpi-val">5</div><div class="kpi-lab">Renov.</div></div>
         </div>
       </div>
       <div class="kam-char-big">
-        <!-- TIGRE MEJORADO v2 — más caricaturesco, expresivo y lindo -->
+        <!-- PANTERA NEGRA — elegante, misteriosa, caricaturesca -->
         <svg viewBox="0 0 140 175" width="140" height="175">
-          <!-- COLA con punta peluda -->
-          <path d="M108 138 Q138 118 136 145 Q133 162 122 158 Q116 155 118 148 Q122 140 115 142Z" fill="#E65100" stroke="#BF360C" stroke-width="1"/>
-          <!-- punta esponjosa cola -->
-          <ellipse cx="122" cy="158" rx="9" ry="7" fill="#FF8F00"/>
-          <ellipse cx="126" cy="154" rx="5" ry="4" fill="#FFCC02"/>
+          <!-- COLA larga elegante -->
+          <path d="M104 136 Q136 115 134 142 Q131 160 120 156 Q113 153 116 145 Q120 136 112 139Z" fill="#1a0a2e" stroke="#3d1a7a" stroke-width="1.5"/>
+          <ellipse cx="120" cy="157" rx="9" ry="6" fill="#3d1a7a"/>
+          <ellipse cx="124" cy="153" rx="5" ry="4" fill="#6b3fa0" opacity="0.7"/>
 
-          <!-- CUERPO redondito -->
-          <ellipse cx="68" cy="128" rx="30" ry="33" fill="#FB8C00"/>
-          <!-- barriga clara -->
-          <ellipse cx="68" cy="133" rx="19" ry="22" fill="#FFCC02" opacity="0.55"/>
-          <!-- rayas cuerpo -->
-          <path d="M46 112 Q52 104 58 113" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
-          <path d="M78 112 Q84 104 90 113" fill="none" stroke="#E65100" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
-          <path d="M42 123 L48 138" stroke="#E65100" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-          <path d="M94 123 L88 138" stroke="#E65100" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+          <!-- CUERPO negro elegante -->
+          <ellipse cx="67" cy="126" rx="30" ry="33" fill="#1a0a2e"/>
+          <!-- reflejo morado sutilísimo -->
+          <ellipse cx="55" cy="110" rx="16" ry="12" fill="#3d1a7a" opacity="0.22" transform="rotate(-22,55,110)"/>
+          <ellipse cx="80" cy="122" rx="12" ry="8" fill="#3d1a7a" opacity="0.15" transform="rotate(10,80,122)"/>
 
-          <!-- BRAZOS regordetes -->
-          <ellipse cx="34" cy="126" rx="11" ry="21" fill="#FB8C00" transform="rotate(-14,34,126)"/>
-          <ellipse cx="102" cy="126" rx="11" ry="21" fill="#FB8C00" transform="rotate(14,102,126)"/>
-          <!-- PATAS -->
-          <ellipse cx="26" cy="148" rx="13" ry="9" fill="#E65100"/>
-          <ellipse cx="110" cy="148" rx="13" ry="9" fill="#E65100"/>
-          <!-- dedos patas -->
-          <ellipse cx="20" cy="155" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
-          <ellipse cx="27" cy="157" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
-          <ellipse cx="34" cy="156" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
-          <ellipse cx="104" cy="155" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
-          <ellipse cx="111" cy="157" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
-          <ellipse cx="118" cy="156" rx="4" ry="3" fill="#BF360C" opacity="0.7"/>
+          <!-- BRAZOS esbeltos felinos -->
+          <ellipse cx="33" cy="123" rx="10" ry="23" fill="#1a0a2e" transform="rotate(-12,33,123)"/>
+          <ellipse cx="101" cy="123" rx="10" ry="23" fill="#1a0a2e" transform="rotate(12,101,123)"/>
+
+          <!-- PATAS con almohadillas moradas -->
+          <ellipse cx="26" cy="148" rx="13" ry="8" fill="#2a0f50"/>
+          <ellipse cx="108" cy="148" rx="13" ry="8" fill="#2a0f50"/>
+          <ellipse cx="20" cy="154" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
+          <ellipse cx="27" cy="156" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
+          <ellipse cx="34" cy="155" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
+          <ellipse cx="102" cy="154" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
+          <ellipse cx="109" cy="156" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
+          <ellipse cx="116" cy="155" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
 
           <!-- CABEZA grande y redonda -->
-          <circle cx="68" cy="74" r="34" fill="#FB8C00"/>
-          <!-- frente más clara -->
-          <ellipse cx="68" cy="66" rx="22" ry="18" fill="#FF8F00" opacity="0.4"/>
+          <circle cx="67" cy="72" r="35" fill="#1a0a2e"/>
+          <!-- brillo sutil en frente -->
+          <ellipse cx="55" cy="56" rx="22" ry="17" fill="#2d1060" opacity="0.4"/>
 
-          <!-- OREJAS puntiagudas con interior -->
-          <path d="M38 52 L28 26 L52 42Z" fill="#FB8C00"/>
-          <path d="M40 50 L33 32 L50 44Z" fill="#FFCC02" opacity="0.7"/>
-          <!-- pelito oreja -->
-          <line x1="34" y1="34" x2="36" y2="28" stroke="#E65100" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M98 52 L112 26 L88 42Z" fill="#FB8C00"/>
-          <path d="M96 50 L107 32 L90 44Z" fill="#FFCC02" opacity="0.7"/>
-          <line x1="106" y1="34" x2="104" y2="28" stroke="#E65100" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- OREJAS puntiagudas con interior morado -->
+          <path d="M37 50 L26 22 L52 40Z" fill="#1a0a2e"/>
+          <path d="M39 49 L31 28 L50 41Z" fill="#7c4dbb" opacity="0.65"/>
+          <line x1="33" y1="30" x2="36" y2="24" stroke="#9c7fd4" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M97 50 L114 22 L88 40Z" fill="#1a0a2e"/>
+          <path d="M95 49 L108 28 L90 41Z" fill="#7c4dbb" opacity="0.65"/>
+          <line x1="107" y1="30" x2="104" y2="24" stroke="#9c7fd4" stroke-width="1.5" stroke-linecap="round"/>
 
-          <!-- RAYAS cabeza — características del tigre -->
-          <path d="M50 54 Q54 44 58 54" fill="none" stroke="#E65100" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-          <path d="M78 54 Q82 44 86 54" fill="none" stroke="#E65100" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-          <path d="M61 48 Q65 40 69 48" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <!-- HOCICO -->
+          <ellipse cx="67" cy="88" rx="18" ry="14" fill="#2a0f50" opacity="0.75"/>
+          <!-- NARIZ de pantera -->
+          <path d="M59 80 Q67 74 75 80 Q71 89 63 89Z" fill="#7c4dbb"/>
+          <ellipse cx="67" cy="79" rx="6" ry="4" fill="#5a2e99"/>
+          <circle cx="64" cy="77" r="2" fill="rgba(255,255,255,0.3)"/>
 
-          <!-- HOCICO / morro prominente -->
-          <ellipse cx="68" cy="87" rx="18" ry="14" fill="#FFCC02" opacity="0.75"/>
-          <!-- NARIZ grande y linda -->
-          <path d="M60 80 Q68 75 76 80 Q72 87 64 87Z" fill="#BF360C"/>
-          <ellipse cx="68" cy="79" rx="6" ry="4" fill="#E65100"/>
-          <!-- brillo nariz -->
-          <circle cx="65" cy="77" r="2" fill="rgba(255,255,255,0.4)"/>
-
-          <!-- OJOS grandes expresivos — estilo caricatura -->
+          <!-- OJOS — turquesa brillante, rasgados, estilo pantera -->
           <!-- ojo izq -->
-          <circle cx="56" cy="70" r="10" fill="white"/>
-          <circle cx="56" cy="71" r="7" fill="#2E7D32"/>
-          <ellipse cx="56" cy="72" rx="4" ry="6" fill="#1B5E20"/>
-          <circle cx="53" cy="68" r="2.5" fill="white" opacity="0.9"/>
-          <!-- ceja izq -->
-          <path d="M47 62 Q55 58 63 62" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <ellipse cx="52" cy="67" rx="12" ry="10" fill="#0a1a24"/>
+          <ellipse cx="52" cy="67" rx="9" ry="8" fill="#00BCD4"/>
+          <ellipse cx="52" cy="68" rx="5" ry="7.5" fill="#00838f"/>
+          <ellipse cx="52" cy="67" rx="2.5" ry="6" fill="#001a1f"/>
+          <circle cx="48" cy="62" r="3" fill="white" opacity="0.95"/>
+          <circle cx="57" cy="65" r="1.2" fill="white" opacity="0.5"/>
+          <!-- ceja izq arqueada -->
+          <path d="M41 60 Q51 54 62 59" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
 
           <!-- ojo der -->
-          <circle cx="80" cy="70" r="10" fill="white"/>
-          <circle cx="80" cy="71" r="7" fill="#2E7D32"/>
-          <ellipse cx="80" cy="72" rx="4" ry="6" fill="#1B5E20"/>
-          <circle cx="77" cy="68" r="2.5" fill="white" opacity="0.9"/>
-          <!-- ceja der -->
-          <path d="M73 62 Q80 58 88 62" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <ellipse cx="82" cy="67" rx="12" ry="10" fill="#0a1a24"/>
+          <ellipse cx="82" cy="67" rx="9" ry="8" fill="#00BCD4"/>
+          <ellipse cx="82" cy="68" rx="5" ry="7.5" fill="#00838f"/>
+          <ellipse cx="82" cy="67" rx="2.5" ry="6" fill="#001a1f"/>
+          <circle cx="78" cy="62" r="3" fill="white" opacity="0.95"/>
+          <circle cx="87" cy="65" r="1.2" fill="white" opacity="0.5"/>
+          <!-- ceja der arqueada -->
+          <path d="M72 60 Q82 54 93 59" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
 
-          <!-- BIGOTES largos y curvados -->
-          <path d="M50 88 Q36 84 28 86" fill="none" stroke="#4a2000" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M50 92 Q35 91 26 95" fill="none" stroke="#4a2000" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M50 96 Q36 98 30 103" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-          <path d="M86 88 Q100 84 108 86" fill="none" stroke="#4a2000" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M86 92 Q101 91 110 95" fill="none" stroke="#4a2000" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
-          <path d="M86 96 Q100 98 106 103" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <!-- BIGOTES largos y elegantes -->
+          <path d="M49 87 Q34 82 22 84" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+          <path d="M49 91 Q33 90 20 95" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+          <path d="M49 95 Q34 97 24 103" fill="none" stroke="#b39ddb" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+          <path d="M85 87 Q100 82 112 84" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+          <path d="M85 91 Q101 90 114 95" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+          <path d="M85 95 Q100 97 110 103" fill="none" stroke="#b39ddb" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
 
-          <!-- SONRISA linda con dientitos -->
-          <path d="M58 97 Q68 107 78 97" fill="none" stroke="#BF360C" stroke-width="2.5" stroke-linecap="round"/>
-          <rect x="64" y="97" width="4" height="5" rx="1.5" fill="white" opacity="0.9"/>
-          <rect x="70" y="97" width="4" height="5" rx="1.5" fill="white" opacity="0.9"/>
-          <!-- colmillos -->
-          <path d="M61 97 L59 103" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-          <path d="M75 97 L77 103" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+          <!-- SONRISA con colmillos elegantes -->
+          <path d="M57 98 Q67 108 77 98" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M60 98 L58 105" stroke="#E8D5FF" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <path d="M74 98 L76 105" stroke="#E8D5FF" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+
+          <!-- PATAS traseras -->
+          <ellipse cx="50" cy="163" rx="16" ry="9" fill="#2a0f50"/>
+          <ellipse cx="84" cy="163" rx="16" ry="9" fill="#2a0f50"/>
+
+          <!-- destellos morados sobre el pelaje -->
+          <ellipse cx="44" cy="118" rx="7" ry="4.5" fill="#3d1a7a" opacity="0.5" transform="rotate(-18,44,118)"/>
+          <ellipse cx="88" cy="116" rx="7" ry="4.5" fill="#3d1a7a" opacity="0.5" transform="rotate(18,88,116)"/>
+          <ellipse cx="67" cy="106" rx="8" ry="5" fill="#3d1a7a" opacity="0.4"/>
         </svg>
       </div>
     </div>
     <div class="status-bar">
-      <div class="status-chip s-ok">✅ 1 Firmado</div>
+      <div class="status-chip s-ok">✅ 2 Firmados</div>
       <div class="status-chip s-warn">⚠️ 3 Falta primer pago</div>
     </div>
     <div id="obs-gabo"></div>
@@ -470,12 +429,12 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
     </div>
   </div>
 
-  <!-- ══ LEO ══ -->
+  <!-- LEO -->
   <div class="panel" id="panel-leo">
     <div class="kam-head" style="background:linear-gradient(135deg,#ffd5c2,#FFB59C);color:#7A2800;">
       <div style="max-width:65%">
         <div class="kh-name">🦁 Leonardo Monzalvo</div>
-        <div class="kh-sub">El León · Rey en training · ¡Ya firmó! 👑</div>
+        <div class="kh-sub">El León · Rey en training · ¡Abrió el marcador! 👑</div>
         <div class="kpi-row">
           <div><div class="kpi-val">1</div><div class="kpi-lab">Firma</div></div>
           <div><div class="kpi-val">$36K</div><div class="kpi-lab">Monto</div></div>
@@ -504,9 +463,7 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
         </svg>
       </div>
     </div>
-    <div class="status-bar">
-      <div class="status-chip s-ok">✅ 1 Firmado · ¡Primera del mes!</div>
-    </div>
+    <div class="status-bar"><div class="status-chip s-ok">✅ 1 Firmado · ¡Primera del mes!</div></div>
     <div class="card table-card">
       <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
       <div class="table-wrap"><table id="tbl-leo"></table></div>
@@ -518,89 +475,91 @@ td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const META=120,TOTAL=17,TODAY=9;
-const dailyCum={1:5,2:7,6:10,7:11,8:14,9:17};
+const META=120,TOTAL=21,TODAY=9;
+const dailyCum={1:5,2:7,6:10,7:12,8:16,9:21};
 
 const kams=[
-  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:6,monto:92000, primera:6,reno:0,rank:'r1',rankEmoji:'🥇'},
-  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:6,monto:109000,primera:5,reno:1,rank:'r1',rankEmoji:'🥇'},
-  {key:'gabo', name:'Gabo', ch:'🐯',color:'#FFD54F',dc:'#3e2000',firmas:4,monto:23359, primera:0,reno:4,rank:'r2',rankEmoji:'🥈'},
-  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1,monto:36000, primera:1,reno:0,rank:'r3',rankEmoji:'🥉'},
+  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:9,monto:177300,primera:8,reno:1,rank:'r1',rankEmoji:'🥇'},
+  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:6,monto:92000, primera:6,reno:0,rank:'r2',rankEmoji:'🥈'},
+  {key:'gabo', name:'Gabo', ch:'🐆',color:'#9c7fd4',dc:'#E8D5FF',firmas:5,monto:29649, primera:0,reno:5,rank:'r3',rankEmoji:'🥉'},
+  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1,monto:36000, primera:1,reno:0,rank:'',  rankEmoji:'⭐'},
 ];
 
 const miniChars={
   pablo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="78" rx="18" ry="30" fill="#1F5C3A"/><path d="M50 18 Q32 48 32 60 Q50 55 68 60 Q68 48 50 18Z" fill="#72DDA3"/><circle cx="50" cy="66" r="9" fill="#BBE3E3"/><path d="M32 86 L18 110 L32 100Z" fill="#4ecb7a"/><path d="M68 86 L82 110 L68 100Z" fill="#4ecb7a"/><ellipse cx="50" cy="112" rx="12" ry="17" fill="#F3CE98" opacity="0.9"/></svg>`,
-  majo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/><path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/><ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/><circle cx="50" cy="60" r="14" fill="#1A4A4A"/><circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/><circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/></svg>`,
+  majo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/><path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/><ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/><circle cx="50" cy="60" r="14" fill="#1A4A4A"/><circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/><circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/><path d="M36 48 L39 40 L41 46 L44 37 L50 44 L56 37 L59 46 L61 40 L64 48Z" fill="#FFD700"/></svg>`,
   gabo:`<svg viewBox="0 0 100 120" width="100" height="120">
-    <ellipse cx="50" cy="98" rx="26" ry="28" fill="#FB8C00"/>
-    <ellipse cx="50" cy="102" rx="16" ry="18" fill="#FFCC02" opacity="0.55"/>
-    <ellipse cx="26" cy="96" rx="10" ry="18" fill="#FB8C00" transform="rotate(-12,26,96)"/>
-    <ellipse cx="74" cy="96" rx="10" ry="18" fill="#FB8C00" transform="rotate(12,74,96)"/>
-    <ellipse cx="20" cy="114" rx="12" ry="7" fill="#E65100"/>
-    <ellipse cx="80" cy="114" rx="12" ry="7" fill="#E65100"/>
-    <circle cx="50" cy="54" r="26" fill="#FB8C00"/>
-    <ellipse cx="50" cy="46" rx="18" ry="14" fill="#FF8F00" opacity="0.35"/>
-    <path d="M30 42 L22 22 L42 36Z" fill="#FB8C00"/>
-    <path d="M32 40 L27 26 L40 36Z" fill="#FFCC02" opacity="0.7"/>
-    <path d="M70 42 L78 22 L58 36Z" fill="#FB8C00"/>
-    <path d="M68 40 L73 26 L60 36Z" fill="#FFCC02" opacity="0.7"/>
-    <path d="M38 36 Q42 28 46 36" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-    <path d="M54 36 Q58 28 62 36" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-    <ellipse cx="50" cy="63" rx="14" ry="10" fill="#FFCC02" opacity="0.7"/>
-    <path d="M43 57 Q50 52 57 57 Q53 64 47 64Z" fill="#BF360C"/>
-    <circle cx="38" cy="51" r="8" fill="white"/>
-    <circle cx="38" cy="52" r="5.5" fill="#2E7D32"/>
-    <ellipse cx="38" cy="53" rx="3" ry="5" fill="#1B5E20"/>
-    <circle cx="36" cy="49" r="2" fill="white" opacity="0.9"/>
-    <circle cx="62" cy="51" r="8" fill="white"/>
-    <circle cx="62" cy="52" r="5.5" fill="#2E7D32"/>
-    <ellipse cx="62" cy="53" rx="3" ry="5" fill="#1B5E20"/>
-    <circle cx="60" cy="49" r="2" fill="white" opacity="0.9"/>
-    <path d="M30 60 Q22 57 16 59" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M30 64 Q21 63 15 67" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M70 60 Q78 57 84 59" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M70 64 Q79 63 85 67" fill="none" stroke="#4a2000" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-    <path d="M43 70 Q50 78 57 70" fill="none" stroke="#BF360C" stroke-width="2" stroke-linecap="round"/>
-    <rect x="46" y="70" width="3" height="4" rx="1" fill="white" opacity="0.9"/>
-    <rect x="51" y="70" width="3" height="4" rx="1" fill="white" opacity="0.9"/>
+    <path d="M76 95 Q96 84 94 99 Q92 109 86 107 Q82 105 84 100 Q87 95 82 97Z" fill="#1a0a2e"/>
+    <ellipse cx="50" cy="95" rx="23" ry="25" fill="#1a0a2e"/>
+    <ellipse cx="50" cy="99" rx="15" ry="16" fill="#2d1060" opacity="0.35"/>
+    <ellipse cx="24" cy="92" rx="9" ry="18" fill="#1a0a2e" transform="rotate(-10,24,92)"/>
+    <ellipse cx="76" cy="92" rx="9" ry="18" fill="#1a0a2e" transform="rotate(10,76,92)"/>
+    <ellipse cx="19" cy="110" rx="11" ry="6.5" fill="#2a0f50"/>
+    <ellipse cx="81" cy="110" rx="11" ry="6.5" fill="#2a0f50"/>
+    <circle cx="50" cy="52" r="24" fill="#1a0a2e"/>
+    <ellipse cx="40" cy="40" rx="18" ry="14" fill="#2d1060" opacity="0.35"/>
+    <path d="M30 40 L22 20 L42 34Z" fill="#1a0a2e"/><path d="M32 39 L27 24 L40 34Z" fill="#7c4dbb" opacity="0.65"/>
+    <path d="M70 40 L78 20 L58 34Z" fill="#1a0a2e"/><path d="M68 39 L73 24 L60 34Z" fill="#7c4dbb" opacity="0.65"/>
+    <ellipse cx="39" cy="49" rx="10" ry="8" fill="#0a1a24"/>
+    <ellipse cx="39" cy="49" rx="7.5" ry="6.5" fill="#00BCD4"/>
+    <ellipse cx="39" cy="50" rx="4" ry="6" fill="#00606a"/>
+    <ellipse cx="39" cy="49" rx="1.8" ry="5" fill="#001518"/>
+    <circle cx="36" cy="45" r="2.5" fill="white" opacity="0.95"/>
+    <ellipse cx="61" cy="49" rx="10" ry="8" fill="#0a1a24"/>
+    <ellipse cx="61" cy="49" rx="7.5" ry="6.5" fill="#00BCD4"/>
+    <ellipse cx="61" cy="50" rx="4" ry="6" fill="#00606a"/>
+    <ellipse cx="61" cy="49" rx="1.8" ry="5" fill="#001518"/>
+    <circle cx="58" cy="45" r="2.5" fill="white" opacity="0.95"/>
+    <path d="M30 58 Q38 54 47 58" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+    <path d="M53 58 Q62 54 70 58" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+    <ellipse cx="50" cy="63" rx="13" ry="9" fill="#2a0f50" opacity="0.7"/>
+    <path d="M43 57 Q50 52 57 57 Q53 63 47 63Z" fill="#7c4dbb"/>
+    <circle cx="47" cy="56" r="1.5" fill="rgba(255,255,255,0.3)"/>
+    <path d="M37 62 Q27 59 20 61" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M37 66 Q26 65 18 69" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M63 62 Q73 59 80 61" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M63 66 Q74 65 82 69" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M43 69 Q50 77 57 69" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round"/>
+    <path d="M46 69 L44 75" stroke="#E8D5FF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M54 69 L56 75" stroke="#E8D5FF" stroke-width="2" stroke-linecap="round"/>
   </svg>`,
   leo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M30 42 L34 28 L37 36 L40 22 L44 34 L50 20 L56 34 L60 22 L63 36 L66 28 L70 42Z" fill="#FFD700"/><circle cx="50" cy="78" r="36" fill="#CC7A00" opacity="0.9"/><circle cx="50" cy="76" r="24" fill="#E8961A"/><circle cx="30" cy="56" r="8" fill="#CC7A00"/><circle cx="70" cy="56" r="8" fill="#CC7A00"/><ellipse cx="50" cy="85" rx="14" ry="10" fill="#F3CE98"/><ellipse cx="50" cy="79" rx="6" ry="4.5" fill="#7A2800"/><circle cx="41" cy="72" r="5.5" fill="#7A2800"/><circle cx="59" cy="72" r="5.5" fill="#7A2800"/><circle cx="42" cy="70.5" r="2.5" fill="white"/><circle cx="60" cy="70.5" r="2.5" fill="white"/><path d="M44 90 Q50 98 56 90" fill="none" stroke="#7A2800" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="50" cy="112" rx="22" ry="16" fill="#E8961A"/></svg>`
 };
 
-const obs={
-  gabo:[
-    {rid:'e8187904',row:5,notas:['⚠️ Falta primer pago']},
-    {rid:'9451bb2d',row:6,notas:['⚠️ Falta primer pago']},
-    {rid:'2ee55275',row:11,notas:['⚠️ Falta primer pago']},
-  ]
-};
+const obs={gabo:[
+  {rid:'e8187904',row:5,notas:['⚠️ Falta primer pago']},
+  {rid:'9451bb2d',row:6,notas:['⚠️ Falta primer pago']},
+  {rid:'2ee55275',row:11,notas:['⚠️ Falta primer pago']},
+]};
 
 const details={
   pablo:[
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica",  ag:"Rentas Ok",  monto:8000, status:"Firmado"},
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral",  ag:"Directa",    monto:9000, status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",pt:"proteccion_integral",  ag:"Grupo Arvi", monto:12000,status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral",  ag:"YoRento",    monto:20000,status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral",  ag:"Remax",      monto:38500,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",pt:"proteccion_premium",   ag:"Grupo Arvi", monto:4500, status:"Firmado"},
+    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok", monto:8000, status:"Firmado"},
+    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",   monto:9000, status:"Firmado"},
+    {day:"02/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Grupo Arvi",monto:12000,status:"Firmado"},
+    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"YoRento",   monto:20000,status:"Firmado"},
+    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",     monto:38500,status:"Firmado"},
+    {day:"07/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Grupo Arvi",monto:4500, status:"Firmado"},
   ],
   majo:[
     {day:"01/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:20500,status:"Firmado"},
     {day:"02/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"En Casa",  monto:40000,status:"Firmado"},
+    {day:"07/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:18500,status:"Firmado"},
     {day:"08/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:15000,status:"Firmado"},
     {day:"08/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:17000,status:"Firmado"},
-    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral", ag:"Soy Rumi", monto:8000, status:"Firmado"},
     {day:"09/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:8500, status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:30000,status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",    pt:"proteccion_premium",  ag:"Directa",  monto:19800,status:"Firmado"},
+    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral", ag:"Soy Rumi", monto:8000, status:"Firmado"},
   ],
   gabo:[
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436, status:"Firmado"},
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752, status:"Falta primer pago"},
-    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616, status:"Falta primer pago"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555, status:"Falta primer pago"},
+    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436,status:"Firmado"},
+    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752,status:"Falta primer pago"},
+    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616,status:"Falta primer pago"},
+    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555,status:"Falta primer pago"},
+    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290,status:"Firmado"},
   ],
-  leo:[
-    {day:"09/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:36000,status:"Firmado"},
-  ]
+  leo:[{day:"09/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:36000,status:"Firmado"}]
 };
 
 const $=id=>document.getElementById(id);
@@ -630,7 +589,7 @@ function buildDots(){
     else if(n>=2){el.classList.add('has');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
     else{el.classList.add('has');el.textContent=d;}
     if(d===TODAY)el.classList.add('today');
-    el.title=n?`${n} firma${n>1?'s':''} el ${d} abr`:`Sin firmas el ${d} abr`;
+    el.title=n?`${n} firma${n>1?'s':''} el ${d} abr`:'Sin firmas';
     g.appendChild(el);
   }
 }
@@ -640,20 +599,23 @@ function buildScoreboard(){
   kams.forEach(k=>{
     const c=document.createElement('div');
     c.className=`sc card ${k.rank}`;
-    c.style.background=`linear-gradient(145deg,${k.color}28 0%,${k.color}0a 100%)`;
+    c.style.background=k.key==='gabo'
+      ? `linear-gradient(145deg,#2d1b4e28 0%,#1a0a2e10 100%)`
+      : `linear-gradient(145deg,${k.color}28 0%,${k.color}0a 100%)`;
     c.onclick=()=>goTab(k.key);
     const topF=Math.max(...kams.map(x=>x.firmas),1);
     const pct=Math.min(Math.round(k.firmas/topF*100),100);
+    const dcColor=k.key==='gabo'?'#c8a4ff':k.dc;
     c.innerHTML=`
       <div class="sc-rank">${k.rankEmoji}</div>
       <div class="sc-name">${k.ch} ${k.name}</div>
       <div class="sc-role">KAM · Abril 2026</div>
-      <div class="sc-big" style="color:${k.dc}">${k.firmas}</div>
+      <div class="sc-big" style="color:${dcColor}">${k.firmas}</div>
       <div class="sc-biglabel">firmas</div>
       <div class="sc-chips"><span class="chip">1ra: ${k.primera}</span><span class="chip">Ren: ${k.reno}</span><span class="chip">${fmtM(k.monto)}</span></div>
       <div>
         <div class="sc-barlabel"><span>vs líder</span><span>${pct}%</span></div>
-        <div class="sc-track"><div class="sc-fill" style="width:${pct}%;background:${k.color}bb"></div></div>
+        <div class="sc-track"><div class="sc-fill" style="width:${pct}%;background:${k.key==='gabo'?'#9c7fd4bb':k.color+'bb'}"></div></div>
       </div>
       <div class="sc-char">${miniChars[k.key]}</div>
     `;
@@ -697,10 +659,8 @@ function buildTables(){
 }
 
 function buildObs(){
-  ['gabo'].forEach(k=>{
-    const el=$('obs-'+k);if(!el||!obs[k]?.length)return;
-    el.innerHTML=`<div class="obs-box"><div class="obs-title">🔍 Pendiente de revisión</div>${obs[k].map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('')}</div>`;
-  });
+  const el=$('obs-gabo');if(!el)return;
+  el.innerHTML=`<div class="obs-box"><div class="obs-title">🔍 Pendiente de revisión</div>${obs.gabo.map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('')}</div>`;
 }
 
 function animMeta(){
