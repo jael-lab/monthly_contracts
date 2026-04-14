@@ -1,687 +1,788 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MICA Firmas — Abril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Red Hat Display',sans-serif;background:#F0F2F5;color:#1F2937;min-height:100vh;overflow-x:hidden;}
-.bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-.blob{position:absolute;border-radius:50%;filter:blur(70px);}
-.blob:nth-child(1){width:500px;height:500px;background:rgba(114,221,163,0.12);top:-150px;right:-100px;animation:bf 22s ease-in-out infinite;}
-.blob:nth-child(2){width:380px;height:380px;background:rgba(187,227,227,0.13);bottom:0;left:-80px;animation:bf 28s ease-in-out infinite reverse;}
-.blob:nth-child(3){width:250px;height:250px;background:rgba(100,60,180,0.07);top:40%;right:10%;animation:bf 18s ease-in-out infinite 6s;}
-@keyframes bf{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(14px,-18px) scale(1.05);}}
-.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 24px 80px;}
-.header{padding:40px 0 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.header h1{font-size:clamp(28px,4.5vw,46px);font-weight:900;letter-spacing:-2px;line-height:1;}
-.header h1 em{font-style:normal;color:#72DDA3;}
-.header-sub{font-size:13px;color:#6B7280;margin-top:6px;font-weight:600;}
-.live-pill{background:#1F2937;color:#72DDA3;border-radius:100px;padding:8px 18px;font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;display:flex;align-items:center;gap:6px;white-space:nowrap;}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#72DDA3;animation:blink 1.4s ease-in-out infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:24px;background:rgba(255,255,255,0.72);padding:5px;border-radius:18px;border:1px solid rgba(31,41,55,0.09);backdrop-filter:blur(14px);width:fit-content;}
-.tab{padding:9px 18px;border-radius:13px;border:none;cursor:pointer;font-family:'Red Hat Display',sans-serif;font-size:13px;font-weight:700;transition:all 0.2s ease;background:transparent;color:#6B7280;display:flex;align-items:center;gap:7px;white-space:nowrap;}
-.tab:hover{background:rgba(255,255,255,0.85);color:#1F2937;}
-.tab.active{background:#1F2937;color:#fff;box-shadow:0 2px 12px rgba(31,41,55,0.2);}
-.tab-ic{font-size:17px;line-height:1;}
-.panel{display:none;}.panel.active{display:block;animation:pi 0.28s ease;}
-@keyframes pi{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.card{background:#fff;border-radius:22px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);overflow:hidden;}
-.metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:16px;}
-.metric{background:#fff;border-radius:18px;border:1px solid rgba(31,41,55,0.08);box-shadow:0 2px 14px rgba(31,41,55,0.06);padding:18px 20px;}
-.metric-val{font-size:30px;font-weight:900;line-height:1;}
-.metric-label{font-size:11px;font-weight:800;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
-.metric-sub{font-size:11px;color:#9CA3AF;font-weight:600;margin-top:2px;}
-.meta-card{background:#1F2937;border-radius:22px;padding:28px 32px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;position:relative;overflow:hidden;}
-.meta-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.meta-deco span{position:absolute;border-radius:50%;opacity:0.07;}
-.meta-deco span:nth-child(1){width:320px;height:320px;background:#72DDA3;top:-80px;right:-60px;}
-.meta-deco span:nth-child(2){width:140px;height:140px;background:#BBE3E3;bottom:-20px;left:35%;}
-.meta-label{font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
-.meta-nums{display:flex;align-items:baseline;gap:8px;}
-.meta-big{font-size:clamp(52px,7vw,72px);font-weight:900;color:#fff;line-height:1;}
-.meta-sep{font-size:36px;color:rgba(255,255,255,0.2);font-weight:300;}
-.meta-goal{font-size:36px;font-weight:700;color:rgba(255,255,255,0.25);line-height:1;}
-.meta-pct{display:inline-flex;align-items:center;gap:5px;background:#72DDA3;color:#1F2937;padding:5px 14px;border-radius:100px;font-size:14px;font-weight:900;margin-top:12px;}
-.mbar-track{height:8px;background:rgba(255,255,255,0.08);border-radius:100px;margin-top:16px;overflow:hidden;}
-.mbar-fill{height:100%;background:linear-gradient(90deg,#72DDA3,#5ed494);border-radius:100px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
-.mm{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:14px 18px;margin-bottom:10px;}
-.mm:last-child{margin-bottom:0;}
-.mm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.mm-name{font-size:13px;font-weight:700;color:rgba(255,255,255,0.65);}
-.mm-nums{font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-.mm-track{height:5px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
-.mm-fill{height:100%;border-radius:100px;}
-.mm-foot{font-size:10px;color:rgba(255,255,255,0.3);font-weight:700;margin-top:5px;}
-.sb-title{font-size:15px;font-weight:800;margin:20px 0 12px;display:flex;align-items:center;gap:8px;}
-.sb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:16px;}
-.sc{border-radius:20px;padding:20px;position:relative;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:transform 0.2s ease,box-shadow 0.2s ease;}
-.sc:hover{transform:translateY(-5px);box-shadow:0 10px 40px rgba(31,41,55,0.14);}
-.sc.r1{border-color:#FFD700;}.sc.r2{border-color:#C0C0C0;}.sc.r3{border-color:#CD7F32;}
-.sc-rank{position:absolute;top:12px;right:12px;font-size:20px;}
-.sc-name{font-size:18px;font-weight:900;margin-bottom:1px;}
-.sc-role{font-size:10px;font-weight:700;opacity:0.5;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
-.sc-big{font-size:44px;font-weight:900;line-height:1;}
-.sc-biglabel{font-size:10px;font-weight:700;opacity:0.5;margin-top:2px;margin-bottom:10px;}
-.sc-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
-.chip{padding:3px 9px;border-radius:100px;font-size:10px;font-weight:800;background:rgba(0,0,0,0.1);white-space:nowrap;}
-.sc-barlabel{display:flex;justify-content:space-between;font-size:10px;font-weight:700;opacity:0.55;margin-bottom:4px;}
-.sc-track{height:6px;background:rgba(0,0,0,0.1);border-radius:100px;overflow:hidden;}
-.sc-fill{height:100%;border-radius:100px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
-.sc-char{position:absolute;bottom:0;right:-4px;width:100px;height:120px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;}
-.chart-card{padding:24px 26px 18px;margin-bottom:16px;}
-.sec-t{font-size:14px;font-weight:800;margin-bottom:3px;}
-.sec-s{font-size:11px;color:#6B7280;margin-bottom:16px;font-weight:600;}
-.chart-area{position:relative;height:180px;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-@media(max-width:640px){.two-col{grid-template-columns:1fr;}.meta-card{grid-template-columns:1fr;}}
-.bk-card{padding:20px 22px;}
-.bk-item{margin-bottom:12px;}
-.bk-head{display:flex;justify-content:space-between;margin-bottom:6px;}
-.bk-label{font-size:12px;font-weight:700;}
-.bk-count{font-size:12px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-.bk-track{height:8px;background:#F0F2F5;border-radius:100px;overflow:hidden;}
-.bk-fill{height:100%;border-radius:100px;transition:width 1.3s cubic-bezier(.4,0,.2,1);}
-.ag-list{list-style:none;}
-.ag-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(31,41,55,0.07);font-size:12px;}
-.ag-item:last-child{border-bottom:none;}
-.ag-name{font-weight:700;}
-.ag-pill{background:#F0F2F5;border-radius:100px;padding:2px 9px;font-size:11px;font-weight:800;font-family:'Red Hat Mono',monospace;}
-.streak-card{padding:22px 24px;margin-bottom:16px;}
-.streak-head{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.day-grid{display:flex;gap:4px;flex-wrap:wrap;}
-.dd{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;font-family:'Red Hat Mono',monospace;position:relative;transition:transform 0.15s ease;cursor:default;}
-.dd:hover{transform:scale(1.2);z-index:2;}
-.dd.empty{background:rgba(31,41,55,0.05);color:rgba(31,41,55,0.18);border:1.5px dashed rgba(31,41,55,0.1);}
-.dd.has{background:#72DDA3;color:#1F2937;}
-.dd.hasmulti{background:#1F2937;color:#72DDA3;}
-.dd.today{outline:3px solid #1F2937;outline-offset:2px;}
-.dd.future{opacity:0.2;background:rgba(31,41,55,0.03);border:1.5px dashed rgba(31,41,55,0.07);}
-.pip{position:absolute;top:-5px;right:-5px;background:#FFB59C;color:#1F2937;border-radius:100px;width:14px;height:14px;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:900;border:2px solid #fff;}
-.kam-head{border-radius:22px;padding:26px 32px;margin-bottom:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.kam-char-big{position:absolute;right:20px;bottom:0;height:160px;width:140px;display:flex;align-items:flex-end;pointer-events:none;}
-.kh-name{font-size:28px;font-weight:900;margin-bottom:3px;}
-.kh-sub{font-size:12px;font-weight:700;opacity:0.6;}
-.kpi-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;}
-.kpi-val{font-size:26px;font-weight:900;line-height:1;}
-.kpi-lab{font-size:10px;font-weight:700;opacity:0.55;text-transform:uppercase;letter-spacing:1px;}
-.status-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.status-chip{border-radius:12px;padding:8px 14px;font-size:12px;font-weight:800;}
-.s-ok{background:#dcfce7;color:#166534;}
-.s-warn{background:#FFFBEB;color:#92400e;border:1.5px solid #F59E0B;}
-.table-card{padding:20px 22px;}
-.table-wrap{overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:12px;}
-th{padding:8px 11px;text-align:left;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;border-bottom:1px solid rgba(31,41,55,0.08);white-space:nowrap;}
-td{padding:10px 11px;border-bottom:1px solid rgba(31,41,55,0.07);font-weight:500;vertical-align:middle;}
-tr:last-child td{border-bottom:none;}
-tr:hover td{background:rgba(114,221,163,0.04);}
-td.mono{font-family:'Red Hat Mono',monospace;font-weight:700;}
-.badge{padding:2px 9px;border-radius:100px;font-size:10px;font-weight:800;display:inline-block;white-space:nowrap;}
-.b-integral{background:#dcfce7;color:#166534;}.b-juridica{background:#dbeafe;color:#1e40af;}
-.b-premium{background:#fef3c7;color:#92400e;}.b-primera{background:#f3e8ff;color:#6b21a8;}
-.b-ren{background:#fce7f3;color:#9d174d;}.b-aka{background:#1F2937;color:#72DDA3;}
-.b-dir{background:#F0F2F5;color:#374151;}.b-pago{background:#FFFBEB;color:#92400e;}
-.b-firmado{background:#dcfce7;color:#166534;}
-.obs-box{background:#FFFBEB;border:1.5px solid #F59E0B;border-radius:14px;padding:14px 18px;margin-bottom:14px;}
-.obs-title{font-size:12px;font-weight:800;color:#92400e;margin-bottom:8px;}
-.obs-item{background:#fff;border:1px solid #FDE68A;border-radius:9px;padding:9px 12px;margin-bottom:6px;font-size:11px;}
-.obs-item:last-child{margin-bottom:0;}
-.obs-rid{font-family:'Red Hat Mono',monospace;font-weight:700;color:#92400e;font-size:10px;margin-bottom:3px;}
-.obs-nota{color:#78350f;font-weight:600;}
-.footer{text-align:center;padding:18px 0 0;font-size:11px;color:#9CA3AF;font-weight:700;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MICA · Firmas Abril 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Red Hat Display', sans-serif;
+      background: #F0F2F5;
+      color: #1F2937;
+      min-height: 100vh;
+    }
+
+    /* TAB BAR */
+    .tab-bar {
+      background: #ffffff;
+      border-bottom: 2px solid #E5E7EB;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 4px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      overflow-x: auto;
+    }
+
+    .tab-logo {
+      font-family: 'Red Hat Display', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      color: #1F2937;
+      letter-spacing: -0.5px;
+      margin-right: 20px;
+      padding: 16px 0;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tab-logo span { color: #72DDA3; }
+
+    .tab-btn {
+      padding: 16px 16px;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6B7280;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      margin-bottom: -2px;
+      flex-shrink: 0;
+    }
+
+    .tab-btn:hover { color: #1F2937; }
+    .tab-btn.active { color: #1F2937; border-bottom-color: #72DDA3; }
+
+    .tab-panel { display: none; padding: 28px 24px; max-width: 1100px; margin: 0 auto; }
+    .tab-panel.active { display: block; }
+
+    /* GRID */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* CARDS */
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #6B7280;
+      margin-bottom: 16px;
+    }
+
+    /* HERO */
+    .hero-card {
+      background: #1F2937;
+      border-radius: 20px;
+      padding: 28px;
+      color: #ffffff;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(114,221,163,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+
+    .hero-month { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #72DDA3; margin-bottom: 6px; }
+    .hero-count { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -2px; }
+    .hero-count span { color: #72DDA3; }
+    .hero-subtitle { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+    .hero-right { text-align: right; }
+    .hero-pct { font-size: 36px; font-weight: 900; color: #72DDA3; }
+    .hero-pct-label { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+    .progress-track { background: rgba(255,255,255,0.1); border-radius: 8px; height: 10px; overflow: hidden; margin-bottom: 8px; }
+    .progress-fill { height: 100%; border-radius: 8px; background: linear-gradient(90deg, #72DDA3, #BBE3E3); }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.4); }
+
+    /* KPI PILLS */
+    .kpi-pill { background: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 12px; padding: 16px; text-align: center; }
+    .kpi-value { font-size: 28px; font-weight: 800; color: #1F2937; line-height: 1; }
+    .kpi-label { font-size: 11px; color: #6B7280; margin-top: 4px; font-weight: 500; }
+    .kpi-pill.green { border-color: #72DDA3; background: #F0FBF5; }
+    .kpi-pill.green .kpi-value { color: #2D9B67; }
+    .kpi-pill.yellow { border-color: #F3CE98; background: #FFFBF2; }
+    .kpi-pill.yellow .kpi-value { color: #B07C2A; }
+    .kpi-pill.blue { border-color: #BBE3E3; background: #F0FAFA; }
+    .kpi-pill.blue .kpi-value { color: #2A8585; }
+    .kpi-pill.coral { border-color: #FFB59C; background: #FFF6F2; }
+    .kpi-pill.coral .kpi-value { color: #C0512A; }
+
+    /* PROJECTION */
+    .proj-card { background: linear-gradient(135deg, #BBE3E3 0%, #F9D3CD 100%); border-radius: 16px; padding: 20px; }
+    .proj-title { font-size: 12px; font-weight: 700; color: #1F2937; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+    .proj-big { font-size: 40px; font-weight: 900; color: #1F2937; line-height: 1; }
+    .proj-sub { font-size: 13px; color: #374151; margin-top: 6px; }
+
+    /* CALENDAR */
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 4px; }
+    .cal-day-label { text-align: center; font-size: 10px; font-weight: 700; color: #6B7280; letter-spacing: 1px; padding: 4px 0; text-transform: uppercase; }
+    .cal-cell { aspect-ratio: 1; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Red Hat Mono', monospace; font-size: 11px; font-weight: 600; position: relative; cursor: default; }
+    .cal-cell.empty { background: transparent; }
+    .cal-cell.no-firma { background: #F3F4F6; color: #9CA3AF; }
+    .cal-cell.has-firma { background: #72DDA3; color: #1F2937; font-weight: 700; }
+    .cal-cell.today { box-shadow: 0 0 0 2.5px #1F2937; }
+    .cal-cell.future { background: #F9FAFB; color: #D1D5DB; }
+
+    /* SCOREBOARD */
+    .scoreboard { display: flex; flex-direction: column; gap: 10px; }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 28px 72px 1fr 80px;
+      align-items: center;
+      gap: 12px;
+      background: #F9FAFB;
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid #E5E7EB;
+      transition: transform 0.15s;
+    }
+
+    .score-row:hover { transform: translateX(4px); }
+    .score-row.rank-1 { background: #FFFBF0; border-color: #F3CE98; }
+    .score-row.rank-2 { background: #F8FFFE; border-color: #BBE3E3; }
+    .score-row.rank-3 { background: #FFF8F2; border-color: #FFB59C; }
+
+    .score-rank { font-family: 'Red Hat Mono', monospace; font-size: 13px; font-weight: 700; color: #6B7280; text-align: center; }
+    .rank-1 .score-rank { color: #B07C2A; }
+
+    .score-avatar-wrap { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; }
+
+    .score-name { font-size: 15px; font-weight: 700; color: #1F2937; }
+    .score-role { font-size: 11px; color: #6B7280; margin-top: 2px; }
+    .score-bar-track { background: #E5E7EB; border-radius: 4px; height: 6px; overflow: hidden; margin-top: 6px; }
+    .score-bar-fill { height: 100%; border-radius: 4px; }
+
+    .score-count { font-family: 'Red Hat Mono', monospace; font-size: 22px; font-weight: 700; text-align: right; color: #1F2937; }
+    .score-count span { font-size: 11px; color: #6B7280; font-family: 'Red Hat Display', sans-serif; font-weight: 500; display: block; }
+
+    /* BREAKDOWNS */
+    .breakdown-item { margin-bottom: 14px; }
+    .breakdown-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .breakdown-label { font-size: 13px; font-weight: 600; color: #1F2937; }
+    .breakdown-val { font-size: 13px; font-weight: 700; color: #6B7280; }
+    .breakdown-track { background: #F3F4F6; border-radius: 6px; height: 8px; overflow: hidden; }
+    .breakdown-fill { height: 100%; border-radius: 6px; }
+
+    /* AGENCIES */
+    .agency-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .agency-chip { background: #F3F4F6; border-radius: 20px; padding: 6px 14px; font-size: 12px; font-weight: 600; color: #374151; display: flex; align-items: center; gap: 6px; }
+    .agency-chip .num { background: #1F2937; color: #ffffff; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+
+    /* KAM HEADER */
+    .kam-header { border-radius: 20px; padding: 28px; color: #ffffff; display: flex; align-items: center; gap: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .kam-avatar-big { font-size: 80px; line-height: 1; flex-shrink: 0; }
+    .kam-header-info .kam-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+    .kam-header-info h2 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .kam-header-info .kam-sub { font-size: 14px; opacity: 0.7; }
+
+    /* TABLE */
+    .ops-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ops-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7280; padding: 10px 12px; border-bottom: 2px solid #E5E7EB; }
+    .ops-table td { padding: 10px 12px; border-bottom: 1px solid #F3F4F6; color: #374151; vertical-align: middle; }
+    .ops-table tr:last-child td { border-bottom: none; }
+    .ops-table tr:hover td { background: #F9FAFB; }
+
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .badge-ok { background: #D1FAE5; color: #065F46; }
+    .badge-warn { background: #FEF3C7; color: #92400E; }
+    .badge-prot-integral { background: #EDE9FE; color: #4C1D95; }
+    .badge-prot-juridica { background: #DBEAFE; color: #1E3A8A; }
+    .badge-prot-premium { background: #FCE7F3; color: #831843; }
+    .badge-primera { background: #F0FDF4; color: #166534; }
+    .badge-renov { background: #FFF7ED; color: #9A3412; }
+
+    /* ALERTS */
+    .alert-box { background: #FFFBEB; border: 1.5px solid #F3CE98; border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .alert-icon { font-size: 18px; flex-shrink: 0; }
+    .alert-text { font-size: 13px; color: #78350F; font-weight: 500; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .hero-count { font-size: 44px; }
+      .score-row { grid-template-columns: 20px 52px 1fr 52px; gap: 8px; }
+      .tab-panel { padding: 20px 14px; }
+    }
+  </style>
 </head>
 <body>
-<div class="bg-deco"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
-<div class="wrap">
 
-  <div class="header">
-    <div>
-      <h1>⚡ Firmas <em>Abril</em></h1>
-      <p class="header-sub">MICA Operations · Seguimiento operativo · Actualizado 09 Abr 2026</p>
-    </div>
-    <div class="live-pill"><div class="live-dot"></div>EN VIVO</div>
-  </div>
-
-  <div class="tabs">
-    <button class="tab active" onclick="goTab('general')">🌟 General</button>
-    <button class="tab" onclick="goTab('pablo')"><span class="tab-ic">🚀</span>Pablo</button>
-    <button class="tab" onclick="goTab('majo')"><span class="tab-ic">🦋</span>Majo</button>
-    <button class="tab" onclick="goTab('gabo')"><span class="tab-ic">🐆</span>Gabo</button>
-    <button class="tab" onclick="goTab('leo')"><span class="tab-ic">🦁</span>Leo</button>
-  </div>
-
-  <!-- GENERAL -->
-  <div class="panel active" id="panel-general">
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val" id="ctr-main">0</div><div class="metric-label">Firmas totales</div><div class="metric-sub">Meta abril: 120</div></div>
-      <div class="metric"><div class="metric-val" style="font-size:22px;color:#166534">$334,949</div><div class="metric-label">Monto renta</div><div class="metric-sub">Equipo completo</div></div>
-      <div class="metric"><div class="metric-val" style="font-size:20px">🦋 Majo</div><div class="metric-label">Líder del mes</div><div class="metric-sub">9 firmas · $177K monto</div></div>
-      <div class="metric"><div class="metric-val" style="color:#92400e">3</div><div class="metric-label">Pendientes</div><div class="metric-sub">Falta primer pago · Gabo</div></div>
-    </div>
-
-    <div class="meta-card">
-      <div class="meta-deco"><span></span><span></span></div>
-      <div style="position:relative;z-index:1">
-        <div class="meta-label">Progreso · Meta General</div>
-        <div class="meta-nums">
-          <div class="meta-big" id="ctr-meta">0</div>
-          <div class="meta-sep">/</div>
-          <div class="meta-goal">120</div>
-        </div>
-        <div class="meta-pct" id="pct-badge">⚡ 0%</div>
-        <div class="mbar-track"><div class="mbar-fill" id="main-bar" style="width:0%"></div></div>
-      </div>
-      <div style="position:relative;z-index:1;">
-        <div class="mm">
-          <div class="mm-top"><div class="mm-name">📅 Días transcurridos</div><div class="mm-nums" style="color:#BBE3E3">9 / 30</div></div>
-          <div class="mm-track"><div class="mm-fill" style="width:30%;background:#BBE3E3"></div></div>
-          <div class="mm-foot">Ritmo actual: ~2.3 firmas/día · necesario: 4/día</div>
-        </div>
-        <div class="mm">
-          <div class="mm-top"><div class="mm-name">🎯 Proyección al mes</div><div class="mm-nums" style="color:#FFB59C">~70 firmas</div></div>
-          <div class="mm-track"><div class="mm-fill" style="width:58%;background:#FFB59C"></div></div>
-          <div class="mm-foot">Con ritmo actual · ¡hay que acelerar! 💪</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card streak-card">
-      <div class="streak-head">🗓️ Actividad diaria — abril 2026</div>
-      <div class="day-grid" id="day-grid"></div>
-    </div>
-
-    <div class="sb-title">🏅 Ranking en curso</div>
-    <div class="sb-grid" id="scoreboard"></div>
-
-    <div class="card chart-card">
-      <div class="sec-t">📈 Firmas acumuladas — Abril</div>
-      <div class="sec-s">Progresión diaria vs meta de 120</div>
-      <div class="chart-area"><canvas id="mainChart"></canvas></div>
-    </div>
-
-    <div class="two-col">
-      <div class="card bk-card">
-        <div class="sec-t" style="margin-bottom:14px">🛡️ Por protección</div>
-        <div class="bk-item"><div class="bk-head"><span class="bk-label">Integral</span><span class="bk-count">14</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#72DDA3" data-w="66.7"></div></div></div>
-        <div class="bk-item"><div class="bk-head"><span class="bk-label">Jurídica</span><span class="bk-count">4</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#BBE3E3" data-w="19"></div></div></div>
-        <div class="bk-item"><div class="bk-head"><span class="bk-label">Premium ⭐</span><span class="bk-count">2</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#F3CE98" data-w="9.5"></div></div></div>
-        <div class="bk-item"><div class="bk-head"><span class="bk-label">Renovación</span><span class="bk-count">1</span></div><div class="bk-track"><div class="bk-fill" style="width:0%;background:#F9D3CD" data-w="4.8"></div></div></div>
-      </div>
-      <div class="card bk-card">
-        <div class="sec-t" style="margin-bottom:12px">🏢 Agencias</div>
-        <ul class="ag-list">
-          <li class="ag-item"><span class="ag-name">🏠 AKA</span><span class="ag-pill">5</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 Grupo Arvi</span><span class="ag-pill">2</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 Remax</span><span class="ag-pill">2</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 YoRento</span><span class="ag-pill">1</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 Rentas Ok</span><span class="ag-pill">1</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 En Casa</span><span class="ag-pill">1</span></li>
-          <li class="ag-item"><span class="ag-name">🏢 Soy Rumi</span><span class="ag-pill">1</span></li>
-          <li class="ag-item"><span class="ag-name">➡️ Directa</span><span class="ag-pill">8</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- PABLO -->
-  <div class="panel" id="panel-pablo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#b8f5d4,#72DDA3);color:#1F5C3A;">
-      <div style="max-width:65%">
-        <div class="kh-name">🚀 Pablo de la Puente</div>
-        <div class="kh-sub">El Astronauta · 2do lugar del mes</div>
-        <div class="kpi-row">
-          <div><div class="kpi-val">6</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$92K</div><div class="kpi-lab">Monto</div></div>
-          <div><div class="kpi-val">6</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">0</div><div class="kpi-lab">Renov.</div></div>
-        </div>
-      </div>
-      <div class="kam-char-big">
-        <svg viewBox="0 0 140 170" width="140" height="170">
-          <circle cx="22" cy="42" r="2.5" fill="#FFD700" opacity="0.9"/>
-          <circle cx="118" cy="28" r="2" fill="white" opacity="0.6"/>
-          <ellipse cx="70" cy="108" rx="24" ry="38" fill="#1F5C3A"/>
-          <path d="M70 24 Q44 64 44 80 Q70 74 96 80 Q96 64 70 24Z" fill="#72DDA3"/>
-          <path d="M70 24 Q62 56 62 74 Q70 72 70 72L70 24Z" fill="rgba(255,255,255,0.18)"/>
-          <circle cx="70" cy="90" r="13" fill="#BBE3E3"/>
-          <circle cx="70" cy="90" r="9" fill="#E8FFF5"/>
-          <circle cx="67" cy="87" r="3" fill="rgba(255,255,255,0.5)"/>
-          <path d="M46 116 L26 148 L46 136Z" fill="#4ecb7a"/>
-          <path d="M94 116 L114 148 L94 136Z" fill="#4ecb7a"/>
-          <ellipse cx="70" cy="150" rx="16" ry="22" fill="#F3CE98" opacity="0.95"/>
-          <ellipse cx="70" cy="158" rx="10" ry="15" fill="#FFB59C" opacity="0.9"/>
-          <ellipse cx="70" cy="164" rx="5" ry="9" fill="white" opacity="0.75"/>
-          <ellipse cx="46" cy="115" rx="6" ry="14" fill="#165c30"/>
-          <ellipse cx="94" cy="115" rx="6" ry="14" fill="#165c30"/>
-        </svg>
-      </div>
-    </div>
-    <div class="status-bar"><div class="status-chip s-ok">✅ 6 Firmados</div></div>
-    <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
-      <div class="table-wrap"><table id="tbl-pablo"></table></div>
-    </div>
-  </div>
-
-  <!-- MAJO -->
-  <div class="panel" id="panel-majo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#d4f2f2,#BBE3E3);color:#1A4A4A;">
-      <div style="max-width:65%">
-        <div class="kh-name">🦋 Maria José Arriaga</div>
-        <div class="kh-sub">La Mariposa · Líder absoluta 🥇</div>
-        <div class="kpi-row">
-          <div><div class="kpi-val">9</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$177K</div><div class="kpi-lab">Monto</div></div>
-          <div><div class="kpi-val">8</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">1</div><div class="kpi-lab">Renov.</div></div>
-        </div>
-      </div>
-      <div class="kam-char-big">
-        <svg viewBox="0 0 140 170" width="140" height="170">
-          <circle cx="30" cy="66" r="9" fill="rgba(114,221,163,0.4)"/>
-          <circle cx="110" cy="66" r="9" fill="rgba(114,221,163,0.4)"/>
-          <path d="M56 92 Q18 68 14 42 Q28 36 56 60 Q66 76 66 88Z" fill="#BBE3E3" opacity="0.95"/>
-          <path d="M56 108 Q16 112 12 136 Q28 142 58 122Z" fill="#8ccece" opacity="0.85"/>
-          <path d="M84 92 Q122 68 126 42 Q112 36 84 60 Q74 76 74 88Z" fill="#BBE3E3" opacity="0.95"/>
-          <path d="M84 108 Q124 112 128 136 Q112 142 82 122Z" fill="#8ccece" opacity="0.85"/>
-          <ellipse cx="70" cy="120" rx="13" ry="25" fill="#1A4A4A"/>
-          <circle cx="70" cy="80" r="18" fill="#1A4A4A"/>
-          <circle cx="63" cy="77" r="5" fill="white"/><circle cx="77" cy="77" r="5" fill="white"/>
-          <circle cx="64" cy="77.5" r="2.5" fill="#1A4A4A"/><circle cx="78" cy="77.5" r="2.5" fill="#1A4A4A"/>
-          <line x1="63" y1="63" x2="54" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="54" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
-          <line x1="77" y1="63" x2="86" y2="48" stroke="#1A4A4A" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="86" cy="46" r="4" fill="#BBE3E3" stroke="#1A4A4A" stroke-width="1.5"/>
-          <path d="M63 85 Q70 92 77 85" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <line x1="60" y1="143" x2="54" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
-          <line x1="80" y1="143" x2="86" y2="163" stroke="#1A4A4A" stroke-width="3" stroke-linecap="round"/>
-          <path d="M54 58 L57 48 L61 55 L65 44 L70 55 L75 44 L79 55 L83 48 L86 58Z" fill="#FFD700"/>
-          <circle cx="65" cy="44" r="3" fill="#FF6B35"/><circle cx="70" cy="40" r="3" fill="#E8001C"/><circle cx="75" cy="44" r="3" fill="#FF6B35"/>
-        </svg>
-      </div>
-    </div>
-    <div class="status-bar"><div class="status-chip s-ok">✅ 9 Firmados</div></div>
-    <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
-      <div class="table-wrap"><table id="tbl-majo"></table></div>
-    </div>
-  </div>
-
-  <!-- GABO — PANTERA NEGRA -->
-  <div class="panel" id="panel-gabo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#1a0a2e,#3d1a7a);color:#E8D5FF;">
-      <div style="max-width:65%">
-        <div class="kh-name">🐆 Gabriel Alvarado</div>
-        <div class="kh-sub">La Pantera · Sigiloso · 100% AKA</div>
-        <div class="kpi-row">
-          <div><div class="kpi-val">5</div><div class="kpi-lab">Firmas</div></div>
-          <div><div class="kpi-val">$30K</div><div class="kpi-lab">Monto</div></div>
-          <div><div class="kpi-val">0</div><div class="kpi-lab">1ra vez</div></div>
-          <div><div class="kpi-val">5</div><div class="kpi-lab">Renov.</div></div>
-        </div>
-      </div>
-      <div class="kam-char-big">
-        <!-- PANTERA NEGRA — elegante, misteriosa, caricaturesca -->
-        <svg viewBox="0 0 140 175" width="140" height="175">
-          <!-- COLA larga elegante -->
-          <path d="M104 136 Q136 115 134 142 Q131 160 120 156 Q113 153 116 145 Q120 136 112 139Z" fill="#1a0a2e" stroke="#3d1a7a" stroke-width="1.5"/>
-          <ellipse cx="120" cy="157" rx="9" ry="6" fill="#3d1a7a"/>
-          <ellipse cx="124" cy="153" rx="5" ry="4" fill="#6b3fa0" opacity="0.7"/>
-
-          <!-- CUERPO negro elegante -->
-          <ellipse cx="67" cy="126" rx="30" ry="33" fill="#1a0a2e"/>
-          <!-- reflejo morado sutilísimo -->
-          <ellipse cx="55" cy="110" rx="16" ry="12" fill="#3d1a7a" opacity="0.22" transform="rotate(-22,55,110)"/>
-          <ellipse cx="80" cy="122" rx="12" ry="8" fill="#3d1a7a" opacity="0.15" transform="rotate(10,80,122)"/>
-
-          <!-- BRAZOS esbeltos felinos -->
-          <ellipse cx="33" cy="123" rx="10" ry="23" fill="#1a0a2e" transform="rotate(-12,33,123)"/>
-          <ellipse cx="101" cy="123" rx="10" ry="23" fill="#1a0a2e" transform="rotate(12,101,123)"/>
-
-          <!-- PATAS con almohadillas moradas -->
-          <ellipse cx="26" cy="148" rx="13" ry="8" fill="#2a0f50"/>
-          <ellipse cx="108" cy="148" rx="13" ry="8" fill="#2a0f50"/>
-          <ellipse cx="20" cy="154" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-          <ellipse cx="27" cy="156" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-          <ellipse cx="34" cy="155" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-          <ellipse cx="102" cy="154" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-          <ellipse cx="109" cy="156" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-          <ellipse cx="116" cy="155" rx="3.5" ry="2.5" fill="#7c4dbb" opacity="0.85"/>
-
-          <!-- CABEZA grande y redonda -->
-          <circle cx="67" cy="72" r="35" fill="#1a0a2e"/>
-          <!-- brillo sutil en frente -->
-          <ellipse cx="55" cy="56" rx="22" ry="17" fill="#2d1060" opacity="0.4"/>
-
-          <!-- OREJAS puntiagudas con interior morado -->
-          <path d="M37 50 L26 22 L52 40Z" fill="#1a0a2e"/>
-          <path d="M39 49 L31 28 L50 41Z" fill="#7c4dbb" opacity="0.65"/>
-          <line x1="33" y1="30" x2="36" y2="24" stroke="#9c7fd4" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M97 50 L114 22 L88 40Z" fill="#1a0a2e"/>
-          <path d="M95 49 L108 28 L90 41Z" fill="#7c4dbb" opacity="0.65"/>
-          <line x1="107" y1="30" x2="104" y2="24" stroke="#9c7fd4" stroke-width="1.5" stroke-linecap="round"/>
-
-          <!-- HOCICO -->
-          <ellipse cx="67" cy="88" rx="18" ry="14" fill="#2a0f50" opacity="0.75"/>
-          <!-- NARIZ de pantera -->
-          <path d="M59 80 Q67 74 75 80 Q71 89 63 89Z" fill="#7c4dbb"/>
-          <ellipse cx="67" cy="79" rx="6" ry="4" fill="#5a2e99"/>
-          <circle cx="64" cy="77" r="2" fill="rgba(255,255,255,0.3)"/>
-
-          <!-- OJOS — turquesa brillante, rasgados, estilo pantera -->
-          <!-- ojo izq -->
-          <ellipse cx="52" cy="67" rx="12" ry="10" fill="#0a1a24"/>
-          <ellipse cx="52" cy="67" rx="9" ry="8" fill="#00BCD4"/>
-          <ellipse cx="52" cy="68" rx="5" ry="7.5" fill="#00838f"/>
-          <ellipse cx="52" cy="67" rx="2.5" ry="6" fill="#001a1f"/>
-          <circle cx="48" cy="62" r="3" fill="white" opacity="0.95"/>
-          <circle cx="57" cy="65" r="1.2" fill="white" opacity="0.5"/>
-          <!-- ceja izq arqueada -->
-          <path d="M41 60 Q51 54 62 59" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
-
-          <!-- ojo der -->
-          <ellipse cx="82" cy="67" rx="12" ry="10" fill="#0a1a24"/>
-          <ellipse cx="82" cy="67" rx="9" ry="8" fill="#00BCD4"/>
-          <ellipse cx="82" cy="68" rx="5" ry="7.5" fill="#00838f"/>
-          <ellipse cx="82" cy="67" rx="2.5" ry="6" fill="#001a1f"/>
-          <circle cx="78" cy="62" r="3" fill="white" opacity="0.95"/>
-          <circle cx="87" cy="65" r="1.2" fill="white" opacity="0.5"/>
-          <!-- ceja der arqueada -->
-          <path d="M72 60 Q82 54 93 59" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
-
-          <!-- BIGOTES largos y elegantes -->
-          <path d="M49 87 Q34 82 22 84" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
-          <path d="M49 91 Q33 90 20 95" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
-          <path d="M49 95 Q34 97 24 103" fill="none" stroke="#b39ddb" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
-          <path d="M85 87 Q100 82 112 84" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
-          <path d="M85 91 Q101 90 114 95" fill="none" stroke="#b39ddb" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
-          <path d="M85 95 Q100 97 110 103" fill="none" stroke="#b39ddb" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
-
-          <!-- SONRISA con colmillos elegantes -->
-          <path d="M57 98 Q67 108 77 98" fill="none" stroke="#7c4dbb" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M60 98 L58 105" stroke="#E8D5FF" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <path d="M74 98 L76 105" stroke="#E8D5FF" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-
-          <!-- PATAS traseras -->
-          <ellipse cx="50" cy="163" rx="16" ry="9" fill="#2a0f50"/>
-          <ellipse cx="84" cy="163" rx="16" ry="9" fill="#2a0f50"/>
-
-          <!-- destellos morados sobre el pelaje -->
-          <ellipse cx="44" cy="118" rx="7" ry="4.5" fill="#3d1a7a" opacity="0.5" transform="rotate(-18,44,118)"/>
-          <ellipse cx="88" cy="116" rx="7" ry="4.5" fill="#3d1a7a" opacity="0.5" transform="rotate(18,88,116)"/>
-          <ellipse cx="67" cy="106" rx="8" ry="5" fill="#3d1a7a" opacity="0.4"/>
-        </svg>
-      </div>
-    </div>
-    <div class="status-bar">
-      <div class="status-chip s-ok">✅ 2 Firmados</div>
-      <div class="status-chip s-warn">⚠️ 3 Falta primer pago</div>
-    </div>
-    <div id="obs-gabo"></div>
-    <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
-      <div class="table-wrap"><table id="tbl-gabo"></table></div>
-    </div>
-  </div>
-
-  <!-- LEO -->
-  <div class="panel" id="panel-leo">
-    <div class="kam-head" style="background:linear-gradient(135deg,#ffd5c2,#FFB59C);color:#7A2800;">
-      <div style="max-width:65%">
-        <div class="kh-name">🦁 Leonardo Monzalvo</div>
-        <div class="kh-sub">El León · Rey en training · ¡Abrió el marcador! 👑</div>
-        <div class="kpi-row">
-          <div><div class="kpi-val">1</div><div class="kpi-lab">Firma</div></div>
-          <div><div class="kpi-val">$36K</div><div class="kpi-lab">Monto</div></div>
-          <div><div class="kpi-val">1</div><div class="kpi-lab">1ra vez</div></div>
-        </div>
-      </div>
-      <div class="kam-char-big">
-        <svg viewBox="0 0 140 170" width="140" height="170">
-          <path d="M46 46 L52 30 L56 40 L62 24 L70 40 L78 24 L84 40 L88 30 L94 46Z" fill="#FFD700"/>
-          <circle cx="62" cy="24" r="4" fill="#FF6B35"/><circle cx="70" cy="20" r="4" fill="#E8001C"/><circle cx="78" cy="24" r="4" fill="#FF6B35"/>
-          <circle cx="70" cy="98" r="44" fill="#CC7A00" opacity="0.9"/>
-          <circle cx="70" cy="96" r="30" fill="#E8961A"/>
-          <circle cx="44" cy="72" r="10" fill="#CC7A00"/><circle cx="96" cy="72" r="10" fill="#CC7A00"/>
-          <ellipse cx="70" cy="106" rx="18" ry="13" fill="#F3CE98"/>
-          <ellipse cx="70" cy="98" rx="8" ry="6" fill="#7A2800"/>
-          <circle cx="58" cy="90" r="7" fill="#7A2800"/><circle cx="82" cy="90" r="7" fill="#7A2800"/>
-          <circle cx="59.5" cy="88" r="3" fill="white"/><circle cx="83.5" cy="88" r="3" fill="white"/>
-          <line x1="52" y1="103" x2="34" y2="99" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="52" y1="107" x2="32" y2="108" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="88" y1="103" x2="106" y2="99" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="88" y1="107" x2="108" y2="108" stroke="#CC7A00" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M62 112 Q70 121 78 112" fill="none" stroke="#7A2800" stroke-width="3" stroke-linecap="round"/>
-          <ellipse cx="70" cy="152" rx="28" ry="25" fill="#E8961A"/>
-          <path d="M98 148 Q124 136 122 158 Q118 168 110 164" fill="none" stroke="#E8961A" stroke-width="8" stroke-linecap="round"/>
-          <ellipse cx="110" cy="165" rx="10" ry="7" fill="#CC7A00"/>
-        </svg>
-      </div>
-    </div>
-    <div class="status-bar"><div class="status-chip s-ok">✅ 1 Firmado · ¡Primera del mes!</div></div>
-    <div class="card table-card">
-      <div class="sec-t" style="margin-bottom:12px">Detalle de operaciones</div>
-      <div class="table-wrap"><table id="tbl-leo"></table></div>
-    </div>
-  </div>
-
-  <div class="footer">MICA Operations · Seguimiento Abril 2026 · jael-lab.github.io/monthly_contracts</div>
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab-logo">MICA<span>.</span></div>
+  <button class="tab-btn active" onclick="showTab('general', this)">📊 General</button>
+  <button class="tab-btn" onclick="showTab('majo', this)">🦋 Majo</button>
+  <button class="tab-btn" onclick="showTab('pablo', this)">🌊 Pablo</button>
+  <button class="tab-btn" onclick="showTab('gabo', this)">🪐 Gabo</button>
+  <button class="tab-btn" onclick="showTab('ale', this)">🐰 Ale</button>
+  <button class="tab-btn" onclick="showTab('leo', this)">🦁 Leo</button>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script>
-const META=120,TOTAL=21,TODAY=9;
-const dailyCum={1:5,2:7,6:10,7:12,8:16,9:21};
 
-const kams=[
-  {key:'majo', name:'Majo', ch:'🦋',color:'#BBE3E3',dc:'#1A4A4A',firmas:9,monto:177300,primera:8,reno:1,rank:'r1',rankEmoji:'🥇'},
-  {key:'pablo',name:'Pablo',ch:'🚀',color:'#72DDA3',dc:'#1F5C3A',firmas:6,monto:92000, primera:6,reno:0,rank:'r2',rankEmoji:'🥈'},
-  {key:'gabo', name:'Gabo', ch:'🐆',color:'#9c7fd4',dc:'#E8D5FF',firmas:5,monto:29649, primera:0,reno:5,rank:'r3',rankEmoji:'🥉'},
-  {key:'leo',  name:'Leo',  ch:'🦁',color:'#FFB59C',dc:'#7A2800',firmas:1,monto:36000, primera:1,reno:0,rank:'',  rankEmoji:'⭐'},
-];
+<!-- ══════════════════════════════════
+     GENERAL
+══════════════════════════════════ -->
+<div id="tab-general" class="tab-panel active">
 
-const miniChars={
-  pablo:`<svg viewBox="0 0 100 120" width="100" height="120"><ellipse cx="50" cy="78" rx="18" ry="30" fill="#1F5C3A"/><path d="M50 18 Q32 48 32 60 Q50 55 68 60 Q68 48 50 18Z" fill="#72DDA3"/><circle cx="50" cy="66" r="9" fill="#BBE3E3"/><path d="M32 86 L18 110 L32 100Z" fill="#4ecb7a"/><path d="M68 86 L82 110 L68 100Z" fill="#4ecb7a"/><ellipse cx="50" cy="112" rx="12" ry="17" fill="#F3CE98" opacity="0.9"/></svg>`,
-  majo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M42 66 Q16 48 12 28 Q22 24 42 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M58 66 Q84 48 88 28 Q78 24 58 42 Q50 56 50 64Z" fill="#BBE3E3" opacity="0.9"/><path d="M42 78 Q12 80 10 100 Q22 104 44 88Z" fill="#8ccece" opacity="0.85"/><path d="M58 78 Q88 80 90 100 Q78 104 56 88Z" fill="#8ccece" opacity="0.85"/><ellipse cx="50" cy="96" rx="10" ry="18" fill="#1A4A4A"/><circle cx="50" cy="60" r="14" fill="#1A4A4A"/><circle cx="45" cy="57" r="4" fill="white"/><circle cx="55" cy="57" r="4" fill="white"/><circle cx="46" cy="57.5" r="2" fill="#1A4A4A"/><circle cx="56" cy="57.5" r="2" fill="#1A4A4A"/><path d="M36 48 L39 40 L41 46 L44 37 L50 44 L56 37 L59 46 L61 40 L64 48Z" fill="#FFD700"/></svg>`,
-  gabo:`<svg viewBox="0 0 100 120" width="100" height="120">
-    <path d="M76 95 Q96 84 94 99 Q92 109 86 107 Q82 105 84 100 Q87 95 82 97Z" fill="#1a0a2e"/>
-    <ellipse cx="50" cy="95" rx="23" ry="25" fill="#1a0a2e"/>
-    <ellipse cx="50" cy="99" rx="15" ry="16" fill="#2d1060" opacity="0.35"/>
-    <ellipse cx="24" cy="92" rx="9" ry="18" fill="#1a0a2e" transform="rotate(-10,24,92)"/>
-    <ellipse cx="76" cy="92" rx="9" ry="18" fill="#1a0a2e" transform="rotate(10,76,92)"/>
-    <ellipse cx="19" cy="110" rx="11" ry="6.5" fill="#2a0f50"/>
-    <ellipse cx="81" cy="110" rx="11" ry="6.5" fill="#2a0f50"/>
-    <circle cx="50" cy="52" r="24" fill="#1a0a2e"/>
-    <ellipse cx="40" cy="40" rx="18" ry="14" fill="#2d1060" opacity="0.35"/>
-    <path d="M30 40 L22 20 L42 34Z" fill="#1a0a2e"/><path d="M32 39 L27 24 L40 34Z" fill="#7c4dbb" opacity="0.65"/>
-    <path d="M70 40 L78 20 L58 34Z" fill="#1a0a2e"/><path d="M68 39 L73 24 L60 34Z" fill="#7c4dbb" opacity="0.65"/>
-    <ellipse cx="39" cy="49" rx="10" ry="8" fill="#0a1a24"/>
-    <ellipse cx="39" cy="49" rx="7.5" ry="6.5" fill="#00BCD4"/>
-    <ellipse cx="39" cy="50" rx="4" ry="6" fill="#00606a"/>
-    <ellipse cx="39" cy="49" rx="1.8" ry="5" fill="#001518"/>
-    <circle cx="36" cy="45" r="2.5" fill="white" opacity="0.95"/>
-    <ellipse cx="61" cy="49" rx="10" ry="8" fill="#0a1a24"/>
-    <ellipse cx="61" cy="49" rx="7.5" ry="6.5" fill="#00BCD4"/>
-    <ellipse cx="61" cy="50" rx="4" ry="6" fill="#00606a"/>
-    <ellipse cx="61" cy="49" rx="1.8" ry="5" fill="#001518"/>
-    <circle cx="58" cy="45" r="2.5" fill="white" opacity="0.95"/>
-    <path d="M30 58 Q38 54 47 58" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-    <path d="M53 58 Q62 54 70 58" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-    <ellipse cx="50" cy="63" rx="13" ry="9" fill="#2a0f50" opacity="0.7"/>
-    <path d="M43 57 Q50 52 57 57 Q53 63 47 63Z" fill="#7c4dbb"/>
-    <circle cx="47" cy="56" r="1.5" fill="rgba(255,255,255,0.3)"/>
-    <path d="M37 62 Q27 59 20 61" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M37 66 Q26 65 18 69" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M63 62 Q73 59 80 61" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M63 66 Q74 65 82 69" fill="none" stroke="#b39ddb" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
-    <path d="M43 69 Q50 77 57 69" fill="none" stroke="#7c4dbb" stroke-width="2" stroke-linecap="round"/>
-    <path d="M46 69 L44 75" stroke="#E8D5FF" stroke-width="2" stroke-linecap="round"/>
-    <path d="M54 69 L56 75" stroke="#E8D5FF" stroke-width="2" stroke-linecap="round"/>
-  </svg>`,
-  leo:`<svg viewBox="0 0 100 120" width="100" height="120"><path d="M30 42 L34 28 L37 36 L40 22 L44 34 L50 20 L56 34 L60 22 L63 36 L66 28 L70 42Z" fill="#FFD700"/><circle cx="50" cy="78" r="36" fill="#CC7A00" opacity="0.9"/><circle cx="50" cy="76" r="24" fill="#E8961A"/><circle cx="30" cy="56" r="8" fill="#CC7A00"/><circle cx="70" cy="56" r="8" fill="#CC7A00"/><ellipse cx="50" cy="85" rx="14" ry="10" fill="#F3CE98"/><ellipse cx="50" cy="79" rx="6" ry="4.5" fill="#7A2800"/><circle cx="41" cy="72" r="5.5" fill="#7A2800"/><circle cx="59" cy="72" r="5.5" fill="#7A2800"/><circle cx="42" cy="70.5" r="2.5" fill="white"/><circle cx="60" cy="70.5" r="2.5" fill="white"/><path d="M44 90 Q50 98 56 90" fill="none" stroke="#7A2800" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="50" cy="112" rx="22" ry="16" fill="#E8961A"/></svg>`
-};
-
-const obs={gabo:[
-  {rid:'e8187904',row:5,notas:['⚠️ Falta primer pago']},
-  {rid:'9451bb2d',row:6,notas:['⚠️ Falta primer pago']},
-  {rid:'2ee55275',row:11,notas:['⚠️ Falta primer pago']},
-]};
-
-const details={
-  pablo:[
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok", monto:8000, status:"Firmado"},
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",   monto:9000, status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Grupo Arvi",monto:12000,status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"YoRento",   monto:20000,status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",     monto:38500,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Grupo Arvi",monto:4500, status:"Firmado"},
-  ],
-  majo:[
-    {day:"01/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:20500,status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"En Casa",  monto:40000,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:18500,status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:15000,status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:17000,status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",    pt:"proteccion_integral", ag:"Directa",  monto:8500, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",    pt:"proteccion_juridica", ag:"Directa",  monto:30000,status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",    pt:"proteccion_premium",  ag:"Directa",  monto:19800,status:"Firmado"},
-    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral", ag:"Soy Rumi", monto:8000, status:"Firmado"},
-  ],
-  gabo:[
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436,status:"Firmado"},
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752,status:"Falta primer pago"},
-    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616,status:"Falta primer pago"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555,status:"Falta primer pago"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290,status:"Firmado"},
-  ],
-  leo:[{day:"09/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:36000,status:"Firmado"}]
-};
-
-const $=id=>document.getElementById(id);
-const fmtM=n=>'$'+Math.round(n).toLocaleString('es-MX');
-const ptB=pt=>pt==='proteccion_integral'?'<span class="badge b-integral">Integral</span>':pt==='proteccion_juridica'?'<span class="badge b-juridica">Jurídica</span>':pt==='proteccion_premium'?'<span class="badge b-premium">Premium ⭐</span>':`<span class="badge b-dir">${pt||'—'}</span>`;
-const ctB=ct=>ct==='primera_vez'?'<span class="badge b-primera">1ra vez</span>':ct==='renovacion_mica'?'<span class="badge b-ren">Renovación</span>':`<span class="badge b-dir">${ct||'—'}</span>`;
-const agB=ag=>ag==='AKA'?'<span class="badge b-aka">AKA</span>':ag==='Directa'?'<span class="badge b-dir">Directa</span>':`<span class="badge b-dir">${ag}</span>`;
-const stB=s=>s==='Firmado'?'<span class="badge b-firmado">✅ Firmado</span>':'<span class="badge b-pago">⚠️ Falta pago</span>';
-
-function animCount(el,to,ms=1200){
-  const t0=performance.now();
-  const go=t=>{const p=Math.min((t-t0)/ms,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*to);if(p<1)requestAnimationFrame(go);else el.textContent=to;};
-  requestAnimationFrame(go);
-}
-
-function buildDots(){
-  const dm={};
-  const dks=Object.keys(dailyCum).map(Number).sort((a,b)=>a-b);
-  dks.forEach((d,i)=>{dm[d]=dailyCum[d]-(i===0?0:dailyCum[dks[i-1]]);});
-  const g=$('day-grid');
-  for(let d=1;d<=30;d++){
-    const el=document.createElement('div');el.className='dd';
-    const n=dm[d]||0;
-    if(d>TODAY){el.classList.add('future');el.textContent=d;}
-    else if(!n){el.classList.add('empty');el.textContent=d;}
-    else if(n>=5){el.classList.add('hasmulti');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
-    else if(n>=2){el.classList.add('has');el.innerHTML=`${d}<span class="pip">${n}</span>`;}
-    else{el.classList.add('has');el.textContent=d;}
-    if(d===TODAY)el.classList.add('today');
-    el.title=n?`${n} firma${n>1?'s':''} el ${d} abr`:'Sin firmas';
-    g.appendChild(el);
-  }
-}
-
-function buildScoreboard(){
-  const sb=$('scoreboard');
-  kams.forEach(k=>{
-    const c=document.createElement('div');
-    c.className=`sc card ${k.rank}`;
-    c.style.background=k.key==='gabo'
-      ? `linear-gradient(145deg,#2d1b4e28 0%,#1a0a2e10 100%)`
-      : `linear-gradient(145deg,${k.color}28 0%,${k.color}0a 100%)`;
-    c.onclick=()=>goTab(k.key);
-    const topF=Math.max(...kams.map(x=>x.firmas),1);
-    const pct=Math.min(Math.round(k.firmas/topF*100),100);
-    const dcColor=k.key==='gabo'?'#c8a4ff':k.dc;
-    c.innerHTML=`
-      <div class="sc-rank">${k.rankEmoji}</div>
-      <div class="sc-name">${k.ch} ${k.name}</div>
-      <div class="sc-role">KAM · Abril 2026</div>
-      <div class="sc-big" style="color:${dcColor}">${k.firmas}</div>
-      <div class="sc-biglabel">firmas</div>
-      <div class="sc-chips"><span class="chip">1ra: ${k.primera}</span><span class="chip">Ren: ${k.reno}</span><span class="chip">${fmtM(k.monto)}</span></div>
+  <!-- HERO -->
+  <div class="hero-card">
+    <div class="hero-top">
       <div>
-        <div class="sc-barlabel"><span>vs líder</span><span>${pct}%</span></div>
-        <div class="sc-track"><div class="sc-fill" style="width:${pct}%;background:${k.key==='gabo'?'#9c7fd4bb':k.color+'bb'}"></div></div>
+        <div class="hero-month">🏠 Abril 2026 · Meta mensual</div>
+        <div class="hero-count"><span>27</span> / 120</div>
+        <div class="hero-subtitle">firmas completadas · día 13 de 30</div>
       </div>
-      <div class="sc-char">${miniChars[k.key]}</div>
-    `;
-    sb.appendChild(c);
-  });
-}
+      <div class="hero-right">
+        <div class="hero-pct">22.5%</div>
+        <div class="hero-pct-label">de la meta</div>
+      </div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width:22.5%"></div>
+    </div>
+    <div class="progress-labels">
+      <span>0</span><span>30</span><span>60</span><span>90</span><span>Meta: 120</span>
+    </div>
+  </div>
 
-function buildChart(){
-  const allDays=[],filled=[];
-  let last=0;
-  for(let d=1;d<=TODAY;d++){
-    allDays.push(`${d} Abr`);
-    if(dailyCum[d]!==undefined){last=dailyCum[d];}
-    filled.push(last);
+  <!-- KPIs -->
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">27</div><div class="kpi-label">Firmas totales</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">93</div><div class="kpi-label">Faltan para meta</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">~62</div><div class="kpi-label">Proyección mes</div></div>
+    <div class="kpi-pill coral"><div class="kpi-value">5.5</div><div class="kpi-label">Firmas/día necesarias</div></div>
+  </div>
+
+  <!-- PROYECCIÓN + CALENDARIO -->
+  <div class="grid-2" style="margin-bottom:16px; align-items:start;">
+
+    <div class="proj-card">
+      <div class="proj-title">📈 Proyección al 30 de abril</div>
+      <div class="proj-big">~62</div>
+      <div class="proj-sub">a ritmo actual de <strong>2.1 firmas/día</strong></div>
+      <div style="margin-top:14px; background:rgba(255,255,255,0.55); border-radius:10px; padding:12px; font-size:13px; color:#374151; line-height:1.8;">
+        <div>🗓 Días restantes: <strong>17</strong></div>
+        <div>🎯 Ritmo necesario: <strong>5.5 firmas/día</strong></div>
+        <div>📊 Brecha: <strong>−93 firmas</strong></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">📅 Actividad diaria — Abril 2026</div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+  </div>
+
+  <!-- SCOREBOARD -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="section-label">🏆 Scoreboard del equipo</div>
+    <div class="scoreboard">
+
+      <!-- Majo -->
+      <div class="score-row rank-1">
+        <div class="score-rank">1</div>
+        <div class="score-avatar-wrap">
+          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="14" cy="22" rx="13" ry="9" fill="#F9D3CD" opacity="0.95"/>
+            <ellipse cx="40" cy="22" rx="13" ry="9" fill="#F9D3CD" opacity="0.95"/>
+            <ellipse cx="13" cy="35" rx="10" ry="7" fill="#FFB59C" opacity="0.85"/>
+            <ellipse cx="41" cy="35" rx="10" ry="7" fill="#FFB59C" opacity="0.85"/>
+            <ellipse cx="14" cy="22" rx="6" ry="4" fill="#F3CE98" opacity="0.6"/>
+            <ellipse cx="40" cy="22" rx="6" ry="4" fill="#F3CE98" opacity="0.6"/>
+            <rect x="25.5" y="15" width="3" height="24" rx="1.5" fill="#374151"/>
+            <path d="M23 15 Q27 9 31 15" stroke="#374151" stroke-width="1.5" fill="none"/>
+            <circle cx="22" cy="15" r="2" fill="#374151"/>
+            <circle cx="32" cy="15" r="2" fill="#374151"/>
+            <text x="27" y="11" text-anchor="middle" font-size="9" font-family="sans-serif">👑</text>
+          </svg>
+        </div>
+        <div>
+          <div class="score-name">María José Arriaga</div>
+          <div class="score-role">🦋 La Mariposa · MVP Marzo 👑</div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:#F3CE98;"></div></div>
+        </div>
+        <div class="score-count">11<span>firmas</span></div>
+      </div>
+
+      <!-- Pablo -->
+      <div class="score-row rank-2">
+        <div class="score-rank">2</div>
+        <div class="score-avatar-wrap">
+          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="27" cy="27" r="22" fill="#BBE3E3" opacity="0.35"/>
+            <path d="M8 30 Q14 21 21 30 Q27 38 33 30 Q39 21 46 30" stroke="#2A8585" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M8 37 Q14 28 21 37 Q27 45 33 37 Q39 28 46 37" stroke="#2A8585" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <circle cx="27" cy="18" r="8" fill="#BBE3E3"/>
+            <circle cx="24.5" cy="16.5" r="1.5" fill="#1F2937"/>
+            <circle cx="29.5" cy="16.5" r="1.5" fill="#1F2937"/>
+            <path d="M24 21 Q27 24 30 21" stroke="#1F2937" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="score-name">Pablo de la Puente</div>
+          <div class="score-role">🌊 La Ola</div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;background:#BBE3E3;"></div></div>
+        </div>
+        <div class="score-count">6<span>firmas</span></div>
+      </div>
+
+      <!-- Gabo -->
+      <div class="score-row rank-3">
+        <div class="score-rank">3</div>
+        <div class="score-avatar-wrap">
+          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="satG" cx="38%" cy="38%">
+                <stop offset="0%" stop-color="#FFF0C0"/>
+                <stop offset="100%" stop-color="#C4883A"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="27" cy="30" rx="38" ry="7.5" fill="none" stroke="#C4A55A" stroke-width="2.5" transform="rotate(-18 27 30)"/>
+            <circle cx="27" cy="27" r="14" fill="url(#satG)"/>
+            <ellipse cx="23" cy="23" rx="5" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 23 23)"/>
+          </svg>
+        </div>
+        <div>
+          <div class="score-name">Gabriel Alvarado</div>
+          <div class="score-role">🪐 Saturno · 100% renovaciones</div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:45%;background:#F3CE98;"></div></div>
+        </div>
+        <div class="score-count">5<span>firmas</span></div>
+      </div>
+
+      <!-- Ale -->
+      <div class="score-row">
+        <div class="score-rank">4</div>
+        <div class="score-avatar-wrap">
+          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="20" cy="17" rx="5" ry="12" fill="#F9D3CD"/>
+            <ellipse cx="20" cy="17" rx="3" ry="8.5" fill="#FFB59C" opacity="0.6"/>
+            <ellipse cx="34" cy="17" rx="5" ry="12" fill="#F9D3CD"/>
+            <ellipse cx="34" cy="17" rx="3" ry="8.5" fill="#FFB59C" opacity="0.6"/>
+            <ellipse cx="27" cy="34" rx="13" ry="12" fill="#F9D3CD"/>
+            <circle cx="23" cy="32" r="2" fill="#1F2937"/>
+            <circle cx="31" cy="32" r="2" fill="#1F2937"/>
+            <ellipse cx="27" cy="36" rx="3" ry="2" fill="#FFB59C"/>
+            <path d="M24 39 Q27 42 30 39" stroke="#1F2937" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="score-name">Alejandra Muñoz</div>
+          <div class="score-role">🐰 El Conejo · Personaje nuevo</div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:36%;background:#F9D3CD;"></div></div>
+        </div>
+        <div class="score-count">4<span>firmas</span></div>
+      </div>
+
+      <!-- Leo -->
+      <div class="score-row">
+        <div class="score-rank">5</div>
+        <div class="score-avatar-wrap">
+          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="27" cy="28" r="20" fill="#F3CE98" opacity="0.65"/>
+            <circle cx="27" cy="29" r="13" fill="#F3CE98"/>
+            <ellipse cx="14" cy="17" rx="4.5" ry="6" fill="#F3CE98"/>
+            <ellipse cx="40" cy="17" rx="4.5" ry="6" fill="#F3CE98"/>
+            <circle cx="23" cy="27" r="2" fill="#1F2937"/>
+            <circle cx="31" cy="27" r="2" fill="#1F2937"/>
+            <ellipse cx="27" cy="32" rx="4" ry="2.5" fill="#FFB59C"/>
+            <path d="M23 35 Q27 39 31 35" stroke="#1F2937" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="score-name">Leonardo Monzalvo</div>
+          <div class="score-role">🦁 El León · Rey en training</div>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:9%;background:#72DDA3;"></div></div>
+        </div>
+        <div class="score-count">1<span>firma</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHART + BREAKDOWNS -->
+  <div class="grid-2" style="margin-bottom:16px; align-items:start;">
+
+    <div class="card">
+      <div class="section-label">📈 Firmas acumuladas — Abril</div>
+      <canvas id="cumChart" height="190"></canvas>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <div class="card">
+        <div class="section-label">🛡️ Por tipo de protección</div>
+        <div class="breakdown-item">
+          <div class="breakdown-top"><span class="breakdown-label">Integral</span><span class="breakdown-val">16 · 59%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:59%;background:#72DDA3;"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-top"><span class="breakdown-label">Jurídica</span><span class="breakdown-val">8 · 30%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:30%;background:#BBE3E3;"></div></div>
+        </div>
+        <div class="breakdown-item" style="margin-bottom:0;">
+          <div class="breakdown-top"><span class="breakdown-label">Premium</span><span class="breakdown-val">3 · 11%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:11%;background:#F9D3CD;"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">📋 Por tipo de contrato</div>
+        <div class="breakdown-item">
+          <div class="breakdown-top"><span class="breakdown-label">Primera vez</span><span class="breakdown-val">21 · 78%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:78%;background:#72DDA3;"></div></div>
+        </div>
+        <div class="breakdown-item" style="margin-bottom:0;">
+          <div class="breakdown-top"><span class="breakdown-label">Renovación Mica</span><span class="breakdown-val">6 · 22%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:22%;background:#F3CE98;"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">🏢 Agencias</div>
+        <div class="agency-grid">
+          <div class="agency-chip">AKA <span class="num">5</span></div>
+          <div class="agency-chip">Rentas Ok <span class="num">3</span></div>
+          <div class="agency-chip">Grupo Arvi <span class="num">3</span></div>
+          <div class="agency-chip">Remax <span class="num">2</span></div>
+          <div class="agency-chip">YoRento <span class="num">1</span></div>
+          <div class="agency-chip">En Casa <span class="num">1</span></div>
+          <div class="agency-chip">Soy Rumi <span class="num">1</span></div>
+          <div class="agency-chip">E-Inmob <span class="num">1</span></div>
+          <div class="agency-chip">Propity <span class="num">1</span></div>
+          <div class="agency-chip">Sin agencia <span class="num">9</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /general -->
+
+
+<!-- ══════════════════════════════════
+     MAJO
+══════════════════════════════════ -->
+<div id="tab-majo" class="tab-panel">
+  <div class="kam-header" style="background:linear-gradient(135deg,#B05A40 0%,#E0906E 100%);">
+    <div class="kam-avatar-big">🦋</div>
+    <div class="kam-header-info">
+      <div class="kam-title">KAM · La Mariposa</div>
+      <h2>María José Arriaga</h2>
+      <div class="kam-sub">MVP Marzo 👑 · Líder del mes</div>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">11</div><div class="kpi-label">Firmas</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">41%</div><div class="kpi-label">Del total equipo</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">4</div><div class="kpi-label">Jurídica</div></div>
+    <div class="kpi-pill green"><div class="kpi-value">1</div><div class="kpi-label">Renovación</div></div>
+  </div>
+  <div class="card">
+    <div class="section-label">📋 Operaciones</div>
+    <div style="overflow-x:auto;">
+      <table class="ops-table">
+        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">01</td><td>Diagonal de San Antonio 937, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">11</td><td>Texas 99 Dept 203, Nápoles, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>En Casa</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">12</td><td>Blvd. de las Naciones 504, Acapulco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">14</td><td>335 Sao Paulo Dept 2, Monterrey</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>Soy Rumi</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">15</td><td>Anenecuilco S/N, Las Granjas, Cuernavaca</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">17</td><td>Av. Anáhuac Bella Brisa 405, Acapulco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">19</td><td>Circuito Vía Carrara 176, León, Gto.</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">20</td><td>8 de Mayo 5 Dept 204, Naucalpan, Edomex</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">21</td><td>Río Grijalva 305, Barrio San Miguel, León</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">22</td><td>San Isidro 164 Piso 10, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>E-Inmob</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">23</td><td>Paseo San Nicolás Parra 235, Celaya, Gto.</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     PABLO
+══════════════════════════════════ -->
+<div id="tab-pablo" class="tab-panel">
+  <div class="kam-header" style="background:linear-gradient(135deg,#1D6575 0%,#4AAABB 100%);">
+    <div class="kam-avatar-big">🌊</div>
+    <div class="kam-header-info">
+      <div class="kam-title">KAM · La Ola</div>
+      <h2>Pablo de la Puente</h2>
+      <div class="kam-sub">2do lugar · 6 firmas primera vez</div>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">6</div><div class="kpi-label">Firmas</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">22%</div><div class="kpi-label">Del total equipo</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">1</div><div class="kpi-label">Jurídica</div></div>
+    <div class="kpi-pill green"><div class="kpi-value">0</div><div class="kpi-label">Renovaciones</div></div>
+  </div>
+  <div class="card">
+    <div class="section-label">📋 Operaciones</div>
+    <div style="overflow-x:auto;">
+      <table class="ops-table">
+        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">02</td><td>Alcanfores 3, San Cristóbal de las Casas</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">06</td><td>Serbia 918 Int 8, Loma Blanca, Zapopan</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>YoRento</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">07</td><td>Smetana 43 Torre A Dept 102, Vallejo, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">08</td><td>Plaza Melchor Ocampo 6, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Remax</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">09</td><td>Azahares Mza 40 Lt 3, Gust. A. Madero</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">13</td><td>Unidad Hab. Cuitláhuac Dept 201, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     GABO
+══════════════════════════════════ -->
+<div id="tab-gabo" class="tab-panel">
+  <div class="kam-header" style="background:linear-gradient(135deg,#251848 0%,#5C3F90 100%);">
+    <div class="kam-avatar-big">🪐</div>
+    <div class="kam-header-info">
+      <div class="kam-title">KAM · Saturno</div>
+      <h2>Gabriel Alvarado</h2>
+      <div class="kam-sub">Especialista en renovaciones · AKA</div>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">5</div><div class="kpi-label">Firmas</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">100%</div><div class="kpi-label">Renovaciones</div></div>
+    <div class="kpi-pill coral"><div class="kpi-value">2</div><div class="kpi-label">Falta 1er pago</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">AKA</div><div class="kpi-label">Única agencia</div></div>
+  </div>
+  <div class="alert-box">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text"><strong>2 contratos con "Falta primer pago"</strong> — Días 4 (Félix Cuevas, Del Valle) y día 10 (Tiziano 167, Álvaro Obregón). Validar con AKA si los pagos ya se aplicaron o requieren seguimiento.</div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="section-label">📋 Operaciones</div>
+    <div style="overflow-x:auto;">
+      <table class="ops-table">
+        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">03</td><td>Alhelí 18 Dpto 6, Tlatilco, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">04</td><td>Félix Cuevas 318 Dept 34, Del Valle, BJ</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">05</td><td>JAT 691-A Desp 3, Asturias, Cuauhtémoc</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">10</td><td>Tiziano 167 Dept 2, Alfonso XIII, Álvaro Obregón</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">18</td><td>Centenario 198 Dept 20, Merced Gómez, Álvaro Obregón</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     ALE
+══════════════════════════════════ -->
+<div id="tab-ale" class="tab-panel">
+  <div class="kam-header" style="background:linear-gradient(135deg,#AA3070 0%,#E080B0 100%);">
+    <div class="kam-avatar-big">🐰</div>
+    <div class="kam-header-info">
+      <div class="kam-title">KAM · El Conejo</div>
+      <h2>Alejandra Muñoz</h2>
+      <div class="kam-sub">Personaje nuevo · 4 firmas arrancando</div>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">4</div><div class="kpi-label">Firmas</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">15%</div><div class="kpi-label">Del total equipo</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">1</div><div class="kpi-label">Premium</div></div>
+    <div class="kpi-pill coral"><div class="kpi-value">1</div><div class="kpi-label">Falta 1er pago</div></div>
+  </div>
+  <div class="alert-box">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text"><strong>1 contrato sin fecha registrada</strong> — Calle Toril Ext. 11 Int F, Atizapán (entrada #27). Capturar fecha en Notion y verificar estatus de pago con Grupo Arvi.</div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="section-label">📋 Operaciones</div>
+    <div style="overflow-x:auto;">
+      <table class="ops-table">
+        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">24</td><td>Cerrada Cumbres 131 Casa 3, Tuxtla Gutiérrez</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">25</td><td>Avanza 275 Int A, San Luis Potosí</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Propity</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">26</td><td>8a Poniente Sur 955, Tuxtla Gutiérrez</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;color:#F3CE98;">—</td><td>Calle Toril Ext. 11 Int F, Atizapán, Edomex</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     LEO
+══════════════════════════════════ -->
+<div id="tab-leo" class="tab-panel">
+  <div class="kam-header" style="background:linear-gradient(135deg,#6B4B10 0%,#B87A28 100%);">
+    <div class="kam-avatar-big">🦁</div>
+    <div class="kam-header-info">
+      <div class="kam-title">KAM · El León</div>
+      <h2>Leonardo Monzalvo</h2>
+      <div class="kam-sub">Rey en training 👑 · Más por venir</div>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi-pill green"><div class="kpi-value">1</div><div class="kpi-label">Firma</div></div>
+    <div class="kpi-pill blue"><div class="kpi-value">4%</div><div class="kpi-label">Del total equipo</div></div>
+    <div class="kpi-pill yellow"><div class="kpi-value">Remax</div><div class="kpi-label">Agencia</div></div>
+    <div class="kpi-pill green"><div class="kpi-value">Integral</div><div class="kpi-label">Protección</div></div>
+  </div>
+  <div class="card">
+    <div class="section-label">📋 Operaciones</div>
+    <div style="overflow-x:auto;">
+      <table class="ops-table">
+        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">16</td><td>Indiana 288 Int 504, Ciudad de los Deportes, BJ</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Remax</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'general') drawChart();
   }
-  new Chart($('mainChart'),{
-    type:'line',
-    data:{
-      labels:allDays,
-      datasets:[
-        {label:'Firmas',data:filled,borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.10)',fill:true,tension:0.4,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:6,pointHoverRadius:9},
-        {label:'Meta (120)',data:allDays.map(()=>120),borderColor:'rgba(31,41,55,0.18)',borderDash:[6,5],borderWidth:2,pointRadius:0,fill:false},
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:11},color:'#6B7280',usePointStyle:true}},tooltip:{mode:'index',intersect:false}},
-      scales:{
-        x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
-        y:{min:0,max:130,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
-      }
+
+  /* CALENDAR */
+  const firmasByDay = {1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,9:1,10:1,11:1,12:1,13:1,14:1,15:1,16:1,17:1,18:1,19:1,20:1,21:1,22:1,23:1,24:1,25:1,26:1};
+  const TODAY = 13;
+
+  function buildCalendar() {
+    const grid = document.getElementById('calGrid');
+    if (!grid) return;
+    ['L','M','X','J','V','S','D'].forEach(d => {
+      const lbl = document.createElement('div');
+      lbl.className = 'cal-day-label';
+      lbl.textContent = d;
+      grid.appendChild(lbl);
+    });
+    // April 2026 starts Wednesday → offset 2
+    for (let i = 0; i < 2; i++) {
+      const b = document.createElement('div'); b.className = 'cal-cell empty'; grid.appendChild(b);
     }
-  });
-}
+    for (let d = 1; d <= 30; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-cell';
+      cell.textContent = d;
+      if (d > TODAY) cell.classList.add('future');
+      else if (firmasByDay[d]) cell.classList.add('has-firma');
+      else cell.classList.add('no-firma');
+      if (d === TODAY) cell.classList.add('today');
+      cell.title = firmasByDay[d] ? 'Día ' + d + ': ' + firmasByDay[d] + ' firma(s)' : 'Día ' + d + ': sin firmas';
+      grid.appendChild(cell);
+    }
+  }
 
-function buildTables(){
-  ['pablo','majo','gabo','leo'].forEach(k=>{
-    const t=$('tbl-'+k);if(!t)return;
-    t.innerHTML=`<thead><tr><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th style="text-align:right">Monto renta</th></tr></thead><tbody>${details[k].map(r=>`<tr><td class="mono">${r.day}</td><td>${ctB(r.ct)}</td><td>${ptB(r.pt)}</td><td>${agB(r.ag)}</td><td>${stB(r.status)}</td><td class="mono" style="text-align:right">${fmtM(r.monto)}</td></tr>`).join('')}</tbody>`;
-  });
-}
+  /* CHART */
+  function drawChart() {
+    const canvas = document.getElementById('cumChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.parentElement.clientWidth - 40 || 400;
+    const H = 190;
+    canvas.width = W; canvas.height = H;
 
-function buildObs(){
-  const el=$('obs-gabo');if(!el)return;
-  el.innerHTML=`<div class="obs-box"><div class="obs-title">🔍 Pendiente de revisión</div>${obs.gabo.map(o=>`<div class="obs-item"><div class="obs-rid">Rent ID: ${o.rid}… · Fila ${o.row}</div>${o.notas.map(n=>`<div class="obs-nota">${n}</div>`).join('')}</div>`).join('')}</div>`;
-}
+    const pad = {top:16, right:16, bottom:28, left:32};
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
 
-function animMeta(){
-  animCount($('ctr-main'),TOTAL);
-  animCount($('ctr-meta'),TOTAL);
-  const pct=Math.round(TOTAL/META*100);
-  setTimeout(()=>{$('pct-badge').textContent=`⚡ ${pct}%`;},300);
-  setTimeout(()=>{$('main-bar').style.width=(TOTAL/META*100)+'%';},300);
-  document.querySelectorAll('.bk-fill[data-w]').forEach(el=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},500));
-}
+    const days = Array.from({length:13}, (_,i) => i+1);
+    const cum  = days.map(d => d); // 1 firma/día = cumulative = día
+    const maxY = 30;
 
-function goTab(key){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  $('panel-'+key).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>{if(t.getAttribute('onclick')===`goTab('${key}')`)t.classList.add('active');});
-}
+    const xS = d => pad.left + ((d-1)/12)*cw;
+    const yS = v => pad.top + ch - (v/maxY)*ch;
 
-document.addEventListener('DOMContentLoaded',()=>{
-  buildDots();buildScoreboard();buildChart();buildTables();buildObs();animMeta();
-});
+    ctx.clearRect(0, 0, W, H);
+
+    // grid
+    ctx.strokeStyle = '#F3F4F6'; ctx.lineWidth = 1;
+    [0,10,20,30].forEach(v => {
+      const y = yS(v);
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+cw, y); ctx.stroke();
+      ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono,monospace'; ctx.textAlign = 'right';
+      ctx.fillText(v, pad.left-4, y+3);
+    });
+
+    // area
+    ctx.beginPath();
+    ctx.moveTo(xS(1), yS(0));
+    days.forEach((d,i) => ctx.lineTo(xS(d), yS(cum[i])));
+    ctx.lineTo(xS(13), yS(0));
+    ctx.closePath();
+    const g = ctx.createLinearGradient(0, pad.top, 0, pad.top+ch);
+    g.addColorStop(0, 'rgba(114,221,163,0.28)'); g.addColorStop(1, 'rgba(114,221,163,0.02)');
+    ctx.fillStyle = g; ctx.fill();
+
+    // line
+    ctx.beginPath();
+    days.forEach((d,i) => i===0 ? ctx.moveTo(xS(d),yS(cum[i])) : ctx.lineTo(xS(d),yS(cum[i])));
+    ctx.strokeStyle = '#72DDA3'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke();
+
+    // dots + x labels
+    ctx.textAlign = 'center';
+    days.forEach((d,i) => {
+      ctx.beginPath(); ctx.arc(xS(d), yS(cum[i]), 3.5, 0, Math.PI*2);
+      ctx.fillStyle = '#72DDA3'; ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+      if ([1,4,7,10,13].includes(d)) {
+        ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono,monospace';
+        ctx.fillText(d, xS(d), H-6);
+      }
+    });
+  }
+
+  buildCalendar();
+  drawChart();
+  window.addEventListener('resize', drawChart);
 </script>
 </body>
 </html>
