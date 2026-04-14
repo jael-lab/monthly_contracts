@@ -186,7 +186,6 @@
   <div class="tabs">
     <button class="tab active" onclick="showTab('general')">🌟 General</button>
     <button class="tab" onclick="showTab('majo')"><span class="tab-avatar" style="background:#BBE3E3;color:#1F2937">M</span> Majo</button>
-    <button class="tab" onclick="showTab('pablo')"><span class="tab-avatar" style="background:#72DDA3;color:#1F2937">P</span> Pablo</button>
     <button class="tab" onclick="showTab('gabo')"><span class="tab-avatar" style="background:#F3CE98;color:#1F2937">G</span> Gabo</button>
     <button class="tab" onclick="showTab('ale')"><span class="tab-avatar" style="background:#F9D3CD;color:#1F2937">A</span> Ale</button>
     <button class="tab" onclick="showTab('leo')"><span class="tab-avatar" style="background:#FFB59C;color:#1F2937">L</span> Leo</button>
@@ -204,7 +203,18 @@
           <div class="meta-goal-num">120</div>
         </div>
         <div class="meta-pct-badge" id="pctBadge">0%</div>
-        <div class="meta-hero-bar-wrap" style="margin-top:20px">
+        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 16px;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Ritmo actual</div>
+            <div style="font-size:22px;font-weight:900;color:#ffffff;margin-top:2px;">2.1 <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.4)">firmas/día</span></div>
+          </div>
+          <div style="background:rgba(114,221,163,0.15);border:1px solid rgba(114,221,163,0.35);border-radius:12px;padding:10px 16px;">
+            <div style="font-size:10px;color:rgba(114,221,163,0.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Necesario para meta</div>
+            <div style="font-size:22px;font-weight:900;color:#72DDA3;margin-top:2px;">5.5 <span style="font-size:12px;font-weight:600;color:rgba(114,221,163,0.6)">firmas/día</span></div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.28);font-weight:600;">17 días restantes · 93 firmas por cerrar</div>
+        <div class="meta-hero-bar-wrap" style="margin-top:14px">
           <div class="meta-hero-bar-track">
             <div class="meta-hero-bar-fill" id="mainBarFill" style="width:0%"></div>
           </div>
@@ -239,10 +249,10 @@
     </div>
 
     <div class="achievements">
-      <div class="achievement"><div class="achievement-icon">🔥</div><div class="achievement-text"><div class="ach-title">Racha activa</div><div class="ach-desc">13 días consecutivos</div></div></div>
+      <div class="achievement"><div class="achievement-icon">🔥</div><div class="achievement-text"><div class="ach-title">Mejor día: 9 Abr</div><div class="ach-desc">6 firmas en un solo día</div></div></div>
       <div class="achievement"><div class="achievement-icon">💰</div><div class="achievement-text"><div class="ach-title">$143,370 en FEE</div><div class="ach-desc">Total mes acumulado</div></div></div>
       <div class="achievement"><div class="achievement-icon">⭐</div><div class="achievement-text"><div class="ach-title">MVP Anterior: Majo 🦋</div><div class="ach-desc">Líder también en abril</div></div></div>
-      <div class="achievement"><div class="achievement-icon">📅</div><div class="achievement-text"><div class="ach-title">13 días activos</div><div class="ach-desc">De 13 días transcurridos</div></div></div>
+      <div class="achievement"><div class="achievement-icon">📅</div><div class="achievement-text"><div class="ach-title">9 días activos</div><div class="ach-desc">De 13 días transcurridos</div></div></div>
     </div>
 
     <div class="card streak-section" style="padding:24px;">
@@ -278,12 +288,12 @@
       <div class="card breakdown-card">
         <div class="breakdown-title">🏢 Top Agencias</div>
         <ul class="agencia-list">
+          <li class="agencia-item"><span class="agencia-name">➡️ Directa</span><span class="agencia-pill">9</span></li>
           <li class="agencia-item"><span class="agencia-name">🏠 AKA</span><span class="agencia-pill">5</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Grupo Arvi</span><span class="agencia-pill">3</span></li>
           <li class="agencia-item"><span class="agencia-name">🏢 Rentas Ok</span><span class="agencia-pill">3</span></li>
+          <li class="agencia-item"><span class="agencia-name">🏢 Grupo Arvi</span><span class="agencia-pill">3</span></li>
           <li class="agencia-item"><span class="agencia-name">🏢 Remax</span><span class="agencia-pill">2</span></li>
           <li class="agencia-item"><span class="agencia-name">📦 Otras</span><span class="agencia-pill">5</span></li>
-          <li class="agencia-item"><span class="agencia-name">➡️ Directa</span><span class="agencia-pill">9</span></li>
         </ul>
       </div>
     </div>
@@ -307,23 +317,6 @@
     <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-majo"></table></div></div>
   </div>
 
-  <!-- PABLO -->
-  <div class="tab-panel" id="panel-pablo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#72DDA3 0%,#4ecb7a 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🌊 Pablo de la Puente</div>
-        <div class="kam-detail-meta">KAM · La Ola · 2do lugar</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">6</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$32K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">6</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
-    </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-pablo"></table></div></div>
-  </div>
-
   <!-- GABO -->
   <div class="tab-panel" id="panel-gabo">
     <div class="kam-detail-header" style="background:linear-gradient(135deg,#F3CE98 0%,#e6b96a 100%);color:#1F2937;">
@@ -340,7 +333,7 @@
     </div>
     <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
       <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">2 contratos con <strong>"Falta primer pago"</strong> — Días 4 (Félix Cuevas, Del Valle) y día 10 (Tiziano 167, Álvaro Obregón). Validar con AKA.</span>
+      <span style="font-size:13px;color:#78350f;font-weight:600;">2 contratos con <strong>"Falta primer pago"</strong> — Días 1 Abr (Félix Cuevas, Del Valle) y 8 Abr (Tiziano 167, Álvaro Obregón). Validar con AKA.</span>
     </div>
     <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-gabo"></table></div></div>
   </div>
@@ -350,18 +343,18 @@
     <div class="kam-detail-header" style="background:linear-gradient(135deg,#F9D3CD 0%,#f0a898 100%);color:#1F2937;">
       <div>
         <div class="kam-detail-name">🐰 Alejandra Muñoz</div>
-        <div class="kam-detail-meta">KAM · El Conejo · Personaje nuevo</div>
+        <div class="kam-detail-meta">KAM · El Conejo · 2do lugar del mes</div>
       </div>
       <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$22K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$42K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Primera vez</div></div>
         <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
     </div>
     <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
       <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato sin fecha registrada — Calle Toril Ext. 11, Atizapán (entrada #27). Capturar fecha en Notion y confirmar pago con Grupo Arvi.</span>
+      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato con <strong>"Falta primer pago"</strong> — 13 Abr, Calle Toril Ext. 11, Atizapán. Confirmar pago con Grupo Arvi.</span>
     </div>
     <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-ale"></table></div></div>
   </div>
@@ -374,8 +367,10 @@
         <div class="kam-detail-meta">KAM · El León · Rey en training</div>
       </div>
       <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">1</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$13K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$24K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
     </div>
     <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-leo"></table></div></div>
@@ -389,53 +384,55 @@
 const META_GENERAL=120, META_PRIMERA=90, META_RENOV=30;
 const TOTAL=27, PRIMERA=21, RENOVACION=6;
 
-const dailyCumulative={1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,11:11,12:12,13:13,14:14,15:15,16:16,17:17,18:18,19:19,20:20,21:21,22:22,23:23,24:24,25:25,26:26};
+// Acumulado real basado en Fecha firma (Pandora) — columna H
+// Día 1: 5 firmas, día 2: 2, día 6: 3, día 7: 2, día 8: 4, día 9: 6, día 10: 1, día 11: 2, día 13: 2
+const dailyCumulative = {1:5, 2:7, 6:10, 7:12, 8:16, 9:22, 10:23, 11:25, 13:27};
+
+// Firmas diarias por día (para los dots)
+const dailyByDay = {1:5, 2:2, 6:3, 7:2, 8:4, 9:6, 10:1, 11:2, 13:2};
 
 const kamData=[
-  {key:'majo', name:'Majo', emoji:'🥇',color:'#BBE3E3',textColor:'#1F2937',firmas:11,fee:66294, primera:10,reno:1},
-  {key:'pablo',name:'Pablo',emoji:'🥈',color:'#72DDA3',textColor:'#1F2937',firmas:6, fee:32132, primera:6, reno:0},
-  {key:'gabo', name:'Gabo',emoji:'🥉',color:'#F3CE98',textColor:'#1F2937',firmas:5, fee:10318, primera:0, reno:5},
-  {key:'ale',  name:'Ale', emoji:'⭐',color:'#F9D3CD',textColor:'#1F2937',firmas:4, fee:22098, primera:4, reno:0},
-  {key:'leo',  name:'Leo', emoji:'⭐',color:'#FFB59C',textColor:'#1F2937',firmas:1, fee:12528, primera:1, reno:0},
+  {key:'majo', name:'Majo', emoji:'🥇', color:'#BBE3E3', textColor:'#1F2937', firmas:11, fee:66294,  primera:10, reno:1},
+  {key:'ale',  name:'Ale',  emoji:'🥈', color:'#F9D3CD', textColor:'#1F2937', firmas:7,  fee:42282,  primera:7,  reno:0},
+  {key:'gabo', name:'Gabo', emoji:'🥉', color:'#F3CE98', textColor:'#1F2937', firmas:5,  fee:10318,  primera:0,  reno:5},
+  {key:'leo',  name:'Leo',  emoji:'⭐', color:'#FFB59C', textColor:'#1F2937', firmas:4,  fee:24476,  primera:4,  reno:0},
 ];
 
 const detailData={
   majo:[
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20500,fee:7134,status:"Firmado"},
-    {day:"11/04",ct:"primera_vez",pt:"proteccion_integral",ag:"En Casa",monto:40000,fee:13920,status:"Firmado"},
-    {day:"12/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:15000,fee:3480,status:"Firmado"},
-    {day:"14/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Soy Rumi",monto:8000,fee:2784,status:"Firmado"},
-    {day:"15/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:17000,fee:5916,status:"Firmado"},
-    {day:"17/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:8500,fee:2958,status:"Firmado"},
-    {day:"19/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:30000,fee:6960,status:"Firmado"},
-    {day:"20/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:19800,fee:11484,status:"Firmado"},
-    {day:"21/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:18500,fee:4292,status:"Firmado"},
-    {day:"22/04",ct:"primera_vez",pt:"proteccion_integral",ag:"E-Inmob",monto:16500,fee:5742,status:"Firmado"},
-    {day:"23/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7000,fee:1624,status:"Firmado"},
-  ],
-  pablo:[
-    {day:"02/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Rentas Ok",monto:8000,fee:1856,status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral",ag:"YoRento",monto:20000,fee:6960,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:9000,fee:3132,status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:38500,fee:13398,status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Grupo Arvi",monto:4500,fee:2610,status:"Firmado"},
-    {day:"13/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:12000,fee:4176,status:"Firmado"},
+    {day:"01/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:20500, fee:7134,  status:"Firmado"},
+    {day:"02/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"En Casa",  monto:40000, fee:13920, status:"Firmado"},
+    {day:"08/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:15000, fee:3480,  status:"Firmado"},
+    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Soy Rumi", monto:8000,  fee:2784,  status:"Firmado"},
+    {day:"08/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:17000, fee:5916,  status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:8500,  fee:2958,  status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:30000, fee:6960,  status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",   pt:"proteccion_premium",  ag:"Directa",  monto:19800, fee:11484, status:"Firmado"},
+    {day:"07/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:18500, fee:4292,  status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"E-Inmob",  monto:16500, fee:5742,  status:"Firmado"},
+    {day:"10/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:7000,  fee:1624,  status:"Firmado"},
   ],
   gabo:[
-    {day:"03/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436,fee:2240,status:"Firmado"},
-    {day:"04/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752,fee:3046,status:"Falta primer pago"},
-    {day:"05/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616,fee:910,status:"Firmado"},
-    {day:"10/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555,fee:1933,status:"Falta primer pago"},
-    {day:"18/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290,fee:2189,status:"Firmado"},
+    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436, fee:2240,status:"Firmado"},
+    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752, fee:3046,status:"Falta primer pago"},
+    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616, fee:910, status:"Firmado"},
+    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555, fee:1933,status:"Falta primer pago"},
+    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290, fee:2189,status:"Firmado"},
   ],
   ale:[
-    {day:"24/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Rentas Ok",monto:30000,fee:17400,status:"Firmado"},
-    {day:"25/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Propity",monto:12500,fee:2900,status:"Firmado"},
-    {day:"26/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Rentas Ok",monto:3150,fee:731,status:"Firmado"},
-    {day:"S/F",  ct:"primera_vez",pt:"proteccion_juridica",ag:"Grupo Arvi",monto:4600,fee:1067,status:"Falta primer pago"},
+    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",      monto:38500,fee:13398,status:"Firmado"},
+    {day:"07/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Grupo Arvi", monto:4500, fee:2610, status:"Firmado"},
+    {day:"02/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Grupo Arvi", monto:12000,fee:4176, status:"Firmado"},
+    {day:"11/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Rentas Ok",  monto:30000,fee:17400,status:"Firmado"},
+    {day:"11/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Propity",    monto:12500,fee:2900, status:"Firmado"},
+    {day:"13/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok",  monto:3150, fee:731,  status:"Firmado"},
+    {day:"13/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Grupo Arvi", monto:4600, fee:1067, status:"Falta primer pago"},
   ],
   leo:[
-    {day:"16/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:36000,fee:12528,status:"Firmado"},
+    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok",monto:8000, fee:1856, status:"Firmado"},
+    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"YoRento",  monto:20000,fee:6960, status:"Firmado"},
+    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",  monto:9000, fee:3132, status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",    monto:36000,fee:12528,status:"Firmado"},
   ],
 };
 
@@ -466,8 +463,7 @@ function animateCounter(el,target,duration=1200){
   const start=performance.now();
   const update=(t)=>{
     const p=Math.min((t-start)/duration,1);
-    const ease=1-Math.pow(1-p,3);
-    el.textContent=Math.round(ease*target);
+    el.textContent=Math.round((1-Math.pow(1-p,3))*target);
     if(p<1) requestAnimationFrame(update); else el.textContent=target;
   };
   requestAnimationFrame(update);
@@ -475,33 +471,31 @@ function animateCounter(el,target,duration=1200){
 
 function buildDayDots(){
   const wrap=document.getElementById('dayDots');
-  const dailyByDay={};
-  Object.entries(dailyCumulative).forEach(([d,cum],i,arr)=>{
-    const prev=i===0?0:arr[i-1][1];
-    dailyByDay[+d]=cum-prev;
-  });
+  const TODAY=13;
   for(let d=1;d<=30;d++){
     const dot=document.createElement('div');
     dot.className='day-dot';
     const count=dailyByDay[d]||0;
     if(count>0){
       dot.classList.add('has-firma');
-      dot.innerHTML=`${d}<span class="dot-count">${count}</span>`;
+      // Show count badge only if more than 1
+      dot.innerHTML = count>1 ? `${d}<span class="dot-count">${count}</span>` : `${d}`;
       dot.title=`${count} firma${count>1?'s':''} el día ${d}`;
     } else {
       dot.classList.add('empty');
       dot.textContent=d;
+      dot.title=`Día ${d}: sin firmas`;
     }
-    if(d===13) dot.classList.add('today');
-    if(d>13) dot.style.opacity='0.3';
+    if(d===TODAY) dot.classList.add('today');
+    if(d>TODAY) dot.style.opacity='0.3';
     wrap.appendChild(dot);
   }
 }
 
 function buildScoreboard(){
   const grid=document.getElementById('scoreboardGrid');
-  const rankEmojis=['🥇','🥈','🥉','⭐','⭐'];
-  const ranks=['rank-1','rank-2','rank-3','',''];
+  const rankEmojis=['🥇','🥈','🥉','⭐'];
+  const ranks=['rank-1','rank-2','rank-3',''];
   kamData.forEach((k,i)=>{
     const card=document.createElement('div');
     card.className=`card kam-card ${ranks[i]}`;
@@ -531,37 +525,37 @@ function buildScoreboard(){
 }
 
 function buildTable(id,rows){
-  const table=document.getElementById(id);
-  table.innerHTML=`
+  const t=document.getElementById(id);
+  t.innerHTML=`
     <thead><tr>
       <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th>
       <th style="text-align:right">Renta</th><th style="text-align:right">FEE</th>
     </tr></thead>
-    <tbody>
-      ${rows.map(r=>`<tr>
-        <td style="font-family:'Red Hat Mono',monospace;font-weight:700">${r.day}</td>
-        <td>${ctBadge(r.ct)}</td>
-        <td>${ptBadge(r.pt)}</td>
-        <td>${agBadge(r.ag)}</td>
-        <td>${stBadge(r.status)}</td>
-        <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700">${fmtMoney(r.monto)}</td>
-        <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700;color:#166534">${fmtMoney(r.fee)}</td>
-      </tr>`).join('')}
-    </tbody>`;
+    <tbody>${rows.map(r=>`<tr>
+      <td style="font-family:'Red Hat Mono',monospace;font-weight:700">${r.day}</td>
+      <td>${ctBadge(r.ct)}</td><td>${ptBadge(r.pt)}</td>
+      <td>${agBadge(r.ag)}</td><td>${stBadge(r.status)}</td>
+      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700">${fmtMoney(r.monto)}</td>
+      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700;color:#166534">${fmtMoney(r.fee)}</td>
+    </tr>`).join('')}</tbody>`;
 }
 
 function buildChart(){
+  // Build full day-by-day arrays for chart (only days with activity)
   const days=Object.keys(dailyCumulative).map(Number).sort((a,b)=>a-b);
-  const totals=days.map(d=>dailyCumulative[d]);
-  const labels=days.map(d=>`${d} Abr`);
   const ctx=document.getElementById('mainChart').getContext('2d');
   new Chart(ctx,{
     type:'line',
     data:{
-      labels,
+      labels: days.map(d=>`${d} Abr`),
       datasets:[
-        {label:'Firmas acumuladas',data:totals,borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.12)',fill:true,tension:0.4,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:5,pointHoverRadius:7},
-        {label:'Meta (120)',data:days.map(()=>120),borderColor:'rgba(31,41,55,0.25)',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false,tension:0}
+        {label:'Firmas acumuladas',data:days.map(d=>dailyCumulative[d]),
+         borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.12)',
+         fill:true,tension:0.4,borderWidth:3,
+         pointBackgroundColor:'#72DDA3',pointRadius:5,pointHoverRadius:7},
+        {label:'Meta (120)',data:days.map(()=>120),
+         borderColor:'rgba(31,41,55,0.25)',borderDash:[6,4],
+         borderWidth:2,pointRadius:0,fill:false,tension:0}
       ]
     },
     options:{
@@ -604,11 +598,11 @@ function launchConfetti(){
   const wrap=document.getElementById('confettiWrap');
   const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937'];
   for(let i=0;i<60;i++){
-    const piece=document.createElement('div');
-    piece.className='confetti-piece';
-    piece.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s;transform:rotate(${Math.random()*360}deg);width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
-    wrap.appendChild(piece);
-    setTimeout(()=>piece.remove(),4000);
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.cssText=`left:${Math.random()*100}%;background:${colors[i%colors.length]};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s;transform:rotate(${Math.random()*360}deg);width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
+    wrap.appendChild(p);
+    setTimeout(()=>p.remove(),4000);
   }
 }
 
@@ -627,11 +621,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   buildChart();
   animateMeta();
   animateBars();
-  buildTable('table-majo',  detailData.majo);
-  buildTable('table-pablo', detailData.pablo);
-  buildTable('table-gabo',  detailData.gabo);
-  buildTable('table-ale',   detailData.ale);
-  buildTable('table-leo',   detailData.leo);
+  buildTable('table-majo', detailData.majo);
+  buildTable('table-gabo', detailData.gabo);
+  buildTable('table-ale',  detailData.ale);
+  buildTable('table-leo',  detailData.leo);
 });
 </script>
 </body>
