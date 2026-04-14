@@ -1,788 +1,638 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MICA · Firmas Abril 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 MICA Firmas — Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #72DDA3;
+    --agua: #BBE3E3;
+    --yellow: #F3CE98;
+    --coral: #FFB59C;
+    --pink: #F9D3CD;
+    --bg: #F5F5F5;
+    --text: #1F2937;
+    --text2: #374151;
+    --white: #ffffff;
+    --card: #ffffff;
+    --border: rgba(31,41,55,0.08);
+    --shadow: 0 4px 24px rgba(31,41,55,0.08);
+    --shadow-hover: 0 8px 40px rgba(31,41,55,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Red Hat Display', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-    body {
-      font-family: 'Red Hat Display', sans-serif;
-      background: #F0F2F5;
-      color: #1F2937;
-      min-height: 100vh;
-    }
+  .bg-bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bubble { position: absolute; border-radius: 50%; opacity: 0.18; animation: floatBubble 18s ease-in-out infinite; }
+  .bubble:nth-child(1){ width:420px;height:420px; background:#72DDA3; top:-120px; right:-80px; animation-delay:0s; }
+  .bubble:nth-child(2){ width:280px;height:280px; background:#BBE3E3; bottom:10%; left:-60px; animation-delay:4s; }
+  .bubble:nth-child(3){ width:180px;height:180px; background:#F3CE98; top:40%; right:5%; animation-delay:8s; }
+  .bubble:nth-child(4){ width:140px;height:140px; background:#FFB59C; bottom:20%; right:20%; animation-delay:12s; }
+  @keyframes floatBubble { 0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);} }
 
-    /* TAB BAR */
-    .tab-bar {
-      background: #ffffff;
-      border-bottom: 2px solid #E5E7EB;
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      gap: 4px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-      overflow-x: auto;
-    }
+  .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
 
-    .tab-logo {
-      font-family: 'Red Hat Display', sans-serif;
-      font-weight: 900;
-      font-size: 18px;
-      color: #1F2937;
-      letter-spacing: -0.5px;
-      margin-right: 20px;
-      padding: 16px 0;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
+  .header { padding: 40px 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .header-left h1 { font-size: clamp(28px,4vw,42px); font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
+  .header-left h1 span { color: #72DDA3; }
+  .header-left p { font-size: 14px; color: #374151; margin-top: 6px; font-weight: 500; }
+  .header-badge { background: #1F2937; color: #72DDA3; padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; letter-spacing: 0.5px; }
 
-    .tab-logo span { color: #72DDA3; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px; background: rgba(255,255,255,0.6); padding: 6px; border-radius: 16px; backdrop-filter: blur(8px); border: 1px solid rgba(31,41,55,0.08); width: fit-content; }
+  .tab { padding: 10px 22px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Red Hat Display', sans-serif; font-size: 14px; font-weight: 700; transition: all 0.22s cubic-bezier(.4,0,.2,1); background: transparent; color: #374151; display: flex; align-items: center; gap: 8px; }
+  .tab:hover { background: rgba(114,221,163,0.15); }
+  .tab.active { background: #1F2937; color: #ffffff; box-shadow: 0 2px 12px rgba(31,41,55,0.18); }
+  .tab .tab-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; }
 
-    .tab-btn {
-      padding: 16px 16px;
-      font-family: 'Red Hat Display', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: #6B7280;
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-      margin-bottom: -2px;
-      flex-shrink: 0;
-    }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
 
-    .tab-btn:hover { color: #1F2937; }
-    .tab-btn.active { color: #1F2937; border-bottom-color: #72DDA3; }
+  .card { background: #ffffff; border-radius: 20px; border: 1px solid rgba(31,41,55,0.08); box-shadow: 0 4px 24px rgba(31,41,55,0.08); transition: box-shadow 0.22s ease; overflow: hidden; }
+  .card:hover { box-shadow: 0 8px 40px rgba(31,41,55,0.14); }
 
-    .tab-panel { display: none; padding: 28px 24px; max-width: 1100px; margin: 0 auto; }
-    .tab-panel.active { display: block; }
+  .meta-hero { background: #1F2937; border-radius: 24px; padding: 36px 40px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; position: relative; overflow: hidden; }
+  .meta-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: #72DDA3; border-radius: 50%; opacity: 0.1; }
+  .meta-hero-left h2 { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+  .meta-total-display { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .meta-big-num { font-size: clamp(56px,8vw,80px); font-weight: 900; color: #ffffff; line-height: 1; font-feature-settings: 'tnum'; }
+  .meta-separator { font-size: 40px; color: rgba(255,255,255,0.3); font-weight: 300; }
+  .meta-goal-num { font-size: 40px; font-weight: 700; color: rgba(255,255,255,0.4); line-height: 1; }
+  .meta-pct-badge { display: inline-block; background: #72DDA3; color: #1F2937; padding: 6px 16px; border-radius: 100px; font-size: 18px; font-weight: 900; margin-top: 12px; }
+  .meta-hero-bar-wrap { margin-top: 16px; }
+  .meta-hero-bar-track { height: 12px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
+  .meta-hero-bar-fill { height: 100%; background: linear-gradient(90deg,#72DDA3,#4ecb7a); border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); position: relative; }
+  .meta-hero-bar-fill::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 0 3px #72DDA3; }
+  .meta-hero-right { display: flex; flex-direction: column; gap: 14px; }
 
-    /* GRID */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .mini-meta { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 20px; }
+  .mini-meta-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .mini-meta-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); }
+  .mini-meta-nums { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
+  .mini-meta-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
+  .mini-meta-bar-fill { height: 100%; border-radius: 100px; transition: width 1.4s cubic-bezier(.4,0,.2,1); }
 
-    /* CARDS */
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
+  .scoreboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; margin-bottom: 24px; }
+  .kam-card { border-radius: 20px; padding: 24px; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 2px solid transparent; }
+  .kam-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(31,41,55,0.14); }
+  .kam-card.rank-1 { border-color: #FFD700; }
+  .kam-card.rank-2 { border-color: #C0C0C0; }
+  .kam-card.rank-3 { border-color: #CD7F32; }
+  .kam-rank-badge { position: absolute; top: 16px; right: 16px; font-size: 24px; line-height: 1; }
+  .kam-name { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
+  .kam-role { font-size: 12px; font-weight: 600; opacity: 0.6; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+  .kam-stat-main { font-size: 52px; font-weight: 900; line-height: 1; font-feature-settings: 'tnum'; }
+  .kam-stat-label { font-size: 12px; font-weight: 600; opacity: 0.6; margin-top: 2px; margin-bottom: 16px; }
+  .kam-progress-wrap { margin-top: 4px; }
+  .kam-progress-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; opacity: 0.7; }
+  .kam-progress-track { height: 8px; background: rgba(0,0,0,0.12); border-radius: 100px; overflow: hidden; }
+  .kam-progress-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .kam-stats-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .kam-chip { padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.1); }
 
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #6B7280;
-      margin-bottom: 16px;
-    }
+  .chart-card { padding: 28px 28px 24px; margin-bottom: 24px; }
+  .chart-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .chart-sub { font-size: 13px; color: #374151; opacity: 0.6; margin-bottom: 20px; }
+  .chart-wrap { position: relative; height: 200px; }
+  canvas { width: 100% !important; }
 
-    /* HERO */
-    .hero-card {
-      background: #1F2937;
-      border-radius: 20px;
-      padding: 28px;
-      color: #ffffff;
-      margin-bottom: 16px;
-      position: relative;
-      overflow: hidden;
-    }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} .meta-hero{grid-template-columns:1fr;} }
 
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 220px; height: 220px;
-      background: radial-gradient(circle, rgba(114,221,163,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-    }
+  .breakdown-card { padding: 24px; }
+  .breakdown-title { font-size: 15px; font-weight: 800; margin-bottom: 16px; }
+  .breakdown-item { margin-bottom: 12px; }
+  .breakdown-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .breakdown-label { font-size: 13px; font-weight: 700; }
+  .breakdown-count { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
+  .breakdown-track { height: 10px; background: #F5F5F5; border-radius: 100px; overflow: hidden; }
+  .breakdown-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
 
-    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .agencia-list { list-style: none; }
+  .agencia-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(31,41,55,0.08); font-size: 13px; }
+  .agencia-item:last-child { border-bottom: none; }
+  .agencia-name { font-weight: 700; }
+  .agencia-pill { background: #F5F5F5; border-radius: 100px; padding: 3px 10px; font-size: 12px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
 
-    .hero-month { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #72DDA3; margin-bottom: 6px; }
-    .hero-count { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -2px; }
-    .hero-count span { color: #72DDA3; }
-    .hero-subtitle { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .kam-detail-header { border-radius: 20px; padding: 28px 32px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .kam-detail-name { font-size: 32px; font-weight: 900; }
+  .kam-detail-meta { font-size: 13px; opacity: 0.65; margin-top: 4px; font-weight: 600; }
+  .kam-kpi-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .kam-kpi { text-align: center; }
+  .kam-kpi-val { font-size: 28px; font-weight: 900; line-height: 1; }
+  .kam-kpi-lab { font-size: 11px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
 
-    .hero-right { text-align: right; }
-    .hero-pct { font-size: 36px; font-weight: 900; color: #72DDA3; }
-    .hero-pct-label { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #374151; opacity: 0.5; border-bottom: 1px solid rgba(31,41,55,0.08); white-space: nowrap; }
+  td { padding: 12px 14px; border-bottom: 1px solid rgba(31,41,55,0.08); font-weight: 500; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(114,221,163,0.05); }
 
-    .progress-track { background: rgba(255,255,255,0.1); border-radius: 8px; height: 10px; overflow: hidden; margin-bottom: 8px; }
-    .progress-fill { height: 100%; border-radius: 8px; background: linear-gradient(90deg, #72DDA3, #BBE3E3); }
-    .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.4); }
+  .badge { padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; white-space: nowrap; display: inline-block; }
+  .badge-integral   { background: #dcfce7; color: #166534; }
+  .badge-juridica   { background: #dbeafe; color: #1e40af; }
+  .badge-premium    { background: #fef3c7; color: #92400e; }
+  .badge-primera    { background: #f3e8ff; color: #6b21a8; }
+  .badge-renovacion { background: #fce7f3; color: #9d174d; }
+  .badge-directa    { background: #F5F5F5; color: #374151; }
+  .badge-aka        { background: #1F2937; color: #72DDA3; }
+  .badge-ok         { background: #dcfce7; color: #166534; }
+  .badge-warn       { background: #fef3c7; color: #92400e; }
 
-    /* KPI PILLS */
-    .kpi-pill { background: #F9FAFB; border: 1.5px solid #E5E7EB; border-radius: 12px; padding: 16px; text-align: center; }
-    .kpi-value { font-size: 28px; font-weight: 800; color: #1F2937; line-height: 1; }
-    .kpi-label { font-size: 11px; color: #6B7280; margin-top: 4px; font-weight: 500; }
-    .kpi-pill.green { border-color: #72DDA3; background: #F0FBF5; }
-    .kpi-pill.green .kpi-value { color: #2D9B67; }
-    .kpi-pill.yellow { border-color: #F3CE98; background: #FFFBF2; }
-    .kpi-pill.yellow .kpi-value { color: #B07C2A; }
-    .kpi-pill.blue { border-color: #BBE3E3; background: #F0FAFA; }
-    .kpi-pill.blue .kpi-value { color: #2A8585; }
-    .kpi-pill.coral { border-color: #FFB59C; background: #FFF6F2; }
-    .kpi-pill.coral .kpi-value { color: #C0512A; }
+  .confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+  .confetti-piece { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: confettiFall 3s ease-in forwards; opacity: 0; }
+  @keyframes confettiFall { 0%{opacity:1;transform:translateY(-20px) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
 
-    /* PROJECTION */
-    .proj-card { background: linear-gradient(135deg, #BBE3E3 0%, #F9D3CD 100%); border-radius: 16px; padding: 20px; }
-    .proj-title { font-size: 12px; font-weight: 700; color: #1F2937; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
-    .proj-big { font-size: 40px; font-weight: 900; color: #1F2937; line-height: 1; }
-    .proj-sub { font-size: 13px; color: #374151; margin-top: 6px; }
+  .streak-section { margin-bottom: 24px; }
+  .streak-title { font-size: 15px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .day-dots { display: flex; gap: 6px; flex-wrap: wrap; }
+  .day-dot { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; font-family: 'Red Hat Mono', monospace; transition: transform 0.15s ease; cursor: default; position: relative; }
+  .day-dot:hover { transform: scale(1.15); }
+  .day-dot.empty { background: #F5F5F5; color: rgba(31,41,55,0.25); border: 1.5px dashed rgba(31,41,55,0.15); }
+  .day-dot.has-firma { background: #72DDA3; color: #1F2937; }
+  .day-dot.today { outline: 3px solid #1F2937; outline-offset: 2px; }
+  .day-dot .dot-count { position: absolute; top: -6px; right: -6px; background: #1F2937; color: #ffffff; border-radius: 100px; width: 16px; height: 16px; font-size: 9px; display: flex; align-items: center; justify-content: center; font-weight: 900; }
 
-    /* CALENDAR */
-    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 4px; }
-    .cal-day-label { text-align: center; font-size: 10px; font-weight: 700; color: #6B7280; letter-spacing: 1px; padding: 4px 0; text-transform: uppercase; }
-    .cal-cell { aspect-ratio: 1; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Red Hat Mono', monospace; font-size: 11px; font-weight: 600; position: relative; cursor: default; }
-    .cal-cell.empty { background: transparent; }
-    .cal-cell.no-firma { background: #F3F4F6; color: #9CA3AF; }
-    .cal-cell.has-firma { background: #72DDA3; color: #1F2937; font-weight: 700; }
-    .cal-cell.today { box-shadow: 0 0 0 2.5px #1F2937; }
-    .cal-cell.future { background: #F9FAFB; color: #D1D5DB; }
+  .achievements { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  .achievement { background: #ffffff; border: 1px solid rgba(31,41,55,0.08); border-radius: 16px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; min-width: 180px; flex: 1; box-shadow: 0 4px 24px rgba(31,41,55,0.08); }
+  .achievement-icon { font-size: 28px; }
+  .achievement-text .ach-title { font-size: 13px; font-weight: 800; }
+  .achievement-text .ach-desc { font-size: 11px; color: #374151; opacity: 0.6; margin-top: 1px; }
 
-    /* SCOREBOARD */
-    .scoreboard { display: flex; flex-direction: column; gap: 10px; }
-
-    .score-row {
-      display: grid;
-      grid-template-columns: 28px 72px 1fr 80px;
-      align-items: center;
-      gap: 12px;
-      background: #F9FAFB;
-      border-radius: 12px;
-      padding: 12px 16px;
-      border: 1.5px solid #E5E7EB;
-      transition: transform 0.15s;
-    }
-
-    .score-row:hover { transform: translateX(4px); }
-    .score-row.rank-1 { background: #FFFBF0; border-color: #F3CE98; }
-    .score-row.rank-2 { background: #F8FFFE; border-color: #BBE3E3; }
-    .score-row.rank-3 { background: #FFF8F2; border-color: #FFB59C; }
-
-    .score-rank { font-family: 'Red Hat Mono', monospace; font-size: 13px; font-weight: 700; color: #6B7280; text-align: center; }
-    .rank-1 .score-rank { color: #B07C2A; }
-
-    .score-avatar-wrap { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; }
-
-    .score-name { font-size: 15px; font-weight: 700; color: #1F2937; }
-    .score-role { font-size: 11px; color: #6B7280; margin-top: 2px; }
-    .score-bar-track { background: #E5E7EB; border-radius: 4px; height: 6px; overflow: hidden; margin-top: 6px; }
-    .score-bar-fill { height: 100%; border-radius: 4px; }
-
-    .score-count { font-family: 'Red Hat Mono', monospace; font-size: 22px; font-weight: 700; text-align: right; color: #1F2937; }
-    .score-count span { font-size: 11px; color: #6B7280; font-family: 'Red Hat Display', sans-serif; font-weight: 500; display: block; }
-
-    /* BREAKDOWNS */
-    .breakdown-item { margin-bottom: 14px; }
-    .breakdown-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
-    .breakdown-label { font-size: 13px; font-weight: 600; color: #1F2937; }
-    .breakdown-val { font-size: 13px; font-weight: 700; color: #6B7280; }
-    .breakdown-track { background: #F3F4F6; border-radius: 6px; height: 8px; overflow: hidden; }
-    .breakdown-fill { height: 100%; border-radius: 6px; }
-
-    /* AGENCIES */
-    .agency-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .agency-chip { background: #F3F4F6; border-radius: 20px; padding: 6px 14px; font-size: 12px; font-weight: 600; color: #374151; display: flex; align-items: center; gap: 6px; }
-    .agency-chip .num { background: #1F2937; color: #ffffff; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
-
-    /* KAM HEADER */
-    .kam-header { border-radius: 20px; padding: 28px; color: #ffffff; display: flex; align-items: center; gap: 24px; margin-bottom: 20px; position: relative; overflow: hidden; }
-    .kam-avatar-big { font-size: 80px; line-height: 1; flex-shrink: 0; }
-    .kam-header-info .kam-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
-    .kam-header-info h2 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .kam-header-info .kam-sub { font-size: 14px; opacity: 0.7; }
-
-    /* TABLE */
-    .ops-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .ops-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7280; padding: 10px 12px; border-bottom: 2px solid #E5E7EB; }
-    .ops-table td { padding: 10px 12px; border-bottom: 1px solid #F3F4F6; color: #374151; vertical-align: middle; }
-    .ops-table tr:last-child td { border-bottom: none; }
-    .ops-table tr:hover td { background: #F9FAFB; }
-
-    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-    .badge-ok { background: #D1FAE5; color: #065F46; }
-    .badge-warn { background: #FEF3C7; color: #92400E; }
-    .badge-prot-integral { background: #EDE9FE; color: #4C1D95; }
-    .badge-prot-juridica { background: #DBEAFE; color: #1E3A8A; }
-    .badge-prot-premium { background: #FCE7F3; color: #831843; }
-    .badge-primera { background: #F0FDF4; color: #166534; }
-    .badge-renov { background: #FFF7ED; color: #9A3412; }
-
-    /* ALERTS */
-    .alert-box { background: #FFFBEB; border: 1.5px solid #F3CE98; border-radius: 12px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-    .alert-icon { font-size: 18px; flex-shrink: 0; }
-    .alert-text { font-size: 13px; color: #78350F; font-weight: 500; }
-
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
-      .grid-4 { grid-template-columns: 1fr 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
-      .hero-count { font-size: 44px; }
-      .score-row { grid-template-columns: 20px 52px 1fr 52px; gap: 8px; }
-      .tab-panel { padding: 20px 14px; }
-    }
-  </style>
+  .footer { text-align: center; padding: 24px 0 0; font-size: 12px; color: #374151; opacity: 0.4; font-weight: 600; }
+</style>
 </head>
 <body>
 
-<!-- TAB BAR -->
-<div class="tab-bar">
-  <div class="tab-logo">MICA<span>.</span></div>
-  <button class="tab-btn active" onclick="showTab('general', this)">📊 General</button>
-  <button class="tab-btn" onclick="showTab('majo', this)">🦋 Majo</button>
-  <button class="tab-btn" onclick="showTab('pablo', this)">🌊 Pablo</button>
-  <button class="tab-btn" onclick="showTab('gabo', this)">🪐 Gabo</button>
-  <button class="tab-btn" onclick="showTab('ale', this)">🐰 Ale</button>
-  <button class="tab-btn" onclick="showTab('leo', this)">🦁 Leo</button>
+<div class="bg-bubbles">
+  <div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div>
 </div>
+<div class="confetti-wrap" id="confettiWrap"></div>
 
+<div class="container">
 
-<!-- ══════════════════════════════════
-     GENERAL
-══════════════════════════════════ -->
-<div id="tab-general" class="tab-panel active">
+  <div class="header">
+    <div class="header-left">
+      <h1>🏆 Firmas <span>Abril</span></h1>
+      <p>MICA · Dashboard Operativo · Actualizado 13 Abr 2026</p>
+    </div>
+    <div class="header-badge">MES EN CURSO ⚡</div>
+  </div>
 
-  <!-- HERO -->
-  <div class="hero-card">
-    <div class="hero-top">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('general')">🌟 General</button>
+    <button class="tab" onclick="showTab('majo')"><span class="tab-avatar" style="background:#BBE3E3;color:#1F2937">M</span> Majo</button>
+    <button class="tab" onclick="showTab('pablo')"><span class="tab-avatar" style="background:#72DDA3;color:#1F2937">P</span> Pablo</button>
+    <button class="tab" onclick="showTab('gabo')"><span class="tab-avatar" style="background:#F3CE98;color:#1F2937">G</span> Gabo</button>
+    <button class="tab" onclick="showTab('ale')"><span class="tab-avatar" style="background:#F9D3CD;color:#1F2937">A</span> Ale</button>
+    <button class="tab" onclick="showTab('leo')"><span class="tab-avatar" style="background:#FFB59C;color:#1F2937">L</span> Leo</button>
+  </div>
+
+  <!-- GENERAL -->
+  <div class="tab-panel active" id="panel-general">
+
+    <div class="meta-hero">
+      <div class="meta-hero-left">
+        <h2>Meta del Mes</h2>
+        <div class="meta-total-display">
+          <div class="meta-big-num" id="counterTotal">0</div>
+          <div class="meta-separator">/</div>
+          <div class="meta-goal-num">120</div>
+        </div>
+        <div class="meta-pct-badge" id="pctBadge">0%</div>
+        <div class="meta-hero-bar-wrap" style="margin-top:20px">
+          <div class="meta-hero-bar-track">
+            <div class="meta-hero-bar-fill" id="mainBarFill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="meta-hero-right">
+        <div class="mini-meta">
+          <div class="mini-meta-header">
+            <span class="mini-meta-name">🍦 Primera vez</span>
+            <span class="mini-meta-nums" style="color:#BBE3E3">21 / 90</span>
+          </div>
+          <div class="mini-meta-bar-track">
+            <div class="mini-meta-bar-fill" id="primera-bar" style="width:0%;background:#BBE3E3"></div>
+          </div>
+          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
+            <span id="primera-pct">0%</span> de meta · faltan <span id="primera-falta">69</span>
+          </div>
+        </div>
+        <div class="mini-meta">
+          <div class="mini-meta-header">
+            <span class="mini-meta-name">🎁 Renovaciones</span>
+            <span class="mini-meta-nums" style="color:#FFB59C">6 / 30</span>
+          </div>
+          <div class="mini-meta-bar-track">
+            <div class="mini-meta-bar-fill" id="renov-bar" style="width:0%;background:#FFB59C"></div>
+          </div>
+          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
+            <span id="renov-pct">0%</span> de meta · faltan <span id="renov-falta">24</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="achievements">
+      <div class="achievement"><div class="achievement-icon">🔥</div><div class="achievement-text"><div class="ach-title">Racha activa</div><div class="ach-desc">13 días consecutivos</div></div></div>
+      <div class="achievement"><div class="achievement-icon">💰</div><div class="achievement-text"><div class="ach-title">$143,370 en FEE</div><div class="ach-desc">Total mes acumulado</div></div></div>
+      <div class="achievement"><div class="achievement-icon">⭐</div><div class="achievement-text"><div class="ach-title">MVP Anterior: Majo 🦋</div><div class="ach-desc">Líder también en abril</div></div></div>
+      <div class="achievement"><div class="achievement-icon">📅</div><div class="achievement-text"><div class="ach-title">13 días activos</div><div class="ach-desc">De 13 días transcurridos</div></div></div>
+    </div>
+
+    <div class="card streak-section" style="padding:24px;">
+      <div class="streak-title">📅 Actividad del mes — firma por día</div>
+      <div class="day-dots" id="dayDots"></div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:800;margin:24px 0 14px;display:flex;align-items:center;gap:8px;">🏅 Ranking del Equipo</h3>
+    <div class="scoreboard-grid" id="scoreboardGrid"></div>
+
+    <div class="card chart-card" style="margin-bottom:24px;">
+      <div class="chart-title">📈 Firmas acumuladas en el mes</div>
+      <div class="chart-sub">Progresión diaria del equipo completo · Abril 2026</div>
+      <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card breakdown-card">
+        <div class="breakdown-title">🛡️ Por tipo de protección</div>
+        <div class="breakdown-item">
+          <div class="breakdown-header"><span class="breakdown-label">Protección Integral</span><span class="breakdown-count">16</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#72DDA3" data-w="59.3"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-header"><span class="breakdown-label">Protección Jurídica</span><span class="breakdown-count">8</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#BBE3E3" data-w="29.6"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-header"><span class="breakdown-label">Protección Premium</span><span class="breakdown-count">3</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#F3CE98" data-w="11.1"></div></div>
+        </div>
+      </div>
+      <div class="card breakdown-card">
+        <div class="breakdown-title">🏢 Top Agencias</div>
+        <ul class="agencia-list">
+          <li class="agencia-item"><span class="agencia-name">🏠 AKA</span><span class="agencia-pill">5</span></li>
+          <li class="agencia-item"><span class="agencia-name">🏢 Grupo Arvi</span><span class="agencia-pill">3</span></li>
+          <li class="agencia-item"><span class="agencia-name">🏢 Rentas Ok</span><span class="agencia-pill">3</span></li>
+          <li class="agencia-item"><span class="agencia-name">🏢 Remax</span><span class="agencia-pill">2</span></li>
+          <li class="agencia-item"><span class="agencia-name">📦 Otras</span><span class="agencia-pill">5</span></li>
+          <li class="agencia-item"><span class="agencia-name">➡️ Directa</span><span class="agencia-pill">9</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /general -->
+
+  <!-- MAJO -->
+  <div class="tab-panel" id="panel-majo">
+    <div class="kam-detail-header" style="background:linear-gradient(135deg,#BBE3E3 0%,#8ccece 100%);color:#1F2937;">
       <div>
-        <div class="hero-month">🏠 Abril 2026 · Meta mensual</div>
-        <div class="hero-count"><span>27</span> / 120</div>
-        <div class="hero-subtitle">firmas completadas · día 13 de 30</div>
+        <div class="kam-detail-name">🦋 María José Arriaga</div>
+        <div class="kam-detail-meta">KAM · La Mariposa · MVP Marzo 👑 · Líder Abril</div>
       </div>
-      <div class="hero-right">
-        <div class="hero-pct">22.5%</div>
-        <div class="hero-pct-label">de la meta</div>
+      <div class="kam-kpi-row">
+        <div class="kam-kpi"><div class="kam-kpi-val">11</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$66K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">10</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">1</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
     </div>
-    <div class="progress-track">
-      <div class="progress-fill" style="width:22.5%"></div>
-    </div>
-    <div class="progress-labels">
-      <span>0</span><span>30</span><span>60</span><span>90</span><span>Meta: 120</span>
-    </div>
+    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-majo"></table></div></div>
   </div>
 
-  <!-- KPIs -->
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">27</div><div class="kpi-label">Firmas totales</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">93</div><div class="kpi-label">Faltan para meta</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">~62</div><div class="kpi-label">Proyección mes</div></div>
-    <div class="kpi-pill coral"><div class="kpi-value">5.5</div><div class="kpi-label">Firmas/día necesarias</div></div>
-  </div>
-
-  <!-- PROYECCIÓN + CALENDARIO -->
-  <div class="grid-2" style="margin-bottom:16px; align-items:start;">
-
-    <div class="proj-card">
-      <div class="proj-title">📈 Proyección al 30 de abril</div>
-      <div class="proj-big">~62</div>
-      <div class="proj-sub">a ritmo actual de <strong>2.1 firmas/día</strong></div>
-      <div style="margin-top:14px; background:rgba(255,255,255,0.55); border-radius:10px; padding:12px; font-size:13px; color:#374151; line-height:1.8;">
-        <div>🗓 Días restantes: <strong>17</strong></div>
-        <div>🎯 Ritmo necesario: <strong>5.5 firmas/día</strong></div>
-        <div>📊 Brecha: <strong>−93 firmas</strong></div>
+  <!-- PABLO -->
+  <div class="tab-panel" id="panel-pablo">
+    <div class="kam-detail-header" style="background:linear-gradient(135deg,#72DDA3 0%,#4ecb7a 100%);color:#1F2937;">
+      <div>
+        <div class="kam-detail-name">🌊 Pablo de la Puente</div>
+        <div class="kam-detail-meta">KAM · La Ola · 2do lugar</div>
+      </div>
+      <div class="kam-kpi-row">
+        <div class="kam-kpi"><div class="kam-kpi-val">6</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$32K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">6</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="section-label">📅 Actividad diaria — Abril 2026</div>
-      <div class="cal-grid" id="calGrid"></div>
-    </div>
-
+    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-pablo"></table></div></div>
   </div>
 
-  <!-- SCOREBOARD -->
-  <div class="card" style="margin-bottom:16px;">
-    <div class="section-label">🏆 Scoreboard del equipo</div>
-    <div class="scoreboard">
-
-      <!-- Majo -->
-      <div class="score-row rank-1">
-        <div class="score-rank">1</div>
-        <div class="score-avatar-wrap">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="14" cy="22" rx="13" ry="9" fill="#F9D3CD" opacity="0.95"/>
-            <ellipse cx="40" cy="22" rx="13" ry="9" fill="#F9D3CD" opacity="0.95"/>
-            <ellipse cx="13" cy="35" rx="10" ry="7" fill="#FFB59C" opacity="0.85"/>
-            <ellipse cx="41" cy="35" rx="10" ry="7" fill="#FFB59C" opacity="0.85"/>
-            <ellipse cx="14" cy="22" rx="6" ry="4" fill="#F3CE98" opacity="0.6"/>
-            <ellipse cx="40" cy="22" rx="6" ry="4" fill="#F3CE98" opacity="0.6"/>
-            <rect x="25.5" y="15" width="3" height="24" rx="1.5" fill="#374151"/>
-            <path d="M23 15 Q27 9 31 15" stroke="#374151" stroke-width="1.5" fill="none"/>
-            <circle cx="22" cy="15" r="2" fill="#374151"/>
-            <circle cx="32" cy="15" r="2" fill="#374151"/>
-            <text x="27" y="11" text-anchor="middle" font-size="9" font-family="sans-serif">👑</text>
-          </svg>
-        </div>
-        <div>
-          <div class="score-name">María José Arriaga</div>
-          <div class="score-role">🦋 La Mariposa · MVP Marzo 👑</div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:#F3CE98;"></div></div>
-        </div>
-        <div class="score-count">11<span>firmas</span></div>
+  <!-- GABO -->
+  <div class="tab-panel" id="panel-gabo">
+    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F3CE98 0%,#e6b96a 100%);color:#1F2937;">
+      <div>
+        <div class="kam-detail-name">🪐 Gabriel Alvarado</div>
+        <div class="kam-detail-meta">KAM · Saturno · Renovaciones AKA</div>
       </div>
-
-      <!-- Pablo -->
-      <div class="score-row rank-2">
-        <div class="score-rank">2</div>
-        <div class="score-avatar-wrap">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27" cy="27" r="22" fill="#BBE3E3" opacity="0.35"/>
-            <path d="M8 30 Q14 21 21 30 Q27 38 33 30 Q39 21 46 30" stroke="#2A8585" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path d="M8 37 Q14 28 21 37 Q27 45 33 37 Q39 28 46 37" stroke="#2A8585" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.45"/>
-            <circle cx="27" cy="18" r="8" fill="#BBE3E3"/>
-            <circle cx="24.5" cy="16.5" r="1.5" fill="#1F2937"/>
-            <circle cx="29.5" cy="16.5" r="1.5" fill="#1F2937"/>
-            <path d="M24 21 Q27 24 30 21" stroke="#1F2937" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="score-name">Pablo de la Puente</div>
-          <div class="score-role">🌊 La Ola</div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;background:#BBE3E3;"></div></div>
-        </div>
-        <div class="score-count">6<span>firmas</span></div>
+      <div class="kam-kpi-row">
+        <div class="kam-kpi"><div class="kam-kpi-val">5</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$10K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">5</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
-
-      <!-- Gabo -->
-      <div class="score-row rank-3">
-        <div class="score-rank">3</div>
-        <div class="score-avatar-wrap">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="satG" cx="38%" cy="38%">
-                <stop offset="0%" stop-color="#FFF0C0"/>
-                <stop offset="100%" stop-color="#C4883A"/>
-              </radialGradient>
-            </defs>
-            <ellipse cx="27" cy="30" rx="38" ry="7.5" fill="none" stroke="#C4A55A" stroke-width="2.5" transform="rotate(-18 27 30)"/>
-            <circle cx="27" cy="27" r="14" fill="url(#satG)"/>
-            <ellipse cx="23" cy="23" rx="5" ry="3" fill="rgba(255,255,255,0.2)" transform="rotate(-30 23 23)"/>
-          </svg>
-        </div>
-        <div>
-          <div class="score-name">Gabriel Alvarado</div>
-          <div class="score-role">🪐 Saturno · 100% renovaciones</div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:45%;background:#F3CE98;"></div></div>
-        </div>
-        <div class="score-count">5<span>firmas</span></div>
-      </div>
-
-      <!-- Ale -->
-      <div class="score-row">
-        <div class="score-rank">4</div>
-        <div class="score-avatar-wrap">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="20" cy="17" rx="5" ry="12" fill="#F9D3CD"/>
-            <ellipse cx="20" cy="17" rx="3" ry="8.5" fill="#FFB59C" opacity="0.6"/>
-            <ellipse cx="34" cy="17" rx="5" ry="12" fill="#F9D3CD"/>
-            <ellipse cx="34" cy="17" rx="3" ry="8.5" fill="#FFB59C" opacity="0.6"/>
-            <ellipse cx="27" cy="34" rx="13" ry="12" fill="#F9D3CD"/>
-            <circle cx="23" cy="32" r="2" fill="#1F2937"/>
-            <circle cx="31" cy="32" r="2" fill="#1F2937"/>
-            <ellipse cx="27" cy="36" rx="3" ry="2" fill="#FFB59C"/>
-            <path d="M24 39 Q27 42 30 39" stroke="#1F2937" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="score-name">Alejandra Muñoz</div>
-          <div class="score-role">🐰 El Conejo · Personaje nuevo</div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:36%;background:#F9D3CD;"></div></div>
-        </div>
-        <div class="score-count">4<span>firmas</span></div>
-      </div>
-
-      <!-- Leo -->
-      <div class="score-row">
-        <div class="score-rank">5</div>
-        <div class="score-avatar-wrap">
-          <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27" cy="28" r="20" fill="#F3CE98" opacity="0.65"/>
-            <circle cx="27" cy="29" r="13" fill="#F3CE98"/>
-            <ellipse cx="14" cy="17" rx="4.5" ry="6" fill="#F3CE98"/>
-            <ellipse cx="40" cy="17" rx="4.5" ry="6" fill="#F3CE98"/>
-            <circle cx="23" cy="27" r="2" fill="#1F2937"/>
-            <circle cx="31" cy="27" r="2" fill="#1F2937"/>
-            <ellipse cx="27" cy="32" rx="4" ry="2.5" fill="#FFB59C"/>
-            <path d="M23 35 Q27 39 31 35" stroke="#1F2937" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="score-name">Leonardo Monzalvo</div>
-          <div class="score-role">🦁 El León · Rey en training</div>
-          <div class="score-bar-track"><div class="score-bar-fill" style="width:9%;background:#72DDA3;"></div></div>
-        </div>
-        <div class="score-count">1<span>firma</span></div>
-      </div>
-
     </div>
+    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
+      <span style="font-size:18px;">⚠️</span>
+      <span style="font-size:13px;color:#78350f;font-weight:600;">2 contratos con <strong>"Falta primer pago"</strong> — Días 4 (Félix Cuevas, Del Valle) y día 10 (Tiziano 167, Álvaro Obregón). Validar con AKA.</span>
+    </div>
+    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-gabo"></table></div></div>
   </div>
 
-  <!-- CHART + BREAKDOWNS -->
-  <div class="grid-2" style="margin-bottom:16px; align-items:start;">
-
-    <div class="card">
-      <div class="section-label">📈 Firmas acumuladas — Abril</div>
-      <canvas id="cumChart" height="190"></canvas>
-    </div>
-
-    <div style="display:flex; flex-direction:column; gap:12px;">
-
-      <div class="card">
-        <div class="section-label">🛡️ Por tipo de protección</div>
-        <div class="breakdown-item">
-          <div class="breakdown-top"><span class="breakdown-label">Integral</span><span class="breakdown-val">16 · 59%</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:59%;background:#72DDA3;"></div></div>
-        </div>
-        <div class="breakdown-item">
-          <div class="breakdown-top"><span class="breakdown-label">Jurídica</span><span class="breakdown-val">8 · 30%</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:30%;background:#BBE3E3;"></div></div>
-        </div>
-        <div class="breakdown-item" style="margin-bottom:0;">
-          <div class="breakdown-top"><span class="breakdown-label">Premium</span><span class="breakdown-val">3 · 11%</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:11%;background:#F9D3CD;"></div></div>
-        </div>
+  <!-- ALE -->
+  <div class="tab-panel" id="panel-ale">
+    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F9D3CD 0%,#f0a898 100%);color:#1F2937;">
+      <div>
+        <div class="kam-detail-name">🐰 Alejandra Muñoz</div>
+        <div class="kam-detail-meta">KAM · El Conejo · Personaje nuevo</div>
       </div>
-
-      <div class="card">
-        <div class="section-label">📋 Por tipo de contrato</div>
-        <div class="breakdown-item">
-          <div class="breakdown-top"><span class="breakdown-label">Primera vez</span><span class="breakdown-val">21 · 78%</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:78%;background:#72DDA3;"></div></div>
-        </div>
-        <div class="breakdown-item" style="margin-bottom:0;">
-          <div class="breakdown-top"><span class="breakdown-label">Renovación Mica</span><span class="breakdown-val">6 · 22%</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:22%;background:#F3CE98;"></div></div>
-        </div>
+      <div class="kam-kpi-row">
+        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$22K</div><div class="kam-kpi-lab">FEE Total</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Primera vez</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
       </div>
+    </div>
+    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
+      <span style="font-size:18px;">⚠️</span>
+      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato sin fecha registrada — Calle Toril Ext. 11, Atizapán (entrada #27). Capturar fecha en Notion y confirmar pago con Grupo Arvi.</span>
+    </div>
+    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-ale"></table></div></div>
+  </div>
 
-      <div class="card">
-        <div class="section-label">🏢 Agencias</div>
-        <div class="agency-grid">
-          <div class="agency-chip">AKA <span class="num">5</span></div>
-          <div class="agency-chip">Rentas Ok <span class="num">3</span></div>
-          <div class="agency-chip">Grupo Arvi <span class="num">3</span></div>
-          <div class="agency-chip">Remax <span class="num">2</span></div>
-          <div class="agency-chip">YoRento <span class="num">1</span></div>
-          <div class="agency-chip">En Casa <span class="num">1</span></div>
-          <div class="agency-chip">Soy Rumi <span class="num">1</span></div>
-          <div class="agency-chip">E-Inmob <span class="num">1</span></div>
-          <div class="agency-chip">Propity <span class="num">1</span></div>
-          <div class="agency-chip">Sin agencia <span class="num">9</span></div>
-        </div>
+  <!-- LEO -->
+  <div class="tab-panel" id="panel-leo">
+    <div class="kam-detail-header" style="background:linear-gradient(135deg,#FFB59C 0%,#ff8f6b 100%);color:#1F2937;">
+      <div>
+        <div class="kam-detail-name">🦁 Leonardo Monzalvo</div>
+        <div class="kam-detail-meta">KAM · El León · Rey en training</div>
       </div>
-
+      <div class="kam-kpi-row">
+        <div class="kam-kpi"><div class="kam-kpi-val">1</div><div class="kam-kpi-lab">Firmas</div></div>
+        <div class="kam-kpi"><div class="kam-kpi-val">$13K</div><div class="kam-kpi-lab">FEE Total</div></div>
+      </div>
     </div>
+    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-leo"></table></div></div>
   </div>
 
-</div><!-- /general -->
-
-
-<!-- ══════════════════════════════════
-     MAJO
-══════════════════════════════════ -->
-<div id="tab-majo" class="tab-panel">
-  <div class="kam-header" style="background:linear-gradient(135deg,#B05A40 0%,#E0906E 100%);">
-    <div class="kam-avatar-big">🦋</div>
-    <div class="kam-header-info">
-      <div class="kam-title">KAM · La Mariposa</div>
-      <h2>María José Arriaga</h2>
-      <div class="kam-sub">MVP Marzo 👑 · Líder del mes</div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">11</div><div class="kpi-label">Firmas</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">41%</div><div class="kpi-label">Del total equipo</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">4</div><div class="kpi-label">Jurídica</div></div>
-    <div class="kpi-pill green"><div class="kpi-value">1</div><div class="kpi-label">Renovación</div></div>
-  </div>
-  <div class="card">
-    <div class="section-label">📋 Operaciones</div>
-    <div style="overflow-x:auto;">
-      <table class="ops-table">
-        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">01</td><td>Diagonal de San Antonio 937, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">11</td><td>Texas 99 Dept 203, Nápoles, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>En Casa</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">12</td><td>Blvd. de las Naciones 504, Acapulco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">14</td><td>335 Sao Paulo Dept 2, Monterrey</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>Soy Rumi</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">15</td><td>Anenecuilco S/N, Las Granjas, Cuernavaca</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">17</td><td>Av. Anáhuac Bella Brisa 405, Acapulco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">19</td><td>Circuito Vía Carrara 176, León, Gto.</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">20</td><td>8 de Mayo 5 Dept 204, Naucalpan, Edomex</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">21</td><td>Río Grijalva 305, Barrio San Miguel, León</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">22</td><td>San Isidro 164 Piso 10, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>E-Inmob</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">23</td><td>Paseo San Nicolás Parra 235, Celaya, Gto.</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <div class="footer">MICA Operations · Pulso Firmas Abril 2026 · jael-lab.github.io</div>
 </div>
 
-
-<!-- ══════════════════════════════════
-     PABLO
-══════════════════════════════════ -->
-<div id="tab-pablo" class="tab-panel">
-  <div class="kam-header" style="background:linear-gradient(135deg,#1D6575 0%,#4AAABB 100%);">
-    <div class="kam-avatar-big">🌊</div>
-    <div class="kam-header-info">
-      <div class="kam-title">KAM · La Ola</div>
-      <h2>Pablo de la Puente</h2>
-      <div class="kam-sub">2do lugar · 6 firmas primera vez</div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">6</div><div class="kpi-label">Firmas</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">22%</div><div class="kpi-label">Del total equipo</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">1</div><div class="kpi-label">Jurídica</div></div>
-    <div class="kpi-pill green"><div class="kpi-value">0</div><div class="kpi-label">Renovaciones</div></div>
-  </div>
-  <div class="card">
-    <div class="section-label">📋 Operaciones</div>
-    <div style="overflow-x:auto;">
-      <table class="ops-table">
-        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">02</td><td>Alcanfores 3, San Cristóbal de las Casas</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">06</td><td>Serbia 918 Int 8, Loma Blanca, Zapopan</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>YoRento</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">07</td><td>Smetana 43 Torre A Dept 102, Vallejo, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>—</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">08</td><td>Plaza Melchor Ocampo 6, CDMX</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Remax</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">09</td><td>Azahares Mza 40 Lt 3, Gust. A. Madero</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">13</td><td>Unidad Hab. Cuitláhuac Dept 201, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════
-     GABO
-══════════════════════════════════ -->
-<div id="tab-gabo" class="tab-panel">
-  <div class="kam-header" style="background:linear-gradient(135deg,#251848 0%,#5C3F90 100%);">
-    <div class="kam-avatar-big">🪐</div>
-    <div class="kam-header-info">
-      <div class="kam-title">KAM · Saturno</div>
-      <h2>Gabriel Alvarado</h2>
-      <div class="kam-sub">Especialista en renovaciones · AKA</div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">5</div><div class="kpi-label">Firmas</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">100%</div><div class="kpi-label">Renovaciones</div></div>
-    <div class="kpi-pill coral"><div class="kpi-value">2</div><div class="kpi-label">Falta 1er pago</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">AKA</div><div class="kpi-label">Única agencia</div></div>
-  </div>
-  <div class="alert-box">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-text"><strong>2 contratos con "Falta primer pago"</strong> — Días 4 (Félix Cuevas, Del Valle) y día 10 (Tiziano 167, Álvaro Obregón). Validar con AKA si los pagos ya se aplicaron o requieren seguimiento.</div>
-  </div>
-  <div class="card" style="margin-top:12px;">
-    <div class="section-label">📋 Operaciones</div>
-    <div style="overflow-x:auto;">
-      <table class="ops-table">
-        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">03</td><td>Alhelí 18 Dpto 6, Tlatilco, Azcapotzalco</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">04</td><td>Félix Cuevas 318 Dept 34, Del Valle, BJ</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">05</td><td>JAT 691-A Desp 3, Asturias, Cuauhtémoc</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">10</td><td>Tiziano 167 Dept 2, Alfonso XIII, Álvaro Obregón</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">18</td><td>Centenario 198 Dept 20, Merced Gómez, Álvaro Obregón</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-renov">Renovación</span></td><td>AKA</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════
-     ALE
-══════════════════════════════════ -->
-<div id="tab-ale" class="tab-panel">
-  <div class="kam-header" style="background:linear-gradient(135deg,#AA3070 0%,#E080B0 100%);">
-    <div class="kam-avatar-big">🐰</div>
-    <div class="kam-header-info">
-      <div class="kam-title">KAM · El Conejo</div>
-      <h2>Alejandra Muñoz</h2>
-      <div class="kam-sub">Personaje nuevo · 4 firmas arrancando</div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">4</div><div class="kpi-label">Firmas</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">15%</div><div class="kpi-label">Del total equipo</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">1</div><div class="kpi-label">Premium</div></div>
-    <div class="kpi-pill coral"><div class="kpi-value">1</div><div class="kpi-label">Falta 1er pago</div></div>
-  </div>
-  <div class="alert-box">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-text"><strong>1 contrato sin fecha registrada</strong> — Calle Toril Ext. 11 Int F, Atizapán (entrada #27). Capturar fecha en Notion y verificar estatus de pago con Grupo Arvi.</div>
-  </div>
-  <div class="card" style="margin-top:12px;">
-    <div class="section-label">📋 Operaciones</div>
-    <div style="overflow-x:auto;">
-      <table class="ops-table">
-        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">24</td><td>Cerrada Cumbres 131 Casa 3, Tuxtla Gutiérrez</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-premium">Premium</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">25</td><td>Avanza 275 Int A, San Luis Potosí</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Propity</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">26</td><td>8a Poniente Sur 955, Tuxtla Gutiérrez</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Rentas Ok</td></tr>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;color:#F3CE98;">—</td><td>Calle Toril Ext. 11 Int F, Atizapán, Edomex</td><td><span class="badge badge-warn">Falta 1er pago</span></td><td><span class="badge badge-prot-juridica">Jurídica</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Grupo Arvi</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════
-     LEO
-══════════════════════════════════ -->
-<div id="tab-leo" class="tab-panel">
-  <div class="kam-header" style="background:linear-gradient(135deg,#6B4B10 0%,#B87A28 100%);">
-    <div class="kam-avatar-big">🦁</div>
-    <div class="kam-header-info">
-      <div class="kam-title">KAM · El León</div>
-      <h2>Leonardo Monzalvo</h2>
-      <div class="kam-sub">Rey en training 👑 · Más por venir</div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:16px;">
-    <div class="kpi-pill green"><div class="kpi-value">1</div><div class="kpi-label">Firma</div></div>
-    <div class="kpi-pill blue"><div class="kpi-value">4%</div><div class="kpi-label">Del total equipo</div></div>
-    <div class="kpi-pill yellow"><div class="kpi-value">Remax</div><div class="kpi-label">Agencia</div></div>
-    <div class="kpi-pill green"><div class="kpi-value">Integral</div><div class="kpi-label">Protección</div></div>
-  </div>
-  <div class="card">
-    <div class="section-label">📋 Operaciones</div>
-    <div style="overflow-x:auto;">
-      <table class="ops-table">
-        <thead><tr><th>Día</th><th>Inmueble</th><th>Status</th><th>Protección</th><th>Contrato</th><th>Agencia</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:'Red Hat Mono',monospace;font-weight:600;">16</td><td>Indiana 288 Int 504, Ciudad de los Deportes, BJ</td><td><span class="badge badge-ok">Firmado</span></td><td><span class="badge badge-prot-integral">Integral</span></td><td><span class="badge badge-primera">Primera vez</span></td><td>Remax</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-  function showTab(id, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    btn.classList.add('active');
-    if (id === 'general') drawChart();
-  }
+const META_GENERAL=120, META_PRIMERA=90, META_RENOV=30;
+const TOTAL=27, PRIMERA=21, RENOVACION=6;
 
-  /* CALENDAR */
-  const firmasByDay = {1:1,2:1,3:1,4:1,5:1,6:1,7:1,8:1,9:1,10:1,11:1,12:1,13:1,14:1,15:1,16:1,17:1,18:1,19:1,20:1,21:1,22:1,23:1,24:1,25:1,26:1};
-  const TODAY = 13;
+const dailyCumulative={1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10,11:11,12:12,13:13,14:14,15:15,16:16,17:17,18:18,19:19,20:20,21:21,22:22,23:23,24:24,25:25,26:26};
 
-  function buildCalendar() {
-    const grid = document.getElementById('calGrid');
-    if (!grid) return;
-    ['L','M','X','J','V','S','D'].forEach(d => {
-      const lbl = document.createElement('div');
-      lbl.className = 'cal-day-label';
-      lbl.textContent = d;
-      grid.appendChild(lbl);
-    });
-    // April 2026 starts Wednesday → offset 2
-    for (let i = 0; i < 2; i++) {
-      const b = document.createElement('div'); b.className = 'cal-cell empty'; grid.appendChild(b);
+const kamData=[
+  {key:'majo', name:'Majo', emoji:'🥇',color:'#BBE3E3',textColor:'#1F2937',firmas:11,fee:66294, primera:10,reno:1},
+  {key:'pablo',name:'Pablo',emoji:'🥈',color:'#72DDA3',textColor:'#1F2937',firmas:6, fee:32132, primera:6, reno:0},
+  {key:'gabo', name:'Gabo',emoji:'🥉',color:'#F3CE98',textColor:'#1F2937',firmas:5, fee:10318, primera:0, reno:5},
+  {key:'ale',  name:'Ale', emoji:'⭐',color:'#F9D3CD',textColor:'#1F2937',firmas:4, fee:22098, primera:4, reno:0},
+  {key:'leo',  name:'Leo', emoji:'⭐',color:'#FFB59C',textColor:'#1F2937',firmas:1, fee:12528, primera:1, reno:0},
+];
+
+const detailData={
+  majo:[
+    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:20500,fee:7134,status:"Firmado"},
+    {day:"11/04",ct:"primera_vez",pt:"proteccion_integral",ag:"En Casa",monto:40000,fee:13920,status:"Firmado"},
+    {day:"12/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:15000,fee:3480,status:"Firmado"},
+    {day:"14/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Soy Rumi",monto:8000,fee:2784,status:"Firmado"},
+    {day:"15/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:17000,fee:5916,status:"Firmado"},
+    {day:"17/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:8500,fee:2958,status:"Firmado"},
+    {day:"19/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:30000,fee:6960,status:"Firmado"},
+    {day:"20/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Directa",monto:19800,fee:11484,status:"Firmado"},
+    {day:"21/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:18500,fee:4292,status:"Firmado"},
+    {day:"22/04",ct:"primera_vez",pt:"proteccion_integral",ag:"E-Inmob",monto:16500,fee:5742,status:"Firmado"},
+    {day:"23/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Directa",monto:7000,fee:1624,status:"Firmado"},
+  ],
+  pablo:[
+    {day:"02/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Rentas Ok",monto:8000,fee:1856,status:"Firmado"},
+    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral",ag:"YoRento",monto:20000,fee:6960,status:"Firmado"},
+    {day:"07/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Directa",monto:9000,fee:3132,status:"Firmado"},
+    {day:"08/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:38500,fee:13398,status:"Firmado"},
+    {day:"09/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Grupo Arvi",monto:4500,fee:2610,status:"Firmado"},
+    {day:"13/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Grupo Arvi",monto:12000,fee:4176,status:"Firmado"},
+  ],
+  gabo:[
+    {day:"03/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436,fee:2240,status:"Firmado"},
+    {day:"04/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752,fee:3046,status:"Falta primer pago"},
+    {day:"05/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616,fee:910,status:"Firmado"},
+    {day:"10/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555,fee:1933,status:"Falta primer pago"},
+    {day:"18/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290,fee:2189,status:"Firmado"},
+  ],
+  ale:[
+    {day:"24/04",ct:"primera_vez",pt:"proteccion_premium",ag:"Rentas Ok",monto:30000,fee:17400,status:"Firmado"},
+    {day:"25/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Propity",monto:12500,fee:2900,status:"Firmado"},
+    {day:"26/04",ct:"primera_vez",pt:"proteccion_juridica",ag:"Rentas Ok",monto:3150,fee:731,status:"Firmado"},
+    {day:"S/F",  ct:"primera_vez",pt:"proteccion_juridica",ag:"Grupo Arvi",monto:4600,fee:1067,status:"Falta primer pago"},
+  ],
+  leo:[
+    {day:"16/04",ct:"primera_vez",pt:"proteccion_integral",ag:"Remax",monto:36000,fee:12528,status:"Firmado"},
+  ],
+};
+
+function fmtMoney(n){ return '$'+Math.round(n).toLocaleString('es-MX'); }
+function ptBadge(pt){
+  if(pt==='proteccion_integral') return '<span class="badge badge-integral">Integral</span>';
+  if(pt==='proteccion_juridica') return '<span class="badge badge-juridica">Jurídica</span>';
+  if(pt==='proteccion_premium')  return '<span class="badge badge-premium">Premium ⭐</span>';
+  return `<span class="badge">${pt}</span>`;
+}
+function ctBadge(ct){
+  if(ct==='primera_vez')     return '<span class="badge badge-primera">1ra vez</span>';
+  if(ct==='renovacion_mica') return '<span class="badge badge-renovacion">Renovación</span>';
+  return `<span class="badge">${ct}</span>`;
+}
+function agBadge(ag){
+  if(ag==='AKA')     return '<span class="badge badge-aka">AKA</span>';
+  if(ag==='Directa') return '<span class="badge badge-directa">Directa</span>';
+  return `<span class="badge badge-directa">${ag}</span>`;
+}
+function stBadge(st){
+  if(st==='Firmado')           return '<span class="badge badge-ok">✓ Firmado</span>';
+  if(st==='Falta primer pago') return '<span class="badge badge-warn">⚠ Falta pago</span>';
+  return `<span class="badge">${st}</span>`;
+}
+
+function animateCounter(el,target,duration=1200){
+  const start=performance.now();
+  const update=(t)=>{
+    const p=Math.min((t-start)/duration,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(ease*target);
+    if(p<1) requestAnimationFrame(update); else el.textContent=target;
+  };
+  requestAnimationFrame(update);
+}
+
+function buildDayDots(){
+  const wrap=document.getElementById('dayDots');
+  const dailyByDay={};
+  Object.entries(dailyCumulative).forEach(([d,cum],i,arr)=>{
+    const prev=i===0?0:arr[i-1][1];
+    dailyByDay[+d]=cum-prev;
+  });
+  for(let d=1;d<=30;d++){
+    const dot=document.createElement('div');
+    dot.className='day-dot';
+    const count=dailyByDay[d]||0;
+    if(count>0){
+      dot.classList.add('has-firma');
+      dot.innerHTML=`${d}<span class="dot-count">${count}</span>`;
+      dot.title=`${count} firma${count>1?'s':''} el día ${d}`;
+    } else {
+      dot.classList.add('empty');
+      dot.textContent=d;
     }
-    for (let d = 1; d <= 30; d++) {
-      const cell = document.createElement('div');
-      cell.className = 'cal-cell';
-      cell.textContent = d;
-      if (d > TODAY) cell.classList.add('future');
-      else if (firmasByDay[d]) cell.classList.add('has-firma');
-      else cell.classList.add('no-firma');
-      if (d === TODAY) cell.classList.add('today');
-      cell.title = firmasByDay[d] ? 'Día ' + d + ': ' + firmasByDay[d] + ' firma(s)' : 'Día ' + d + ': sin firmas';
-      grid.appendChild(cell);
+    if(d===13) dot.classList.add('today');
+    if(d>13) dot.style.opacity='0.3';
+    wrap.appendChild(dot);
+  }
+}
+
+function buildScoreboard(){
+  const grid=document.getElementById('scoreboardGrid');
+  const rankEmojis=['🥇','🥈','🥉','⭐','⭐'];
+  const ranks=['rank-1','rank-2','rank-3','',''];
+  kamData.forEach((k,i)=>{
+    const card=document.createElement('div');
+    card.className=`card kam-card ${ranks[i]}`;
+    card.style.background=`linear-gradient(140deg,${k.color}33 0%,${k.color}10 100%)`;
+    card.onclick=()=>showTab(k.key);
+    const pct=Math.round(k.firmas/11*100);
+    card.innerHTML=`
+      <div class="kam-rank-badge">${rankEmojis[i]}</div>
+      <div class="kam-name" style="color:${k.textColor}">${k.name}</div>
+      <div class="kam-role">KAM</div>
+      <div class="kam-stat-main" style="color:#1F2937">${k.firmas}</div>
+      <div class="kam-stat-label">firmas totales</div>
+      <div class="kam-stats-row">
+        <span class="kam-chip">1ra: ${k.primera}</span>
+        <span class="kam-chip">Ren: ${k.reno}</span>
+        <span class="kam-chip">${fmtMoney(k.fee)}</span>
+      </div>
+      <div class="kam-progress-wrap">
+        <div class="kam-progress-label"><span>vs líder</span><span>${pct}%</span></div>
+        <div class="kam-progress-track">
+          <div class="kam-progress-fill" style="width:${pct}%;background:${k.color}"></div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function buildTable(id,rows){
+  const table=document.getElementById(id);
+  table.innerHTML=`
+    <thead><tr>
+      <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th>
+      <th style="text-align:right">Renta</th><th style="text-align:right">FEE</th>
+    </tr></thead>
+    <tbody>
+      ${rows.map(r=>`<tr>
+        <td style="font-family:'Red Hat Mono',monospace;font-weight:700">${r.day}</td>
+        <td>${ctBadge(r.ct)}</td>
+        <td>${ptBadge(r.pt)}</td>
+        <td>${agBadge(r.ag)}</td>
+        <td>${stBadge(r.status)}</td>
+        <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700">${fmtMoney(r.monto)}</td>
+        <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700;color:#166534">${fmtMoney(r.fee)}</td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+function buildChart(){
+  const days=Object.keys(dailyCumulative).map(Number).sort((a,b)=>a-b);
+  const totals=days.map(d=>dailyCumulative[d]);
+  const labels=days.map(d=>`${d} Abr`);
+  const ctx=document.getElementById('mainChart').getContext('2d');
+  new Chart(ctx,{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'Firmas acumuladas',data:totals,borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.12)',fill:true,tension:0.4,borderWidth:3,pointBackgroundColor:'#72DDA3',pointRadius:5,pointHoverRadius:7},
+        {label:'Meta (120)',data:days.map(()=>120),borderColor:'rgba(31,41,55,0.25)',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false,tension:0}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:12},color:'#374151',usePointStyle:true}},
+        tooltip:{mode:'index',intersect:false}
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
+        y:{min:0,max:120,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
+      },
+      interaction:{mode:'nearest',axis:'x',intersect:false}
     }
+  });
+}
+
+function animateBars(){
+  document.querySelectorAll('.breakdown-fill[data-w]').forEach(el=>{
+    setTimeout(()=>{ el.style.width=el.dataset.w+'%'; },400);
+  });
+}
+
+function animateMeta(){
+  animateCounter(document.getElementById('counterTotal'),TOTAL);
+  const pct=Math.round(TOTAL/META_GENERAL*100);
+  setTimeout(()=>{ document.getElementById('pctBadge').textContent=pct+'%'; },200);
+  setTimeout(()=>{ document.getElementById('mainBarFill').style.width=(TOTAL/META_GENERAL*100)+'%'; },300);
+  const pP=Math.round(PRIMERA/META_PRIMERA*100);
+  document.getElementById('primera-pct').textContent=pP+'%';
+  document.getElementById('primera-falta').textContent=META_PRIMERA-PRIMERA;
+  setTimeout(()=>{ document.getElementById('primera-bar').style.width=pP+'%'; },500);
+  const rP=Math.round(RENOVACION/META_RENOV*100);
+  document.getElementById('renov-pct').textContent=rP+'%';
+  document.getElementById('renov-falta').textContent=META_RENOV-RENOVACION;
+  setTimeout(()=>{ document.getElementById('renov-bar').style.width=rP+'%'; },700);
+}
+
+function launchConfetti(){
+  const wrap=document.getElementById('confettiWrap');
+  const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937'];
+  for(let i=0;i<60;i++){
+    const piece=document.createElement('div');
+    piece.className='confetti-piece';
+    piece.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s;transform:rotate(${Math.random()*360}deg);width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
+    wrap.appendChild(piece);
+    setTimeout(()=>piece.remove(),4000);
   }
+}
 
-  /* CHART */
-  function drawChart() {
-    const canvas = document.getElementById('cumChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const W = canvas.parentElement.clientWidth - 40 || 400;
-    const H = 190;
-    canvas.width = W; canvas.height = H;
+function showTab(key){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+key).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>{
+    if(t.getAttribute('onclick')===`showTab('${key}')`) t.classList.add('active');
+  });
+}
 
-    const pad = {top:16, right:16, bottom:28, left:32};
-    const cw = W - pad.left - pad.right;
-    const ch = H - pad.top - pad.bottom;
-
-    const days = Array.from({length:13}, (_,i) => i+1);
-    const cum  = days.map(d => d); // 1 firma/día = cumulative = día
-    const maxY = 30;
-
-    const xS = d => pad.left + ((d-1)/12)*cw;
-    const yS = v => pad.top + ch - (v/maxY)*ch;
-
-    ctx.clearRect(0, 0, W, H);
-
-    // grid
-    ctx.strokeStyle = '#F3F4F6'; ctx.lineWidth = 1;
-    [0,10,20,30].forEach(v => {
-      const y = yS(v);
-      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left+cw, y); ctx.stroke();
-      ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono,monospace'; ctx.textAlign = 'right';
-      ctx.fillText(v, pad.left-4, y+3);
-    });
-
-    // area
-    ctx.beginPath();
-    ctx.moveTo(xS(1), yS(0));
-    days.forEach((d,i) => ctx.lineTo(xS(d), yS(cum[i])));
-    ctx.lineTo(xS(13), yS(0));
-    ctx.closePath();
-    const g = ctx.createLinearGradient(0, pad.top, 0, pad.top+ch);
-    g.addColorStop(0, 'rgba(114,221,163,0.28)'); g.addColorStop(1, 'rgba(114,221,163,0.02)');
-    ctx.fillStyle = g; ctx.fill();
-
-    // line
-    ctx.beginPath();
-    days.forEach((d,i) => i===0 ? ctx.moveTo(xS(d),yS(cum[i])) : ctx.lineTo(xS(d),yS(cum[i])));
-    ctx.strokeStyle = '#72DDA3'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke();
-
-    // dots + x labels
-    ctx.textAlign = 'center';
-    days.forEach((d,i) => {
-      ctx.beginPath(); ctx.arc(xS(d), yS(cum[i]), 3.5, 0, Math.PI*2);
-      ctx.fillStyle = '#72DDA3'; ctx.fill();
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
-      if ([1,4,7,10,13].includes(d)) {
-        ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono,monospace';
-        ctx.fillText(d, xS(d), H-6);
-      }
-    });
-  }
-
-  buildCalendar();
-  drawChart();
-  window.addEventListener('resize', drawChart);
+document.addEventListener('DOMContentLoaded',()=>{
+  buildDayDots();
+  buildScoreboard();
+  buildChart();
+  animateMeta();
+  animateBars();
+  buildTable('table-majo',  detailData.majo);
+  buildTable('table-pablo', detailData.pablo);
+  buildTable('table-gabo',  detailData.gabo);
+  buildTable('table-ale',   detailData.ale);
+  buildTable('table-leo',   detailData.leo);
+});
 </script>
 </body>
 </html>
