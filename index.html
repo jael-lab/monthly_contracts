@@ -3,628 +3,688 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏆 MICA Firmas — Abril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>MICA · Dashboard Firmas Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Red+Hat+Mono:wght@300..700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #72DDA3;
-    --agua: #BBE3E3;
-    --yellow: #F3CE98;
-    --coral: #FFB59C;
-    --pink: #F9D3CD;
-    --bg: #F5F5F5;
-    --text: #1F2937;
-    --text2: #374151;
-    --white: #ffffff;
-    --card: #ffffff;
-    --border: rgba(31,41,55,0.08);
-    --shadow: 0 4px 24px rgba(31,41,55,0.08);
-    --shadow-hover: 0 8px 40px rgba(31,41,55,0.14);
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Red Hat Display', sans-serif; background: #F0F2F5; color: #1F2937; min-height: 100vh; }
+
+  /* ─── TABS ─── */
+  .tab-bar { background: #fff; border-bottom: 2px solid #E5E7EB; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .tab-btn { padding: 14px 24px; font-family: 'Red Hat Display', sans-serif; font-weight: 600; font-size: 14px; border: none; background: transparent; cursor: pointer; color: #6B7280; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; letter-spacing: .3px; }
+  .tab-btn.active { color: #1F2937; border-bottom-color: #72DDA3; }
+  .tab-btn:hover:not(.active) { color: #1F2937; background: #F9FAFB; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+  .page-header { margin-bottom: 32px; }
+  .page-header h1 { font-size: 28px; font-weight: 800; color: #1F2937; letter-spacing: -.5px; }
+  .page-header p { color: #6B7280; font-size: 14px; margin-top: 4px; font-family: 'Red Hat Mono', monospace; }
+
+  /* ─── CARDS ─── */
+  .cards-row { display: grid; gap: 16px; margin-bottom: 24px; }
+  .cards-4 { grid-template-columns: repeat(4, 1fr); }
+  .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+  .card { background: #fff; border-radius: 16px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .card-label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7280; margin-bottom: 8px; }
+  .card-value { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -1px; color: #1F2937; }
+  .card-sub { font-size: 12px; color: #6B7280; margin-top: 6px; font-family: 'Red Hat Mono', monospace; }
+  .card-accent { border-left: 4px solid; }
+  .accent-verde { border-color: #72DDA3; }
+  .accent-agua { border-color: #BBE3E3; }
+  .accent-amarillo { border-color: #F3CE98; }
+  .accent-coral { border-color: #FFB59C; }
+  .accent-rosa { border-color: #F9D3CD; }
+
+  /* ─── META HERO ─── */
+  .meta-hero { background: #1F2937; border-radius: 20px; padding: 32px; color: #fff; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .meta-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: #72DDA3; border-radius: 50%; opacity: .08; }
+  .meta-hero::after { content: ''; position: absolute; bottom: -60px; right: 60px; width: 160px; height: 160px; background: #BBE3E3; border-radius: 50%; opacity: .07; }
+  .meta-hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .meta-hero-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 6px; }
+  .meta-hero-nums { display: flex; align-items: baseline; gap: 8px; }
+  .meta-hero-actual { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -3px; color: #72DDA3; }
+  .meta-hero-sep { font-size: 32px; color: #4B5563; font-weight: 300; }
+  .meta-hero-meta { font-size: 36px; font-weight: 600; color: #9CA3AF; }
+  .meta-badge { background: #72DDA3; color: #1F2937; border-radius: 100px; padding: 6px 14px; font-weight: 800; font-size: 13px; white-space: nowrap; }
+  .progress-bar-wrap { background: #374151; border-radius: 100px; height: 12px; overflow: hidden; margin-bottom: 12px; }
+  .progress-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #72DDA3, #BBE3E3); transition: width 1s ease; }
+  .progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: #9CA3AF; font-family: 'Red Hat Mono', monospace; }
+
+  /* ─── CALENDARIO ─── */
+  .cal-title { font-size: 13px; font-weight: 700; color: #1F2937; margin-bottom: 14px; letter-spacing: .2px; }
+  .cal-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cal-day { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 38px; }
+  .cal-day-num { font-size: 10px; font-weight: 700; color: #9CA3AF; font-family: 'Red Hat Mono', monospace; }
+  .cal-dot { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; font-family: 'Red Hat Mono', monospace; }
+  .cal-dot-0 { background: #F3F4F6; color: #D1D5DB; }
+  .cal-dot-low { background: #F9D3CD; color: #9B4A38; }
+  .cal-dot-med { background: #F3CE98; color: #92600A; }
+  .cal-dot-high { background: #72DDA3; color: #065F46; }
+  .cal-dot-today { outline: 2px solid #1F2937; outline-offset: 1px; }
+
+  /* ─── SCOREBOARD ─── */
+  .scoreboard { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 24px; }
+  .scoreboard-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #6B7280; margin-bottom: 20px; }
+  .scoreboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .score-card { border-radius: 16px; padding: 20px; text-align: center; position: relative; overflow: hidden; }
+  .score-card.rank-1 { background: #1F2937; color: #fff; }
+  .score-card.rank-2 { background: #F0F2F5; }
+  .score-card.rank-3 { background: #F0F2F5; }
+  .score-card.rank-4 { background: #F0F2F5; }
+  .score-rank { position: absolute; top: 10px; left: 12px; font-size: 10px; font-weight: 800; font-family: 'Red Hat Mono', monospace; opacity: .5; }
+  .score-svg { margin: 0 auto 10px; display: block; }
+  .score-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .score-apodo { font-size: 11px; opacity: .6; margin-bottom: 12px; }
+  .score-num { font-size: 40px; font-weight: 900; line-height: 1; letter-spacing: -2px; }
+  .score-card.rank-1 .score-num { color: #72DDA3; }
+  .score-breakdown { display: flex; gap: 8px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
+  .score-chip { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 100px; font-family: 'Red Hat Mono', monospace; }
+  .chip-pv { background: #BBE3E3; color: #0E4D4D; }
+  .chip-ren { background: #F9D3CD; color: #7A2D1F; }
+
+  /* ─── GRÁFICA ACUMULADA ─── */
+  .chart-wrap { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 24px; }
+  .chart-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #6B7280; margin-bottom: 20px; }
+  .chart-canvas-wrap { position: relative; height: 200px; }
+  svg.line-chart { width: 100%; height: 100%; overflow: visible; }
+
+  /* ─── BREAKDOWN ─── */
+  .breakdown-section { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .breakdown-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .breakdown-card h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6B7280; margin-bottom: 16px; }
+  .breakdown-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .breakdown-label { font-size: 13px; font-weight: 600; flex: 1; }
+  .breakdown-bar-wrap { flex: 2; background: #F3F4F6; border-radius: 100px; height: 8px; overflow: hidden; }
+  .breakdown-bar-fill { height: 100%; border-radius: 100px; }
+  .breakdown-count { font-size: 13px; font-weight: 800; font-family: 'Red Hat Mono', monospace; min-width: 28px; text-align: right; }
+
+  /* ─── KAM HEADER ─── */
+  .kam-header { border-radius: 20px; padding: 32px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 28px; position: relative; overflow: hidden; }
+  .kam-header::after { content: ''; position: absolute; top: -30px; right: -30px; width: 180px; height: 180px; background: rgba(255,255,255,.06); border-radius: 50%; }
+  .kam-header-text h2 { font-size: 32px; font-weight: 900; letter-spacing: -1px; }
+  .kam-header-text p { opacity: .7; font-size: 14px; margin-top: 4px; }
+  .kam-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+
+  /* ─── OPS TABLE ─── */
+  .ops-table-wrap { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 24px; overflow-x: auto; }
+  .ops-table-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6B7280; margin-bottom: 16px; }
+  table.ops-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.ops-table th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: #9CA3AF; border-bottom: 2px solid #F3F4F6; }
+  table.ops-table td { padding: 10px 12px; border-bottom: 1px solid #F9FAFB; color: #1F2937; vertical-align: top; }
+  table.ops-table tr:last-child td { border-bottom: none; }
+  table.ops-table tr:hover td { background: #FAFAFA; }
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+  .status-ok { background: #D1FAE5; color: #065F46; }
+  .status-warn { background: #FEF3C7; color: #92600A; }
+  .contract-emoji { margin-right: 4px; }
+
+  /* ─── ALERTAS ─── */
+  .alertas-wrap { margin-bottom: 24px; }
+  .alerta { background: #FEF9EC; border: 1px solid #F3CE98; border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start; }
+  .alerta-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alerta-text { font-size: 13px; color: #92600A; line-height: 1.5; }
+  .alerta-text strong { font-weight: 700; }
+
+  /* ─── PROYECCION ─── */
+  .proy-card { background: #fff; border-radius: 16px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .proy-num { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .cards-4, .cards-3 { grid-template-columns: repeat(2, 1fr); }
+    .scoreboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .breakdown-section { grid-template-columns: 1fr; }
+    .kam-kpis { grid-template-columns: repeat(2, 1fr); }
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Red Hat Display', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-
-  .bg-bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .bubble { position: absolute; border-radius: 50%; opacity: 0.18; animation: floatBubble 18s ease-in-out infinite; }
-  .bubble:nth-child(1){ width:420px;height:420px; background:#72DDA3; top:-120px; right:-80px; animation-delay:0s; }
-  .bubble:nth-child(2){ width:280px;height:280px; background:#BBE3E3; bottom:10%; left:-60px; animation-delay:4s; }
-  .bubble:nth-child(3){ width:180px;height:180px; background:#F3CE98; top:40%; right:5%; animation-delay:8s; }
-  .bubble:nth-child(4){ width:140px;height:140px; background:#FFB59C; bottom:20%; right:20%; animation-delay:12s; }
-  @keyframes floatBubble { 0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);} }
-
-  .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
-
-  .header { padding: 40px 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .header-left h1 { font-size: clamp(28px,4vw,42px); font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
-  .header-left h1 span { color: #72DDA3; }
-  .header-left p { font-size: 14px; color: #374151; margin-top: 6px; font-weight: 500; }
-  .header-badge { background: #1F2937; color: #72DDA3; padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; letter-spacing: 0.5px; }
-
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px; background: rgba(255,255,255,0.6); padding: 6px; border-radius: 16px; backdrop-filter: blur(8px); border: 1px solid rgba(31,41,55,0.08); width: fit-content; }
-  .tab { padding: 10px 22px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Red Hat Display', sans-serif; font-size: 14px; font-weight: 700; transition: all 0.22s cubic-bezier(.4,0,.2,1); background: transparent; color: #374151; display: flex; align-items: center; gap: 8px; }
-  .tab:hover { background: rgba(114,221,163,0.15); }
-  .tab.active { background: #1F2937; color: #ffffff; box-shadow: 0 2px 12px rgba(31,41,55,0.18); }
-  .tab .tab-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; }
-
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
-
-  .card { background: #ffffff; border-radius: 20px; border: 1px solid rgba(31,41,55,0.08); box-shadow: 0 4px 24px rgba(31,41,55,0.08); transition: box-shadow 0.22s ease; overflow: hidden; }
-  .card:hover { box-shadow: 0 8px 40px rgba(31,41,55,0.14); }
-
-  .meta-hero { background: #1F2937; border-radius: 24px; padding: 36px 40px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; position: relative; overflow: hidden; }
-  .meta-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: #72DDA3; border-radius: 50%; opacity: 0.1; }
-  .meta-hero-left h2 { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-  .meta-total-display { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .meta-big-num { font-size: clamp(56px,8vw,80px); font-weight: 900; color: #ffffff; line-height: 1; font-feature-settings: 'tnum'; }
-  .meta-separator { font-size: 40px; color: rgba(255,255,255,0.3); font-weight: 300; }
-  .meta-goal-num { font-size: 40px; font-weight: 700; color: rgba(255,255,255,0.4); line-height: 1; }
-  .meta-pct-badge { display: inline-block; background: #72DDA3; color: #1F2937; padding: 6px 16px; border-radius: 100px; font-size: 18px; font-weight: 900; margin-top: 12px; }
-  .meta-hero-bar-wrap { margin-top: 16px; }
-  .meta-hero-bar-track { height: 12px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
-  .meta-hero-bar-fill { height: 100%; background: linear-gradient(90deg,#72DDA3,#4ecb7a); border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); position: relative; }
-  .meta-hero-bar-fill::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 0 3px #72DDA3; }
-  .meta-hero-right { display: flex; flex-direction: column; gap: 14px; }
-
-  .mini-meta { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 20px; }
-  .mini-meta-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .mini-meta-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); }
-  .mini-meta-nums { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
-  .mini-meta-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
-  .mini-meta-bar-fill { height: 100%; border-radius: 100px; transition: width 1.4s cubic-bezier(.4,0,.2,1); }
-
-  .scoreboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; margin-bottom: 24px; }
-  .kam-card { border-radius: 20px; padding: 24px; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 2px solid transparent; }
-  .kam-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(31,41,55,0.14); }
-  .kam-card.rank-1 { border-color: #FFD700; }
-  .kam-card.rank-2 { border-color: #C0C0C0; }
-  .kam-card.rank-3 { border-color: #CD7F32; }
-  .kam-rank-badge { position: absolute; top: 16px; right: 16px; font-size: 24px; line-height: 1; }
-  .kam-name { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
-  .kam-role { font-size: 12px; font-weight: 600; opacity: 0.6; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-  .kam-stat-main { font-size: 52px; font-weight: 900; line-height: 1; font-feature-settings: 'tnum'; }
-  .kam-stat-label { font-size: 12px; font-weight: 600; opacity: 0.6; margin-top: 2px; margin-bottom: 16px; }
-  .kam-progress-wrap { margin-top: 4px; }
-  .kam-progress-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; opacity: 0.7; }
-  .kam-progress-track { height: 8px; background: rgba(0,0,0,0.12); border-radius: 100px; overflow: hidden; }
-  .kam-progress-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-  .kam-stats-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-  .kam-chip { padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.1); }
-
-  .chart-card { padding: 28px 28px 24px; margin-bottom: 24px; }
-  .chart-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-  .chart-sub { font-size: 13px; color: #374151; opacity: 0.6; margin-bottom: 20px; }
-  .chart-wrap { position: relative; height: 200px; }
-  canvas { width: 100% !important; }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} .meta-hero{grid-template-columns:1fr;} }
-
-  .breakdown-card { padding: 24px; }
-  .breakdown-title { font-size: 15px; font-weight: 800; margin-bottom: 16px; }
-  .breakdown-item { margin-bottom: 12px; }
-  .breakdown-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .breakdown-label { font-size: 13px; font-weight: 700; }
-  .breakdown-count { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
-  .breakdown-track { height: 10px; background: #F5F5F5; border-radius: 100px; overflow: hidden; }
-  .breakdown-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-
-  .agencia-list { list-style: none; }
-  .agencia-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(31,41,55,0.08); font-size: 13px; }
-  .agencia-item:last-child { border-bottom: none; }
-  .agencia-name { font-weight: 700; }
-  .agencia-pill { background: #F5F5F5; border-radius: 100px; padding: 3px 10px; font-size: 12px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
-
-  .kam-detail-header { border-radius: 20px; padding: 28px 32px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .kam-detail-name { font-size: 32px; font-weight: 900; }
-  .kam-detail-meta { font-size: 13px; opacity: 0.65; margin-top: 4px; font-weight: 600; }
-  .kam-kpi-row { display: flex; gap: 20px; flex-wrap: wrap; }
-  .kam-kpi { text-align: center; }
-  .kam-kpi-val { font-size: 28px; font-weight: 900; line-height: 1; }
-  .kam-kpi-lab { font-size: 11px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
-
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #374151; opacity: 0.5; border-bottom: 1px solid rgba(31,41,55,0.08); white-space: nowrap; }
-  td { padding: 12px 14px; border-bottom: 1px solid rgba(31,41,55,0.08); font-weight: 500; vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(114,221,163,0.05); }
-
-  .badge { padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; white-space: nowrap; display: inline-block; }
-  .badge-integral   { background: #dcfce7; color: #166534; }
-  .badge-juridica   { background: #dbeafe; color: #1e40af; }
-  .badge-premium    { background: #fef3c7; color: #92400e; }
-  .badge-primera    { background: #f3e8ff; color: #6b21a8; }
-  .badge-renovacion { background: #fce7f3; color: #9d174d; }
-  .badge-directa    { background: #F5F5F5; color: #374151; }
-  .badge-aka        { background: #1F2937; color: #72DDA3; }
-  .badge-ok         { background: #dcfce7; color: #166534; }
-  .badge-warn       { background: #fef3c7; color: #92400e; }
-
-  .confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
-  .confetti-piece { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: confettiFall 3s ease-in forwards; opacity: 0; }
-  @keyframes confettiFall { 0%{opacity:1;transform:translateY(-20px) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
-
-  .streak-section { margin-bottom: 24px; }
-  .streak-title { font-size: 15px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .day-dots { display: flex; gap: 6px; flex-wrap: wrap; }
-  .day-dot { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; font-family: 'Red Hat Mono', monospace; transition: transform 0.15s ease; cursor: default; position: relative; }
-  .day-dot:hover { transform: scale(1.15); }
-  .day-dot.empty { background: #F5F5F5; color: rgba(31,41,55,0.25); border: 1.5px dashed rgba(31,41,55,0.15); }
-  .day-dot.has-firma { background: #72DDA3; color: #1F2937; }
-  .day-dot.today { outline: 3px solid #1F2937; outline-offset: 2px; }
-  .day-dot .dot-count { position: absolute; top: -6px; right: -6px; background: #1F2937; color: #ffffff; border-radius: 100px; width: 16px; height: 16px; font-size: 9px; display: flex; align-items: center; justify-content: center; font-weight: 900; }
-
-  .achievements { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-  .achievement { background: #ffffff; border: 1px solid rgba(31,41,55,0.08); border-radius: 16px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; min-width: 180px; flex: 1; box-shadow: 0 4px 24px rgba(31,41,55,0.08); }
-  .achievement-icon { font-size: 28px; }
-  .achievement-text .ach-title { font-size: 13px; font-weight: 800; }
-  .achievement-text .ach-desc { font-size: 11px; color: #374151; opacity: 0.6; margin-top: 1px; }
-
-  .footer { text-align: center; padding: 24px 0 0; font-size: 12px; color: #374151; opacity: 0.4; font-weight: 600; }
+  @media (max-width: 480px) {
+    .cards-4, .cards-3, .cards-2 { grid-template-columns: 1fr 1fr; }
+    .scoreboard-grid { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<div class="bg-bubbles">
-  <div class="bubble"></div><div class="bubble"></div>
-  <div class="bubble"></div><div class="bubble"></div>
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('general')">📊 General</button>
+  <button class="tab-btn" onclick="showTab('majo')">🦋 Majo</button>
+  <button class="tab-btn" onclick="showTab('gabo')">🪐 Gabo</button>
+  <button class="tab-btn" onclick="showTab('leo')">🦁 Leo</button>
+  <button class="tab-btn" onclick="showTab('ale')">🐰 Ale</button>
 </div>
-<div class="confetti-wrap" id="confettiWrap"></div>
 
+<!-- ════════════════════ TAB GENERAL ════════════════════ -->
+<div id="tab-general" class="tab-content active">
 <div class="container">
 
-  <div class="header">
-    <div class="header-left">
-      <h1>🏆 Firmas <span>Abril</span></h1>
-      <p>MICA · Dashboard Operativo · Actualizado 13 Abr 2026</p>
-    </div>
-    <div class="header-badge">MES EN CURSO ⚡</div>
+  <div class="page-header">
+    <h1>Dashboard Firmas · Abril 2026</h1>
+    <p id="last-updated">Actualizado hoy · Semana en curso</p>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('general')">🌟 General</button>
-    <button class="tab" onclick="showTab('majo')"><span class="tab-avatar" style="background:#BBE3E3;color:#1F2937">M</span> Majo</button>
-    <button class="tab" onclick="showTab('gabo')"><span class="tab-avatar" style="background:#F3CE98;color:#1F2937">G</span> Gabo</button>
-    <button class="tab" onclick="showTab('ale')"><span class="tab-avatar" style="background:#F9D3CD;color:#1F2937">A</span> Ale</button>
-    <button class="tab" onclick="showTab('leo')"><span class="tab-avatar" style="background:#FFB59C;color:#1F2937">L</span> Leo</button>
-  </div>
-
-  <!-- GENERAL -->
-  <div class="tab-panel active" id="panel-general">
-
-    <div class="meta-hero">
-      <div class="meta-hero-left">
-        <h2>Meta del Mes</h2>
-        <div class="meta-total-display">
-          <div class="meta-big-num" id="counterTotal">0</div>
-          <div class="meta-separator">/</div>
-          <div class="meta-goal-num">120</div>
-        </div>
-        <div class="meta-pct-badge" id="pctBadge">0%</div>
-        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 16px;">
-            <div style="font-size:10px;color:rgba(255,255,255,0.4);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Ritmo actual</div>
-            <div style="font-size:22px;font-weight:900;color:#ffffff;margin-top:2px;">2.1 <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.4)">firmas/día</span></div>
-          </div>
-          <div style="background:rgba(114,221,163,0.15);border:1px solid rgba(114,221,163,0.35);border-radius:12px;padding:10px 16px;">
-            <div style="font-size:10px;color:rgba(114,221,163,0.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Necesario para meta</div>
-            <div style="font-size:22px;font-weight:900;color:#72DDA3;margin-top:2px;">5.5 <span style="font-size:12px;font-weight:600;color:rgba(114,221,163,0.6)">firmas/día</span></div>
-          </div>
-        </div>
-        <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.28);font-weight:600;">17 días restantes · 93 firmas por cerrar</div>
-        <div class="meta-hero-bar-wrap" style="margin-top:14px">
-          <div class="meta-hero-bar-track">
-            <div class="meta-hero-bar-fill" id="mainBarFill" style="width:0%"></div>
-          </div>
-        </div>
-      </div>
-      <div class="meta-hero-right">
-        <div class="mini-meta">
-          <div class="mini-meta-header">
-            <span class="mini-meta-name">🍦 Primera vez</span>
-            <span class="mini-meta-nums" style="color:#BBE3E3">21 / 90</span>
-          </div>
-          <div class="mini-meta-bar-track">
-            <div class="mini-meta-bar-fill" id="primera-bar" style="width:0%;background:#BBE3E3"></div>
-          </div>
-          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
-            <span id="primera-pct">0%</span> de meta · faltan <span id="primera-falta">69</span>
-          </div>
-        </div>
-        <div class="mini-meta">
-          <div class="mini-meta-header">
-            <span class="mini-meta-name">🎁 Renovaciones</span>
-            <span class="mini-meta-nums" style="color:#FFB59C">6 / 30</span>
-          </div>
-          <div class="mini-meta-bar-track">
-            <div class="mini-meta-bar-fill" id="renov-bar" style="width:0%;background:#FFB59C"></div>
-          </div>
-          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
-            <span id="renov-pct">0%</span> de meta · faltan <span id="renov-falta">24</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="achievements">
-      <div class="achievement"><div class="achievement-icon">🔥</div><div class="achievement-text"><div class="ach-title">Mejor día: 9 Abr</div><div class="ach-desc">6 firmas en un solo día</div></div></div>
-      <div class="achievement"><div class="achievement-icon">💰</div><div class="achievement-text"><div class="ach-title">$143,370 en FEE</div><div class="ach-desc">Total mes acumulado</div></div></div>
-      <div class="achievement"><div class="achievement-icon">⭐</div><div class="achievement-text"><div class="ach-title">MVP Anterior: Majo 🦋</div><div class="ach-desc">Líder también en abril</div></div></div>
-      <div class="achievement"><div class="achievement-icon">📅</div><div class="achievement-text"><div class="ach-title">9 días activos</div><div class="ach-desc">De 13 días transcurridos</div></div></div>
-    </div>
-
-    <div class="card streak-section" style="padding:24px;">
-      <div class="streak-title">📅 Actividad del mes — firma por día</div>
-      <div class="day-dots" id="dayDots"></div>
-    </div>
-
-    <h3 style="font-size:16px;font-weight:800;margin:24px 0 14px;display:flex;align-items:center;gap:8px;">🏅 Ranking del Equipo</h3>
-    <div class="scoreboard-grid" id="scoreboardGrid"></div>
-
-    <div class="card chart-card" style="margin-bottom:24px;">
-      <div class="chart-title">📈 Firmas acumuladas en el mes</div>
-      <div class="chart-sub">Progresión diaria del equipo completo · Abril 2026</div>
-      <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
-    </div>
-
-    <div class="two-col">
-      <div class="card breakdown-card">
-        <div class="breakdown-title">🛡️ Por tipo de protección</div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Integral</span><span class="breakdown-count">16</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#72DDA3" data-w="59.3"></div></div>
-        </div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Jurídica</span><span class="breakdown-count">8</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#BBE3E3" data-w="29.6"></div></div>
-        </div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Premium</span><span class="breakdown-count">3</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#F3CE98" data-w="11.1"></div></div>
-        </div>
-      </div>
-      <div class="card breakdown-card">
-        <div class="breakdown-title">🏢 Top Agencias</div>
-        <ul class="agencia-list">
-          <li class="agencia-item"><span class="agencia-name">➡️ Directa</span><span class="agencia-pill">9</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏠 AKA</span><span class="agencia-pill">5</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Rentas Ok</span><span class="agencia-pill">3</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Grupo Arvi</span><span class="agencia-pill">3</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Remax</span><span class="agencia-pill">2</span></li>
-          <li class="agencia-item"><span class="agencia-name">📦 Otras</span><span class="agencia-pill">5</span></li>
-        </ul>
-      </div>
-    </div>
-
-  </div><!-- /general -->
-
-  <!-- MAJO -->
-  <div class="tab-panel" id="panel-majo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#BBE3E3 0%,#8ccece 100%);color:#1F2937;">
+  <!-- META HERO -->
+  <div class="meta-hero">
+    <div class="meta-hero-top">
       <div>
-        <div class="kam-detail-name">🦋 María José Arriaga</div>
-        <div class="kam-detail-meta">KAM · La Mariposa · MVP Marzo 👑 · Líder Abril</div>
+        <div class="meta-hero-label">Meta del mes</div>
+        <div class="meta-hero-nums">
+          <div class="meta-hero-actual" id="hero-actual">37</div>
+          <div class="meta-hero-sep">/</div>
+          <div class="meta-hero-meta">120</div>
+        </div>
       </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">11</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$66K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">10</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">1</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
+      <div id="hero-badge" class="meta-badge">30.8%</div>
     </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-majo"></table></div></div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="hero-bar" style="width: 30.8%"></div>
+    </div>
+    <div class="progress-labels">
+      <span>0</span>
+      <span>30</span>
+      <span>60</span>
+      <span>90</span>
+      <span>120</span>
+    </div>
   </div>
 
-  <!-- GABO -->
-  <div class="tab-panel" id="panel-gabo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F3CE98 0%,#e6b96a 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🪐 Gabriel Alvarado</div>
-        <div class="kam-detail-meta">KAM · Saturno · Renovaciones AKA</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">5</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$10K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">5</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
+  <!-- KPIs TOP -->
+  <div class="cards-row cards-4">
+    <div class="card card-accent accent-verde">
+      <div class="card-label">Primera Vez 🌟</div>
+      <div class="card-value" id="kpi-pv">29</div>
+      <div class="card-sub">de 37 firmas totales</div>
     </div>
-    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">2 contratos con <strong>"Falta primer pago"</strong> — Días 1 Abr (Félix Cuevas, Del Valle) y 8 Abr (Tiziano 167, Álvaro Obregón). Validar con AKA.</span>
+    <div class="card card-accent accent-agua">
+      <div class="card-label">Renovaciones 🔂</div>
+      <div class="card-value" id="kpi-ren">8</div>
+      <div class="card-sub">de 37 firmas totales</div>
     </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-gabo"></table></div></div>
+    <div class="card card-accent accent-amarillo">
+      <div class="card-label">Días Transcurridos</div>
+      <div class="card-value" id="kpi-dias">16</div>
+      <div class="card-sub" id="kpi-dias-sub">de 30 días del mes</div>
+    </div>
+    <div class="card card-accent accent-coral">
+      <div class="card-label">Proyección Mes</div>
+      <div class="card-value" id="kpi-proy">70</div>
+      <div class="card-sub">a ritmo actual: 2.3/día</div>
+    </div>
   </div>
 
-  <!-- ALE -->
-  <div class="tab-panel" id="panel-ale">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F9D3CD 0%,#f0a898 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🐰 Alejandra Muñoz</div>
-        <div class="kam-detail-meta">KAM · El Conejo · 2do lugar del mes</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$42K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
-    </div>
-    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato con <strong>"Falta primer pago"</strong> — 13 Abr, Calle Toril Ext. 11, Atizapán. Confirmar pago con Grupo Arvi.</span>
-    </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-ale"></table></div></div>
+  <!-- CALENDARIO -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="cal-title">Firmas por día — Abril 2026</div>
+    <div class="cal-grid" id="cal-grid"></div>
   </div>
 
-  <!-- LEO -->
-  <div class="tab-panel" id="panel-leo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#FFB59C 0%,#ff8f6b 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🦁 Leonardo Monzalvo</div>
-        <div class="kam-detail-meta">KAM · El León · Rey en training</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$24K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">4</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
-    </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-leo"></table></div></div>
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+    <div class="scoreboard-title">🏆 Scoreboard KAM</div>
+    <div class="scoreboard-grid" id="scoreboard-grid"></div>
   </div>
 
-  <div class="footer">MICA Operations · Pulso Firmas Abril 2026 · jael-lab.github.io</div>
+  <!-- GRÁFICA ACUMULADA -->
+  <div class="chart-wrap">
+    <div class="chart-title">📈 Firmas Acumuladas por KAM</div>
+    <div class="chart-canvas-wrap">
+      <svg class="line-chart" id="acum-chart" viewBox="0 0 900 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div id="chart-legend" style="display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;"></div>
+  </div>
+
+  <!-- BREAKDOWN -->
+  <div class="breakdown-section">
+    <div class="breakdown-card">
+      <h3>Por tipo de protección</h3>
+      <div id="breakdown-proteccion"></div>
+    </div>
+    <div class="breakdown-card">
+      <h3>Por agencia (top)</h3>
+      <div id="breakdown-agencia"></div>
+    </div>
+  </div>
+
+</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<!-- ════════════════════ TAB MAJO ════════════════════ -->
+<div id="tab-majo" class="tab-content">
+<div class="container">
+  <div class="kam-header" style="background: linear-gradient(135deg, #1F2937 0%, #374151 100%);">
+    <svg width="90" height="90" viewBox="0 0 90 90"><!-- Mariposa SVG -->
+      <circle cx="45" cy="45" r="44" fill="#72DDA3" fill-opacity=".15"/>
+      <!-- cuerpo -->
+      <ellipse cx="45" cy="48" rx="4" ry="14" fill="#72DDA3"/>
+      <!-- ala sup izq -->
+      <path d="M41 40 Q22 20 18 38 Q22 52 41 48" fill="#72DDA3" opacity=".9"/>
+      <!-- ala sup der -->
+      <path d="M49 40 Q68 20 72 38 Q68 52 49 48" fill="#72DDA3" opacity=".9"/>
+      <!-- ala inf izq -->
+      <path d="M41 50 Q24 55 22 68 Q30 72 41 58" fill="#BBE3E3" opacity=".8"/>
+      <!-- ala inf der -->
+      <path d="M49 50 Q66 55 68 68 Q60 72 49 58" fill="#BBE3E3" opacity=".8"/>
+      <!-- antenas -->
+      <line x1="43" y1="34" x2="36" y2="22" stroke="#72DDA3" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="36" cy="21" r="2" fill="#72DDA3"/>
+      <line x1="47" y1="34" x2="54" y2="22" stroke="#72DDA3" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="54" cy="21" r="2" fill="#72DDA3"/>
+      <!-- corona MVP -->
+      <path d="M33 18 L36 12 L39 17 L42 10 L45 17 L48 10 L51 17 L54 12 L57 18 Z" fill="#F3CE98" opacity=".9"/>
+    </svg>
+    <div class="kam-header-text">
+      <h2>🦋 Maria José Arriaga</h2>
+      <p>La Mariposa · MVP Marzo · KAM Senior</p>
+    </div>
+  </div>
+  <div class="kam-kpis" id="majo-kpis"></div>
+  <div class="alertas-wrap" id="majo-alertas"></div>
+  <div class="ops-table-wrap">
+    <div class="ops-table-title">Operaciones del mes</div>
+    <table class="ops-table" id="majo-table"><thead><tr><th>#</th><th>Fecha</th><th>Contrato</th><th>Protección</th><th>Agencia</th><th>Inmueble</th><th>Status</th></tr></thead><tbody></tbody></table>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════ TAB GABO ════════════════════ -->
+<div id="tab-gabo" class="tab-content">
+<div class="container">
+  <div class="kam-header" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+    <svg width="90" height="90" viewBox="0 0 90 90"><!-- Saturno SVG -->
+      <circle cx="45" cy="45" r="44" fill="#BBE3E3" fill-opacity=".08"/>
+      <!-- anillos exteriores -->
+      <ellipse cx="45" cy="52" rx="42" ry="10" fill="none" stroke="#F3CE98" stroke-width="4" opacity=".4"/>
+      <!-- planeta -->
+      <circle cx="45" cy="45" r="22" fill="#6B7280"/>
+      <circle cx="45" cy="45" r="22" fill="url(#saturn-grad)"/>
+      <!-- anillos principales -->
+      <ellipse cx="45" cy="52" rx="34" ry="8" fill="none" stroke="#F3CE98" stroke-width="6" opacity=".7"/>
+      <!-- detalles planeta -->
+      <ellipse cx="45" cy="40" rx="16" ry="5" fill="#9CA3AF" opacity=".3"/>
+      <defs>
+        <radialGradient id="saturn-grad" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#9CA3AF"/>
+          <stop offset="100%" stop-color="#374151"/>
+        </radialGradient>
+      </defs>
+    </svg>
+    <div class="kam-header-text">
+      <h2>🪐 Gabriel Alvarado</h2>
+      <p>Saturno · Especialista en Renovaciones</p>
+    </div>
+  </div>
+  <div class="kam-kpis" id="gabo-kpis"></div>
+  <div class="alertas-wrap" id="gabo-alertas"></div>
+  <div class="ops-table-wrap">
+    <div class="ops-table-title">Operaciones del mes</div>
+    <table class="ops-table" id="gabo-table"><thead><tr><th>#</th><th>Fecha</th><th>Contrato</th><th>Protección</th><th>Agencia</th><th>Inmueble</th><th>Status</th></tr></thead><tbody></tbody></table>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════ TAB LEO ════════════════════ -->
+<div id="tab-leo" class="tab-content">
+<div class="container">
+  <div class="kam-header" style="background: linear-gradient(135deg, #7C2D12 0%, #92400E 100%);">
+    <svg width="90" height="90" viewBox="0 0 90 90"><!-- León SVG -->
+      <circle cx="45" cy="45" r="44" fill="#F3CE98" fill-opacity=".15"/>
+      <!-- melena -->
+      <circle cx="45" cy="47" r="28" fill="#F3CE98" opacity=".8"/>
+      <circle cx="45" cy="47" r="26" fill="#E9B97A"/>
+      <!-- cara -->
+      <circle cx="45" cy="48" r="20" fill="#FCD9A0"/>
+      <!-- orejas -->
+      <ellipse cx="24" cy="28" rx="8" ry="9" fill="#F3CE98"/>
+      <ellipse cx="24" cy="28" rx="5" ry="6" fill="#FFB59C"/>
+      <ellipse cx="66" cy="28" rx="8" ry="9" fill="#F3CE98"/>
+      <ellipse cx="66" cy="28" rx="5" ry="6" fill="#FFB59C"/>
+      <!-- ojos -->
+      <ellipse cx="38" cy="44" rx="4" ry="4.5" fill="#1F2937"/>
+      <ellipse cx="52" cy="44" rx="4" ry="4.5" fill="#1F2937"/>
+      <circle cx="39.5" cy="42.5" r="1.5" fill="white"/>
+      <circle cx="53.5" cy="42.5" r="1.5" fill="white"/>
+      <!-- nariz -->
+      <ellipse cx="45" cy="51" rx="3" ry="2" fill="#E07D6A"/>
+      <!-- boca -->
+      <path d="M41 54 Q45 58 49 54" fill="none" stroke="#C0635A" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- bigotes -->
+      <line x1="25" y1="51" x2="40" y2="52" stroke="#9CA3AF" stroke-width="1" opacity=".6"/>
+      <line x1="25" y1="54" x2="40" y2="54" stroke="#9CA3AF" stroke-width="1" opacity=".6"/>
+      <line x1="50" y1="52" x2="65" y2="51" stroke="#9CA3AF" stroke-width="1" opacity=".6"/>
+      <line x1="50" y1="54" x2="65" y2="54" stroke="#9CA3AF" stroke-width="1" opacity=".6"/>
+      <!-- corona en training -->
+      <path d="M33 20 L37 13 L41 19 L45 11 L49 19 L53 13 L57 20 Z" fill="#F3CE98" opacity=".7"/>
+      <text x="45" y="20" text-anchor="middle" font-size="7" fill="#92600A" font-weight="bold">?</text>
+    </svg>
+    <div class="kam-header-text">
+      <h2>🦁 Leonardo Monzalvo</h2>
+      <p>El León · Rey en Training</p>
+    </div>
+  </div>
+  <div class="kam-kpis" id="leo-kpis"></div>
+  <div class="alertas-wrap" id="leo-alertas"></div>
+  <div class="ops-table-wrap">
+    <div class="ops-table-title">Operaciones del mes</div>
+    <table class="ops-table" id="leo-table"><thead><tr><th>#</th><th>Fecha</th><th>Contrato</th><th>Protección</th><th>Agencia</th><th>Inmueble</th><th>Status</th></tr></thead><tbody></tbody></table>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════ TAB ALE ════════════════════ -->
+<div id="tab-ale" class="tab-content">
+<div class="container">
+  <div class="kam-header" style="background: linear-gradient(135deg, #4A1D5E 0%, #6D28D9 100%);">
+    <svg width="90" height="90" viewBox="0 0 90 90"><!-- Conejo SVG -->
+      <circle cx="45" cy="55" r="44" fill="#F9D3CD" fill-opacity=".12"/>
+      <!-- orejas largas -->
+      <ellipse cx="34" cy="22" rx="8" ry="20" fill="#F9D3CD"/>
+      <ellipse cx="34" cy="22" rx="5" ry="16" fill="#FFB59C" opacity=".6"/>
+      <ellipse cx="56" cy="22" rx="8" ry="20" fill="#F9D3CD"/>
+      <ellipse cx="56" cy="22" rx="5" ry="16" fill="#FFB59C" opacity=".6"/>
+      <!-- cuerpo cara -->
+      <circle cx="45" cy="56" r="22" fill="#F9D3CD"/>
+      <!-- mejillas -->
+      <ellipse cx="34" cy="60" rx="7" ry="5" fill="#FFB59C" opacity=".5"/>
+      <ellipse cx="56" cy="60" rx="7" ry="5" fill="#FFB59C" opacity=".5"/>
+      <!-- ojos -->
+      <circle cx="38" cy="52" r="4" fill="#1F2937"/>
+      <circle cx="52" cy="52" r="4" fill="#1F2937"/>
+      <circle cx="39.5" cy="50.5" r="1.5" fill="white"/>
+      <circle cx="53.5" cy="50.5" r="1.5" fill="white"/>
+      <!-- nariz -->
+      <ellipse cx="45" cy="59" rx="2.5" ry="2" fill="#E07D6A"/>
+      <!-- boca -->
+      <path d="M41 62 Q45 66 49 62" fill="none" stroke="#C0635A" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- bigotes -->
+      <line x1="26" y1="59" x2="41" y2="60" stroke="#D1D5DB" stroke-width="1" opacity=".7"/>
+      <line x1="49" y1="60" x2="64" y2="59" stroke="#D1D5DB" stroke-width="1" opacity=".7"/>
+    </svg>
+    <div class="kam-header-text">
+      <h2>🐰 Alejandra Muñoz</h2>
+      <p>El Conejo · Personaje Nuevo del Equipo</p>
+    </div>
+  </div>
+  <div class="kam-kpis" id="ale-kpis"></div>
+  <div class="alertas-wrap" id="ale-alertas"></div>
+  <div class="ops-table-wrap">
+    <div class="ops-table-title">Operaciones del mes</div>
+    <table class="ops-table" id="ale-table"><thead><tr><th>#</th><th>Fecha</th><th>Contrato</th><th>Protección</th><th>Agencia</th><th>Inmueble</th><th>Status</th></tr></thead><tbody></tbody></table>
+  </div>
+</div>
+</div>
+
 <script>
-const META_GENERAL=120, META_PRIMERA=90, META_RENOV=30;
-const TOTAL=27, PRIMERA=21, RENOVACION=6;
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const DATA = [{"kam":"Majo","fecha":"2026-04-01","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"DIAGONAL DE SAN ANTONIO 937,  , ZP: 03103, CIUDAD DE MÉXICO, BENITO JÚAREZ , MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":20500},{"kam":"Leo","fecha":"2026-04-01","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"Rentas Ok","inmueble":"CALLE DE LOS ALCANFORES 3 , ZP: 29299, SAN CRISTÓBAL DE LAS CASAS, CHIAPAS, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":8000},{"kam":"Gabo","fecha":"2026-04-01","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"ALHELÍ 18, DPTO. 6, TLATILCO, AZCAPOTZALCO, C.P. 02860, CIUDAD DE MÉXICO, MÉXICO.","estatus_notion":"Ren - Firmado completo","status_pandora":"Firmado","obs":"","monto":6436},{"kam":"Gabo","fecha":"2026-04-01","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"FELIX CUEVAS 318 DEPTO 34, COL. DEL VALLE, BENITO JUÁREZ, CP. 03100, CDMX, MÉXICO.","estatus_notion":"Ren - Firmado completo","status_pandora":"Falta primer pago","obs":"","monto":8752},{"kam":"Gabo","fecha":"2026-04-06","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"JAT 691-A DESP. 3 JOSE ANTONIO TORRES 691, DESP. 3, ASTURIAS, CUAUHTÉMOC, C.P. 06890, CDMX, MÈXICO","estatus_notion":"Ren - Firmado completo","status_pandora":"Firmado","obs":"","monto":2616},{"kam":"Leo","fecha":"2026-04-06","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"YoRento","inmueble":"SERBIA 918 INT 8, COLONIA LOMA BLANCA INT 8, ZP: 45167, ZAPOPAN, JALISCO, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":20000},{"kam":"Leo","fecha":"2026-04-01","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"SMETANA 43 TORRE A DEPTO 102 VALLEJO, ZP: 07870, GUSTAVO A MADERO , CDMX, MX","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":9000},{"kam":"Ale","fecha":"2026-04-06","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"Remax","inmueble":"PLAZA MELCHOR OCAMPO 6  ENTRE CIRCUITO INTERIOR Y RÍO NAZAS , ZP: 06500, CIUDAD DE MÉXICO, CIUDAD DE MÉXICO, MX","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":38500},{"kam":"Ale","fecha":"2026-04-07","contrato":"primera_vez","proteccion":"proteccion_premium","agencia":"Grupo Arvi","inmueble":"AZAHARES MZA 40 LT 3, JUAN GONZÁLEZ ROMERO  DEPTO 4, ZP: 07410, GUSTAVO A. MADERO, CIUDAD DE MÉXICO , MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":4500},{"kam":"Gabo","fecha":"2026-04-08","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"TIZIANO NÚM, 167, DEPTO. 2, ALFONSO XIII, ÁLVARO OBREGÓN CP. 01460, CIUDAD DE MÉXICO, MÉXICO.","estatus_notion":"Ren - Firmado completo","status_pandora":"Falta primer pago","obs":"","monto":5555},{"kam":"Majo","fecha":"2026-04-02","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"En Casa","inmueble":"TEXAS NÚMERO 99, DEPARTAMENTO 203, COLONIA NÁPOLES,  CP: 03810, BENITO JUÁREZ, CIUDAD DE MÉXICO, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":40000},{"kam":"Majo","fecha":"2026-04-08","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"BOULEVARD DE LAS NACIONES NUMERO 504 INTERIOR 36 MANZANA C  23 GRANJAS DEL MARQUES, CP: 39890, ACAPULCO DE JUÁREZ, GUERRERO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":15000},{"kam":"Ale","fecha":"2026-04-02","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"Grupo Arvi","inmueble":"EDIFICIO 94 ENTRADA A UNIDAD HABITACIONAL CUITLAHUAC  DEPARTAMENTO 201, ZP: 02500, AZCAPOTZALCO , CUIDAD DE MÉXICO , MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":12000},{"kam":"Majo","fecha":"2026-04-09","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"Soy Rumi","inmueble":"335 Sao Paulo, Departamento 2, CP. 64840 Monterrey, Nuevo Leon, Mexico","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":8000},{"kam":"Majo","fecha":"2026-04-08","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"ANENECUILCO S/N, COL LAS GRANJAS  , ZP: 62460, CUERNAVACA , MORELOS, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":17000},{"kam":"Leo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"Remax","inmueble":"INDIANA 288 INTERIOR 504 CIUDAD DE LOS DEPORTES , CP.: 03710, BENITO JUÁREZ , CDMX, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":36000},{"kam":"Majo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"AVENIDA ANAHUAC CONDOMINIO BELLA BRISA NUMERO 1 LOMAS DE COSTA AZUL 405, CP: 39830, ACAPULCO, GUERRERO, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":8500},{"kam":"Gabo","fecha":"2026-04-08","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"CENTENARIO 198, DEPTO 20, MERCED GOMEZ, CP. 01600, ALVARO OBREGON, CIUDAD DE MEXICO, MEXICO","estatus_notion":"Ren - Firmado completo","status_pandora":"Firmado","obs":"","monto":6290},{"kam":"Majo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"CLÚSTER 7, CIRCUITO VÍA CARRARA NUMERO176 FRACCIONAMIENTO LA CAMIÑA DEL BOSQUE, CP: 37690, LEÓN DE LOS ALDAMA, GUANAJUATO, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":30000},{"kam":"Majo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_premium","agencia":"","inmueble":"8 DE MAYO NÚMERO 5, DEPARTAMENTO 204 , CP: 53910, NAUCALPAN, ESTADO  DE MÉXICO, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":19800},{"kam":"Majo","fecha":"2026-04-07","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"RÍO GRIJALVA NÚMERO 305, COLONIA BARRIO DE SAN MIGUEL, CP: 37390, LEÓN DE LOS ALDAMA, GUANAJUATO, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":18500},{"kam":"Majo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"E-Inmob","inmueble":"SAN ISIDRO NUMERO 164 PISO 10 TORRE C DEPARTAMENTO 1004, CP: 02470, AZCAPOTZALCO , CDMX , MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":16500},{"kam":"Majo","fecha":"2026-04-10","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"PASEO DE SAN NICOLÁS PARRA NÚMERO 235, COLONIA LAS ARBOLEDAS, CP: 38010, CELAYA GUANAJUATO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":7000},{"kam":"Ale","fecha":"2026-04-11","contrato":"primera_vez","proteccion":"proteccion_premium","agencia":"Rentas Ok","inmueble":"CERRADA CUMBRES, 131 , INTERIOR CASA 3, PRIVADA LAS PEÑAS  , ZP: 29050, TUXTLA GUTIÉRREZ , CHIAPAS , MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":30000},{"kam":"Ale","fecha":"2026-04-11","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"Propity","inmueble":"AVANZA 275 INTERIOR A , ZP: 78250, SAN LUIS POTOSI, SAN LUIS POTOSÍ , MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":12500},{"kam":"Ale","fecha":"2026-04-13","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"Rentas Ok","inmueble":"LOCAL DE 15M2 EN 8A PONIENTE SUR #955 BARRIO LAS CANOITAS, ZP: 29060, TUXTLA GUTIÉRREZ , CHIAPAS, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":3150},{"kam":"Ale","fecha":"2026-04-13","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"Grupo Arvi","inmueble":"CALLE TORIL EXTERIOR 11 INTERIOR F, CP: 52929, VILLAS DE LA HACIENDA ATIZAPÁN DE ZARAGOZA , ESTADO DE MÉXICO.","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":4600},{"kam":"Majo","fecha":"2026-04-09","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"2 A CALLE DE RAFAEL QUINTERO 58 MANZANA 5 SUPERMANZANA 3, UNIDAD HABITACIONAL VICENTE GUERRERO , CP: 09200, IZTAPALAPA , CIUDAD DE MÉXICO , MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":16500},{"kam":"Majo","fecha":"2026-04-12","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"ORIENTE 237 NÚMERO 152, TORRE A  DEPARTAMENTO 502, COLONIA AGRICOLA ORIENTAL,  CP: 08500, CDMX, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":9500},{"kam":"Majo","fecha":"2026-04-14","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"Carlos Ortiz","inmueble":"LAGO ZIRAHUÉN NÚMERO 98, COLONIA  ANÁHUAC  SOL 105, CP: 11320, CIUDAD DE MÉXICO , CDMX, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":14850},{"kam":"Gabo","fecha":"2026-04-15","contrato":"renovacion_mica","proteccion":"proteccion_integral","agencia":"AKA","inmueble":"Avenida Centenario 198 interior 5 Colonia Merced Gómez CP 01600, CDMX, México","estatus_notion":"Ren - Firmado completo","status_pandora":"Firmado","obs":"","monto":7350},{"kam":"Leo","fecha":"2026-04-14","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"Remax Daia","inmueble":"AVENIDA CAMARONES 505, DEPARTAMENTO 203, SINDICATO MEXICANO DE ELECTRICISTAS PISO 2, CP. 02060, AZCAPOTZALCO, CDMX, MEXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":16500},{"kam":"Ale","fecha":"2026-04-15","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"CERRADA RÍO QUERÉTARO # 5 CONDOMINIO BACARES #335 MARQUÉS DEL RÍO, ZP: 76267, EL MARQUÉS, QUERÉTARO, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"Información de contrato completada","monto":5200},{"kam":"Majo","fecha":"2026-04-15","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"PRIVADA DE HABA LA HABA NUMERO 9 INTEROR 1, COLONIA  AGRICOLA LAZARO CARDENAS , CP: 52148, METEPEC, ESTADO DE MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":13000},{"kam":"Majo","fecha":"2026-04-15","contrato":"primera_vez","proteccion":"proteccion_integral","agencia":"","inmueble":"PRIVADA LAS HACIENDAS SEGUNDA SECCIÓN, CONDOMINIO HACIENDA VISTA HERMOSA, FRACCIÓN 2, LOTE 1, CASA 1, COLONIA. SANTA CRUZ, CP: 62790, XOCHITEPEC, MORELOS, MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":25000},{"kam":"Ale","fecha":"2026-04-15","contrato":"renovacion_mica","proteccion":"proteccion_premium","agencia":"Grupo Arvi","inmueble":"16 de Septiembre, Alfredo V. Bonfil, 11 A, Atizapán de Zaragoza, Estado de México, 52940, México","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":15000},{"kam":"Majo","fecha":"2026-04-16","contrato":"primera_vez","proteccion":"proteccion_juridica","agencia":"","inmueble":"MOCTEZUMA NUMERO 703, COLONIA BARRIO COAXUSTENCO, CP: 52140, METEPEC, ESTADO DE MÉXICO","estatus_notion":"Firmado completo","status_pandora":"Firmado","obs":"","monto":7500}];
 
-// Acumulado real basado en Fecha firma (Pandora) — columna H
-// Día 1: 5 firmas, día 2: 2, día 6: 3, día 7: 2, día 8: 4, día 9: 6, día 10: 1, día 11: 2, día 13: 2
-const dailyCumulative = {1:5, 2:7, 6:10, 7:12, 8:16, 9:22, 10:23, 11:25, 13:27};
+const META = 120;
+const MES_DIAS = 30;
+const HOY = 16; // día actual
+const TODAY_STR = '2026-04-16';
 
-// Firmas diarias por día (para los dots)
-const dailyByDay = {1:5, 2:2, 6:3, 7:2, 8:4, 9:6, 10:1, 11:2, 13:2};
-
-const kamData=[
-  {key:'majo', name:'Majo', emoji:'🥇', color:'#BBE3E3', textColor:'#1F2937', firmas:11, fee:66294,  primera:10, reno:1},
-  {key:'ale',  name:'Ale',  emoji:'🥈', color:'#F9D3CD', textColor:'#1F2937', firmas:7,  fee:42282,  primera:7,  reno:0},
-  {key:'gabo', name:'Gabo', emoji:'🥉', color:'#F3CE98', textColor:'#1F2937', firmas:5,  fee:10318,  primera:0,  reno:5},
-  {key:'leo',  name:'Leo',  emoji:'⭐', color:'#FFB59C', textColor:'#1F2937', firmas:4,  fee:24476,  primera:4,  reno:0},
-];
-
-const detailData={
-  majo:[
-    {day:"01/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:20500, fee:7134,  status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"En Casa",  monto:40000, fee:13920, status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:15000, fee:3480,  status:"Firmado"},
-    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Soy Rumi", monto:8000,  fee:2784,  status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:17000, fee:5916,  status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",  monto:8500,  fee:2958,  status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:30000, fee:6960,  status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_premium",  ag:"Directa",  monto:19800, fee:11484, status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:18500, fee:4292,  status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"E-Inmob",  monto:16500, fee:5742,  status:"Firmado"},
-    {day:"10/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",  monto:7000,  fee:1624,  status:"Firmado"},
-  ],
-  gabo:[
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436, fee:2240,status:"Firmado"},
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752, fee:3046,status:"Falta primer pago"},
-    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616, fee:910, status:"Firmado"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555, fee:1933,status:"Falta primer pago"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290, fee:2189,status:"Firmado"},
-  ],
-  ale:[
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",      monto:38500,fee:13398,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Grupo Arvi", monto:4500, fee:2610, status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Grupo Arvi", monto:12000,fee:4176, status:"Firmado"},
-    {day:"11/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Rentas Ok",  monto:30000,fee:17400,status:"Firmado"},
-    {day:"11/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Propity",    monto:12500,fee:2900, status:"Firmado"},
-    {day:"13/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok",  monto:3150, fee:731,  status:"Firmado"},
-    {day:"13/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Grupo Arvi", monto:4600, fee:1067, status:"Falta primer pago"},
-  ],
-  leo:[
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok",monto:8000, fee:1856, status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"YoRento",  monto:20000,fee:6960, status:"Firmado"},
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",  monto:9000, fee:3132, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",    monto:36000,fee:12528,status:"Firmado"},
-  ],
+const KAM_CONFIG = {
+  Majo: { color: '#72DDA3', bg: 'linear-gradient(135deg,#1F2937,#374151)', emoji: '🦋', nombre: 'Maria José Arriaga' },
+  Gabo: { color: '#BBE3E3', bg: 'linear-gradient(135deg,#1a1a2e,#0f3460)', emoji: '🪐', nombre: 'Gabriel Alvarado' },
+  Leo:  { color: '#F3CE98', bg: 'linear-gradient(135deg,#7C2D12,#92400E)', emoji: '🦁', nombre: 'Leonardo Monzalvo' },
+  Ale:  { color: '#F9D3CD', bg: 'linear-gradient(135deg,#4A1D5E,#6D28D9)', emoji: '🐰', nombre: 'Alejandra Muñoz' },
 };
 
-function fmtMoney(n){ return '$'+Math.round(n).toLocaleString('es-MX'); }
-function ptBadge(pt){
-  if(pt==='proteccion_integral') return '<span class="badge badge-integral">Integral</span>';
-  if(pt==='proteccion_juridica') return '<span class="badge badge-juridica">Jurídica</span>';
-  if(pt==='proteccion_premium')  return '<span class="badge badge-premium">Premium ⭐</span>';
-  return `<span class="badge">${pt}</span>`;
-}
-function ctBadge(ct){
-  if(ct==='primera_vez')     return '<span class="badge badge-primera">1ra vez</span>';
-  if(ct==='renovacion_mica') return '<span class="badge badge-renovacion">Renovación</span>';
-  return `<span class="badge">${ct}</span>`;
-}
-function agBadge(ag){
-  if(ag==='AKA')     return '<span class="badge badge-aka">AKA</span>';
-  if(ag==='Directa') return '<span class="badge badge-directa">Directa</span>';
-  return `<span class="badge badge-directa">${ag}</span>`;
-}
-function stBadge(st){
-  if(st==='Firmado')           return '<span class="badge badge-ok">✓ Firmado</span>';
-  if(st==='Falta primer pago') return '<span class="badge badge-warn">⚠ Falta pago</span>';
-  return `<span class="badge">${st}</span>`;
+const PROT_LABELS = { proteccion_integral: 'Integral', proteccion_juridica: 'Jurídica', proteccion_premium: 'Premium' };
+const PROT_COLORS = { proteccion_integral: '#72DDA3', proteccion_juridica: '#BBE3E3', proteccion_premium: '#F3CE98' };
+
+// ─── helpers ───
+function byKAM(k) { return DATA.filter(d => d.kam === k); }
+function countBy(arr, key, val) { return arr.filter(d => d[key] === val).length; }
+
+// ─── TAB ───
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
 }
 
-function animateCounter(el,target,duration=1200){
-  const start=performance.now();
-  const update=(t)=>{
-    const p=Math.min((t-start)/duration,1);
-    el.textContent=Math.round((1-Math.pow(1-p,3))*target);
-    if(p<1) requestAnimationFrame(update); else el.textContent=target;
-  };
-  requestAnimationFrame(update);
-}
-
-function buildDayDots(){
-  const wrap=document.getElementById('dayDots');
-  const TODAY=13;
-  for(let d=1;d<=30;d++){
-    const dot=document.createElement('div');
-    dot.className='day-dot';
-    const count=dailyByDay[d]||0;
-    if(count>0){
-      dot.classList.add('has-firma');
-      // Show count badge only if more than 1
-      dot.innerHTML = count>1 ? `${d}<span class="dot-count">${count}</span>` : `${d}`;
-      dot.title=`${count} firma${count>1?'s':''} el día ${d}`;
-    } else {
-      dot.classList.add('empty');
-      dot.textContent=d;
-      dot.title=`Día ${d}: sin firmas`;
-    }
-    if(d===TODAY) dot.classList.add('today');
-    if(d>TODAY) dot.style.opacity='0.3';
-    wrap.appendChild(dot);
+// ─── CALENDARIO ───
+function buildCalendario() {
+  const perDia = {};
+  DATA.forEach(d => { const day = parseInt(d.fecha.split('-')[2]); perDia[day] = (perDia[day] || 0) + 1; });
+  const wrap = document.getElementById('cal-grid');
+  for (let d = 1; d <= 30; d++) {
+    const n = perDia[d] || 0;
+    let cls = 'cal-dot-0';
+    if (n >= 5) cls = 'cal-dot-high';
+    else if (n >= 3) cls = 'cal-dot-med';
+    else if (n >= 1) cls = 'cal-dot-low';
+    const todayClass = d === HOY ? ' cal-dot-today' : '';
+    const div = document.createElement('div');
+    div.className = 'cal-day';
+    div.innerHTML = `<div class="cal-day-num">${String(d).padStart(2,'0')}</div><div class="cal-dot ${cls}${todayClass}">${n || ''}</div>`;
+    wrap.appendChild(div);
   }
 }
 
-function buildScoreboard(){
-  const grid=document.getElementById('scoreboardGrid');
-  const rankEmojis=['🥇','🥈','🥉','⭐'];
-  const ranks=['rank-1','rank-2','rank-3',''];
-  kamData.forEach((k,i)=>{
-    const card=document.createElement('div');
-    card.className=`card kam-card ${ranks[i]}`;
-    card.style.background=`linear-gradient(140deg,${k.color}33 0%,${k.color}10 100%)`;
-    card.onclick=()=>showTab(k.key);
-    const pct=Math.round(k.firmas/11*100);
-    card.innerHTML=`
-      <div class="kam-rank-badge">${rankEmojis[i]}</div>
-      <div class="kam-name" style="color:${k.textColor}">${k.name}</div>
-      <div class="kam-role">KAM</div>
-      <div class="kam-stat-main" style="color:#1F2937">${k.firmas}</div>
-      <div class="kam-stat-label">firmas totales</div>
-      <div class="kam-stats-row">
-        <span class="kam-chip">1ra: ${k.primera}</span>
-        <span class="kam-chip">Ren: ${k.reno}</span>
-        <span class="kam-chip">${fmtMoney(k.fee)}</span>
-      </div>
-      <div class="kam-progress-wrap">
-        <div class="kam-progress-label"><span>vs líder</span><span>${pct}%</span></div>
-        <div class="kam-progress-track">
-          <div class="kam-progress-fill" style="width:${pct}%;background:${k.color}"></div>
-        </div>
+// ─── SCOREBOARD ───
+function buildScoreboard() {
+  const kams = ['Majo','Gabo','Leo','Ale'];
+  const counts = kams.map(k => ({ k, n: byKAM(k).length, pv: countBy(byKAM(k),'contrato','primera_vez'), ren: countBy(byKAM(k),'contrato','renovacion_mica') }));
+  counts.sort((a,b) => b.n - a.n);
+
+  const SVGS = {
+    Majo: `<svg width="60" height="60" viewBox="0 0 90 90"><ellipse cx="45" cy="55" rx="4" ry="14" fill="#72DDA3"/><path d="M41 47 Q22 25 18 43 Q22 57 41 53" fill="#72DDA3" opacity=".9"/><path d="M49 47 Q68 25 72 43 Q68 57 49 53" fill="#72DDA3" opacity=".9"/><path d="M41 55 Q24 60 22 73 Q30 77 41 63" fill="#BBE3E3" opacity=".8"/><path d="M49 55 Q66 60 68 73 Q60 77 49 63" fill="#BBE3E3" opacity=".8"/><line x1="43" y1="41" x2="36" y2="29" stroke="#72DDA3" stroke-width="1.5" stroke-linecap="round"/><circle cx="36" cy="28" r="2" fill="#72DDA3"/><line x1="47" y1="41" x2="54" y2="29" stroke="#72DDA3" stroke-width="1.5" stroke-linecap="round"/><circle cx="54" cy="28" r="2" fill="#72DDA3"/><path d="M33 25 L36 19 L39 24 L42 17 L45 24 L48 17 L51 24 L54 19 L57 25 Z" fill="#F3CE98"/></svg>`,
+    Gabo: `<svg width="60" height="60" viewBox="0 0 90 90"><ellipse cx="45" cy="52" rx="42" ry="10" fill="none" stroke="#F3CE98" stroke-width="4" opacity=".4"/><circle cx="45" cy="45" r="22" fill="#6B7280"/><ellipse cx="45" cy="40" rx="16" ry="5" fill="#9CA3AF" opacity=".3"/><ellipse cx="45" cy="52" rx="34" ry="8" fill="none" stroke="#F3CE98" stroke-width="6" opacity=".7"/></svg>`,
+    Leo:  `<svg width="60" height="60" viewBox="0 0 90 90"><circle cx="45" cy="47" r="28" fill="#F3CE98" opacity=".8"/><circle cx="45" cy="47" r="26" fill="#E9B97A"/><circle cx="45" cy="48" r="20" fill="#FCD9A0"/><ellipse cx="24" cy="28" rx="8" ry="9" fill="#F3CE98"/><ellipse cx="24" cy="28" rx="5" ry="6" fill="#FFB59C"/><ellipse cx="66" cy="28" rx="8" ry="9" fill="#F3CE98"/><ellipse cx="66" cy="28" rx="5" ry="6" fill="#FFB59C"/><ellipse cx="38" cy="44" rx="4" ry="4.5" fill="#1F2937"/><ellipse cx="52" cy="44" rx="4" ry="4.5" fill="#1F2937"/><circle cx="39.5" cy="42.5" r="1.5" fill="white"/><circle cx="53.5" cy="42.5" r="1.5" fill="white"/><ellipse cx="45" cy="51" rx="3" ry="2" fill="#E07D6A"/><path d="M41 54 Q45 58 49 54" fill="none" stroke="#C0635A" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    Ale:  `<svg width="60" height="60" viewBox="0 0 90 90"><ellipse cx="34" cy="22" rx="8" ry="20" fill="#F9D3CD"/><ellipse cx="34" cy="22" rx="5" ry="16" fill="#FFB59C" opacity=".6"/><ellipse cx="56" cy="22" rx="8" ry="20" fill="#F9D3CD"/><ellipse cx="56" cy="22" rx="5" ry="16" fill="#FFB59C" opacity=".6"/><circle cx="45" cy="56" r="22" fill="#F9D3CD"/><ellipse cx="34" cy="60" rx="7" ry="5" fill="#FFB59C" opacity=".5"/><ellipse cx="56" cy="60" rx="7" ry="5" fill="#FFB59C" opacity=".5"/><circle cx="38" cy="52" r="4" fill="#1F2937"/><circle cx="52" cy="52" r="4" fill="#1F2937"/><circle cx="39.5" cy="50.5" r="1.5" fill="white"/><circle cx="53.5" cy="50.5" r="1.5" fill="white"/><ellipse cx="45" cy="59" rx="2.5" ry="2" fill="#E07D6A"/></svg>`,
+  };
+
+  const wrap = document.getElementById('scoreboard-grid');
+  counts.forEach((item, i) => {
+    const cfg = KAM_CONFIG[item.k];
+    const rankClass = `rank-${i+1}`;
+    const div = document.createElement('div');
+    div.className = `score-card ${rankClass}`;
+    div.innerHTML = `
+      <div class="score-rank">#${i+1}</div>
+      ${SVGS[item.k]}
+      <div class="score-name">${cfg.emoji} ${item.k === 'Ale' ? 'Alejandra' : item.k === 'Majo' ? 'Maria José' : item.k === 'Gabo' ? 'Gabriel' : 'Leonardo'}</div>
+      <div class="score-apodo">${item.k}</div>
+      <div class="score-num">${item.n}</div>
+      <div class="score-breakdown">
+        <span class="score-chip chip-pv">🌟 ${item.pv}</span>
+        <span class="score-chip chip-ren">🔂 ${item.ren}</span>
       </div>
     `;
-    grid.appendChild(card);
+    wrap.appendChild(div);
   });
 }
 
-function buildTable(id,rows){
-  const t=document.getElementById(id);
-  t.innerHTML=`
-    <thead><tr>
-      <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th>
-      <th style="text-align:right">Renta</th><th style="text-align:right">FEE</th>
-    </tr></thead>
-    <tbody>${rows.map(r=>`<tr>
-      <td style="font-family:'Red Hat Mono',monospace;font-weight:700">${r.day}</td>
-      <td>${ctBadge(r.ct)}</td><td>${ptBadge(r.pt)}</td>
-      <td>${agBadge(r.ag)}</td><td>${stBadge(r.status)}</td>
-      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700">${fmtMoney(r.monto)}</td>
-      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700;color:#166534">${fmtMoney(r.fee)}</td>
-    </tr>`).join('')}</tbody>`;
-}
+// ─── GRÁFICA ACUMULADA ───
+function buildChart() {
+  const kams = ['Majo','Ale','Gabo','Leo'];
+  const colors = { Majo: '#72DDA3', Ale: '#F9D3CD', Gabo: '#BBE3E3', Leo: '#F3CE98' };
 
-function buildChart(){
-  // Build full day-by-day arrays for chart (only days with activity)
-  const days=Object.keys(dailyCumulative).map(Number).sort((a,b)=>a-b);
-  const ctx=document.getElementById('mainChart').getContext('2d');
-  new Chart(ctx,{
-    type:'line',
-    data:{
-      labels: days.map(d=>`${d} Abr`),
-      datasets:[
-        {label:'Firmas acumuladas',data:days.map(d=>dailyCumulative[d]),
-         borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.12)',
-         fill:true,tension:0.4,borderWidth:3,
-         pointBackgroundColor:'#72DDA3',pointRadius:5,pointHoverRadius:7},
-        {label:'Meta (120)',data:days.map(()=>120),
-         borderColor:'rgba(31,41,55,0.25)',borderDash:[6,4],
-         borderWidth:2,pointRadius:0,fill:false,tension:0}
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:12},color:'#374151',usePointStyle:true}},
-        tooltip:{mode:'index',intersect:false}
-      },
-      scales:{
-        x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
-        y:{min:0,max:120,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
-      },
-      interaction:{mode:'nearest',axis:'x',intersect:false}
+  // collect days with data
+  const allDays = [...new Set(DATA.map(d => parseInt(d.fecha.split('-')[2])))].sort((a,b)=>a-b);
+  const minDay = 1; const maxDay = HOY;
+  const days = [];
+  for (let i = minDay; i <= maxDay; i++) days.push(i);
+
+  // cumulative per KAM per day
+  const series = {};
+  kams.forEach(k => {
+    let cum = 0;
+    const pts = [];
+    days.forEach(d => {
+      cum += DATA.filter(r => r.kam === k && parseInt(r.fecha.split('-')[2]) === d).length;
+      pts.push(cum);
+    });
+    series[k] = pts;
+  });
+
+  const maxVal = Math.max(...kams.map(k => series[k][series[k].length-1]));
+  const W = 900, H = 200, PAD_L = 30, PAD_R = 10, PAD_T = 10, PAD_B = 25;
+  const chartW = W - PAD_L - PAD_R;
+  const chartH = H - PAD_T - PAD_B;
+
+  function xPos(i) { return PAD_L + (i / (days.length - 1)) * chartW; }
+  function yPos(v) { return PAD_T + chartH - (v / (maxVal || 1)) * chartH; }
+
+  const svg = document.getElementById('acum-chart');
+  let html = '';
+
+  // grid lines
+  for (let v = 0; v <= maxVal; v += Math.ceil(maxVal/4)) {
+    const y = yPos(v);
+    html += `<line x1="${PAD_L}" y1="${y}" x2="${W-PAD_R}" y2="${y}" stroke="#E5E7EB" stroke-width="1"/>`;
+    html += `<text x="${PAD_L-4}" y="${y+4}" text-anchor="end" font-size="9" fill="#9CA3AF" font-family="Red Hat Mono,monospace">${v}</text>`;
+  }
+
+  // day labels (every 3 days)
+  days.forEach((d, i) => {
+    if (d % 3 === 0 || d === 1 || d === HOY) {
+      html += `<text x="${xPos(i)}" y="${H-5}" text-anchor="middle" font-size="9" fill="#9CA3AF" font-family="Red Hat Mono,monospace">${d}</text>`;
     }
   });
-}
 
-function animateBars(){
-  document.querySelectorAll('.breakdown-fill[data-w]').forEach(el=>{
-    setTimeout(()=>{ el.style.width=el.dataset.w+'%'; },400);
+  // lines
+  kams.forEach(k => {
+    const pts = series[k];
+    let d = `M ${xPos(0)} ${yPos(pts[0])}`;
+    pts.forEach((v,i) => { if(i>0) d += ` L ${xPos(i)} ${yPos(v)}`; });
+    html += `<path d="${d}" fill="none" stroke="${colors[k]}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    // endpoint dot
+    const lastX = xPos(pts.length-1), lastY = yPos(pts[pts.length-1]);
+    html += `<circle cx="${lastX}" cy="${lastY}" r="4" fill="${colors[k]}" stroke="white" stroke-width="1.5"/>`;
+    html += `<text x="${lastX+6}" y="${lastY+4}" font-size="10" fill="${colors[k]}" font-weight="700" font-family="Red Hat Display,sans-serif">${pts[pts.length-1]}</text>`;
+  });
+
+  svg.innerHTML = html;
+
+  // legend
+  const legend = document.getElementById('chart-legend');
+  kams.forEach(k => {
+    const cfg = KAM_CONFIG[k];
+    const span = document.createElement('span');
+    span.style.cssText = `display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#1F2937;`;
+    span.innerHTML = `<span style="width:16px;height:3px;background:${colors[k]};border-radius:2px;display:inline-block;"></span>${cfg.emoji} ${k}`;
+    legend.appendChild(span);
   });
 }
 
-function animateMeta(){
-  animateCounter(document.getElementById('counterTotal'),TOTAL);
-  const pct=Math.round(TOTAL/META_GENERAL*100);
-  setTimeout(()=>{ document.getElementById('pctBadge').textContent=pct+'%'; },200);
-  setTimeout(()=>{ document.getElementById('mainBarFill').style.width=(TOTAL/META_GENERAL*100)+'%'; },300);
-  const pP=Math.round(PRIMERA/META_PRIMERA*100);
-  document.getElementById('primera-pct').textContent=pP+'%';
-  document.getElementById('primera-falta').textContent=META_PRIMERA-PRIMERA;
-  setTimeout(()=>{ document.getElementById('primera-bar').style.width=pP+'%'; },500);
-  const rP=Math.round(RENOVACION/META_RENOV*100);
-  document.getElementById('renov-pct').textContent=rP+'%';
-  document.getElementById('renov-falta').textContent=META_RENOV-RENOVACION;
-  setTimeout(()=>{ document.getElementById('renov-bar').style.width=rP+'%'; },700);
+// ─── BREAKDOWN ───
+function buildBreakdown() {
+  // Protección
+  const protWrap = document.getElementById('breakdown-proteccion');
+  const prots = ['proteccion_integral','proteccion_juridica','proteccion_premium'];
+  const maxProt = Math.max(...prots.map(p => countBy(DATA,'proteccion',p)));
+  prots.forEach(p => {
+    const n = countBy(DATA,'proteccion',p);
+    const pct = (n/maxProt*100).toFixed(0);
+    protWrap.innerHTML += `
+      <div class="breakdown-row">
+        <div class="breakdown-label">${PROT_LABELS[p]}</div>
+        <div class="breakdown-bar-wrap"><div class="breakdown-bar-fill" style="width:${pct}%;background:${PROT_COLORS[p]};"></div></div>
+        <div class="breakdown-count">${n}</div>
+      </div>`;
+  });
+
+  // Agencias top
+  const agWrap = document.getElementById('breakdown-agencia');
+  const agCount = {};
+  DATA.forEach(d => { if(d.agencia) agCount[d.agencia] = (agCount[d.agencia]||0)+1; });
+  const agSorted = Object.entries(agCount).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxAg = agSorted[0][1];
+  agSorted.forEach(([ag, n]) => {
+    const pct = (n/maxAg*100).toFixed(0);
+    agWrap.innerHTML += `
+      <div class="breakdown-row">
+        <div class="breakdown-label">${ag}</div>
+        <div class="breakdown-bar-wrap"><div class="breakdown-bar-fill" style="width:${pct}%;background:#BBE3E3;"></div></div>
+        <div class="breakdown-count">${n}</div>
+      </div>`;
+  });
 }
 
-function launchConfetti(){
-  const wrap=document.getElementById('confettiWrap');
-  const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937'];
-  for(let i=0;i<60;i++){
-    const p=document.createElement('div');
-    p.className='confetti-piece';
-    p.style.cssText=`left:${Math.random()*100}%;background:${colors[i%colors.length]};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s;transform:rotate(${Math.random()*360}deg);width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
-    wrap.appendChild(p);
-    setTimeout(()=>p.remove(),4000);
+// ─── KAM PAGE ───
+function buildKAMPage(kam, kpisId, alertasId, tableId) {
+  const rows = byKAM(kam);
+  const pv = countBy(rows,'contrato','primera_vez');
+  const ren = countBy(rows,'contrato','renovacion_mica');
+  const integral = countBy(rows,'proteccion','proteccion_integral');
+  const juridica = countBy(rows,'proteccion','proteccion_juridica');
+  const premium = countBy(rows,'proteccion','proteccion_premium');
+  const cfg = KAM_CONFIG[kam];
+
+  // KPIs
+  const kpisWrap = document.getElementById(kpisId);
+  const kpiData = [
+    { label: 'Total Firmas', value: rows.length, accent: 'verde' },
+    { label: '🌟 Primera Vez', value: pv, accent: 'agua' },
+    { label: '🔂 Renovaciones', value: ren, accent: 'coral' },
+    { label: '% de Meta', value: `${((rows.length/META)*100).toFixed(1)}%`, accent: 'amarillo' },
+  ];
+  kpiData.forEach(kpi => {
+    const div = document.createElement('div');
+    div.className = `card card-accent accent-${kpi.accent}`;
+    div.innerHTML = `<div class="card-label">${kpi.label}</div><div class="card-value">${kpi.value}</div>`;
+    kpisWrap.appendChild(div);
+  });
+
+  // Alertas
+  const alertasWrap = document.getElementById(alertasId);
+  const warnings = rows.filter(r => r.status_pandora === 'Falta primer pago' || r.obs.includes('Información de contrato completada') === false && r.obs !== '');
+  const faltaPago = rows.filter(r => r.status_pandora === 'Falta primer pago');
+  if (faltaPago.length > 0) {
+    faltaPago.forEach(r => {
+      alertasWrap.innerHTML += `<div class="alerta"><div class="alerta-icon">⚠️</div><div class="alerta-text"><strong>Falta primer pago:</strong> ${r.inmueble.substring(0,80)}...</div></div>`;
+    });
   }
-}
 
-function showTab(key){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('panel-'+key).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>{
-    if(t.getAttribute('onclick')===`showTab('${key}')`) t.classList.add('active');
+  // Tabla
+  const tbody = document.querySelector(`#${tableId} tbody`);
+  rows.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  rows.forEach((r, i) => {
+    const emoji = r.contrato === 'primera_vez' ? '🌟' : '🔂';
+    const isWarn = r.status_pandora === 'Falta primer pago';
+    const statusHtml = isWarn
+      ? `<span class="status-badge status-warn">⚠️ Falta pago</span>`
+      : `<span class="status-badge status-ok">✓ Firmado</span>`;
+    const protLabel = PROT_LABELS[r.proteccion] || r.proteccion;
+    const inmuebleShort = r.inmueble.length > 55 ? r.inmueble.substring(0,55)+'…' : r.inmueble;
+    const tr = document.createElement('tr');
+    if (isWarn) tr.style.background = '#FFFBEB';
+    tr.innerHTML = `
+      <td style="font-family:'Red Hat Mono',monospace;font-weight:700;color:#9CA3AF;">${i+1}</td>
+      <td style="font-family:'Red Hat Mono',monospace;white-space:nowrap;">${r.fecha.split('-').reverse().join('/')}</td>
+      <td><span class="contract-emoji">${emoji}</span>${r.contrato === 'primera_vez' ? 'Primera vez' : 'Renovación'}</td>
+      <td>${protLabel}</td>
+      <td>${r.agencia || '<span style="color:#D1D5DB;">—</span>'}</td>
+      <td style="font-size:12px;">${inmuebleShort}</td>
+      <td>${statusHtml}</td>
+    `;
+    tbody.appendChild(tr);
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  buildDayDots();
+// ─── INIT ───
+window.addEventListener('DOMContentLoaded', () => {
+  buildCalendario();
   buildScoreboard();
   buildChart();
-  animateMeta();
-  animateBars();
-  buildTable('table-majo', detailData.majo);
-  buildTable('table-gabo', detailData.gabo);
-  buildTable('table-ale',  detailData.ale);
-  buildTable('table-leo',  detailData.leo);
+  buildBreakdown();
+  buildKAMPage('Majo','majo-kpis','majo-alertas','majo-table');
+  buildKAMPage('Gabo','gabo-kpis','gabo-alertas','gabo-table');
+  buildKAMPage('Leo','leo-kpis','leo-alertas','leo-table');
+  buildKAMPage('Ale','ale-kpis','ale-alertas','ale-table');
+
+  // update last updated
+  const now = new Date();
+  document.getElementById('last-updated').textContent = `Actualizado ${now.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'})} · Semana ${Math.ceil(HOY/7)}`;
 });
 </script>
 </body>
