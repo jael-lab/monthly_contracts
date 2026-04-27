@@ -3,656 +3,842 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏆 MICA Firmas — Abril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>MICA · Firmas Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #72DDA3; --agua: #BBE3E3; --yellow: #F3CE98;
-    --coral: #FFB59C; --pink: #F9D3CD; --bg: #F5F5F5;
-    --text: #1F2937; --text2: #374151; --white: #ffffff;
-    --border: rgba(31,41,55,0.08);
-    --shadow: 0 4px 24px rgba(31,41,55,0.08);
-    --shadow-hover: 0 8px 40px rgba(31,41,55,0.14);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Red Hat Display', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Red Hat Display',sans-serif;background:#F5F5F5;color:#1F2937;overflow-x:hidden}
+.bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:.13;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh) scale(0)}100%{transform:translateY(-200px) scale(1)}}
+.container{position:relative;z-index:1}
 
-  .bg-bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .bubble { position: absolute; border-radius: 50%; opacity: 0.18; animation: floatBubble 18s ease-in-out infinite; }
-  .bubble:nth-child(1){ width:420px;height:420px;background:#72DDA3;top:-120px;right:-80px;animation-delay:0s; }
-  .bubble:nth-child(2){ width:280px;height:280px;background:#BBE3E3;bottom:10%;left:-60px;animation-delay:4s; }
-  .bubble:nth-child(3){ width:180px;height:180px;background:#F3CE98;top:40%;right:5%;animation-delay:8s; }
-  .bubble:nth-child(4){ width:140px;height:140px;background:#FFB59C;bottom:20%;right:20%;animation-delay:12s; }
-  @keyframes floatBubble { 0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);} }
+/* TABS */
+.tab-bar{position:sticky;top:0;z-index:100;background:#F5F5F5;border-bottom:1px solid #E5E7EB;padding:12px 24px;display:flex;gap:8px;align-items:center;overflow-x:auto}
+.tab-btn{font-family:'Red Hat Display',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border:none;border-radius:20px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#6B7280}
+.tab-btn:hover{background:#E5E7EB;color:#1F2937}
+.tab-btn.active{background:#1F2937;color:#fff}
+.tab-panel{display:none;padding:24px}
+.tab-panel.active{display:block}
 
-  .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+/* HERO */
+.hero{background:linear-gradient(135deg,#1F2937 0%,#374151 60%,#1a2a1a 100%);border-radius:20px;padding:36px;color:#fff;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(114,221,163,.08)}
+.hero::after{content:'';position:absolute;bottom:-40px;left:40%;width:160px;height:160px;border-radius:50%;background:rgba(187,227,227,.06)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+.hero-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#9CA3AF;margin-bottom:6px}
+.hero-num{font-size:72px;font-weight:900;line-height:1;color:#72DDA3}
+.hero-denom{font-size:32px;font-weight:500;color:#6B7280;margin-left:6px}
+.hero-label{font-size:14px;color:#9CA3AF;margin-top:4px}
+.progress-track{background:rgba(255,255,255,.1);border-radius:12px;height:12px;margin:20px 0 8px;overflow:hidden}
+.progress-fill{height:100%;border-radius:12px;background:linear-gradient(90deg,#72DDA3,#BBE3E3);transition:width 1.2s ease}
+.progress-pct{font-size:13px;color:#BBE3E3;font-weight:600}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:24px}
+.hero-stat{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.06)}
+.hero-stat-val{font-size:26px;font-weight:800;color:#BBE3E3}
+.hero-stat-label{font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
-  .header { padding: 40px 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .header-left h1 { font-size: clamp(28px,4vw,42px); font-weight: 900; line-height: 1.1; letter-spacing: -1px; }
-  .header-left h1 span { color: #72DDA3; }
-  .header-left p { font-size: 14px; color: #374151; margin-top: 6px; font-weight: 500; }
-  .header-badge { background: #1F2937; color: #72DDA3; padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
+/* CARDS */
+.cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;transition:box-shadow .2s,transform .2s;cursor:default}
+.card:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);transform:translateY(-2px)}
+.card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;margin-bottom:8px}
+.card-val{font-size:32px;font-weight:800;color:#1F2937}
+.card-sub{font-size:12px;color:#6B7280;margin-top:4px}
 
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 32px; background: rgba(255,255,255,0.6); padding: 6px; border-radius: 16px; backdrop-filter: blur(8px); border: 1px solid var(--border); width: fit-content; }
-  .tab { padding: 10px 22px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Red Hat Display', sans-serif; font-size: 14px; font-weight: 700; transition: all 0.22s cubic-bezier(.4,0,.2,1); background: transparent; color: #374151; display: flex; align-items: center; gap: 8px; }
-  .tab:hover { background: rgba(114,221,163,0.15); }
-  .tab.active { background: #1F2937; color: #ffffff; box-shadow: 0 2px 12px rgba(31,41,55,0.18); }
-  .tab .tab-avatar { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; }
+/* SCOREBOARD */
+.scoreboard{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
+.section-title{font-size:16px;font-weight:700;color:#1F2937;margin-bottom:16px}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.score-card{border-radius:14px;padding:20px;cursor:pointer;transition:all .2s;border:2px solid transparent;position:relative;overflow:hidden}
+.score-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.score-card.selected{border-color:#1F2937}
+.score-emoji{font-size:36px;margin-bottom:8px;display:block}
+.score-name{font-size:14px;font-weight:700;color:#1F2937;margin-bottom:2px}
+.score-nick{font-size:11px;color:#6B7280;margin-bottom:12px}
+.score-firmas{font-size:28px;font-weight:900;color:#1F2937}
+.score-firmas-label{font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:1px}
+.score-bar-track{background:rgba(0,0,0,.08);border-radius:6px;height:6px;margin-top:10px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:6px;transition:width 1s ease}
+.crown{position:absolute;top:-4px;right:10px;font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
 
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);} }
+/* CALENDAR */
+.calendar-section{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
+.cal-header{font-size:11px;font-weight:600;text-align:center;color:#9CA3AF;padding:6px 0;text-transform:uppercase}
+.cal-day{min-height:52px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;font-size:12px;color:#9CA3AF;background:#F9FAFB}
+.cal-day.has-firma{background:#72DDA3;color:#1F2937;font-weight:700;cursor:default}
+.cal-day.today-cell{box-shadow:0 0 0 2px #1F2937}
+.cal-day .day-num{font-size:12px;font-weight:600}
+.cal-badge{background:#1F2937;color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:2px 5px;margin-top:2px;font-family:'Red Hat Mono',monospace}
+.cal-day.empty{background:transparent}
 
-  .card { background: #ffffff; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: box-shadow 0.22s ease; overflow: hidden; }
-  .card:hover { box-shadow: var(--shadow-hover); }
+/* CHART */
+.chart-section{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
+.chart-wrap{position:relative;height:200px;margin-top:16px}
+canvas{width:100%!important;height:100%!important}
 
-  /* META HERO */
-  .meta-hero { background: #1F2937; border-radius: 24px; padding: 36px 40px; margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; position: relative; overflow: hidden; }
-  .meta-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: #72DDA3; border-radius: 50%; opacity: 0.1; }
-  .meta-hero-left h2 { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-  .meta-total-display { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .meta-big-num { font-size: clamp(56px,8vw,80px); font-weight: 900; color: #ffffff; line-height: 1; font-feature-settings: 'tnum'; }
-  .meta-separator { font-size: 40px; color: rgba(255,255,255,0.3); font-weight: 300; }
-  .meta-goal-num { font-size: 40px; font-weight: 700; color: rgba(255,255,255,0.4); line-height: 1; }
-  .meta-pct-badge { display: inline-block; background: #72DDA3; color: #1F2937; padding: 6px 16px; border-radius: 100px; font-size: 18px; font-weight: 900; margin-top: 12px; }
-  .meta-hero-bar-wrap { margin-top: 14px; }
-  .meta-hero-bar-track { height: 12px; background: rgba(255,255,255,0.1); border-radius: 100px; overflow: hidden; }
-  .meta-hero-bar-fill { height: 100%; background: linear-gradient(90deg,#72DDA3,#4ecb7a); border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); position: relative; }
-  .meta-hero-bar-fill::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 0 3px #72DDA3; }
-  .meta-hero-right { display: flex; flex-direction: column; gap: 14px; }
+/* BREAKDOWN */
+.breakdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.breakdown-card{background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6}
+.breakdown-item{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.breakdown-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.breakdown-name{font-size:13px;color:#374151;flex:1}
+.breakdown-count{font-size:13px;font-weight:700;color:#1F2937;font-family:'Red Hat Mono',monospace}
+.breakdown-pct{font-size:11px;color:#9CA3AF;margin-left:4px}
 
-  .mini-meta { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px 20px; }
-  .mini-meta-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .mini-meta-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); }
-  .mini-meta-nums { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
-  .mini-meta-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
-  .mini-meta-bar-fill { height: 100%; border-radius: 100px; transition: width 1.4s cubic-bezier(.4,0,.2,1); }
+/* ACHIEVEMENTS */
+.achievements{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
+.ach-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.ach-badge{display:flex;align-items:center;gap:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;color:#374151}
+.ach-badge.gold{background:#FEF9C3;border-color:#FDE68A;color:#92400E}
+.ach-badge.green{background:#D1FAE5;border-color:#6EE7B7;color:#065F46}
+.ach-badge.blue{background:#DBEAFE;border-color:#93C5FD;color:#1E40AF}
 
-  /* SCOREBOARD */
-  .scoreboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; margin-bottom: 24px; }
-  .kam-card { border-radius: 20px; padding: 24px; position: relative; overflow: hidden; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 2px solid transparent; }
-  .kam-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-  .kam-card.rank-1 { border-color: #FFD700; }
-  .kam-card.rank-2 { border-color: #C0C0C0; }
-  .kam-card.rank-3 { border-color: #CD7F32; }
-  .kam-rank-badge { position: absolute; top: 16px; right: 16px; font-size: 24px; line-height: 1; }
-  .kam-name { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
-  .kam-role { font-size: 12px; font-weight: 600; opacity: 0.6; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-  .kam-stat-main { font-size: 52px; font-weight: 900; line-height: 1; font-feature-settings: 'tnum'; }
-  .kam-stat-label { font-size: 12px; font-weight: 600; opacity: 0.6; margin-top: 2px; margin-bottom: 16px; }
-  .kam-progress-wrap { margin-top: 4px; }
-  .kam-progress-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; opacity: 0.7; }
-  .kam-progress-track { height: 8px; background: rgba(0,0,0,0.12); border-radius: 100px; overflow: hidden; }
-  .kam-progress-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-  .kam-stats-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-  .kam-chip { padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.1); }
+/* KAM TAB */
+.kam-hero{border-radius:16px;padding:28px;color:#1F2937;margin-bottom:20px;position:relative;overflow:hidden}
+.kam-emoji-big{font-size:56px;margin-bottom:8px;display:block}
+.kam-name{font-size:24px;font-weight:800}
+.kam-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:20px}
+.kam-kpi{background:rgba(255,255,255,.6);border-radius:12px;padding:14px;backdrop-filter:blur(4px)}
+.kam-kpi-val{font-size:26px;font-weight:900;color:#1F2937}
+.kam-kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#374151;margin-top:2px}
 
-  /* CHART */
-  .chart-card { padding: 28px 28px 24px; margin-bottom: 24px; }
-  .chart-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
-  .chart-sub { font-size: 13px; color: #374151; opacity: 0.6; margin-bottom: 20px; }
-  .chart-wrap { position: relative; height: 200px; }
-  canvas { width: 100% !important; }
+/* ALERTS */
+.alert{border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.alert.yellow{background:#FFFBEB;border:1px solid #FCD34D;color:#92400E}
+.alert.red{background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B}
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} .meta-hero{grid-template-columns:1fr;} }
+/* TABLE */
+.ops-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+.ops-table th{text-align:left;padding:10px 12px;background:#F9FAFB;color:#6B7280;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #E5E7EB;white-space:nowrap}
+.ops-table td{padding:10px 12px;border-bottom:1px solid #F3F4F6;color:#374151;vertical-align:middle}
+.ops-table tr:last-child td{border-bottom:none}
+.ops-table tr:hover td{background:#FAFAFA}
+.prot-tag{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+.prot-integral{background:#D1FAE5;color:#065F46}
+.prot-juridica{background:#DBEAFE;color:#1E40AF}
+.prot-premium{background:#F3E8FF;color:#6B21A8}
+.status-tag{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+.status-firmado{background:#D1FAE5;color:#065F46}
+.status-falta{background:#FFFBEB;color:#92400E}
+.status-elab{background:#FEF2F2;color:#991B1B}
+.fee-mono{font-family:'Red Hat Mono',monospace;font-size:12px;font-weight:600;color:#374151}
 
-  /* BREAKDOWN */
-  .breakdown-card { padding: 24px; }
-  .breakdown-title { font-size: 15px; font-weight: 800; margin-bottom: 16px; }
-  .breakdown-item { margin-bottom: 12px; }
-  .breakdown-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .breakdown-label { font-size: 13px; font-weight: 700; }
-  .breakdown-count { font-size: 13px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
-  .breakdown-track { height: 10px; background: #F5F5F5; border-radius: 100px; overflow: hidden; }
-  .breakdown-fill { height: 100%; border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+/* PIPE FILTER */
+.pipe-filter{font-family:'Red Hat Display',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;border:1.5px solid #E5E7EB;border-radius:20px;cursor:pointer;background:#fff;color:#6B7280;transition:all .18s}
+.pipe-filter:hover{border-color:#1F2937;color:#1F2937}
+.pipe-filter.active{background:#1F2937;color:#fff;border-color:#1F2937}
+.pipe-kpi{background:#F9FAFB;border-radius:12px;padding:14px 16px;border:1px solid #F3F4F6}
+.pipe-kpi-val{font-size:24px;font-weight:800;color:#1F2937}
+.pipe-kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#6B7280;margin-top:2px}
+.stage-pill{display:inline-block;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+.stage-vb{background:#FFFBEB;color:#92400E;border:1px solid #FCD34D}
+.stage-firma{background:#EDE9FE;color:#5B21B6;border:1px solid #C4B5FD}
 
-  .agencia-list { list-style: none; }
-  .agencia-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .agencia-item:last-child { border-bottom: none; }
-  .agencia-name { font-weight: 700; }
-  .agencia-pill { background: #F5F5F5; border-radius: 100px; padding: 3px 10px; font-size: 12px; font-weight: 700; font-family: 'Red Hat Mono', monospace; }
+/* CONFETTI */
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
 
-  /* KAM DETAIL */
-  .kam-detail-header { border-radius: 20px; padding: 28px 32px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .kam-detail-name { font-size: 32px; font-weight: 900; }
-  .kam-detail-meta { font-size: 13px; opacity: 0.65; margin-top: 4px; font-weight: 600; }
-  .kam-kpi-row { display: flex; gap: 20px; flex-wrap: wrap; }
-  .kam-kpi { text-align: center; }
-  .kam-kpi-val { font-size: 28px; font-weight: 900; line-height: 1; }
-  .kam-kpi-lab { font-size: 11px; font-weight: 700; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
-
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #374151; opacity: 0.5; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-weight: 500; vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(114,221,163,0.05); }
-
-  .badge { padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; white-space: nowrap; display: inline-block; }
-  .badge-integral   { background: #dcfce7; color: #166534; }
-  .badge-juridica   { background: #dbeafe; color: #1e40af; }
-  .badge-premium    { background: #fef3c7; color: #92400e; }
-  .badge-primera    { background: #f3e8ff; color: #6b21a8; }
-  .badge-renovacion { background: #fce7f3; color: #9d174d; }
-  .badge-directa    { background: #F5F5F5; color: #374151; }
-  .badge-aka        { background: #1F2937; color: #72DDA3; }
-  .badge-ok         { background: #dcfce7; color: #166534; }
-  .badge-warn       { background: #fef3c7; color: #92400e; }
-  .badge-proceso    { background: #e0f2fe; color: #0369a1; }
-
-  .confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
-  .confetti-piece { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: confettiFall 3s ease-in forwards; opacity: 0; }
-  @keyframes confettiFall { 0%{opacity:1;transform:translateY(-20px) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
-
-  .streak-section { margin-bottom: 24px; }
-  .streak-title { font-size: 15px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .day-dots { display: flex; gap: 6px; flex-wrap: wrap; }
-  .day-dot { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; font-family: 'Red Hat Mono', monospace; transition: transform 0.15s ease; cursor: default; position: relative; }
-  .day-dot:hover { transform: scale(1.15); }
-  .day-dot.empty { background: #F5F5F5; color: rgba(31,41,55,0.25); border: 1.5px dashed rgba(31,41,55,0.15); }
-  .day-dot.has-firma { background: #72DDA3; color: #1F2937; }
-  .day-dot.today { outline: 3px solid #1F2937; outline-offset: 2px; }
-  .day-dot .dot-count { position: absolute; top: -6px; right: -6px; background: #1F2937; color: #ffffff; border-radius: 100px; width: 16px; height: 16px; font-size: 9px; display: flex; align-items: center; justify-content: center; font-weight: 900; }
-
-  .achievements { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-  .achievement { background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 14px 18px; display: flex; align-items: center; gap: 12px; min-width: 180px; flex: 1; box-shadow: var(--shadow); }
-  .achievement-icon { font-size: 28px; }
-  .achievement-text .ach-title { font-size: 13px; font-weight: 800; }
-  .achievement-text .ach-desc { font-size: 11px; color: #374151; opacity: 0.6; margin-top: 1px; }
-
-  .footer { text-align: center; padding: 24px 0 0; font-size: 12px; color: #374151; opacity: 0.4; font-weight: 600; }
+@media(max-width:640px){
+  .hero-num{font-size:52px}
+  .breakdown-grid{grid-template-columns:1fr}
+  .ops-table{font-size:11px}
+  .ops-table th,.ops-table td{padding:8px 8px}
+}
 </style>
 </head>
 <body>
 
-<div class="bg-bubbles">
-  <div class="bubble"></div><div class="bubble"></div>
-  <div class="bubble"></div><div class="bubble"></div>
-</div>
-<div class="confetti-wrap" id="confettiWrap"></div>
+<div id="confetti-canvas"></div>
+
+<!-- BUBBLES BG -->
+<div class="bubbles" id="bubblesContainer"></div>
 
 <div class="container">
-
-  <div class="header">
-    <div class="header-left">
-      <h1>🏆 Firmas <span>Abril</span></h1>
-      <p>MICA · Dashboard Operativo · Actualizado 21 Abr 2026</p>
-    </div>
-    <div class="header-badge">MES EN CURSO ⚡</div>
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('general')">📊 General</button>
+    <button class="tab-btn" onclick="showTab('majo')" style="color:#72DDA3">🦋 Majo</button>
+    <button class="tab-btn" onclick="showTab('gabo')" style="color:#BBE3E3">🪐 Gabo</button>
+    <button class="tab-btn" onclick="showTab('ale')" style="color:#F3CE98">🐰 Ale</button>
+    <button class="tab-btn" onclick="showTab('leo')" style="color:#FFB59C">🦁 Leo</button>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('general')">🌟 General</button>
-    <button class="tab" onclick="showTab('majo')"><span class="tab-avatar" style="background:#BBE3E3;color:#1F2937">M</span> Majo</button>
-    <button class="tab" onclick="showTab('gabo')"><span class="tab-avatar" style="background:#F3CE98;color:#1F2937">G</span> Gabo</button>
-    <button class="tab" onclick="showTab('ale')"><span class="tab-avatar" style="background:#F9D3CD;color:#1F2937">A</span> Ale</button>
-    <button class="tab" onclick="showTab('leo')"><span class="tab-avatar" style="background:#FFB59C;color:#1F2937">L</span> Leo</button>
-  </div>
+  <!-- ======== TAB GENERAL ======== -->
+  <div class="tab-panel active" id="tab-general">
 
-  <!-- ═══ GENERAL ═══ -->
-  <div class="tab-panel active" id="panel-general">
-
-    <div class="meta-hero">
-      <div class="meta-hero-left">
-        <h2>Meta del Mes</h2>
-        <div class="meta-total-display">
-          <div class="meta-big-num" id="counterTotal">0</div>
-          <div class="meta-separator">/</div>
-          <div class="meta-goal-num">120</div>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hero-title">Firmas · Abril 2026</div>
+          <div>
+            <span class="hero-num" id="animTotal">0</span><span class="hero-denom"> / 120</span>
+          </div>
+          <div class="hero-label">meta mensual</div>
         </div>
-        <div class="meta-pct-badge" id="pctBadge">0%</div>
-        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap;">
-          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:10px 16px;">
-            <div style="font-size:10px;color:rgba(255,255,255,0.4);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Ritmo actual</div>
-            <div style="font-size:22px;font-weight:900;color:#ffffff;margin-top:2px;">2.1 <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.4)">firmas/día</span></div>
-          </div>
-          <div style="background:rgba(114,221,163,0.15);border:1px solid rgba(114,221,163,0.35);border-radius:12px;padding:10px 16px;">
-            <div style="font-size:10px;color:rgba(114,221,163,0.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;">Necesario para meta</div>
-            <div style="font-size:22px;font-weight:900;color:#72DDA3;margin-top:2px;">8.4 <span style="font-size:12px;font-weight:600;color:rgba(114,221,163,0.6)">firmas/día</span></div>
-          </div>
-        </div>
-        <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.28);font-weight:600;">9 días restantes · 75 firmas por cerrar</div>
-        <div class="meta-hero-bar-wrap" style="margin-top:14px">
-          <div class="meta-hero-bar-track">
-            <div class="meta-hero-bar-fill" id="mainBarFill" style="width:0%"></div>
-          </div>
+        <div style="text-align:right">
+          <div style="font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Ritmo actual</div>
+          <div style="font-size:32px;font-weight:800;color:#F3CE98" id="ritmoVal">—</div>
+          <div style="font-size:12px;color:#9CA3AF;margin-top:2px">firmas/día transcurrido</div>
+          <div style="font-size:11px;color:#FFB59C;margin-top:8px" id="ritmoNeed"></div>
         </div>
       </div>
-      <div class="meta-hero-right">
-        <div class="mini-meta">
-          <div class="mini-meta-header">
-            <span class="mini-meta-name">🍦 Primera vez</span>
-            <span class="mini-meta-nums" style="color:#BBE3E3">34 / 90</span>
-          </div>
-          <div class="mini-meta-bar-track">
-            <div class="mini-meta-bar-fill" id="primera-bar" style="width:0%;background:#BBE3E3"></div>
-          </div>
-          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
-            <span id="primera-pct">0%</span> de meta · faltan <span id="primera-falta">56</span>
-          </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressBar" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="progressPct">0%</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-val" id="statPV">0</div>
+          <div class="hero-stat-label">Primera vez</div>
         </div>
-        <div class="mini-meta">
-          <div class="mini-meta-header">
-            <span class="mini-meta-name">🎁 Renovaciones</span>
-            <span class="mini-meta-nums" style="color:#FFB59C">9 / 30</span>
-          </div>
-          <div class="mini-meta-bar-track">
-            <div class="mini-meta-bar-fill" id="renov-bar" style="width:0%;background:#FFB59C"></div>
-          </div>
-          <div style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.45);font-weight:700;">
-            <span id="renov-pct">0%</span> de meta · faltan <span id="renov-falta">21</span>
-          </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val" id="statRen">0</div>
+          <div class="hero-stat-label">Renovaciones</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val" id="statDias">—</div>
+          <div class="hero-stat-label">Días restantes</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val" id="statFaltantes">—</div>
+          <div class="hero-stat-label">Firmas faltantes</div>
+        </div>
+        <div class="hero-stat" style="border-color:rgba(114,221,163,.25);background:rgba(114,221,163,.07)">
+          <div class="hero-stat-val" id="statProy100" style="color:#72DDA3">—</div>
+          <div class="hero-stat-label" style="color:#72DDA3">Optimista 100%</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:4px">todos cierran</div>
+        </div>
+        <div class="hero-stat" style="border-color:rgba(243,206,152,.25);background:rgba(243,206,152,.08)">
+          <div class="hero-stat-val" id="statProy75" style="color:#F3CE98">—</div>
+          <div class="hero-stat-label" style="color:#F3CE98">Realista 75%</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:4px">3 de 4 cierran</div>
+        </div>
+        <div class="hero-stat" style="border-color:rgba(255,181,156,.25);background:rgba(255,181,156,.07)">
+          <div class="hero-stat-val" id="statProy50" style="color:#FFB59C">—</div>
+          <div class="hero-stat-label" style="color:#FFB59C">Conservador 50%</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:4px">1 de 2 cierran</div>
         </div>
       </div>
     </div>
 
+    <!-- SCOREBOARD -->
+    <div class="scoreboard">
+      <div class="section-title">🏆 Scoreboard</div>
+      <div class="score-grid" id="scoreGrid"></div>
+    </div>
+
+    <!-- CALENDARIO -->
+    <div class="calendar-section">
+      <div class="section-title">📅 Firmas por día · Abril 2026</div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <!-- GRÁFICA ACUMULADA -->
+    <div class="chart-section">
+      <div class="section-title">📈 Acumulado diario</div>
+      <div class="chart-wrap">
+        <canvas id="chartAcum"></canvas>
+      </div>
+    </div>
+
+    <!-- BREAKDOWN -->
+    <div class="breakdown-grid">
+      <div class="breakdown-card">
+        <div class="section-title" style="font-size:14px">Tipo de Protección</div>
+        <div id="breakdownProt"></div>
+      </div>
+      <div class="breakdown-card">
+        <div class="section-title" style="font-size:14px">Top Agencias</div>
+        <div id="breakdownAgencia"></div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
     <div class="achievements">
-      <div class="achievement"><div class="achievement-icon">⚡</div><div class="achievement-text"><div class="ach-title">Mejor día: 9 Abr</div><div class="ach-desc">7 firmas en un solo día</div></div></div>
-      <div class="achievement"><div class="achievement-icon">💰</div><div class="achievement-text"><div class="ach-title">$227,747 en FEE</div><div class="ach-desc">Total mes acumulado</div></div></div>
-      <div class="achievement"><div class="achievement-icon">⭐</div><div class="achievement-text"><div class="ach-title">MVP: Majo 🦋</div><div class="ach-desc">19 firmas · líder del mes</div></div></div>
-      <div class="achievement"><div class="achievement-icon">📅</div><div class="achievement-text"><div class="ach-title">17 días activos</div><div class="ach-desc">De 21 días transcurridos</div></div></div>
+      <div class="section-title">⚡ Achievements</div>
+      <div class="ach-list" id="achList"></div>
     </div>
 
-    <div class="card streak-section" style="padding:24px;">
-      <div class="streak-title">📅 Actividad del mes — firma por día</div>
-      <div class="day-dots" id="dayDots"></div>
-    </div>
-
-    <h3 style="font-size:16px;font-weight:800;margin:24px 0 14px;display:flex;align-items:center;gap:8px;">🏅 Ranking del Equipo</h3>
-    <div class="scoreboard-grid" id="scoreboardGrid"></div>
-
-    <div class="card chart-card" style="margin-bottom:24px;">
-      <div class="chart-title">📈 Firmas acumuladas en el mes</div>
-      <div class="chart-sub">Progresión diaria del equipo completo · Abril 2026</div>
-      <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
-    </div>
-
-    <div class="two-col">
-      <div class="card breakdown-card">
-        <div class="breakdown-title">🛡️ Por tipo de protección</div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Integral</span><span class="breakdown-count">26</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#72DDA3" data-w="59.1"></div></div>
-        </div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Jurídica</span><span class="breakdown-count">12</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#BBE3E3" data-w="27.3"></div></div>
-        </div>
-        <div class="breakdown-item">
-          <div class="breakdown-header"><span class="breakdown-label">Protección Premium</span><span class="breakdown-count">6</span></div>
-          <div class="breakdown-track"><div class="breakdown-fill" style="width:0%;background:#F3CE98" data-w="13.6"></div></div>
-        </div>
+    <!-- PIPELINE RESUMEN -->
+    <div style="background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6">
+      <div style="margin-bottom:16px">
+        <div class="section-title" style="margin-bottom:4px">🔭 Pipeline · En trabajo</div>
+        <div style="font-size:12px;color:#9CA3AF">Ver detalle completo en cada tab de KAM</div>
       </div>
-      <div class="card breakdown-card">
-        <div class="breakdown-title">🏢 Top Agencias</div>
-        <ul class="agencia-list">
-          <li class="agencia-item"><span class="agencia-name">➡️ Directa</span><span class="agencia-pill">21</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏠 AKA</span><span class="agencia-pill">6</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Grupo Arvi</span><span class="agencia-pill">4</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Remax</span><span class="agencia-pill">3</span></li>
-          <li class="agencia-item"><span class="agencia-name">🏢 Rentas Ok</span><span class="agencia-pill">3</span></li>
-          <li class="agencia-item"><span class="agencia-name">📦 Otras</span><span class="agencia-pill">7</span></li>
-        </ul>
-      </div>
+      <div id="pipeResumenGrid"></div>
+      <div id="pipeHallazgos" style="margin-top:16px;display:flex;flex-direction:column;gap:8px"></div>
     </div>
 
-  </div><!-- /general -->
-
-  <!-- ═══ MAJO ═══ -->
-  <div class="tab-panel" id="panel-majo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#BBE3E3 0%,#8ccece 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🦋 María José Arriaga</div>
-        <div class="kam-detail-meta">KAM · La Mariposa · MVP Marzo 👑 · Líder Abril</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">19</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$99K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">17</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">1</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
-    </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-majo"></table></div></div>
   </div>
 
-  <!-- ═══ GABO ═══ -->
-  <div class="tab-panel" id="panel-gabo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F3CE98 0%,#e6b96a 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🪐 Gabriel Alvarado</div>
-        <div class="kam-detail-meta">KAM · Saturno · Renovaciones AKA</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$15K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">7</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
+  <!-- ======== TAB MAJO ======== -->
+  <div class="tab-panel" id="tab-majo">
+    <div class="kam-hero" style="background:linear-gradient(135deg,#D1FAE5,#A7F3D0)">
+      <span class="kam-emoji-big">🦋</span>
+      <div class="kam-name">Maria José Arriaga</div>
+      <div style="font-size:13px;color:#065F46;font-weight:600;margin-top:2px">Majo · La Mariposa 👑 MVP</div>
+      <div class="kam-kpis" id="kpi-majo"></div>
     </div>
-    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:12px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato con <strong>"Falta primer pago"</strong> — 8 Abr, Tiziano 167, Álvaro Obregón. Validar con AKA.</span>
+    <div id="alerts-majo"></div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
+      <div class="section-title" style="font-size:14px">Operaciones</div>
+      <table class="ops-table" id="table-majo"></table>
     </div>
-    <div style="background:#fef2f2;border:1.5px solid #fca5a5;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:18px;">🔴</span>
-      <span style="font-size:13px;color:#991b1b;font-weight:600;">1 contrato sin <strong>Fecha firma (Pandora)</strong> — AKA, $16,272, renovación integral. Está en "Elaboración de Contrato". Capturar fecha en Pandora para completar el registro.</span>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
+      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Majo</div>
+      <div id="pipe-kpis-majo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
+      <table class="ops-table" id="pipe-table-majo"></table>
     </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-gabo"></table></div></div>
   </div>
 
-  <!-- ═══ ALE ═══ -->
-  <div class="tab-panel" id="panel-ale">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#F9D3CD 0%,#f0a898 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🐰 Alejandra Muñoz</div>
-        <div class="kam-detail-meta">KAM · El Conejo · 2do lugar del mes</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">11</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$64K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">9</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">2</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
+  <!-- ======== TAB GABO ======== -->
+  <div class="tab-panel" id="tab-gabo">
+    <div class="kam-hero" style="background:linear-gradient(135deg,#DBEAFE,#BFDBFE)">
+      <span class="kam-emoji-big">🪐</span>
+      <div class="kam-name">Gabriel Alvarado</div>
+      <div style="font-size:13px;color:#1E40AF;font-weight:600;margin-top:2px">Gabo · Saturno</div>
+      <div class="kam-kpis" id="kpi-gabo"></div>
     </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-ale"></table></div></div>
+    <div id="alerts-gabo"></div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
+      <div class="section-title" style="font-size:14px">Operaciones</div>
+      <table class="ops-table" id="table-gabo"></table>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
+      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Gabo</div>
+      <div id="pipe-kpis-gabo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
+      <table class="ops-table" id="pipe-table-gabo"></table>
+    </div>
   </div>
 
-  <!-- ═══ LEO ═══ -->
-  <div class="tab-panel" id="panel-leo">
-    <div class="kam-detail-header" style="background:linear-gradient(135deg,#FFB59C 0%,#ff8f6b 100%);color:#1F2937;">
-      <div>
-        <div class="kam-detail-name">🦁 Leonardo Monzalvo</div>
-        <div class="kam-detail-meta">KAM · El León · Rey en training</div>
-      </div>
-      <div class="kam-kpi-row">
-        <div class="kam-kpi"><div class="kam-kpi-val">8</div><div class="kam-kpi-lab">Firmas</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">$46K</div><div class="kam-kpi-lab">FEE Total</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">8</div><div class="kam-kpi-lab">Primera vez</div></div>
-        <div class="kam-kpi"><div class="kam-kpi-val">0</div><div class="kam-kpi-lab">Renovación</div></div>
-      </div>
+  <!-- ======== TAB ALE ======== -->
+  <div class="tab-panel" id="tab-ale">
+    <div class="kam-hero" style="background:linear-gradient(135deg,#FEF9C3,#FDE68A)">
+      <span class="kam-emoji-big">🐰</span>
+      <div class="kam-name">Alejandra Muñoz</div>
+      <div style="font-size:13px;color:#92400E;font-weight:600;margin-top:2px">Ale · El Conejo</div>
+      <div class="kam-kpis" id="kpi-ale"></div>
     </div>
-    <div style="background:#fffbeb;border:1.5px solid #F3CE98;border-radius:16px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;">
-      <span style="font-size:18px;">⚠️</span>
-      <span style="font-size:13px;color:#78350f;font-weight:600;">1 contrato en <strong>"Elaboración de Contrato"</strong> — 18 Abr, $13,690. Pendiente de firma.</span>
+    <div id="alerts-ale"></div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
+      <div class="section-title" style="font-size:14px">Operaciones</div>
+      <table class="ops-table" id="table-ale"></table>
     </div>
-    <div class="card" style="padding:24px;"><div class="breakdown-title" style="margin-bottom:16px">Detalle de firmas</div><div class="table-wrap"><table id="table-leo"></table></div></div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
+      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Ale</div>
+      <div id="pipe-kpis-ale" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
+      <table class="ops-table" id="pipe-table-ale"></table>
+    </div>
   </div>
 
-  <div class="footer">MICA Operations · Pulso Firmas Abril 2026 · jael-lab.github.io</div>
+  <!-- ======== TAB LEO ======== -->
+  <div class="tab-panel" id="tab-leo">
+    <div class="kam-hero" style="background:linear-gradient(135deg,#FFE4E6,#FECDD3)">
+      <span class="kam-emoji-big">🦁</span>
+      <div class="kam-name">Leonardo Monzalvo</div>
+      <div style="font-size:13px;color:#9F1239;font-weight:600;margin-top:2px">Leo · El León</div>
+      <div class="kam-kpis" id="kpi-leo"></div>
+    </div>
+    <div id="alerts-leo"></div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
+      <div class="section-title" style="font-size:14px">Operaciones</div>
+      <table class="ops-table" id="table-leo"></table>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
+      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Leo</div>
+      <div id="pipe-kpis-leo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
+      <table class="ops-table" id="pipe-table-leo"></table>
+    </div>
+  </div>
+
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const META_GENERAL=120, META_PRIMERA=90, META_RENOV=30;
-const TOTAL=45, PRIMERA=34, RENOVACION=10;
-const TODAY=21;
+// ====================================================
+// DATA
+// ====================================================
+const DATA = [{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-01","renta":20500.0,"fee":7134.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-01 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-01","renta":8000.0,"fee":1856.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-02 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-01","renta":6436.0,"fee":2239.73,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-03 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-01","renta":8752.0,"fee":3045.7,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-04 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-06","renta":2616.0,"fee":910.37,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-05 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-06","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"YoRento","slack_id":"2026-04-06 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-01","renta":9000.0,"fee":3132.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-07 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-06","renta":38500.0,"fee":13398.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"2026-04-08 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-07","renta":4500.0,"fee":2610.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-09 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-08","renta":5555.0,"fee":1933.14,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Falta primer pago","agencia":"AKA","slack_id":"2026-04-10 00:00:00","missing_date":false,"falta_pago":true,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-02","renta":40000.0,"fee":13920.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"En Casa","slack_id":"2026-04-11 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-08","renta":15000.0,"fee":3480.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-12 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-02","renta":12000.0,"fee":4176.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-13 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":8000.0,"fee":2784.0,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"Soy Rumi","slack_id":"2026-04-14 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-08","renta":17000.0,"fee":5916.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-15 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-09","renta":36000.0,"fee":12528.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"2026-04-16 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":8500.0,"fee":2958.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-17 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-08","renta":6290.0,"fee":2188.92,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-18 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":30000.0,"fee":6960.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-19 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":19800.0,"fee":11484.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-20 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-07","renta":18500.0,"fee":4292.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-21 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"E-Inmob","slack_id":"2026-04-22 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-10","renta":7000.0,"fee":1624.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-23 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-11","renta":30000.0,"fee":17400.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-24 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-11","renta":12500.0,"fee":2900.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Propity","slack_id":"2026-04-25 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-13","renta":3150.0,"fee":730.8,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-26 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-13","renta":4600.0,"fee":1067.2,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-27 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-28 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-12","renta":9500.0,"fee":3306.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-29 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-14","renta":14850.0,"fee":3445.2,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Carlos Ortiz","slack_id":"2026-04-30 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-15","renta":7350.0,"fee":2557.8,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"31/abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-14","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax Daia","slack_id":"32 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-15","renta":5200.0,"fee":1809.6,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"33- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-15","renta":13000.0,"fee":3016.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"34 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-15","renta":25000.0,"fee":8700.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"35 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-15","renta":15000.0,"fee":8700.0,"protection":"proteccion_premium","contract":"renovacion_mica","status":"Firmado","agencia":"Grupo Arvi","slack_id":"#36-Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-16","renta":7500.0,"fee":1740.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"37 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-18","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"#38 Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-18","renta":12500.0,"fee":4350.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"39 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-20","renta":8830.0,"fee":3072.84,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"40 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":null,"renta":16272.0,"fee":5662.66,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Elaboración de Contrato","agencia":"AKA","slack_id":"41","missing_date":true,"falta_pago":false,"en_elaboracion":true},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-19","renta":12000.0,"fee":6960.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"42 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-20","renta":13690.0,"fee":4764.12,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"43 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-21","renta":15800.0,"fee":3665.6,"protection":"proteccion_juridica","contract":"","status":"Firmado","agencia":"","slack_id":"44 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-21","renta":7210.0,"fee":4181.8,"protection":"proteccion_premium","contract":"renovacion_mica","status":"Firmado","agencia":"","slack_id":"#45- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-25","renta":13500.0,"fee":4698.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"46 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-23","renta":6400.0,"fee":1484.8,"protection":"proteccion_juridica","contract":"","status":"Firmado","agencia":"","slack_id":"47 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-18","renta":22000.0,"fee":5104.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"#48 Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":null,"renta":7000.0,"fee":4060.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Elaboración de Contrato","agencia":"","slack_id":"#49 Abril","missing_date":true,"falta_pago":false,"en_elaboracion":true},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-23","renta":16500.0,"fee":9570.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"#50- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-25","renta":25000.0,"fee":8700.0,"protection":"proteccion_integral","contract":"","status":"Firmado","agencia":"","slack_id":"51 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-25","renta":29000.0,"fee":10092.0,"protection":"proteccion_integral","contract":"","status":"Firmado","agencia":"","slack_id":"52 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false}];
 
-// Basado en Fecha firma (Pandora) — columna H
-const dailyCumulative = {1:5,2:7,6:10,7:12,8:16,9:23,10:24,11:26,12:27,13:29,14:31,15:36,16:37,18:40,19:41,20:42,21:44};
-const dailyByDay      = {1:5,2:2,6:3,7:2,8:4,9:7,10:1,11:2,12:1,13:2,14:2,15:5,16:1,18:3,19:1,20:1,21:2};
+const META = 120;
+const MONTH_DAYS = 30; // April
+const TODAY_DAY = 27; // April 27, 2026
 
-const kamData = [
-  {key:'majo',name:'Majo',emoji:'🥇',color:'#BBE3E3',firmas:19,fee:98982, primera:17,reno:1},
-  {key:'ale', name:'Ale', emoji:'🥈',color:'#F9D3CD',firmas:11,fee:63934, primera:9, reno:2},
-  {key:'leo', name:'Leo', emoji:'🥉',color:'#FFB59C',firmas:8, fee:46292, primera:8, reno:0},
-  {key:'gabo',name:'Gabo',emoji:'⭐',color:'#F3CE98',firmas:7, fee:15434, primera:0, reno:7},
-];
+const PIPE_DATA = [{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"AV REVOLUCION NUM.1034, DEPTO. 503, SAN JOSE INSURGENTES, BE"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"LAURO AGUIRRE NUM. 32, DEPTO. 302, COL. AGRICULTURA, MIGUEL"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"PETEN 151, DEPTO 202, NARVARTE, BENITO JUAREZ, CP. 03020"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TIZIANO 167 LOCAL A, ALFONSO VIII, ALVARO OBREGON CDMX"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"DR. BARRAGAN 790 INT. 9, NARVARTE ORIENTE C.P. 03020"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"Alhelí 18, Departamento 12, Tlatilco, Azcapotzalco, 02860"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":21000.0,"fee":12180.0,"protection":"proteccion_premium","agency":"Independiente","inmueble":"Antonio Maura 54 dep 203"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":25723.0,"fee":8951.6,"protection":"proteccion_integral","agency":"","inmueble":"Arroyo Frío, 333, Interior D-1, Consejo Agrarista"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"BOSQUE DE LOS ALMENDROS, MANZANA 40 LOTE 14"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":36000.0,"fee":20880.0,"protection":"proteccion_premium","agency":"","inmueble":"Calle angel Martinez Galeana (Simón bolivar) cindi 2-A"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":12000.0,"fee":6960.0,"protection":"proteccion_premium","agency":"Independiente","inmueble":"Calle Sendai (Málaga) 957, departamento C-4"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO 198 DPTO 4, MERCED GOMEZ, C.P. 01600"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO NUM 198, ACC L"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO NÚM. 198, ACCESORIAS I y J, MERCED GÓMEZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"CENTENARIO NUM. 198, DEPTO. 11, MERCED GÓMEZ"},{"kam":"Leo","stage":"pendiente_vb","status":"Pendiente VB","renta":80000.0,"fee":27840.0,"protection":"proteccion_integral","agency":"Remax Daia","inmueble":"Ciceron #212, Int. 103, Polanco II Sección"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":16000.0,"fee":5568.0,"protection":"proteccion_integral","agency":"","inmueble":"Circuito Piamonte Condominio Casalvento Zirándaro"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":28457.0,"fee":6602.02,"protection":"proteccion_juridica","agency":"","inmueble":"CIRCUITO PUNTA DEL LAGO 129"},{"kam":"Ale","stage":"pendiente_vb","status":"Pendiente VB","renta":15000.0,"fee":8700.0,"protection":"proteccion_premium","agency":"","inmueble":"COSTERA MIGUEL ALEMAN NO.330, LOCAL 1, PRIMER PISO"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"Cto Rafael Osuna 55 Raquet Club"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Danton Valle Negrete"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":10500.0,"fee":3654.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"EMILIANO ZAPATA NO 68, MANZANA LOTE 45"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":14000.0,"fee":4872.0,"protection":"proteccion_integral","agency":"","inmueble":"ENTRE PLAYA ROSARITO Y PLAZA CORTES, CONDOMINIO 7"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"FÉLIX CUEVAS NÚM. 318, DPTO. 21, COL. DEL VALLE"},{"kam":"Majo","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"Soy Rumi","inmueble":"FORTUNATO LOZANO 2632, DEPARTAMENTO 39, BENITO JUÁREZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"HERIBERTO FRIAS 446 DEPTO 4 COL. NARVARTE C.P. 03020"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":35011.0,"fee":0,"protection":"","agency":"AKA","inmueble":"HORTENSIA NÚM. 245, CASA 6, LA FLORIDA, ALVARO OBREGON"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":7500.0,"fee":1740.0,"protection":"proteccion_juridica","agency":"","inmueble":"Ing. Claudio Castro No. 150 Oficina 8"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"JESÚS MARÍA 121, DEPTO. 204, COLONIA CENTRO, CUAUHTÉMOC"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"LONDRES NUM. 182 DESP. 502, JUAREZ, CUAUHTEMOC CP. 06600"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":14506.0,"fee":0,"protection":"","agency":"AKA","inmueble":"Mar Okhotsk 16, Planta Baja, Tacuba, Miguel Hidalgo"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"MAR OKHOTSK 3, PISO 3, TACUBA, MIGUEL HIDALGO"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"MATÍAS ROMERO 1219 DEPTO. 1, COL. DEL VALLE CENTRO"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":31500.0,"fee":10962.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"MIGUEL HIDALGO NÚMERO 505, COLONIA LOS RAMOS"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"NORTE 81 DPTO 2 COL. LIBERTAD, AZCAPOTZALCO, C.P. 02050"},{"kam":"Leo","stage":"enviado_firma","status":"Enviado a Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"","inmueble":"OCTANO 61 DEPTO A301, SANTA APOLONIA, C.P. 02790"},{"kam":"Ale","stage":"pendiente_vb","status":"Pendiente VB","renta":16000.0,"fee":5568.0,"protection":"proteccion_integral","agency":"","inmueble":"PASEO ALAMO #15, LOMA BONITA FRACCIONAMIENTO ZIRANDARO"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":25000.0,"fee":5800.0,"protection":"proteccion_juridica","agency":"","inmueble":"PERIFÉRICO PASEO DE LA REPÚBLICA No. 2191"},{"kam":"Majo","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Privada 17 #102, Tizayuca, Hidalgo"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Rafael Montiel Baltazar"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Ren - Pendiente VB","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"RENOVACIÓN - Lago Zirahuen 98, Sol 105"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":6500.0,"fee":1508.0,"protection":"proteccion_juridica","agency":"","inmueble":"Rio Antigua núm. 311 B Fracc. Las Vegas II"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TEPOZTECO NÚM. 7, DEPTO. 9, NARVARTE, BENITO JUÁREZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TIGRE 23 NUM. 302 COL. ACTIPAN C.P. 03230, BENITO JUAREZ"},{"kam":"Pablo","stage":"pendiente_vb","status":"Ren - Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"VIADUCTO M ALEMAN 151 DEP A 6 CUAUHTEMOC Y VERTIZ"},{"kam":"Leo","stage":"pendiente_vb","status":"Pendiente VB","renta":30000.0,"fee":17400.0,"protection":"proteccion_premium","agency":"Remax","inmueble":"VIZCAINAS 739, COLONIA CARRETAS, QUERETARO"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"YACATAS NUM. 471, DEPTO. 402 COL. NARVARTE, BENITO JUAREZ"}];
 
-const detailData = {
-  majo: [
-    {day:"01/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:20500,fee:7134, status:"Firmado"},
-    {day:"02/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"En Casa",     monto:40000,fee:13920,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:18500,fee:4292, status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:15000,fee:3480, status:"Firmado"},
-    {day:"08/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:17000,fee:5916, status:"Firmado"},
-    {day:"09/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"Soy Rumi",    monto:8000, fee:2784, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:8500, fee:2958, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:30000,fee:6960, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_premium",  ag:"Directa",     monto:19800,fee:11484,status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"E-Inmob",     monto:16500,fee:5742, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:16500,fee:5742, status:"Firmado"},
-    {day:"10/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:7000, fee:1624, status:"Firmado"},
-    {day:"12/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:9500, fee:3306, status:"Firmado"},
-    {day:"14/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Carlos Ortiz",monto:14850,fee:3445, status:"Firmado"},
-    {day:"15/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:13000,fee:3016, status:"Firmado"},
-    {day:"15/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:25000,fee:8700, status:"Firmado"},
-    {day:"16/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:7500, fee:1740, status:"Firmado"},
-    {day:"20/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",     monto:8830, fee:3073, status:"Firmado"},
-    {day:"21/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Directa",     monto:15800,fee:3666, status:"Firmado"},
-  ],
-  gabo: [
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6436, fee:2240,status:"Firmado"},
-    {day:"01/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:8752, fee:3046,status:"Firmado"},
-    {day:"06/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:2616, fee:910, status:"Firmado"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:5555, fee:1933,status:"Falta primer pago"},
-    {day:"08/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:6290, fee:2189,status:"Firmado"},
-    {day:"15/04",ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:7350, fee:2558,status:"Firmado"},
-    {day:"—",   ct:"renovacion_mica",pt:"proteccion_integral",ag:"AKA",monto:16272,fee:5663,status:"Falta fecha"},
-  ],
-  ale: [
-    {day:"02/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Grupo Arvi",monto:12000,fee:4176, status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Remax",     monto:38500,fee:13398,status:"Firmado"},
-    {day:"07/04",ct:"primera_vez",   pt:"proteccion_premium",  ag:"Grupo Arvi",monto:4500, fee:2610, status:"Firmado"},
-    {day:"11/04",ct:"primera_vez",   pt:"proteccion_premium",  ag:"Rentas Ok", monto:30000,fee:17400,status:"Firmado"},
-    {day:"11/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Propity",   monto:12500,fee:2900, status:"Firmado"},
-    {day:"13/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Rentas Ok", monto:3150, fee:731,  status:"Firmado"},
-    {day:"13/04",ct:"primera_vez",   pt:"proteccion_juridica", ag:"Grupo Arvi",monto:4600, fee:1067, status:"Firmado"},
-    {day:"15/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",   monto:5200, fee:1810, status:"Firmado"},
-    {day:"15/04",ct:"renovacion_mica",pt:"proteccion_premium", ag:"Grupo Arvi",monto:15000,fee:8700, status:"Firmado"},
-    {day:"18/04",ct:"primera_vez",   pt:"proteccion_integral", ag:"Directa",   monto:20000,fee:6960, status:"Firmado"},
-    {day:"21/04",ct:"renovacion_mica",pt:"proteccion_premium", ag:"Directa",   monto:7210, fee:4182, status:"Firmado"},
-  ],
-  leo: [
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_juridica", ag:"Rentas Ok",  monto:8000, fee:1856, status:"Firmado"},
-    {day:"01/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",    monto:9000, fee:3132, status:"Firmado"},
-    {day:"06/04",ct:"primera_vez",pt:"proteccion_integral", ag:"YoRento",    monto:20000,fee:6960, status:"Firmado"},
-    {day:"09/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax",      monto:36000,fee:12528,status:"Firmado"},
-    {day:"14/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Remax Daia", monto:16500,fee:5742, status:"Firmado"},
-    {day:"18/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",    monto:12500,fee:4350, status:"Firmado"},
-    {day:"18/04",ct:"primera_vez",pt:"proteccion_integral", ag:"Directa",    monto:13690,fee:4764, status:"Elaboración de Contrato"},
-    {day:"19/04",ct:"primera_vez",pt:"proteccion_premium",  ag:"Remax",      monto:12000,fee:6960, status:"Firmado"},
-  ],
+const KAMS = {
+  Majo: { full:'Maria José Arriaga', emoji:'🦋', color:'#72DDA3', bg:'#D1FAE5', tab:'majo' },
+  Gabo: { full:'Gabriel Alvarado',   emoji:'🪐', color:'#93C5FD', bg:'#DBEAFE', tab:'gabo' },
+  Ale:  { full:'Alejandra Muñoz',    emoji:'🐰', color:'#FCD34D', bg:'#FEF9C3', tab:'ale'  },
+  Leo:  { full:'Leonardo Monzalvo',  emoji:'🦁', color:'#FCA5A5', bg:'#FFE4E6', tab:'leo'  },
 };
 
-// ── HELPERS ──
-function fmtMoney(n){ return '$'+Math.round(n).toLocaleString('es-MX'); }
-function ptBadge(pt){
-  if(pt==='proteccion_integral') return '<span class="badge badge-integral">Integral</span>';
-  if(pt==='proteccion_juridica') return '<span class="badge badge-juridica">Jurídica</span>';
-  if(pt==='proteccion_premium')  return '<span class="badge badge-premium">Premium ⭐</span>';
-  return `<span class="badge">${pt}</span>`;
-}
-function ctBadge(ct){
-  if(ct==='primera_vez')     return '<span class="badge badge-primera">1ra vez</span>';
-  if(ct==='renovacion_mica') return '<span class="badge badge-renovacion">Renovación</span>';
-  return `<span class="badge">${ct}</span>`;
-}
-function agBadge(ag){
-  if(ag==='AKA')     return '<span class="badge badge-aka">AKA</span>';
-  if(ag==='Directa') return '<span class="badge badge-directa">Directa</span>';
-  return `<span class="badge badge-directa">${ag}</span>`;
-}
-function stBadge(st){
-  if(st==='Firmado')                  return '<span class="badge badge-ok">✓ Firmado</span>';
-  if(st==='Falta primer pago')        return '<span class="badge badge-warn">⚠ Falta pago</span>';
-  if(st==='Elaboración de Contrato')  return '<span class="badge badge-proceso">⏳ En proceso</span>';
-  if(st==='Falta fecha')              return '<span class="badge" style="background:#fee2e2;color:#991b1b;">🔴 Falta fecha</span>';
-  return `<span class="badge">${st}</span>`;
+const PROT_COLORS = {
+  proteccion_integral: '#D1FAE5',
+  proteccion_juridica: '#DBEAFE',
+  proteccion_premium: '#F3E8FF',
+};
+const PROT_LABELS = {
+  proteccion_integral: 'Integral',
+  proteccion_juridica: 'Jurídica',
+  proteccion_premium: 'Premium',
+};
+const PROT_DOT = {
+  proteccion_integral: '#34D399',
+  proteccion_juridica: '#60A5FA',
+  proteccion_premium: '#A78BFA',
+};
+
+// ====================================================
+// HELPERS
+// ====================================================
+function fmt(n){ return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:0,maximumFractionDigits:0}).format(n); }
+function animateCount(el, target, duration=900){
+  let start=0, step=target/60;
+  let t=setInterval(()=>{
+    start=Math.min(start+step,target);
+    el.textContent=Math.round(start);
+    if(start>=target)clearInterval(t);
+  },duration/60);
 }
 
-function animateCounter(el,target,duration=1200){
-  const start=performance.now();
-  const update=(t)=>{
-    const p=Math.min((t-start)/duration,1);
-    el.textContent=Math.round((1-Math.pow(1-p,3))*target);
-    if(p<1) requestAnimationFrame(update); else el.textContent=target;
-  };
-  requestAnimationFrame(update);
-}
-
-// ── DAY DOTS ──
-function buildDayDots(){
-  const wrap=document.getElementById('dayDots');
-  for(let d=1;d<=30;d++){
-    const dot=document.createElement('div');
-    dot.className='day-dot';
-    const count=dailyByDay[d]||0;
-    if(count>0){
-      dot.classList.add('has-firma');
-      dot.innerHTML=count>1?`${d}<span class="dot-count">${count}</span>`:`${d}`;
-      dot.title=`${count} firma${count>1?'s':''} el día ${d}`;
-    } else {
-      dot.classList.add('empty');
-      dot.textContent=d;
-      dot.title=`Día ${d}: sin firmas`;
-    }
-    if(d===TODAY) dot.classList.add('today');
-    if(d>TODAY) dot.style.opacity='0.3';
-    wrap.appendChild(dot);
+// ====================================================
+// BUBBLES
+// ====================================================
+function makeBubbles(){
+  const c=document.getElementById('bubblesContainer');
+  const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD'];
+  for(let i=0;i<14;i++){
+    const b=document.createElement('div');
+    b.className='bubble';
+    const size=Math.random()*80+30;
+    b.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*8}s`;
+    c.appendChild(b);
   }
 }
 
-// ── SCOREBOARD ──
-function buildScoreboard(){
-  const grid=document.getElementById('scoreboardGrid');
-  const rankEmojis=['🥇','🥈','🥉','⭐'];
-  const ranks=['rank-1','rank-2','rank-3',''];
-  kamData.forEach((k,i)=>{
-    const card=document.createElement('div');
-    card.className=`card kam-card ${ranks[i]}`;
-    card.style.background=`linear-gradient(140deg,${k.color}33 0%,${k.color}10 100%)`;
-    card.onclick=()=>showTab(k.key);
-    const pct=Math.round(k.firmas/19*100);
-    card.innerHTML=`
-      <div class="kam-rank-badge">${rankEmojis[i]}</div>
-      <div class="kam-name" style="color:#1F2937">${k.name}</div>
-      <div class="kam-role">KAM</div>
-      <div class="kam-stat-main" style="color:#1F2937">${k.firmas}</div>
-      <div class="kam-stat-label">firmas totales</div>
-      <div class="kam-stats-row">
-        <span class="kam-chip">1ra: ${k.primera}</span>
-        <span class="kam-chip">Ren: ${k.reno}</span>
-        <span class="kam-chip">${fmtMoney(k.fee)}</span>
-      </div>
-      <div class="kam-progress-wrap">
-        <div class="kam-progress-label"><span>vs líder</span><span>${pct}%</span></div>
-        <div class="kam-progress-track">
-          <div class="kam-progress-fill" style="width:${pct}%;background:${k.color}"></div>
-        </div>
-      </div>`;
-    grid.appendChild(card);
-  });
-}
+// ====================================================
+// GENERAL TAB
+// ====================================================
+function buildGeneral(){
+  const total = DATA.length;
+  const pv = DATA.filter(d=>d.contract==='primera_vez').length;
+  const ren = DATA.filter(d=>d.contract==='renovacion_mica').length;
+  const faltantes = META - total;
+  const diasRest = MONTH_DAYS - TODAY_DAY;
+  const ritmo = (total / TODAY_DAY).toFixed(1);
+  const need = diasRest > 0 ? (faltantes / diasRest).toFixed(1) : '—';
+  const pct = Math.min(100,(total/META*100)).toFixed(1);
 
-// ── TABLE ──
-function buildTable(id,rows){
-  const t=document.getElementById(id);
-  t.innerHTML=`
-    <thead><tr>
-      <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th>
-      <th style="text-align:right">Renta</th><th style="text-align:right">FEE</th>
-    </tr></thead>
-    <tbody>${rows.map(r=>`<tr>
-      <td style="font-family:'Red Hat Mono',monospace;font-weight:700">${r.day}</td>
-      <td>${ctBadge(r.ct)}</td><td>${ptBadge(r.pt)}</td>
-      <td>${agBadge(r.ag)}</td><td>${stBadge(r.status)}</td>
-      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700">${fmtMoney(r.monto)}</td>
-      <td style="text-align:right;font-family:'Red Hat Mono';font-weight:700;color:#166534">${fmtMoney(r.fee)}</td>
-    </tr>`).join('')}</tbody>`;
-}
+  // hero
+  setTimeout(()=>{
+    animateCount(document.getElementById('animTotal'), total);
+    document.getElementById('progressBar').style.width = pct+'%';
+    document.getElementById('progressPct').textContent = pct+'%';
+  }, 300);
 
-// ── CHART ──
-function buildChart(){
-  const days=Object.keys(dailyCumulative).map(Number).sort((a,b)=>a-b);
-  const ctx=document.getElementById('mainChart').getContext('2d');
-  new Chart(ctx,{
-    type:'line',
-    data:{
-      labels:days.map(d=>`${d} Abr`),
-      datasets:[
-        {label:'Firmas acumuladas',data:days.map(d=>dailyCumulative[d]),
-         borderColor:'#72DDA3',backgroundColor:'rgba(114,221,163,0.12)',
-         fill:true,tension:0.4,borderWidth:3,
-         pointBackgroundColor:'#72DDA3',pointRadius:5,pointHoverRadius:7},
-        {label:'Meta (120)',data:days.map(()=>120),
-         borderColor:'rgba(31,41,55,0.25)',borderDash:[6,4],
-         borderWidth:2,pointRadius:0,fill:false,tension:0}
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{position:'top',labels:{font:{family:'Red Hat Display',weight:'700',size:12},color:'#374151',usePointStyle:true}},
-        tooltip:{mode:'index',intersect:false}
-      },
-      scales:{
-        x:{grid:{display:false},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF'}},
-        y:{min:0,max:120,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{family:'Red Hat Mono',size:11},color:'#9CA3AF',stepSize:20}}
-      },
-      interaction:{mode:'nearest',axis:'x',intersect:false}
-    }
-  });
-}
+  document.getElementById('ritmoVal').textContent = ritmo;
+  document.getElementById('ritmoNeed').textContent = diasRest > 0 ? `Necesitas ${need} firmas/día para meta` : 'Mes terminado';
+  document.getElementById('statPV').textContent = pv;
+  document.getElementById('statRen').textContent = ren;
+  document.getElementById('statDias').textContent = diasRest;
+  document.getElementById('statFaltantes').textContent = Math.max(0,faltantes);
+  const enviados = PIPE_DATA.filter(d=>d.stage==='enviado_firma').length;
+  const p100 = total + enviados;
+  const p75  = total + Math.round(enviados * 0.75);
+  const p50  = total + Math.round(enviados * 0.50);
+  const color = v => v >= META ? '#72DDA3' : '#FFB59C';
+  document.getElementById('statProy100').textContent = p100;
+  document.getElementById('statProy100').style.color = color(p100);
+  document.getElementById('statProy75').textContent  = p75;
+  document.getElementById('statProy75').style.color  = color(p75);
+  document.getElementById('statProy50').textContent  = p50;
+  document.getElementById('statProy50').style.color  = color(p50);
 
-// ── BARS ──
-function animateBars(){
-  document.querySelectorAll('.breakdown-fill[data-w]').forEach(el=>{
-    setTimeout(()=>{ el.style.width=el.dataset.w+'%'; },400);
-  });
-}
-
-// ── META ──
-function animateMeta(){
-  animateCounter(document.getElementById('counterTotal'),TOTAL);
-  const pct=Math.round(TOTAL/META_GENERAL*100);
-  setTimeout(()=>{ document.getElementById('pctBadge').textContent=pct+'%'; },200);
-  setTimeout(()=>{ document.getElementById('mainBarFill').style.width=(TOTAL/META_GENERAL*100)+'%'; },300);
-  const pP=Math.round(PRIMERA/META_PRIMERA*100);
-  document.getElementById('primera-pct').textContent=pP+'%';
-  document.getElementById('primera-falta').textContent=META_PRIMERA-PRIMERA;
-  setTimeout(()=>{ document.getElementById('primera-bar').style.width=pP+'%'; },500);
-  const rP=Math.round(RENOVACION/META_RENOV*100);
-  document.getElementById('renov-pct').textContent=rP+'%';
-  document.getElementById('renov-falta').textContent=META_RENOV-RENOVACION;
-  setTimeout(()=>{ document.getElementById('renov-bar').style.width=rP+'%'; },700);
-}
-
-// ── CONFETTI ──
-function launchConfetti(){
-  const wrap=document.getElementById('confettiWrap');
-  const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#1F2937'];
-  for(let i=0;i<60;i++){
-    const p=document.createElement('div');
-    p.className='confetti-piece';
-    p.style.cssText=`left:${Math.random()*100}%;background:${colors[i%6]};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s;transform:rotate(${Math.random()*360}deg);width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
-    wrap.appendChild(p);
-    setTimeout(()=>p.remove(),4000);
-  }
-}
-
-// ── TAB SWITCH ──
-function showTab(key){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('panel-'+key).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>{
-    if(t.getAttribute('onclick')===`showTab('${key}')`) t.classList.add('active');
-  });
-}
-
-// ── INIT ──
-document.addEventListener('DOMContentLoaded',()=>{
-  buildDayDots();
   buildScoreboard();
+  buildCalendar();
   buildChart();
-  animateMeta();
-  animateBars();
-  buildTable('table-majo', detailData.majo);
-  buildTable('table-gabo', detailData.gabo);
-  buildTable('table-ale',  detailData.ale);
-  buildTable('table-leo',  detailData.leo);
-});
+  buildBreakdown();
+  buildAchievements();
+  buildPipelineResumen();
+}
+
+function buildScoreboard(){
+  const g = document.getElementById('scoreGrid');
+  const counts = {};
+  Object.keys(KAMS).forEach(k=>counts[k]=DATA.filter(d=>d.kam===k).length);
+  const maxCount = Math.max(...Object.values(counts));
+
+  g.innerHTML = Object.entries(KAMS).map(([nick,info])=>{
+    const n = counts[nick];
+    const isMvp = nick==='Majo';
+    return `<div class="score-card" style="background:${info.bg}" onclick="showTab('${info.tab}')">
+      ${isMvp?'<span class="crown">👑</span>':''}
+      <span class="score-emoji">${info.emoji}</span>
+      <div class="score-name">${info.full}</div>
+      <div class="score-nick">${nick}</div>
+      <div class="score-firmas">${n}</div>
+      <div class="score-firmas-label">firmas</div>
+      <div class="score-bar-track">
+        <div class="score-bar-fill" style="width:${(n/maxCount*100).toFixed(0)}%;background:${info.color}"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildCalendar(){
+  const g = document.getElementById('calGrid');
+  // April 2026 starts on Wednesday (day 3, 0=Sun)
+  const startDow = 2; // Monday=0 approach: April 1 2026 = Wednesday
+  const days = ['L','M','X','J','V','S','D'];
+
+  // daily counts
+  const daily = {};
+  DATA.forEach(d=>{
+    if(d.fecha){
+      const day = parseInt(d.fecha.split('-')[2]);
+      daily[day] = (daily[day]||0)+1;
+    }
+  });
+
+  let html = days.map(d=>`<div class="cal-header">${d}</div>`).join('');
+
+  // April 1 2026 is a Wednesday (index 2 in Mon-based week)
+  for(let i=0;i<2;i++) html += `<div class="cal-day empty"></div>`;
+
+  for(let day=1;day<=30;day++){
+    const count = daily[day]||0;
+    const isToday = day===TODAY_DAY;
+    const hasFirma = count>0;
+    const todayClass = isToday ? ' today-cell':'';
+    const firmaClass = hasFirma ? ' has-firma':'';
+    const badge = count>=2 ? `<span class="cal-badge">${count}</span>` : '';
+    html += `<div class="cal-day${firmaClass}${todayClass}"><span class="day-num">${day}</span>${badge}</div>`;
+  }
+  g.innerHTML = html;
+}
+
+function buildChart(){
+  const canvas = document.getElementById('chartAcum');
+  const ctx = canvas.getContext('2d');
+
+  // daily sorted
+  const daily = {};
+  DATA.forEach(d=>{
+    if(d.fecha){
+      const day = parseInt(d.fecha.split('-')[2]);
+      daily[day] = (daily[day]||0)+1;
+    }
+  });
+
+  const labels=[], acum=[], ideal=[];
+  let cum=0;
+  for(let d=1;d<=30;d++){
+    labels.push(d);
+    cum += (daily[d]||0);
+    acum.push(d<=TODAY_DAY ? cum : null);
+    ideal.push(Math.round(META/MONTH_DAYS*d));
+  }
+
+  // Simple canvas chart
+  const W=canvas.parentElement.offsetWidth||600, H=200;
+  canvas.width=W; canvas.height=H;
+
+  const PAD={top:20,right:20,bottom:30,left:40};
+  const cw=W-PAD.left-PAD.right, ch=H-PAD.top-PAD.bottom;
+  const maxY=META;
+
+  function xPx(i){return PAD.left + (i/29)*cw;}
+  function yPx(v){return PAD.top + ch - (v/maxY)*ch;}
+
+  ctx.clearRect(0,0,W,H);
+
+  // grid
+  ctx.strokeStyle='#F3F4F6'; ctx.lineWidth=1;
+  [0,30,60,90,120].forEach(v=>{
+    ctx.beginPath(); ctx.moveTo(PAD.left,yPx(v)); ctx.lineTo(W-PAD.right,yPx(v)); ctx.stroke();
+    ctx.fillStyle='#9CA3AF'; ctx.font='11px Red Hat Mono,monospace';
+    ctx.fillText(v, 4, yPx(v)+4);
+  });
+
+  // ideal line
+  ctx.beginPath(); ctx.strokeStyle='#E5E7EB'; ctx.lineWidth=2; ctx.setLineDash([5,5]);
+  ideal.forEach((v,i)=>{ i===0?ctx.moveTo(xPx(i),yPx(v)):ctx.lineTo(xPx(i),yPx(v)); });
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // acum area
+  const validAcum = acum.filter(v=>v!==null);
+  const lastIdx = validAcum.length-1;
+  if(validAcum.length>0){
+    ctx.beginPath();
+    ctx.moveTo(xPx(0),yPx(acum[0]||0));
+    acum.forEach((v,i)=>{ if(v!==null) ctx.lineTo(xPx(i),yPx(v)); });
+    ctx.lineTo(xPx(lastIdx),ch+PAD.top);
+    ctx.lineTo(xPx(0),ch+PAD.top);
+    ctx.closePath();
+    ctx.fillStyle='rgba(114,221,163,0.15)'; ctx.fill();
+
+    ctx.beginPath(); ctx.strokeStyle='#72DDA3'; ctx.lineWidth=3;
+    acum.forEach((v,i)=>{ if(v!==null) i===0?ctx.moveTo(xPx(i),yPx(v)):ctx.lineTo(xPx(i),yPx(v)); });
+    ctx.stroke();
+  }
+
+  // x labels every 5 days
+  ctx.fillStyle='#9CA3AF'; ctx.font='11px Red Hat Display,sans-serif';
+  [1,5,10,15,20,25,30].forEach(d=>{
+    ctx.fillText(d, xPx(d-1)-4, H-8);
+  });
+}
+
+function buildBreakdown(){
+  // protection
+  const protCount = {};
+  DATA.forEach(d=>{ protCount[d.protection]=(protCount[d.protection]||0)+1; });
+  const total=DATA.length;
+  document.getElementById('breakdownProt').innerHTML = Object.entries(protCount)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([k,v])=>`<div class="breakdown-item">
+      <div class="breakdown-dot" style="background:${PROT_DOT[k]||'#ccc'}"></div>
+      <span class="breakdown-name">${PROT_LABELS[k]||k}</span>
+      <span class="breakdown-count">${v}<span class="breakdown-pct">${(v/total*100).toFixed(0)}%</span></span>
+    </div>`).join('');
+
+  // agencies
+  const agCount = {};
+  DATA.forEach(d=>{ if(d.agencia) agCount[d.agencia]=(agCount[d.agencia]||0)+1; });
+  const agColors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#C4B5FD','#FCA5A5','#6EE7B7'];
+  document.getElementById('breakdownAgencia').innerHTML = Object.entries(agCount)
+    .sort((a,b)=>b[1]-a[1]).slice(0,8)
+    .map(([k,v],i)=>`<div class="breakdown-item">
+      <div class="breakdown-dot" style="background:${agColors[i%agColors.length]}"></div>
+      <span class="breakdown-name">${k}</span>
+      <span class="breakdown-count">${v}<span class="breakdown-pct">${(v/total*100).toFixed(0)}%</span></span>
+    </div>`).join('');
+}
+
+function buildAchievements(){
+  const list = [];
+  const total = DATA.length;
+  const majoCount = DATA.filter(d=>d.kam==='Majo').length;
+  const aleCount = DATA.filter(d=>d.kam==='Ale').length;
+  const bestDay = (() => {
+    const d={}; DATA.forEach(r=>{ if(r.fecha){ const day=r.fecha.split('-')[2]; d[day]=(d[day]||0)+1; }}); 
+    return Math.max(...Object.values(d),0);
+  })();
+
+  if(total>=50) list.push({label:`${total} firmas confirmadas`,emoji:'🔥',cls:'green'});
+  if(majoCount>=20) list.push({label:`Majo: ${majoCount} firmas`,emoji:'👑',cls:'gold'});
+  if(bestDay>=7) list.push({label:`${bestDay} firmas en un día`,emoji:'⚡',cls:'gold'});
+  const prem = DATA.filter(d=>d.protection==='proteccion_premium').length;
+  if(prem>=5) list.push({label:`${prem} Premium firmados`,emoji:'💎',cls:'blue'});
+  const feeTotal = Math.round(DATA.reduce((s,d)=>s+d.fee,0));
+  list.push({label:`FEE total: ${fmt(feeTotal)}`,emoji:'💰',cls:'green'});
+
+  document.getElementById('achList').innerHTML = list.map(a=>
+    `<div class="ach-badge ${a.cls}">${a.emoji} ${a.label}</div>`
+  ).join('');
+}
+
+// ====================================================
+// KAM TABS
+// ====================================================
+function buildKamTab(nick){
+  const info = KAMS[nick];
+  const rows = DATA.filter(d=>d.kam===nick);
+  const firmas = rows.length;
+  const pv = rows.filter(d=>d.contract==='primera_vez').length;
+  const ren = rows.filter(d=>d.contract==='renovacion_mica').length;
+  const fee = rows.reduce((s,d)=>s+d.fee,0);
+  const faltaPago = rows.filter(d=>d.falta_pago);
+  const missingDate = rows.filter(d=>d.missing_date);
+  const enElab = rows.filter(d=>d.en_elaboracion);
+
+  // KPIs
+  document.getElementById(`kpi-${nick.toLowerCase()}`).innerHTML = [
+    {val:firmas,label:'Firmas'},
+    {val:fmt(fee),label:'FEE total'},
+    {val:pv,label:'Primera vez'},
+    {val:ren,label:'Renovaciones'},
+  ].map(k=>`<div class="kam-kpi"><div class="kam-kpi-val">${k.val}</div><div class="kam-kpi-label">${k.label}</div></div>`).join('');
+
+  // Alerts
+  let alerts='';
+  faltaPago.forEach(r=>{
+    alerts+=`<div class="alert yellow">⚠️ Falta primer pago · ${r.slack_id}</div>`;
+  });
+  enElab.forEach(r=>{
+    alerts+=`<div class="alert yellow">📋 Elaboración de Contrato · ${r.slack_id}</div>`;
+  });
+  missingDate.forEach(r=>{
+    if(!r.en_elaboracion)
+      alerts+=`<div class="alert red">🔴 Falta fecha · ${r.slack_id}</div>`;
+  });
+  document.getElementById(`alerts-${nick.toLowerCase()}`).innerHTML = alerts;
+
+  // Table
+  const sortedRows = [...rows].sort((a,b)=>(a.fecha||'9999')>=(b.fecha||'9999')?1:-1);
+  const tbl = document.getElementById(`table-${nick.toLowerCase()}`);
+  buildKamPipeline(nick);
+  tbl.innerHTML = `<thead><tr>
+    <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th>
+  </tr></thead><tbody>${sortedRows.map(r=>{
+    const dateStr = r.fecha ? r.fecha.split('-').reverse().join('/') : '🔴 Sin fecha';
+    const ct = r.contract==='primera_vez'?'1ª vez': r.contract==='renovacion_mica'?'Renov.':'—';
+    const protClass = r.protection==='proteccion_integral'?'prot-integral':r.protection==='proteccion_juridica'?'prot-juridica':'prot-premium';
+    const stClass = r.falta_pago?'status-falta':r.en_elaboracion?'status-elab':'status-firmado';
+    const stIcon = r.falta_pago?'⚠️ ':r.en_elaboracion?'📋 ':'';
+    const ag = r.agencia||'—';
+    return `<tr>
+      <td style="font-family:'Red Hat Mono',monospace;font-size:12px;white-space:nowrap">${dateStr}</td>
+      <td>${ct}</td>
+      <td><span class="prot-tag ${protClass}">${PROT_LABELS[r.protection]||r.protection}</span></td>
+      <td style="color:#6B7280">${ag}</td>
+      <td><span class="status-tag ${stClass}">${stIcon}${r.status}</span></td>
+      <td class="fee-mono">${fmt(r.renta)}</td>
+      <td class="fee-mono" style="color:#065F46">${fmt(r.fee)}</td>
+    </tr>`;
+  }).join('')}</tbody>`;
+}
+
+// ====================================================
+// TABS
+// ====================================================
+let chartBuilt=false;
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    if(b.textContent.toLowerCase().includes(id)||b.getAttribute('onclick').includes(id))
+      b.classList.add('active');
+  });
+  if(id==='general'&&!chartBuilt){buildChart();chartBuilt=true;}
+  ['majo','gabo','ale','leo'].forEach(k=>{
+    if(id===k) buildKamTab(k.charAt(0).toUpperCase()+k.slice(1).replace('majo','Majo').replace('gabo','Gabo').replace('ale','Ale').replace('leo','Leo'));
+  });
+}
+// fix nick mapping for showTab
+const nickMap={majo:'Majo',gabo:'Gabo',ale:'Ale',leo:'Leo'};
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'"))
+      b.classList.add('active');
+  });
+  if(nickMap[id]) buildKamTab(nickMap[id]);
+  if(id==='general') buildGeneral();
+}
+
+// ====================================================
+// PIPELINE
+// ====================================================
+function buildPipelineResumen(){
+  const kamEmojis = {Majo:'🦋',Gabo:'🪐',Ale:'🐰',Leo:'🦁',Pablo:'👤',Vivi:'👤','Sin asignar':'—'};
+  const kams = ['Majo','Gabo','Ale','Leo'];
+
+  // Grid por KAM
+  const grid = document.getElementById('pipeResumenGrid');
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:4px';
+  grid.innerHTML = kams.map(k=>{
+    const rows = PIPE_DATA.filter(d=>d.kam===k);
+    const vb = rows.filter(d=>d.stage==='pendiente_vb').length;
+    const ef = rows.filter(d=>d.stage==='enviado_firma').length;
+    const info = {Majo:{bg:'#D1FAE5',color:'#065F46'},Gabo:{bg:'#DBEAFE',color:'#1E40AF'},Ale:{bg:'#FEF9C3',color:'#92400E'},Leo:{bg:'#FFE4E6',color:'#9F1239'}}[k];
+    return `<div style="background:${info.bg};border-radius:12px;padding:14px;cursor:pointer" onclick="showTab('${k.toLowerCase()}')">
+      <div style="font-size:18px;margin-bottom:4px">${kamEmojis[k]} <span style="font-size:13px;font-weight:700;color:${info.color}">${k}</span></div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <div>
+          <div style="font-size:20px;font-weight:800;color:#92400E">${vb}</div>
+          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Pend. VB</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,.1)"></div>
+        <div>
+          <div style="font-size:20px;font-weight:800;color:#5B21B6">${ef}</div>
+          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Env. Firma</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,.1)"></div>
+        <div>
+          <div style="font-size:20px;font-weight:800;color:#1F2937">${rows.length}</div>
+          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Total</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Hallazgos automáticos
+  const hallazgos = [];
+  const totalVB = PIPE_DATA.filter(d=>d.stage==='pendiente_vb').length;
+  const totalEF = PIPE_DATA.filter(d=>d.stage==='enviado_firma').length;
+  const sinAsignar = PIPE_DATA.filter(d=>d.kam==='Sin asignar').length;
+
+  hallazgos.push({icon:'📊', text:`<b>${totalEF}</b> contratos enviados a firma y <b>${totalVB}</b> pendientes de VB en todo el equipo`, cls:'blue'});
+
+  // KAM con más carga
+  const maxKam = kams.reduce((a,b)=>PIPE_DATA.filter(d=>d.kam===b).length>PIPE_DATA.filter(d=>d.kam===a).length?b:a);
+  const maxN = PIPE_DATA.filter(d=>d.kam===maxKam).length;
+  hallazgos.push({icon:'⚡', text:`${kamEmojis[maxKam]} <b>${maxKam}</b> lidera el pipeline con <b>${maxN}</b> operaciones en trabajo`, cls:'yellow'});
+
+  if(sinAsignar>0)
+    hallazgos.push({icon:'⚠️', text:`<b>${sinAsignar}</b> operaciones sin KAM asignado en pipeline`, cls:'red'});
+
+  // Alta renta en VB
+  const bigVB = PIPE_DATA.filter(d=>d.stage==='pendiente_vb'&&d.renta>=50000);
+  if(bigVB.length>0)
+    hallazgos.push({icon:'💰', text:`<b>${bigVB.length}</b> operación${bigVB.length>1?'es':''} de alta renta (≥$50k) esperando VB`, cls:'green'});
+
+  const clsMap = {blue:'background:#DBEAFE;border:1px solid #93C5FD;color:#1E40AF', yellow:'background:#FFFBEB;border:1px solid #FCD34D;color:#92400E', red:'background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B', green:'background:#D1FAE5;border:1px solid #6EE7B7;color:#065F46'};
+  document.getElementById('pipeHallazgos').innerHTML = hallazgos.map(h=>
+    `<div style="${clsMap[h.cls]};border-radius:10px;padding:10px 14px;font-size:13px;display:flex;gap:8px;align-items:flex-start">
+      <span>${h.icon}</span><span>${h.text}</span>
+    </div>`
+  ).join('');
+}
+
+function buildKamPipeline(nick){
+  const rows = PIPE_DATA.filter(d=>d.kam===nick);
+  const vb = rows.filter(d=>d.stage==='pendiente_vb').length;
+  const ef = rows.filter(d=>d.stage==='enviado_firma').length;
+  const id = nick.toLowerCase();
+
+  document.getElementById(`pipe-kpis-${id}`).innerHTML = [
+    {val:rows.length, label:'En pipeline', color:'#1F2937'},
+    {val:vb,          label:'Pendiente VB', color:'#92400E'},
+    {val:ef,          label:'Env. a Firma', color:'#5B21B6'},
+  ].map(k=>`<div class="pipe-kpi">
+    <div class="pipe-kpi-val" style="color:${k.color}">${k.val}</div>
+    <div class="pipe-kpi-label">${k.label}</div>
+  </div>`).join('');
+
+  const tbl = document.getElementById(`pipe-table-${id}`);
+  if(!rows.length){
+    tbl.innerHTML = `<tbody><tr><td colspan="5" style="text-align:center;color:#9CA3AF;padding:20px;font-size:13px">Sin operaciones en pipeline</td></tr></tbody>`;
+    return;
+  }
+  tbl.innerHTML = `<thead><tr>
+    <th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Renta</th>
+  </tr></thead><tbody>${rows.map(r=>{
+    const stageCls = r.stage==='pendiente_vb' ? 'stage-vb' : 'stage-firma';
+    const stageLabel = r.stage==='pendiente_vb' ? '⏳ Pend. VB' : '✍️ Env. Firma';
+    const protClass = r.protection==='proteccion_integral'?'prot-integral':r.protection==='proteccion_juridica'?'prot-juridica':r.protection==='proteccion_premium'?'prot-premium':'';
+    const protLabel = PROT_LABELS[r.protection]||'—';
+    return `<tr>
+      <td><span class="stage-pill ${stageCls}">${stageLabel}</span></td>
+      <td style="color:#374151;font-size:12px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.inmueble}">${r.inmueble}</td>
+      <td>${r.protection?`<span class="prot-tag ${protClass}">${protLabel}</span>`:'—'}</td>
+      <td style="color:#6B7280;font-size:12px">${r.agency||'—'}</td>
+      <td class="fee-mono">${r.renta>0?fmt(r.renta):'—'}</td>
+    </tr>`;
+  }).join('')}</tbody>`;
+}
+
+// ====================================================
+// INIT
+// ====================================================
+makeBubbles();
+buildGeneral();
 </script>
 </body>
 </html>
