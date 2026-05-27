@@ -3,842 +3,826 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MICA · Firmas Abril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>MICA · Firmas Dashboard · Mayo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;900&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Red Hat Display',sans-serif;background:#F5F5F5;color:#1F2937;overflow-x:hidden}
-.bubbles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-.bubble{position:absolute;border-radius:50%;opacity:.13;animation:floatUp linear infinite}
-@keyframes floatUp{0%{transform:translateY(100vh) scale(0)}100%{transform:translateY(-200px) scale(1)}}
-.container{position:relative;z-index:1}
-
-/* TABS */
-.tab-bar{position:sticky;top:0;z-index:100;background:#F5F5F5;border-bottom:1px solid #E5E7EB;padding:12px 24px;display:flex;gap:8px;align-items:center;overflow-x:auto}
-.tab-btn{font-family:'Red Hat Display',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border:none;border-radius:20px;cursor:pointer;transition:all .2s;white-space:nowrap;background:transparent;color:#6B7280}
-.tab-btn:hover{background:#E5E7EB;color:#1F2937}
-.tab-btn.active{background:#1F2937;color:#fff}
-.tab-panel{display:none;padding:24px}
-.tab-panel.active{display:block}
-
-/* HERO */
-.hero{background:linear-gradient(135deg,#1F2937 0%,#374151 60%,#1a2a1a 100%);border-radius:20px;padding:36px;color:#fff;margin-bottom:24px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(114,221,163,.08)}
-.hero::after{content:'';position:absolute;bottom:-40px;left:40%;width:160px;height:160px;border-radius:50%;background:rgba(187,227,227,.06)}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
-.hero-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#9CA3AF;margin-bottom:6px}
-.hero-num{font-size:72px;font-weight:900;line-height:1;color:#72DDA3}
-.hero-denom{font-size:32px;font-weight:500;color:#6B7280;margin-left:6px}
-.hero-label{font-size:14px;color:#9CA3AF;margin-top:4px}
-.progress-track{background:rgba(255,255,255,.1);border-radius:12px;height:12px;margin:20px 0 8px;overflow:hidden}
-.progress-fill{height:100%;border-radius:12px;background:linear-gradient(90deg,#72DDA3,#BBE3E3);transition:width 1.2s ease}
-.progress-pct{font-size:13px;color:#BBE3E3;font-weight:600}
-.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:24px}
-.hero-stat{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.06)}
-.hero-stat-val{font-size:26px;font-weight:800;color:#BBE3E3}
-.hero-stat-label{font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
-
-/* CARDS */
-.cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
-.card{background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;transition:box-shadow .2s,transform .2s;cursor:default}
-.card:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);transform:translateY(-2px)}
-.card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9CA3AF;margin-bottom:8px}
-.card-val{font-size:32px;font-weight:800;color:#1F2937}
-.card-sub{font-size:12px;color:#6B7280;margin-top:4px}
-
-/* SCOREBOARD */
-.scoreboard{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
-.section-title{font-size:16px;font-weight:700;color:#1F2937;margin-bottom:16px}
-.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.score-card{border-radius:14px;padding:20px;cursor:pointer;transition:all .2s;border:2px solid transparent;position:relative;overflow:hidden}
-.score-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
-.score-card.selected{border-color:#1F2937}
-.score-emoji{font-size:36px;margin-bottom:8px;display:block}
-.score-name{font-size:14px;font-weight:700;color:#1F2937;margin-bottom:2px}
-.score-nick{font-size:11px;color:#6B7280;margin-bottom:12px}
-.score-firmas{font-size:28px;font-weight:900;color:#1F2937}
-.score-firmas-label{font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:1px}
-.score-bar-track{background:rgba(0,0,0,.08);border-radius:6px;height:6px;margin-top:10px;overflow:hidden}
-.score-bar-fill{height:100%;border-radius:6px;transition:width 1s ease}
-.crown{position:absolute;top:-4px;right:10px;font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
-
-/* CALENDAR */
-.calendar-section{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
-.cal-header{font-size:11px;font-weight:600;text-align:center;color:#9CA3AF;padding:6px 0;text-transform:uppercase}
-.cal-day{min-height:52px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;font-size:12px;color:#9CA3AF;background:#F9FAFB}
-.cal-day.has-firma{background:#72DDA3;color:#1F2937;font-weight:700;cursor:default}
-.cal-day.today-cell{box-shadow:0 0 0 2px #1F2937}
-.cal-day .day-num{font-size:12px;font-weight:600}
-.cal-badge{background:#1F2937;color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:2px 5px;margin-top:2px;font-family:'Red Hat Mono',monospace}
-.cal-day.empty{background:transparent}
-
-/* CHART */
-.chart-section{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
-.chart-wrap{position:relative;height:200px;margin-top:16px}
-canvas{width:100%!important;height:100%!important}
-
-/* BREAKDOWN */
-.breakdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-.breakdown-card{background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6}
-.breakdown-item{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.breakdown-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.breakdown-name{font-size:13px;color:#374151;flex:1}
-.breakdown-count{font-size:13px;font-weight:700;color:#1F2937;font-family:'Red Hat Mono',monospace}
-.breakdown-pct{font-size:11px;color:#9CA3AF;margin-left:4px}
-
-/* ACHIEVEMENTS */
-.achievements{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6}
-.ach-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.ach-badge{display:flex;align-items:center;gap:8px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;color:#374151}
-.ach-badge.gold{background:#FEF9C3;border-color:#FDE68A;color:#92400E}
-.ach-badge.green{background:#D1FAE5;border-color:#6EE7B7;color:#065F46}
-.ach-badge.blue{background:#DBEAFE;border-color:#93C5FD;color:#1E40AF}
-
-/* KAM TAB */
-.kam-hero{border-radius:16px;padding:28px;color:#1F2937;margin-bottom:20px;position:relative;overflow:hidden}
-.kam-emoji-big{font-size:56px;margin-bottom:8px;display:block}
-.kam-name{font-size:24px;font-weight:800}
-.kam-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:20px}
-.kam-kpi{background:rgba(255,255,255,.6);border-radius:12px;padding:14px;backdrop-filter:blur(4px)}
-.kam-kpi-val{font-size:26px;font-weight:900;color:#1F2937}
-.kam-kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#374151;margin-top:2px}
-
-/* ALERTS */
-.alert{border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.alert.yellow{background:#FFFBEB;border:1px solid #FCD34D;color:#92400E}
-.alert.red{background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B}
-
-/* TABLE */
-.ops-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
-.ops-table th{text-align:left;padding:10px 12px;background:#F9FAFB;color:#6B7280;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #E5E7EB;white-space:nowrap}
-.ops-table td{padding:10px 12px;border-bottom:1px solid #F3F4F6;color:#374151;vertical-align:middle}
-.ops-table tr:last-child td{border-bottom:none}
-.ops-table tr:hover td{background:#FAFAFA}
-.prot-tag{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
-.prot-integral{background:#D1FAE5;color:#065F46}
-.prot-juridica{background:#DBEAFE;color:#1E40AF}
-.prot-premium{background:#F3E8FF;color:#6B21A8}
-.status-tag{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
-.status-firmado{background:#D1FAE5;color:#065F46}
-.status-falta{background:#FFFBEB;color:#92400E}
-.status-elab{background:#FEF2F2;color:#991B1B}
-.fee-mono{font-family:'Red Hat Mono',monospace;font-size:12px;font-weight:600;color:#374151}
-
-/* PIPE FILTER */
-.pipe-filter{font-family:'Red Hat Display',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;border:1.5px solid #E5E7EB;border-radius:20px;cursor:pointer;background:#fff;color:#6B7280;transition:all .18s}
-.pipe-filter:hover{border-color:#1F2937;color:#1F2937}
-.pipe-filter.active{background:#1F2937;color:#fff;border-color:#1F2937}
-.pipe-kpi{background:#F9FAFB;border-radius:12px;padding:14px 16px;border:1px solid #F3F4F6}
-.pipe-kpi-val{font-size:24px;font-weight:800;color:#1F2937}
-.pipe-kpi-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#6B7280;margin-top:2px}
-.stage-pill{display:inline-block;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;white-space:nowrap}
-.stage-vb{background:#FFFBEB;color:#92400E;border:1px solid #FCD34D}
-.stage-firma{background:#EDE9FE;color:#5B21B6;border:1px solid #C4B5FD}
-
-/* CONFETTI */
-#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
-
-@media(max-width:640px){
-  .hero-num{font-size:52px}
-  .breakdown-grid{grid-template-columns:1fr}
-  .ops-table{font-size:11px}
-  .ops-table th,.ops-table td{padding:8px 8px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Red Hat Display',sans-serif;background:#F5F5F5;color:#1F2937;min-height:100vh}
+/* ─── TABS ─── */
+.tab-bar{background:#1F2937;display:flex;align-items:center;padding:0 20px;gap:6px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.tab-btn{padding:10px 16px;border-radius:20px;border:none;cursor:pointer;font-family:'Red Hat Display',sans-serif;font-size:13px;font-weight:600;color:#9CA3AF;background:transparent;transition:all .2s;white-space:nowrap}
+.tab-btn.active{background:#F5F5F5;color:#1F2937}
+.tab-btn:hover:not(.active){color:#fff}
+.tab-timestamp{margin-left:auto;font-family:'Red Hat Mono',monospace;font-size:11px;color:#6B7280;white-space:nowrap}
+.tab-content{display:none}.tab-content.active{display:block}
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,#1F2937 0%,#374151 100%);color:#fff;padding:32px 24px 28px;position:relative;overflow:hidden}
+.hero-bubbles{position:absolute;inset:0;pointer-events:none}
+.bubble{position:absolute;border-radius:50%;opacity:.08;animation:float 8s ease-in-out infinite}
+.bubble:nth-child(1){width:200px;height:200px;background:#72DDA3;top:-60px;right:-40px;animation-delay:0s}
+.bubble:nth-child(2){width:120px;height:120px;background:#BBE3E3;bottom:-30px;left:10%;animation-delay:2s}
+.bubble:nth-child(3){width:80px;height:80px;background:#F3CE98;top:40%;right:20%;animation-delay:4s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
+.hero-top{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.hero-title{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;opacity:.6;margin-bottom:6px}
+.hero-count{font-size:64px;font-weight:900;line-height:1;letter-spacing:-2px}
+.hero-meta{font-size:14px;opacity:.6;margin-top:4px}
+.hero-goal{text-align:right;flex:1;min-width:140px}
+.goal-label{font-size:12px;opacity:.5;letter-spacing:1px;text-transform:uppercase}
+.goal-num{font-size:40px;font-weight:900;color:#72DDA3}
+.goal-sub{font-size:12px;opacity:.5}
+.progress-bar{background:rgba(255,255,255,.15);border-radius:999px;height:8px;margin:16px 0 8px;overflow:hidden}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#72DDA3,#BBE3E3);transition:width 1s ease}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px}
+.hero-stat{background:rgba(255,255,255,.08);border-radius:12px;padding:10px 16px;flex:1;min-width:100px}
+.hero-stat-label{font-size:11px;opacity:.5;letter-spacing:1px;text-transform:uppercase}
+.hero-stat-val{font-size:22px;font-weight:700;margin-top:2px}
+/* ─── SCENARIOS ─── */
+.section{padding:20px 24px}
+.section-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-bottom:14px}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.scenario-card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center;transition:transform .2s,box-shadow .2s}
+.scenario-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.scenario-emoji{font-size:20px;margin-bottom:6px}
+.scenario-label{font-size:11px;font-weight:600;color:#6B7280;margin-bottom:8px;letter-spacing:.5px}
+.scenario-num{font-size:32px;font-weight:900;margin-bottom:4px}
+.scenario-num.green{color:#059669}
+.scenario-num.orange{color:#D97706}
+.scenario-sub{font-size:11px;color:#9CA3AF}
+/* ─── SCOREBOARD ─── */
+.scoreboard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kam-card{background:#fff;border-radius:20px;padding:20px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.kam-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.kam-emoji{font-size:36px;margin-bottom:8px;display:block}
+.kam-name{font-size:13px;font-weight:700;color:#374151;margin-bottom:2px}
+.kam-apodo{font-size:11px;color:#9CA3AF;margin-bottom:10px}
+.kam-count{font-size:40px;font-weight:900;line-height:1}
+.kam-sub{font-size:11px;color:#9CA3AF;margin-top:4px}
+.kam-crown{position:absolute;top:-8px;right:-4px;font-size:24px}
+/* ─── CALENDAR ─── */
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-header{text-align:center;font-size:10px;font-weight:700;color:#9CA3AF;letter-spacing:1px;padding:4px 0}
+.cal-day{background:#fff;border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:0 1px 4px rgba(0,0,0,.04);font-size:11px;color:#9CA3AF}
+.cal-day.has-firma{background:#72DDA3;color:#fff;font-weight:700}
+.cal-day.today{border:2px solid #1F2937}
+.cal-day.empty{background:transparent;box-shadow:none}
+.cal-badge{position:absolute;top:-4px;right:-4px;background:#1F2937;color:#fff;border-radius:999px;font-size:9px;font-weight:700;padding:1px 5px;font-family:'Red Hat Mono',monospace}
+.cal-daynum{font-size:12px;font-weight:600}
+.cal-dot{width:6px;height:6px;border-radius:50%;background:#1F2937;margin-top:2px;opacity:.6}
+/* ─── CUMULATIVE CHART ─── */
+canvas{width:100%!important;border-radius:12px}
+/* ─── BREAKDOWN ─── */
+.breakdown-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.breakdown-label{font-size:13px;color:#374151;min-width:120px;font-weight:500}
+.breakdown-bar-bg{flex:1;background:#E5E7EB;border-radius:999px;height:10px;overflow:hidden}
+.breakdown-fill{height:100%;border-radius:999px;transition:width 1s ease}
+.breakdown-count{font-size:12px;color:#6B7280;font-family:'Red Hat Mono',monospace;min-width:30px;text-align:right}
+/* ─── PIPELINE CARDS ─── */
+.pipeline-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pipe-card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);cursor:pointer;transition:all .2s}
+.pipe-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.pipe-card-name{font-size:13px;font-weight:700;margin-bottom:10px}
+.pipe-stat{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #F3F4F6;font-size:12px}
+.pipe-stat:last-child{border-bottom:none}
+.pipe-stat-val{font-weight:700;font-family:'Red Hat Mono',monospace}
+/* ─── FINDINGS ─── */
+.findings{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-top:12px}
+.finding-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F3F4F6;font-size:13px;color:#374151}
+.finding-item:last-child{border-bottom:none}
+/* ─── KAM TAB ─── */
+.kam-header{padding:24px;color:#fff}
+.kam-header-inner{display:flex;align-items:center;gap:16px}
+.kam-hero-emoji{font-size:56px}
+.kam-hero-name{font-size:28px;font-weight:900}
+.kam-hero-sub{font-size:14px;opacity:.7;margin-top:4px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 24px;margin-top:-16px}
+.kpi-card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,.08);text-align:center}
+.kpi-val{font-size:32px;font-weight:900;margin-bottom:4px}
+.kpi-label{font-size:11px;color:#6B7280;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+/* ─── ALERTS ─── */
+.alerts{padding:16px 24px;display:flex;flex-wrap:wrap;gap:8px}
+.alert-badge{padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.alert-yellow{background:#FEF3C7;color:#92400E}
+.alert-red{background:#FEE2E2;color:#991B1B}
+.alert-gray{background:#F3F4F6;color:#374151}
+/* ─── MINI PIPELINE CARDS ─── */
+.mini-pipe-cards{display:flex;gap:12px;padding:0 24px 16px}
+.mini-pipe-card{background:#fff;border-radius:14px;padding:14px 18px;flex:1;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.mini-pipe-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6B7280;margin-bottom:6px}
+.mini-pipe-num{font-size:28px;font-weight:900}
+/* ─── TABLES ─── */
+.table-wrap{padding:0 24px 24px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+th{background:#F9FAFB;color:#6B7280;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;font-size:11px}
+td{padding:9px 12px;border-bottom:1px solid #F3F4F6;color:#374151;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#F9FAFB}
+.badge{padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;font-family:'Red Hat Mono',monospace}
+.badge-int{background:#BBE3E3;color:#064E3B}
+.badge-jur{background:#FDE68A;color:#78350F}
+.badge-pre{background:#F9D3CD;color:#7F1D1D}
+.badge-ok{background:#D1FAE5;color:#065F46}
+.badge-warn{background:#FEF3C7;color:#92400E}
+.badge-err{background:#FEE2E2;color:#991B1B}
+.badge-elab{background:#E0E7FF;color:#3730A3}
+.mono{font-family:'Red Hat Mono',monospace;font-size:11px;color:#6B7280}
+@media(max-width:768px){
+  .scoreboard,.scenarios,.pipeline-cards,.kpi-grid{grid-template-columns:1fr 1fr}
+  .hero-count{font-size:44px}
+  .tab-timestamp{display:none}
+}
+@media(max-width:480px){
+  .scoreboard,.scenarios,.pipeline-cards,.kpi-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<div id="confetti-canvas"></div>
+<!-- TAB BAR -->
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('general')">📊 General</button>
+  <button class="tab-btn" onclick="showTab('majo')">🦋 Majo</button>
+  <button class="tab-btn" onclick="showTab('gabo')">🪐 Gabo</button>
+  <button class="tab-btn" onclick="showTab('ale')">🐰 Ale</button>
+  <button class="tab-btn" onclick="showTab('leo')">🦁 Leo</button>
+  <span class="tab-timestamp" id="ts"></span>
+</nav>
 
-<!-- BUBBLES BG -->
-<div class="bubbles" id="bubblesContainer"></div>
+<!-- ═══════════════════════════════════════ GENERAL ═══ -->
+<div class="tab-content active" id="tab-general">
 
-<div class="container">
-  <!-- TAB BAR -->
-  <div class="tab-bar">
-    <button class="tab-btn active" onclick="showTab('general')">📊 General</button>
-    <button class="tab-btn" onclick="showTab('majo')" style="color:#72DDA3">🦋 Majo</button>
-    <button class="tab-btn" onclick="showTab('gabo')" style="color:#BBE3E3">🪐 Gabo</button>
-    <button class="tab-btn" onclick="showTab('ale')" style="color:#F3CE98">🐰 Ale</button>
-    <button class="tab-btn" onclick="showTab('leo')" style="color:#FFB59C">🦁 Leo</button>
-  </div>
-
-  <!-- ======== TAB GENERAL ======== -->
-  <div class="tab-panel active" id="tab-general">
-
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-top">
-        <div>
-          <div class="hero-title">Firmas · Abril 2026</div>
-          <div>
-            <span class="hero-num" id="animTotal">0</span><span class="hero-denom"> / 120</span>
-          </div>
-          <div class="hero-label">meta mensual</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Ritmo actual</div>
-          <div style="font-size:32px;font-weight:800;color:#F3CE98" id="ritmoVal">—</div>
-          <div style="font-size:12px;color:#9CA3AF;margin-top:2px">firmas/día transcurrido</div>
-          <div style="font-size:11px;color:#FFB59C;margin-top:8px" id="ritmoNeed"></div>
-        </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bubbles"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
+    <div class="hero-top">
+      <div>
+        <div class="hero-title">Mayo 2026 · Firmas Cerradas</div>
+        <div class="hero-count" id="hero-total">0</div>
+        <div class="hero-meta">contratos firmados este mes</div>
       </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progressBar" style="width:0%"></div>
-      </div>
-      <div class="progress-pct" id="progressPct">0%</div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-val" id="statPV">0</div>
-          <div class="hero-stat-label">Primera vez</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-val" id="statRen">0</div>
-          <div class="hero-stat-label">Renovaciones</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-val" id="statDias">—</div>
-          <div class="hero-stat-label">Días restantes</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-val" id="statFaltantes">—</div>
-          <div class="hero-stat-label">Firmas faltantes</div>
-        </div>
-        <div class="hero-stat" style="border-color:rgba(114,221,163,.25);background:rgba(114,221,163,.07)">
-          <div class="hero-stat-val" id="statProy100" style="color:#72DDA3">—</div>
-          <div class="hero-stat-label" style="color:#72DDA3">Optimista 100%</div>
-          <div style="font-size:10px;color:#6B7280;margin-top:4px">todos cierran</div>
-        </div>
-        <div class="hero-stat" style="border-color:rgba(243,206,152,.25);background:rgba(243,206,152,.08)">
-          <div class="hero-stat-val" id="statProy75" style="color:#F3CE98">—</div>
-          <div class="hero-stat-label" style="color:#F3CE98">Realista 75%</div>
-          <div style="font-size:10px;color:#6B7280;margin-top:4px">3 de 4 cierran</div>
-        </div>
-        <div class="hero-stat" style="border-color:rgba(255,181,156,.25);background:rgba(255,181,156,.07)">
-          <div class="hero-stat-val" id="statProy50" style="color:#FFB59C">—</div>
-          <div class="hero-stat-label" style="color:#FFB59C">Conservador 50%</div>
-          <div style="font-size:10px;color:#6B7280;margin-top:4px">1 de 2 cierran</div>
-        </div>
+      <div class="hero-goal">
+        <div class="goal-label">Meta</div>
+        <div class="goal-num">70</div>
+        <div class="goal-sub">contratos</div>
       </div>
     </div>
-
-    <!-- SCOREBOARD -->
-    <div class="scoreboard">
-      <div class="section-title">🏆 Scoreboard</div>
-      <div class="score-grid" id="scoreGrid"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;opacity:.5;margin-bottom:16px">
+      <span id="pct-text">0%</span>
+      <span id="days-text"></span>
     </div>
-
-    <!-- CALENDARIO -->
-    <div class="calendar-section">
-      <div class="section-title">📅 Firmas por día · Abril 2026</div>
-      <div class="cal-grid" id="calGrid"></div>
-    </div>
-
-    <!-- GRÁFICA ACUMULADA -->
-    <div class="chart-section">
-      <div class="section-title">📈 Acumulado diario</div>
-      <div class="chart-wrap">
-        <canvas id="chartAcum"></canvas>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Primera Vez</div>
+        <div class="hero-stat-val" id="hs-pv">-</div>
       </div>
-    </div>
-
-    <!-- BREAKDOWN -->
-    <div class="breakdown-grid">
-      <div class="breakdown-card">
-        <div class="section-title" style="font-size:14px">Tipo de Protección</div>
-        <div id="breakdownProt"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Renovación</div>
+        <div class="hero-stat-val" id="hs-ren">-</div>
       </div>
-      <div class="breakdown-card">
-        <div class="section-title" style="font-size:14px">Top Agencias</div>
-        <div id="breakdownAgencia"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Ritmo actual</div>
+        <div class="hero-stat-val" id="hs-ritmo">-</div>
       </div>
-    </div>
-
-    <!-- ACHIEVEMENTS -->
-    <div class="achievements">
-      <div class="section-title">⚡ Achievements</div>
-      <div class="ach-list" id="achList"></div>
-    </div>
-
-    <!-- PIPELINE RESUMEN -->
-    <div style="background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid #F3F4F6">
-      <div style="margin-bottom:16px">
-        <div class="section-title" style="margin-bottom:4px">🔭 Pipeline · En trabajo</div>
-        <div style="font-size:12px;color:#9CA3AF">Ver detalle completo en cada tab de KAM</div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Firmas/día restantes</div>
+        <div class="hero-stat-val" id="hs-need">-</div>
       </div>
-      <div id="pipeResumenGrid"></div>
-      <div id="pipeHallazgos" style="margin-top:16px;display:flex;flex-direction:column;gap:8px"></div>
-    </div>
-
-  </div>
-
-  <!-- ======== TAB MAJO ======== -->
-  <div class="tab-panel" id="tab-majo">
-    <div class="kam-hero" style="background:linear-gradient(135deg,#D1FAE5,#A7F3D0)">
-      <span class="kam-emoji-big">🦋</span>
-      <div class="kam-name">Maria José Arriaga</div>
-      <div style="font-size:13px;color:#065F46;font-weight:600;margin-top:2px">Majo · La Mariposa 👑 MVP</div>
-      <div class="kam-kpis" id="kpi-majo"></div>
-    </div>
-    <div id="alerts-majo"></div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
-      <div class="section-title" style="font-size:14px">Operaciones</div>
-      <table class="ops-table" id="table-majo"></table>
-    </div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
-      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Majo</div>
-      <div id="pipe-kpis-majo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
-      <table class="ops-table" id="pipe-table-majo"></table>
     </div>
   </div>
 
-  <!-- ======== TAB GABO ======== -->
-  <div class="tab-panel" id="tab-gabo">
-    <div class="kam-hero" style="background:linear-gradient(135deg,#DBEAFE,#BFDBFE)">
-      <span class="kam-emoji-big">🪐</span>
-      <div class="kam-name">Gabriel Alvarado</div>
-      <div style="font-size:13px;color:#1E40AF;font-weight:600;margin-top:2px">Gabo · Saturno</div>
-      <div class="kam-kpis" id="kpi-gabo"></div>
-    </div>
-    <div id="alerts-gabo"></div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
-      <div class="section-title" style="font-size:14px">Operaciones</div>
-      <table class="ops-table" id="table-gabo"></table>
-    </div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
-      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Gabo</div>
-      <div id="pipe-kpis-gabo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
-      <table class="ops-table" id="pipe-table-gabo"></table>
-    </div>
-  </div>
-
-  <!-- ======== TAB ALE ======== -->
-  <div class="tab-panel" id="tab-ale">
-    <div class="kam-hero" style="background:linear-gradient(135deg,#FEF9C3,#FDE68A)">
-      <span class="kam-emoji-big">🐰</span>
-      <div class="kam-name">Alejandra Muñoz</div>
-      <div style="font-size:13px;color:#92400E;font-weight:600;margin-top:2px">Ale · El Conejo</div>
-      <div class="kam-kpis" id="kpi-ale"></div>
-    </div>
-    <div id="alerts-ale"></div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
-      <div class="section-title" style="font-size:14px">Operaciones</div>
-      <table class="ops-table" id="table-ale"></table>
-    </div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
-      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Ale</div>
-      <div id="pipe-kpis-ale" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
-      <table class="ops-table" id="pipe-table-ale"></table>
+  <!-- SCENARIOS -->
+  <div class="section">
+    <div class="section-title">Escenarios de Proyección · Pipeline</div>
+    <div class="scenarios">
+      <div class="scenario-card">
+        <div class="scenario-emoji">🟢</div>
+        <div class="scenario-label">Optimista · 100%</div>
+        <div class="scenario-num" id="sc-opt">-</div>
+        <div class="scenario-sub">Cerradas + todos los Env. Firma</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-emoji">🟡</div>
+        <div class="scenario-label">Realista · 75%</div>
+        <div class="scenario-num" id="sc-real">-</div>
+        <div class="scenario-sub">Cerradas + 75% Env. Firma</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-emoji">🟠</div>
+        <div class="scenario-label">Conservador · 50%</div>
+        <div class="scenario-num" id="sc-cons">-</div>
+        <div class="scenario-sub">Cerradas + 50% Env. Firma</div>
+      </div>
     </div>
   </div>
 
-  <!-- ======== TAB LEO ======== -->
-  <div class="tab-panel" id="tab-leo">
-    <div class="kam-hero" style="background:linear-gradient(135deg,#FFE4E6,#FECDD3)">
-      <span class="kam-emoji-big">🦁</span>
-      <div class="kam-name">Leonardo Monzalvo</div>
-      <div style="font-size:13px;color:#9F1239;font-weight:600;margin-top:2px">Leo · El León</div>
-      <div class="kam-kpis" id="kpi-leo"></div>
-    </div>
-    <div id="alerts-leo"></div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;overflow-x:auto">
-      <div class="section-title" style="font-size:14px">Operaciones</div>
-      <table class="ops-table" id="table-leo"></table>
-    </div>
-    <div style="background:#fff;border-radius:16px;padding:20px;border:1px solid #F3F4F6;margin-top:16px;overflow-x:auto">
-      <div class="section-title" style="font-size:14px;margin-bottom:16px">🔭 Pipeline · Leo</div>
-      <div id="pipe-kpis-leo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px"></div>
-      <table class="ops-table" id="pipe-table-leo"></table>
-    </div>
+  <!-- SCOREBOARD -->
+  <div class="section">
+    <div class="section-title">Scoreboard KAM</div>
+    <div class="scoreboard" id="scoreboard"></div>
   </div>
 
+  <!-- CALENDAR -->
+  <div class="section">
+    <div class="section-title">Firmas por Día · Mayo 2026</div>
+    <div class="calendar-grid" id="calendar"></div>
+  </div>
+
+  <!-- CUMULATIVE CHART -->
+  <div class="section">
+    <div class="section-title">Acumulado vs Ideal</div>
+    <canvas id="cumChart" height="220"></canvas>
+  </div>
+
+  <!-- BREAKDOWN -->
+  <div class="section">
+    <div class="section-title">Por Tipo de Protección</div>
+    <div id="prot-breakdown"></div>
+    <div class="section-title" style="margin-top:20px">Top Agencias</div>
+    <div id="agency-breakdown"></div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
+  <div class="section">
+    <div class="section-title">Achievements</div>
+    <div id="achievements" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+  </div>
+
+  <!-- PIPELINE GENERAL -->
+  <div class="section">
+    <div class="section-title">Pipeline · Resumen Ejecutivo</div>
+    <div class="pipeline-cards" id="pipeline-cards"></div>
+    <div class="findings" id="findings"></div>
+  </div>
+
+</div><!-- /general -->
+
+<!-- ═══════════════════════════════════════ KAM TABS ═══ -->
+
+<div class="tab-content" id="tab-majo">
+  <div class="kam-header" style="background:linear-gradient(135deg,#72DDA3 0%,#065F4644 100%);color:#065F46">
+    <div class="kam-header-inner">
+      <div class="kam-hero-emoji" id="majo-emoji">🦋</div>
+      <div>
+        <div class="kam-hero-name">Majo <span id="majo-crown"></span></div>
+        <div class="kam-hero-sub" style="color:#065F46">María José Arriaga · La Mariposa</div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid" id="majo-kpis"></div>
+  <div class="mini-pipe-cards" style="margin-top:16px" id="majo-pipe-mini"></div>
+  <div class="alerts" id="majo-alerts"></div>
+  <div class="table-wrap">
+    <div class="section-title" style="padding:0 0 10px">Contratos Cerrados</div>
+    <table id="majo-firmas-table">
+      <thead><tr><th>Rent ID</th><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th></tr></thead>
+      <tbody id="majo-firmas-body"></tbody>
+    </table>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <div class="section-title" style="padding:0 0 10px">Pipeline</div>
+    <table id="majo-pipe-table">
+      <thead><tr><th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Rent ID</th><th>Renta</th></tr></thead>
+      <tbody id="majo-pipe-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-gabo">
+  <div class="kam-header" style="background:linear-gradient(135deg,#BBE3E3 0%,#0C4A6E44 100%);color:#0C4A6E">
+    <div class="kam-header-inner">
+      <div class="kam-hero-emoji" id="gabo-emoji">🪐</div>
+      <div>
+        <div class="kam-hero-name">Gabo <span id="gabo-crown"></span></div>
+        <div class="kam-hero-sub" style="color:#0C4A6E">Gabriel Alvarado · Saturno</div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid" id="gabo-kpis"></div>
+  <div class="mini-pipe-cards" style="margin-top:16px" id="gabo-pipe-mini"></div>
+  <div class="alerts" id="gabo-alerts"></div>
+  <div class="table-wrap">
+    <div class="section-title" style="padding:0 0 10px">Contratos Cerrados</div>
+    <table id="gabo-firmas-table">
+      <thead><tr><th>Rent ID</th><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th></tr></thead>
+      <tbody id="gabo-firmas-body"></tbody>
+    </table>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <div class="section-title" style="padding:0 0 10px">Pipeline</div>
+    <table id="gabo-pipe-table">
+      <thead><tr><th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Rent ID</th><th>Renta</th></tr></thead>
+      <tbody id="gabo-pipe-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-ale">
+  <div class="kam-header" style="background:linear-gradient(135deg,#F3CE98 0%,#78350F44 100%);color:#78350F">
+    <div class="kam-header-inner">
+      <div class="kam-hero-emoji" id="ale-emoji">🐰</div>
+      <div>
+        <div class="kam-hero-name">Ale <span id="ale-crown"></span></div>
+        <div class="kam-hero-sub" style="color:#78350F">Alejandra Muñoz · El Conejo</div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid" id="ale-kpis"></div>
+  <div class="mini-pipe-cards" style="margin-top:16px" id="ale-pipe-mini"></div>
+  <div class="alerts" id="ale-alerts"></div>
+  <div class="table-wrap">
+    <div class="section-title" style="padding:0 0 10px">Contratos Cerrados</div>
+    <table id="ale-firmas-table">
+      <thead><tr><th>Rent ID</th><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th></tr></thead>
+      <tbody id="ale-firmas-body"></tbody>
+    </table>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <div class="section-title" style="padding:0 0 10px">Pipeline</div>
+    <table id="ale-pipe-table">
+      <thead><tr><th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Rent ID</th><th>Renta</th></tr></thead>
+      <tbody id="ale-pipe-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tab-content" id="tab-leo">
+  <div class="kam-header" style="background:linear-gradient(135deg,#FFB59C 0%,#7C2D1244 100%);color:#7C2D12">
+    <div class="kam-header-inner">
+      <div class="kam-hero-emoji" id="leo-emoji">🦁</div>
+      <div>
+        <div class="kam-hero-name">Leo <span id="leo-crown"></span></div>
+        <div class="kam-hero-sub" style="color:#7C2D12">Leonardo Monzalvo · El León</div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid" id="leo-kpis"></div>
+  <div class="mini-pipe-cards" style="margin-top:16px" id="leo-pipe-mini"></div>
+  <div class="alerts" id="leo-alerts"></div>
+  <div class="table-wrap">
+    <div class="section-title" style="padding:0 0 10px">Contratos Cerrados</div>
+    <table id="leo-firmas-table">
+      <thead><tr><th>Rent ID</th><th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th></tr></thead>
+      <tbody id="leo-firmas-body"></tbody>
+    </table>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <div class="section-title" style="padding:0 0 10px">Pipeline</div>
+    <table id="leo-pipe-table">
+      <thead><tr><th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Rent ID</th><th>Renta</th></tr></thead>
+      <tbody id="leo-pipe-body"></tbody>
+    </table>
+  </div>
 </div>
 
 <script>
-// ====================================================
-// DATA
-// ====================================================
-const DATA = [{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-01","renta":20500.0,"fee":7134.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-01 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-01","renta":8000.0,"fee":1856.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-02 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-01","renta":6436.0,"fee":2239.73,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-03 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-01","renta":8752.0,"fee":3045.7,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-04 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-06","renta":2616.0,"fee":910.37,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-05 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-06","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"YoRento","slack_id":"2026-04-06 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-01","renta":9000.0,"fee":3132.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-07 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-06","renta":38500.0,"fee":13398.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"2026-04-08 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-07","renta":4500.0,"fee":2610.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-09 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-08","renta":5555.0,"fee":1933.14,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Falta primer pago","agencia":"AKA","slack_id":"2026-04-10 00:00:00","missing_date":false,"falta_pago":true,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-02","renta":40000.0,"fee":13920.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"En Casa","slack_id":"2026-04-11 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-08","renta":15000.0,"fee":3480.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-12 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-02","renta":12000.0,"fee":4176.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-13 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":8000.0,"fee":2784.0,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"Soy Rumi","slack_id":"2026-04-14 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-08","renta":17000.0,"fee":5916.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-15 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-09","renta":36000.0,"fee":12528.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"2026-04-16 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":8500.0,"fee":2958.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-17 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-08","renta":6290.0,"fee":2188.92,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"2026-04-18 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":30000.0,"fee":6960.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-19 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":19800.0,"fee":11484.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-20 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-07","renta":18500.0,"fee":4292.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-21 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"E-Inmob","slack_id":"2026-04-22 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-10","renta":7000.0,"fee":1624.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-23 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-11","renta":30000.0,"fee":17400.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-24 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-11","renta":12500.0,"fee":2900.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Propity","slack_id":"2026-04-25 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-13","renta":3150.0,"fee":730.8,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"2026-04-26 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-13","renta":4600.0,"fee":1067.2,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Grupo Arvi","slack_id":"2026-04-27 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-09","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-28 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-12","renta":9500.0,"fee":3306.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"2026-04-29 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-14","renta":14850.0,"fee":3445.2,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Carlos Ortiz","slack_id":"2026-04-30 00:00:00","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":"2026-04-15","renta":7350.0,"fee":2557.8,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Firmado","agencia":"AKA","slack_id":"31/abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-14","renta":16500.0,"fee":5742.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax Daia","slack_id":"32 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-15","renta":5200.0,"fee":1809.6,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"33- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-15","renta":13000.0,"fee":3016.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"34 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-15","renta":25000.0,"fee":8700.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"35 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-15","renta":15000.0,"fee":8700.0,"protection":"proteccion_premium","contract":"renovacion_mica","status":"Firmado","agencia":"Grupo Arvi","slack_id":"#36-Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-16","renta":7500.0,"fee":1740.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"37 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-18","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"#38 Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-18","renta":12500.0,"fee":4350.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"39 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-20","renta":8830.0,"fee":3072.84,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"40 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Gabriel Alvarado","kam":"Gabo","fecha":null,"renta":16272.0,"fee":5662.66,"protection":"proteccion_integral","contract":"renovacion_mica","status":"Elaboración de Contrato","agencia":"AKA","slack_id":"41","missing_date":true,"falta_pago":false,"en_elaboracion":true},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-19","renta":12000.0,"fee":6960.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"42 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-20","renta":13690.0,"fee":4764.12,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"43 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-21","renta":15800.0,"fee":3665.6,"protection":"proteccion_juridica","contract":"","status":"Firmado","agencia":"","slack_id":"44 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-21","renta":7210.0,"fee":4181.8,"protection":"proteccion_premium","contract":"renovacion_mica","status":"Firmado","agencia":"","slack_id":"#45- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Leonardo Monzalvo","kam":"Leo","fecha":"2026-04-25","renta":13500.0,"fee":4698.0,"protection":"proteccion_integral","contract":"primera_vez","status":"Firmado","agencia":"Remax","slack_id":"46 - Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-23","renta":6400.0,"fee":1484.8,"protection":"proteccion_juridica","contract":"","status":"Firmado","agencia":"","slack_id":"47 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-18","renta":22000.0,"fee":5104.0,"protection":"proteccion_juridica","contract":"primera_vez","status":"Firmado","agencia":"Rentas Ok","slack_id":"#48 Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":null,"renta":7000.0,"fee":4060.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Elaboración de Contrato","agencia":"","slack_id":"#49 Abril","missing_date":true,"falta_pago":false,"en_elaboracion":true},{"kam_full":"Alejandra Muñoz","kam":"Ale","fecha":"2026-04-23","renta":16500.0,"fee":9570.0,"protection":"proteccion_premium","contract":"primera_vez","status":"Firmado","agencia":"","slack_id":"#50- Abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-25","renta":25000.0,"fee":8700.0,"protection":"proteccion_integral","contract":"","status":"Firmado","agencia":"","slack_id":"51 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false},{"kam_full":"Maria José Arriaga","kam":"Majo","fecha":"2026-04-25","renta":29000.0,"fee":10092.0,"protection":"proteccion_integral","contract":"","status":"Firmado","agencia":"","slack_id":"52 abril","missing_date":false,"falta_pago":false,"en_elaboracion":false}];
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const FIRMAS = [{"kam": "Gabo", "inmueble": "CENTENARIO 198 DPTO 4, MERCED GOMEZ, C.P. 01600 ALVARO OBREGON CDMX", "rent_id": "f7e906b4-0077-4b05-aeea-8a24713bf270", "status": "Firmado", "fecha": "2026-05-04", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 6178.0, "slack": "1 Mayo"}, {"kam": "Ale", "inmueble": "8VA NORTE PONIENTE NO.1436 BARRIO JUY JUY , TUXTLA GTZ, CHIAPAS, MEXIC", "rent_id": "e8f7747b-39f2-4db6-a69e-a9914c9187de", "status": "Firmado", "fecha": "2026-05-04", "agencia": "Rentas Ok", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 13000.0, "slack": "02 Mayo"}, {"kam": "Leo", "inmueble": "Ciro #Manzana 23, Int. C1, Col. Zibatá, El Marqués , Querétaro, C.P. 7", "rent_id": "ccf461c9-a020-4140-9247-798980354d26", "status": "Firmado", "fecha": "2026-05-05", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 18000.0, "slack": "03 - Mayo"}, {"kam": "Ale", "inmueble": "BLVD. ADOLFO LÓPEZ MATEOS 1753 DEPARTAMENTO 1204 TORRE HUMBOLDT, MERCE", "rent_id": "e7863407-ba91-43f5-a084-336377a312b9", "status": "Firmado", "fecha": "2026-05-04", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_premium", "monto": 20700.0, "slack": "04 - Mayo"}, {"kam": "Ale", "inmueble": "EUCALIPTO #226, Int. 226, Col. JARDINES DE DELICIAS, CUERNAVACA, Morel", "rent_id": "09b342d0-fcd0-4465-8867-c0ff16d321b7", "status": "Firmado", "fecha": "2026-05-06", "agencia": "", "contract_type": "", "protection_type": "proteccion_premium", "monto": 37000.0, "slack": "05 - Mayo"}, {"kam": "Majo", "inmueble": "BOULEVARD MAR MEDITERRÁNEO 9, LOTE 1, MANZANA 17, CONDOMINIO LONDRES C", "rent_id": "e7727524-de0a-4df5-a266-82d6d213d6a8", "status": "Firmado", "fecha": "2026-05-06", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_premium", "monto": 16000.0, "slack": "06 mayo"}, {"kam": "Gabo", "inmueble": "PETEN 151, DEPTO 202, NARVARTE, BENITO JUAREZ, CP. 03020, CIUDAD DE ME", "rent_id": "9b9cae53-a21d-4633-808e-8213649f072d", "status": "Firmado", "fecha": "2026-05-07", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 14944.0, "slack": "07 mayo"}, {"kam": "Ale", "inmueble": "Av. Paseo de la Reforma #77, Torre East, departamento 2403, Colonia Ta", "rent_id": "89378aa3-6b51-4491-8cfc-bbf1b9cc3905", "status": "Firmado", "fecha": "2026-05-08", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 26500.0, "slack": "08 mayo"}, {"kam": "Majo", "inmueble": "Tuna 18 B suite 005 Habitación 2  #Lote 02 Manzana 4, Int. Suites Anah", "rent_id": "f3083931-178a-4942-a9a2-37a37c3bfd01", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 8500.0, "slack": "09- Mayo"}, {"kam": "Leo", "inmueble": "PERIFÉRICO PASEO DE LA REPÚBLICA  NO. 2191, ESQUINA CALLE DR. JULIÁN B", "rent_id": "d462488f-f405-47f9-908a-83bcbeb91c65", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 25000.0, "slack": "10 - Mayo"}, {"kam": "Leo", "inmueble": "Coahuila #28, Int. FRESNO 401, Col. ROMA NORTE, CUAUHTEMOC, Ciudad de ", "rent_id": "a1a5c61d-27c3-420c-abd3-407f57aff482", "status": "Firmado", "fecha": "2026-05-11", "agencia": "Remax", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 24000.0, "slack": "11 - Mayo"}, {"kam": "Ale", "inmueble": "Miami  #82, Int. 304, Col. Napoles, Benito Juárez , Ciudad de México, ", "rent_id": "9f4abf25-05b5-412e-83a2-07c717788103", "status": "Firmado", "fecha": "2026-05-11", "agencia": "Marca Inmobiliaria", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 32000.0, "slack": "12 mayo"}, {"kam": "Majo", "inmueble": "Union 266 Depto. 2 Col. Tepeyac Insurgentes #266, Int. Departamento 2,", "rent_id": "4487a1aa-46a1-4618-96a6-6db22f044b25", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 14000.0, "slack": "13 mayo"}, {"kam": "Majo", "inmueble": "Malintzin #4, Int. Local 1, Col. Aragón La Villa, Gustavo A. Madero, C", "rent_id": "c76b66dc-2052-41f8-888c-acddc8784e30", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 8900.0, "slack": "14 mayo"}, {"kam": "Ale", "inmueble": "CALZADA DE TLALPAN #1461, Int. 1301 - B, Col. PORTALES NTE, BENITO JUÁ", "rent_id": "08478307-196d-4421-bc68-72d87cacd392", "status": "Firmado", "fecha": "2026-05-12", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 19700.0, "slack": "15 de mayo"}, {"kam": "Ale", "inmueble": "JOSE A. BUSTAMANTE # 27 SECCION GRANADA EDIFICIO 12 DEPA 101, QUERETAR", "rent_id": "4875b628-f650-4410-8d78-dc08105b1fe2", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 12900.0, "slack": "16 de mayo"}, {"kam": "Ale", "inmueble": "Cienfuegos  #1077, Int. 906C, Col. Residencial Zacatenco, Gustavo A. M", "rent_id": "9fba83ca-ad91-41ef-988d-fea6e4979638", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 24500.0, "slack": "17 de mayo"}, {"kam": "Ale", "inmueble": "AVENIDA PARVIAL JIUTEPEC S/N, FRACCIÓN B, COLONIA ATLACOMULCO SIN NÚME", "rent_id": "874ce79e-aaee-49fc-8bf5-144f387906dd", "status": "Firmado", "fecha": "2026-05-11", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 54298.44, "slack": "18 de mayo"}, {"kam": "Majo", "inmueble": "Puente de Calderón #35, Int. Departamento 16, Col. San Bartolo Atepehu", "rent_id": "e31de662-17e4-4696-a88d-92a76fd2d734", "status": "Firmado", "fecha": "2026-05-12", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 12000.0, "slack": "19 mayo"}, {"kam": "Majo", "inmueble": "AVENIDA POPOCATÉPETL  NUMERO 217 DEPARTAMENTO 403, CP: 03310, SANTA CR", "rent_id": "1fda45f0-a199-4116-84a1-a80dcbb77d17", "status": "Firmado", "fecha": "2026-05-13", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 13000.0, "slack": "20 mayo"}, {"kam": "Ale", "inmueble": "Avenida del Silencio #20, Int. Lote 5, Col. Bosque real, Huixquilucan,", "rent_id": "bf64e732-4b3a-4c05-8c1b-077379d82a67", "status": "Elaboración de Contrato", "fecha": "2026-05-13", "agencia": "E-Inmob", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 28000.0, "slack": "21 mayo"}, {"kam": "Leo", "inmueble": "CONDOMINIO BERGENIA #EDIFICIO 15, Int. DEPARTAMENTO 102, Col. FRACCION", "rent_id": "677ccd13-6b9e-439c-a9fe-18768b34fa36", "status": "Falta primer pago", "fecha": "2026-05-13", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 4500.0, "slack": "22 - Mayo"}, {"kam": "Gabo", "inmueble": "LAURO AGUIRRE NUM. 32, DEPTO. 203, COL. AGRICULTURA, MIGUEL HIDALGO, C", "rent_id": "6c1a9208-548d-4ef3-9139-5a81cf0c6cce", "status": "Firmado", "fecha": "2026-05-14", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 9052.0, "slack": "23 Mayo"}, {"kam": "Majo", "inmueble": "LAGO TANA, 35B, PISO 3, DEPARTAMENTO 507, TORRE A, HUICHAPAN, , CP: 11", "rent_id": "1f0c6f46-a5a8-4c7a-ada9-543f51191bf0", "status": "Firmado", "fecha": "2026-05-14", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 10200.0, "slack": "38 mayo"}, {"kam": "Majo", "inmueble": "LONDRES #75, Col. JARDINES DE BELLAVISTA, TLALNEPANTLA DE BAZ, Estado ", "rent_id": "2d7003fc-6308-45e9-9184-4a33089a8262", "status": "Firmado", "fecha": "2026-05-14", "agencia": "Grupo Proyecta MX", "contract_type": "", "protection_type": "proteccion_integral", "monto": 29900.0, "slack": "24 mayo"}, {"kam": "Ale", "inmueble": "Concha #110, Int. SN, Col. Azul Marino, La Paz, Baja California Sur, C", "rent_id": "249a59b1-d926-42d2-91ea-2fbb277e27c1", "status": "Firmado", "fecha": "2026-05-13", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 12000.0, "slack": "25 mayo"}, {"kam": "Majo", "inmueble": "CALLE GOBERNADOR ARISTEO MERCADO 35 INTERIOR 201, COLONIA DEL EMPLEADO", "rent_id": "4405d72d-03d5-43a6-80dd-e9bd91f7f5aa", "status": "Firmado", "fecha": "2026-05-14", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 20880.0, "slack": "27 mayo"}, {"kam": "Majo", "inmueble": "Puente de Calderón #35, Int. Departamento 3, Col. San Bartolo Atepehua", "rent_id": "338b4a3d-6895-45b7-a455-d5f35cb7f15a", "status": "Firmado", "fecha": "2026-05-15", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 11000.0, "slack": "28 mayo"}, {"kam": "Majo", "inmueble": "Prolongacion 16 de Septiembre #5, Int. B901, Col. San Lucas Tepetlacal", "rent_id": "e38cb58a-7807-47ee-b11c-39ace235441e", "status": "Falta primer pago", "fecha": "2026-05-15", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 24000.0, "slack": "29 mayo"}, {"kam": "Majo", "inmueble": "CALLE 12, ANTES 592, HOY 602, COLONIA TRABAJADORES DEL HIERRO, CP: 026", "rent_id": "708067d2-e040-42da-b08d-ab85dad122a2", "status": "Firmado", "fecha": "2026-05-15", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 7000.0, "slack": "30 mayo"}, {"kam": "Ale", "inmueble": "Fraccionamiento San Francisco Residencial #MZ 4,LT 16, Int. Casa 102, ", "rent_id": "8f39da26-553f-4608-a748-f77eb391582c", "status": "Firmado", "fecha": "2026-05-24", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 3300.0, "slack": "31 mayo"}, {"kam": "Ale", "inmueble": "Ermita Iztapalapa  #2152, Int. 201, Col. Constitución de 1917, Iztapal", "rent_id": "45a71081-0a80-4235-b3ae-c91a2e58d1ed", "status": "Falta primer pago", "fecha": null, "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 12500.0, "slack": "32 mayo"}, {"kam": "Majo", "inmueble": "BOSQUE DE AMANTES  #LOTE 2 MANZANA 8, Int. 21, Col. BOSQUE ESMERALDA, ", "rent_id": "7caecb8b-1369-477f-a844-ea82f1743368", "status": "Firmado", "fecha": "2026-05-15", "agencia": "Grupo Proyecta MX", "contract_type": "", "protection_type": "proteccion_integral", "monto": 42700.0, "slack": "33 mayo"}, {"kam": "Ale", "inmueble": "GUILLERMO PRIETO #38, Int. INTERIOR F 102, Col. ZONA CENTRO, VENUSTIAN", "rent_id": "0293cdfd-8b56-4cc2-9003-785d7e40f752", "status": "Firmado", "fecha": "2026-05-15", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 19000.0, "slack": "34 mayo"}, {"kam": "Leo", "inmueble": "OCTANO 61 DEPTO . A301, SANTA APOLONIA, C.P. 02790, CIUDAD DE MÈXICO", "rent_id": "6fdc24ac-427f-49bc-b087-b932282a7d76", "status": "Firmado", "fecha": "2026-05-16", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 10000.0, "slack": "35 - Mayo"}, {"kam": "Gabo", "inmueble": "DR. BARRAGAN NUM. 790, DEPTO. 2 COL. NARVARTE, ALCALDÍA BENITO JUÁREZ,", "rent_id": "6a679cff-6cfd-47f8-8d97-5424704a2704", "status": "Firmado", "fecha": "2026-05-16", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 5139.0, "slack": "36 Mayo"}, {"kam": "Majo", "inmueble": "EJE CENTRAL LAZARO CARDENAS  #13, Int. 1404, Col. CENTRO, CUAHUTEMOC, ", "rent_id": "daac14c8-cb6e-4cff-93e5-d690a55717ab", "status": "Firmado", "fecha": "2026-05-19", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 21358.0, "slack": "37 mayo"}, {"kam": "Ale", "inmueble": "Francisco de Terrazas #18 edificio 3, Int. 1, Col. Ciudad Satélite, Na", "rent_id": "ac0dd5ba-ddf4-46e9-9899-27ad1fb2894c", "status": "Firmado", "fecha": "2026-05-20", "agencia": "", "contract_type": "", "protection_type": "proteccion_integral", "monto": 12600.0, "slack": "39 mayo"}, {"kam": "Majo", "inmueble": "PRIVADA RETORNO VALLE REAL #L 11 VILLAS ALEXANDRIA, Int. B405, Col. HA", "rent_id": "1c5f19d4-c343-4f48-8fb2-1892f7e41319", "status": "Firmado", "fecha": "2026-05-20", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 32500.0, "slack": "40 MAYO"}, {"kam": "Majo", "inmueble": "Adolfo Prieto #233, Int. 4, Col. Del Valle, Benito Juárez, Ciudad de M", "rent_id": "8c6d12c0-0ec8-4263-b01d-f98cdccd85bb", "status": "Firmado", "fecha": "2026-05-20", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_premium", "monto": 19000.0, "slack": "41 MAYO"}, {"kam": "Majo", "inmueble": "LOMBARDO TOLEDANO NÚMERO 205  COLONIA LAS GRANJAS , CP: 38140, CELAYA ", "rent_id": "9ab4249d-9eef-451a-99aa-fb0d6735ff95", "status": "Firmado", "fecha": "2026-05-20", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 7000.0, "slack": "42 mayo"}, {"kam": "Majo", "inmueble": "André Marie Ampere, Manzana 3 Lote 9 Parque Industrial Cuamatla, Cuaut", "rent_id": "2195a4fd-23c6-4a1b-b09e-00c689f99ca1", "status": "Elaboración de Contrato", "fecha": null, "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 103000.0, "slack": "43 mayo"}, {"kam": "Majo", "inmueble": "CALLE OSO NUMERO 41 DEPARTAMENTO 3, COLONIA ACTIPAN, CP: 03230, BENITO", "rent_id": "ca2ca2b3-5feb-432e-973e-92dee7aff9e5", "status": "Elaboración de Contrato", "fecha": "2026-05-20", "agencia": "", "contract_type": "renovacion_mica", "protection_type": "proteccion_premium", "monto": 19900.0, "slack": "44 Mayo"}, {"kam": "Ale", "inmueble": "CALLE ARGOS 220 FRACCIONAMIENTO PRIVALIA CONCORDIA 2DO SECTOR, APODACA", "rent_id": "6bc8ad1c-33dc-41f6-9620-438ca45bffb9", "status": "Firmado", "fecha": "2026-05-20", "agencia": "Protege tu Inmueble", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 16500.0, "slack": "45 Mayo"}, {"kam": "Gabo", "inmueble": "PETÉN NÚM. 151, DEPTO 301, COL. NARVARTE, BENITO JUÁREZ, C.P. 03020, C", "rent_id": "93fa2546-f0a1-4590-b808-6079ad3a154b", "status": "Falta primer pago", "fecha": "2026-05-20", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 12400.0, "slack": "46 mayo"}, {"kam": "Ale", "inmueble": "Avenida de la presa #1935, Int. 1, Col. Lagos del country, Guadalajara", "rent_id": "bd2ca628-21f2-4e88-974e-cfc93e545a9c", "status": "Firmado", "fecha": "2026-05-13", "agencia": "Yo Rento", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 8400.0, "slack": "47 mayo"}, {"kam": "Majo", "inmueble": "LAGO ZURICH #219, Int. TORRE PIZARRO 1406, Col. AMPLIACION GRANADA, MI", "rent_id": "6318e213-b124-4b78-94bb-2f9cf095adb9", "status": "Firmado", "fecha": "2026-05-20", "agencia": "E-Inmob", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 43000.0, "slack": "48 MAYO"}, {"kam": "Majo", "inmueble": "Alabama #201, Int. 405, Col. Nápoles, Benito Juárez, Ciudad de México,", "rent_id": "20e8d23e-c32d-4f18-a179-5f931f23efe8", "status": "Elaboración de Contrato", "fecha": null, "agencia": "En Casa", "contract_type": "", "protection_type": "proteccion_integral", "monto": 31500.0, "slack": "49 mayo"}, {"kam": "Leo", "inmueble": "MELLADO #36, Col. VALLE GOMEZ, CUAUHTEMOC, Ciudad de México, C.P. 0624", "rent_id": "47f3f80c-3b90-40c9-b26d-c95ac38146d1", "status": "Firmado", "fecha": "2026-05-21", "agencia": "Remax", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 63000.0, "slack": "50 - Mayo"}, {"kam": "Majo", "inmueble": "Pedro Moreno 172 #Edificio A, Int. Departamento 602, Col. Colonia Guer", "rent_id": "e2133e8f-bcb2-4be1-9f60-43ccac98de34", "status": "Firmado", "fecha": "2026-05-22", "agencia": "", "contract_type": "", "protection_type": "proteccion_juridica", "monto": 8500.0, "slack": "51 mayo"}, {"kam": "Gabo", "inmueble": "DR. AGUSTIN ANDRADRE 184, DPTO 3, COL. DOCTORES  C.P. 06720, CUAUHTEMO", "rent_id": "1d04a1df-54b7-4d4c-af78-7c4c008f98bd", "status": "Falta primer pago", "fecha": "2026-05-22", "agencia": "AKA", "contract_type": "renovacion_mica", "protection_type": "proteccion_integral", "monto": 4994.0, "slack": "52 mayo"}, {"kam": "Majo", "inmueble": "ISABEL LOZANO VDA. DE BETTY   #50, Int. 302, Col. VERTIZ NARVARTE, BEN", "rent_id": "a495c660-e407-415d-b4c2-289a262e05fb", "status": "Firmado", "fecha": "2026-05-23", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 13000.0, "slack": "53 mayo"}, {"kam": "Ale", "inmueble": "Calle 7ma Galeana Condominio Mixto \"SIE7E\" By Cosmopolitan #8242-S, In", "rent_id": "066180f1-211c-4066-838d-94203064138a", "status": "Elaboración de Contrato", "fecha": "2026-05-22", "agencia": "ZuProteccion", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 26825.0, "slack": "54 mayo"}, {"kam": "Leo", "inmueble": "Av. Morelos #605, Int. B-3, Col. Magdalena Mixhuca, Venustiano Carranz", "rent_id": "5428a09c-0cf9-4972-ba94-1a61df04c08c", "status": "Firmado", "fecha": "2026-05-23", "agencia": "Remax", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 15000.0, "slack": "55 - Mayo"}, {"kam": "Ale", "inmueble": "Seccion - manzana 216 lote 4 #19, Col. Los Heroes Tizayuca II, tizayuc", "rent_id": "146af70a-f01e-4471-b53c-e8e3a81a3b57", "status": "Firmado", "fecha": "2026-05-22", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 3500.0, "slack": "56 mayo"}, {"kam": "Leo", "inmueble": "Mision San Fernando #133, Int. 0, Col. Fraccionamiento Aria Residencia", "rent_id": "9f7a9149-35e5-4e91-b2e6-fd67cdf4a920", "status": "Firmado", "fecha": "2026-05-23", "agencia": "Remax", "contract_type": "primera_vez", "protection_type": "proteccion_premium", "monto": 17000.0, "slack": "57 - Mayo"}, {"kam": "Ale", "inmueble": "Calle salto del venado  #15, Col. Lomas de valle dorado , Tlalnepantla", "rent_id": "e6c9a2ee-efc8-4c49-812a-e7d5b699151c", "status": "Firmado", "fecha": "2026-05-25", "agencia": "Grupo Arvi", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 20500.0, "slack": "58 - Mayo"}, {"kam": "Majo", "inmueble": "Sierravista #405, Int. Departamento 1, Col. Lindavista Norte, Gustavo ", "rent_id": "4d148921-71c4-45da-9fab-88772e48a245", "status": "Firmado", "fecha": "2026-05-25", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_juridica", "monto": 22000.0, "slack": "59 MAYO"}, {"kam": "Ale", "inmueble": "REAL DE MAYORAZGO MANZANA 31 LOTE 73, VIVIENDA E, ZP: 56383, REAL DE S", "rent_id": "0166cc2b-c502-42d9-b44d-955925b5e49b", "status": "Firmado", "fecha": "2025-05-21", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_premium", "monto": 3500.0, "slack": "60 MAYO"}, {"kam": "Ale", "inmueble": "CIRCUITO SAN MARCOS  200 FRACCIONAMIENTO SAN PABLO RESIDENCIAL, ZP: 38", "rent_id": "bd3bd21e-81c1-40e5-a8a4-ea37df56f4ef", "status": "Firmado", "fecha": "2026-05-25", "agencia": "Berber Real Estate", "contract_type": "renovacion_mica", "protection_type": "proteccion_premium", "monto": 12550.0, "slack": "61 MAYO"}, {"kam": "Majo", "inmueble": "Héroes de Padierna 32, departamento 605, Colonia Tacubaya, C.P:11870, ", "rent_id": "691f9242-070f-457a-a063-f7db40040fa3", "status": "Falta primer pago", "fecha": "2026-05-25", "agencia": "AKA", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 15000.0, "slack": "62 MAYO"}, {"kam": "Leo", "inmueble": "Camino a Praderas de San Meteo #49, Int. 403, Col. La Cúspide, Atizapá", "rent_id": "902ba782-f349-4022-925a-86225e678c55", "status": "Firmado", "fecha": "2026-05-25", "agencia": "", "contract_type": "primera_vez", "protection_type": "proteccion_integral", "monto": 16200.0, "slack": "63 - Mayo"}];
+const PIPELINE = [{"kam": "Majo", "inmueble": "Cto Rafael Osuna 55 Raquet Club", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "Independiente", "rent_id": "", "precio": 20000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "RENOVACIÓN José Carlos Ortiz Avalos -Lago Zirahuen 98, Sol 105 Del. Mi", "status": "Ren - Pendiente VB", "stage": "pendiente_vb", "agencia": "Independiente", "rent_id": "c7918f33-8e17-4392-8ed7-25908a910b86", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Rafael Montiel Baltazar", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "98d94b02-6484-4fe0-bf73-ab4b4e125e9e", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Majo", "inmueble": "Circuito El Reloj Condominio El Reloj Fraccionamiento Zirándaro", "status": "Pendiente firma OBS", "stage": "enviado_firma", "agencia": "Independiente", "rent_id": "a0e97020-e407-4e46-a05f-8cf0344e028a", "precio": 17500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Rio Antigua núm. 311 B Fracc. Las Vegas II", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "", "precio": 6500.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Arroyo Frío, 333, Interior D-1, Colonia Consejo Agrarista, Iztapalapa", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 25723.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "MIGUEL HIDALGO NÚMERO 505, COLONIA LOS RAMOS", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Independiente", "rent_id": "e1284d2b-eb98-4ec8-9475-32321594c5da", "precio": 31500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Privada 17 #102, Tizayuca, Hidalgo, 43810, México", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Majo", "inmueble": "EMILIANO ZAPATA NO 68, MANZANA LOTE 45, CONDOMINIO SAN FRANCISCO", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Independiente", "rent_id": "https://pandora.mica.rent/admin/mica_rents/a88e3840-1c51-45f7-be85-0bb1ef7f49a8", "precio": 10500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "ENTRE PLAYA ROSARITO Y PLAZA CORTES EDIFICIO A CONDOMINIO 7 AGRUPAMIEN", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "", "precio": 14000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "FORTUNATO LOZANO 2632, DEPARTAMENTO 39, BENITO JUÁREZ, 64420, MONTERRE", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Soy Rumi", "rent_id": "", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Majo", "inmueble": "PLUTARCO ELÍAS 180 EDIFICIO G10 DEPARTAMENTO 301, PROGRESISTA, IZTAPAL", "status": "Pendiente firma propietario", "stage": "enviado_firma", "agencia": "", "rent_id": "bc261ada-8c1e-41c9-af86-0e1ecf353544", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Majo", "inmueble": "Avellano 09, Los Ciruelos, Zempoala, Hidalgo, 43845, México", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Gabo", "inmueble": "4️⃣Alhelí 18, Departamento 12, Tlatilco, Azcapotzalco, 02860 Ciudad de", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "3bfaa986-1115-4036-9332-956529ee6986", "precio": 0, "proteccion": "", "slack": ""}, {"kam": "Majo", "inmueble": "CIRCUITO PUNTA DEL LAGO 129", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "Prueba", "precio": 28457.0, "proteccion": "proteccion_juridica", "slack": "Prueba"}, {"kam": "Majo", "inmueble": "Avenida Eurípides 1655, casa 28, Condominio Villa Toledo", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 14000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Ingeniero Claudio Castro No. 150 Oficina 8, Colonia Guadalupe Insurgen", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 7500.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Avenida Miguel Othon de Mendizabal Poniente #100 Edificio 7departament", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 9100.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "CIRCUITO PEDREGAL DEL REAL 406", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 15750.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Circuito Piamonte Condominio Casalvento Fraccionamiento Zirándaro", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "47f466ac-629e-42f0-b260-531b2f24da68", "precio": 16000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Avenida Miguel Othon de Mendizabal Poniente #100, Edificio 7 Departame", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 9100.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "pascual alnis 104 colonia emeteria valencia", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "d1c2baeb-96d2-4022-ba48-a8a68f0cc2d8", "precio": 0.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Calle angel Martinez Galeana (Simón bolivar)cindi 2-A condominio maest", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "00a90bbf-7517-43b2-b99f-6539e016cf07", "precio": 36000.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "privada de la cumbre S/N Punta Horizonte", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 32400.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Maqueda 113 Feraccionamiento Real de Toledo Fase VIII Pachuca de Soto ", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "e1999093-c6a5-4bdf-b79d-d252b860d1de", "precio": 6700.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Gabo", "inmueble": "4️⃣HERIBERTO FRIAS 446 DEPTO 4 COL. NARVARTE C.P. 03020, BENITO JUAREZ", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "c6e6ca2a-34e9-4c48-9600-12d54caa326c", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Union 266 Depto. 2", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 14000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "ANILLO PERIFERICO BLVRD ADOLFO LOPEZ MATEOS 1888", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 22538.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣AVENIDA DE LOS INSURGENTES SUR 2411, TIZAPÁN SAN ÁNGEL, SAN ÁNGEL, ÁL", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "CL CTO CEREMONIAL NTE, MZ LT 1 INT DEPTO 202 EDIF E, ZP: 54140, TLALNE", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Carlos Ortiz", "rent_id": "", "precio": 0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "GENERAL RODOLFO CASILLAS 35, DEPARTAMENTO 601 PISO 6, ZP: 52978, ESTAD", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "AV POPOCATÉPETL 217 DEPARTAMENTO 403, ZP: 03310, SANTA CRUZ ATOYAC , B", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "CALLE 40 NORDEN 48 VILLA 8 SUR, TEMOZÓN NORTE, ZP: 97302, MERIDA , YUC", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "PRIVADA FLOR DE ROSAL 114B , 38024, CELAYA, GUANAJUATO, MEXICO", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣DR. BARRAGAN 970 DEPTO 13 C.P. 03020, BENITO JUAREZ", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "863ded16-5879-4d8f-9dd2-5d9e3a58ab7f", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣DR. BARRAGAN 790 DEPTO 6, COLONIA NARVARTE, C.P. 03020, BENITO JUÁREZ", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "d65a5ed1-3472-4807-8c65-d82b3de651e5", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣UNIVERSIDAD 638, LOCAL, COL. LETRÁN VALLE, C.P. 03560, BENITO JUÁREZ,", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "f9571447-2c66-4e68-9db4-4da7513b902f", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "ALHELÍ 18, DPTO. 7, TLATILCO, AZCAPOTZALCO, C.P. 02860, CIUDAD DE MÉXI", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "0b078be4-bc0b-4d98-bf69-ced2eec46ba9", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣TEPOZTECO NÚMERO 7 DPTO 5, C.P. 03020, COL. NARVARTE, BENITO JUÁREZ, ", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "125e3acc-e7bd-428f-af6c-7504463cefa9", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣DR. AGUSTIN ANDRADE 184 DEPTO 11 COL. DOCTORES C.P. 06720, CUAUHTEMOC", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣DR. AGUSTIN ANDRADE NUM. 184 DPTO 10, COL. DOCTORES, C.P. 06720, CUAU", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣TIZIANO 167 LOCAL C, COL NARVARTE C.P. 03020 BENITO JUAREZ", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "🟣CUARTO DE AZOTEA MARCADO NUM. 22 AV. CENTENARIO 198, COL. MERCED GOME", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "", "precio": 0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Calle Malintzin #4 Local 3", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 8900.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Alabama 201 Depto 405", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 28500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "Costera miguel aleman No.330.col.centro", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "", "precio": 150000.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Leo", "inmueble": "VIZCAINAS 739, COLONIA CARRETAS, QUERETARO, MÉXICO, CP: 76050", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "906f5945-921c-4d86-84f4-90dedc3a6870", "precio": 30000.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "ALABAMA NUMERO 201 DEPARTAMENTO 405 COLONIA NAPOLES, CP: 03810, BENITO", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "En Casa", "rent_id": "b71be084-c76d-4ec8-8f45-4bb1bbec9177", "precio": 33500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Calle oriente 172 número exterior 173 departamento 2", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "7391c18b-a6da-4521-bd60-6a5c3b283060", "precio": 7500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "COSTERA MIGUEL ALEMAN NO.330.COL.CENTRO LOCAL 1, PRIMER PISO, ZP: 3930", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "3e61f905-7e41-42ba-81cc-15091bc178a9", "precio": 15000.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "CALLE MALINTZIN NÚMERO 4 LOCAL 3 COLONIA ARAGÓN LA VILLA C.P. 07000 AL", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "974ba1dd-c7cc-4ff8-a2ed-62cc414f3c88", "precio": 8900.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "PASEO ALAMO #15, Col. LOMA BONITA FRACCIONAMIENTO ZIRANDARO, SAN MIGUE", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "b20d999e-d808-419a-a9be-d2830f479205", "precio": 16000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "BOULEVARD SAN PEDRO NUMERO 330, LOCAL, COLONIA SAN ISIDRO, LEON, Guana", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "1aca8cad-83cc-413a-8082-80d70efb237e", "precio": 3700.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Parque granada #71, Int. Penthouse , Col. Parques Naucalpan , Naucalpa", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "6c489c2d-8532-46ce-b941-2b64a1564bd9", "precio": 10000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Ejercito Mexicano #1404, Int. 7, Col. Allende, Tampico, Tamaulipas, C.", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "ee6ee123-e40f-4a9e-9f6a-d1d403562410", "precio": 17000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Ejercito Mexicano #1404, Int. 7, Col. Allende, Tampico, Tamaulipas, C.", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "ee6ee123-e40f-4a9e-9f6a-d1d403562410", "precio": 17000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Ejercito Mexicano #1404, Int. 7, Col. Allende, Tampico, Tamaulipas, C.", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "ee6ee123-e40f-4a9e-9f6a-d1d403562410", "precio": 17000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Ejercito Mexicano #1404, Int. 7, Col. Allende, Tampico, Tamaulipas, C.", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "ee6ee123-e40f-4a9e-9f6a-d1d403562410", "precio": 17000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "Ejercito Mexicano #1404, Int. 7, Col. Allende, Tampico, Tamaulipas, C.", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "ee6ee123-e40f-4a9e-9f6a-d1d403562410", "precio": 17000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Majo", "inmueble": "CIRCUITO PEÑAS 37 LIBRAMIENTO SUR PONIENTE #NUMERO 37, Int. 60, Col. S", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "c51a9ab3-3659-4658-b7a9-9605c0a960d0", "precio": 14000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "TIZIANO 167 DEPTO. 8", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "be6ba374-2fb7-49e3-8e01-4501947d3ddc", "precio": 8000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "Lago caneguin #51, Col. Argentina Antigua, Miguel Hidalgo, Ciudad de M", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "1a82990c-31f3-429b-9485-c0796a8e0170", "precio": 14500.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Gabo", "inmueble": "ACORDADA NUM 18, DESPACHO 402, COL. SAN JOSE INSURGENTES, C.P. 03900 B", "status": "Ren - Pendiente Firma", "stage": "enviado_firma", "agencia": "AKA", "rent_id": "de9c0c92-f5b4-4554-be55-83404c95b530", "precio": 17325.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Alabama #201, Int. 405, Col. Napoles, Benito Juárez, Ciudad de México,", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "En Casa", "rent_id": "33a7c3f4-526f-45ce-b051-aeca9ed574ad", "precio": 31500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Leo", "inmueble": "FLAMINGOS #2 LT 3 MZ 26, Int. 26, Col. BULEVARES DEL LAGO, NICOLAS ROM", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "05e4eb8d-ad9e-4d39-9c3d-dbdb67409559", "precio": 6800.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Héroes de Padierna 32 interior 605, Colonia Tacubaya, CP: 11870, Alcal", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "ee6c30f2-c31e-4f9b-8936-9b3bf7e375b6", "precio": 14500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Ing. Claudio Castro #150, Int. Oficina 8 , Col. Col. Guadalupe Insurge", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "3f1fb020-67f4-43e4-9492-cb5f731e83c3", "precio": 8500.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Hacienda de Santa Mónica #412A, Col. Praderas de la Hacienda, Celaya, ", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Berber Real Estate", "rent_id": "162492a0-9ef3-4e75-959f-2ad7cd357ead", "precio": 7000.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "Guerrero #104, Int. 603, Col. Buenavista , Cuauhtémoc , Ciudad de Méxi", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "efbd75a2-1c0d-487e-9261-1a9455344e1d", "precio": 22000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "CALLE EUGENIA 1457, INTERIOR 102, COLONIA VÉRTIZ NARVARTE, ALCALDÍA BE", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "5223b040-d2e9-4820-b3e7-0ea2de42af4c", "precio": 19532.15, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Anclote #211, Col. Portovela, Jarretaderas, Nayarit, C.P. 63735, Méxic", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "01bf370d-163f-48f4-8c39-867d0c795cbf", "precio": 19325.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Leo", "inmueble": "Fogare Mz 48 Lte 2 #2, Int. 205, Col. Real Verona, Tecámac , Estado de", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "d8fa4e67-b7cc-4079-8c4f-63a5d4776f7b", "precio": 10000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "CONDOMINIO DIAMANTE #11, Int. CASA 10, Col. LLANO LARGO Y COLOSO, ACAP", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "f0d29b9b-bd40-43bd-8ea1-52b8f53b0b65", "precio": 9000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Leo", "inmueble": "Cerrada Revolución #43, Col. 8 de Agosto , Benito Juárez , Ciudad de M", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "29759d67-811f-44e9-945c-099ab6c8afcd", "precio": 33000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "CUARTO DE AZOTEA MARCADO NUM. 22 AV. CENTENARIO 198, COL. MERCED GOMEZ", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "1f491bc4-7e30-49bc-88b8-f1f8a27f3011", "precio": 3025.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "AVENIDA DE LOS INSURGENTES SUR 2411, TIZAPÁN SAN ÁNGEL, SAN ÁNGEL, ÁLV", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "4f7f8c43-dcc0-4ccd-92cc-87c77cf5cbc0", "precio": 33594.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "TIZIANO 167 LOCAL C, COL NARVARTE C.P. 03020 BENITO JUAREZ", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "92b2065d-3b6e-43b1-880a-c48b19582176", "precio": 6590.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "DR. AGUSTIN ANDRADRE 184, DPTO 3, COL. DOCTORES C.P. 06720, CUAUHTEMOC", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "1d04a1df-54b7-4d4c-af78-7c4c008f98bd", "precio": 4994.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "DR. AGUSTIN ANDRADE NUM. 184 DPTO 10, COL. DOCTORES, C.P. 06720, CUAUH", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "67ef6f25-f822-451a-9873-2466d345737c", "precio": 5106.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "Puente de Calderón #35, Int. Departamento 13, Col. San Bartolo Atepehu", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "a7c839b6-179b-4ddd-ac32-1393831f297f", "precio": 10500.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "DURAZNO #258 VALLE DE ESCOBEDO , CIUDAD GENERAL ESCOBEDO, NUEVO LEON, ", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "Protege tu Inmueble", "rent_id": "55d0ef42-8ec5-4bc2-b2ad-0db630b6b1a3", "precio": 85000.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Circuito San Marcos #200, Col. Fracc San Pablo Residencial, Celaya , G", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Berber Real Estate", "rent_id": "f1765a37-a280-44fb-803a-8e94b0902cf9", "precio": 12550.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Ale", "inmueble": "BOSQUE DE SANDALO #CATASTRALMENTE IDENTIFICADA CON EL NUMERO 27, CONST", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "8851cd46-a353-447a-8ed9-707f0e737201", "precio": 50000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "EJE CENTRAL LAZARO CARDENAS #06, Int. 604, Col. CENTRO, CUAHUTEMOC, Ci", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "17b54cd7-4c6a-429f-b342-e28d7622c511", "precio": 8830.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "MOCTEZUMA #703, Col. COAXUSTENCO, Metepec, Estado de México, C.P. 5214", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "f8dea7fd-512f-46b1-a0ca-9f9d6b6aeebb", "precio": 9775.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Ale", "inmueble": "Camino del Esfuerzo #65, Int. 2, Col. Campestre Aragón , Gustavo A Mad", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "93b96c73-c0f2-420e-b785-925b10b4ee31", "precio": 9800.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Ale", "inmueble": "Tigre #6, Int. 4, Col. Actipan del Valle, Benito Juárez, Ciudad de Méx", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "c19beac7-f32f-4442-bf82-5465ba653a88", "precio": 21093.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Leo", "inmueble": "CHIHUAHUA #205, Int. 502, Col. ROMA NORTE , CUAUHTEMOC, Ciudad de Méxi", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "8bb4ff2d-47e8-4544-87a0-f86fa147d33a", "precio": 60000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Leo", "inmueble": "FLAMINGOS #2, Int. 26, Col. BULEVARES DEL LAGO, NICOLAS ROMERO, Estado", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "4d678994-4043-4298-982b-b78771c36cf4", "precio": 6800.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "CONCEPCION BEISTEGUI #705, Int. 304, Col. DEL VALLE, BENITO JUAREZ, Ci", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Tu lugar tu espacio", "rent_id": "e4f80c45-4745-40e9-b0a3-7208c600a39c", "precio": 12500.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "PETÉN NÚM. 151, DEPTO 301, COL. NARVARTE, BENITO JUÁREZ, C.P. 03020, C", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "93fa2546-f0a1-4590-b808-6079ad3a154b", "precio": 12400.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "DR. AGUSTIN ANDRADE 184 DEPTO 11 COL. DOCTORES C.P. 06720, CUAUHTEMOC", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "54bc8ea8-4de7-4fa2-a958-361952994456", "precio": 4008.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "PASEOS DE SAYAVEDRA #, LOTE D, CASA 1, Col. PASEOS DE SAYAVEDRA, ATIZA", "status": "Enviado a Firma", "stage": "enviado_firma", "agencia": "", "rent_id": "c43e585c-6feb-416d-a37c-1c20680cc34a", "precio": 17500.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Majo", "inmueble": "CALLE LLANURA DE ABEDUL NÚMERO 3106, FRACCIONAMIENTO MONTEVERDE I ETAP", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "8a172ba0-7b1d-487b-a057-cfc1c5219e50", "precio": 12500.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Leo", "inmueble": "Santa Maria #Mz 12, Int. LT 1, Col. Peregrinos, Tizayuca, Hidalgo, C.P", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "c588d7a7-8e2d-4e8c-825e-247443ba5246", "precio": 20000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "SAGREDO 155 TORRE SUR PISO 5 DEPTO 3051, ZP: 0300900, SAN JOSÉ INSURGE", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "6885f3fd-c041-4f00-8fb6-7118d0bbbda4", "precio": 26125.0, "proteccion": "proteccion_premium", "slack": ""}, {"kam": "Leo", "inmueble": "Avenida Paseo Petirrojo #62, Col. Lomas Verdes 1ra Sección, Naucalpan ", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "Remax", "rent_id": "57df06e5-b346-4e18-a396-2ce8ce90ef92", "precio": 20530.0, "proteccion": "proteccion_juridica", "slack": ""}, {"kam": "Gabo", "inmueble": "TEPOZTECO NÚMERO 7 DPTO 5, C.P. 03020, COL. NARVARTE, BENITO JUÁREZ, C", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "125e3acc-e7bd-428f-af6c-7504463cefa9", "precio": 15660.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "ALHELÍ 18, DPTO. 7, TLATILCO, AZCAPOTZALCO, C.P. 02860, CIUDAD DE MÉXI", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "0b078be4-bc0b-4d98-bf69-ced2eec46ba9", "precio": 7470.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "UNIVERSIDAD 638, LOCAL, COL. LETRÁN VALLE, C.P. 03560, BENITO JUÁREZ, ", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "f9571447-2c66-4e68-9db4-4da7513b902f", "precio": 13510.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "DR. BARRAGAN 790 DEPTO 6, COLONIA NARVARTE, C.P. 03020, BENITO JUÁREZ,", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "d65a5ed1-3472-4807-8c65-d82b3de651e5", "precio": 5355.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Gabo", "inmueble": "DR. BARRAGAN 970 DEPTO 13 C.P. 03020, BENITO JUAREZ", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "AKA", "rent_id": "863ded16-5879-4d8f-9dd2-5d9e3a58ab7f", "precio": 5742.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "Av. de las Ciencias Número 2058, Interior 1402, Colonia Juriquilla, Sa", "status": "Pendiente VB", "stage": "pendiente_vb", "agencia": "", "rent_id": "a1bcf98c-d72e-4daf-8b08-20df97af6773", "precio": 11290.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Majo", "inmueble": "SAN FRANCISCO #30B, Col. JARDINES DE ATIZAPÁN, ATIZAPÁN DE ZARAGOZA, E", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "Grupo Proyecta MX", "rent_id": "83602e57-6a0e-40d7-b446-0c20b5d30584", "precio": 15000.0, "proteccion": "proteccion_integral", "slack": ""}, {"kam": "Ale", "inmueble": "Calle RIO TIGRIS Número 94, Interior 203, Colonia CUAUHTEMOC, CUAUHTEM", "status": "Elaboración de Contrato", "stage": "pendiente_vb", "agencia": "", "rent_id": "64f9a993-38fc-48f5-af62-de82831eb3c5", "precio": 21000.0, "proteccion": "proteccion_integral", "slack": ""}];
+const META = 70;
+const TODAY = new Date();
+const MONTH = 5; // Mayo
+const YEAR = 2026;
+const DAYS_IN_MONTH = 31;
 
-const META = 120;
-const MONTH_DAYS = 30; // April
-const TODAY_DAY = 27; // April 27, 2026
-
-const PIPE_DATA = [{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"AV REVOLUCION NUM.1034, DEPTO. 503, SAN JOSE INSURGENTES, BE"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"LAURO AGUIRRE NUM. 32, DEPTO. 302, COL. AGRICULTURA, MIGUEL"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"PETEN 151, DEPTO 202, NARVARTE, BENITO JUAREZ, CP. 03020"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TIZIANO 167 LOCAL A, ALFONSO VIII, ALVARO OBREGON CDMX"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"DR. BARRAGAN 790 INT. 9, NARVARTE ORIENTE C.P. 03020"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"Alhelí 18, Departamento 12, Tlatilco, Azcapotzalco, 02860"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":21000.0,"fee":12180.0,"protection":"proteccion_premium","agency":"Independiente","inmueble":"Antonio Maura 54 dep 203"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":25723.0,"fee":8951.6,"protection":"proteccion_integral","agency":"","inmueble":"Arroyo Frío, 333, Interior D-1, Consejo Agrarista"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"BOSQUE DE LOS ALMENDROS, MANZANA 40 LOTE 14"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":36000.0,"fee":20880.0,"protection":"proteccion_premium","agency":"","inmueble":"Calle angel Martinez Galeana (Simón bolivar) cindi 2-A"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":12000.0,"fee":6960.0,"protection":"proteccion_premium","agency":"Independiente","inmueble":"Calle Sendai (Málaga) 957, departamento C-4"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO 198 DPTO 4, MERCED GOMEZ, C.P. 01600"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO NUM 198, ACC L"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"CENTENARIO NÚM. 198, ACCESORIAS I y J, MERCED GÓMEZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"CENTENARIO NUM. 198, DEPTO. 11, MERCED GÓMEZ"},{"kam":"Leo","stage":"pendiente_vb","status":"Pendiente VB","renta":80000.0,"fee":27840.0,"protection":"proteccion_integral","agency":"Remax Daia","inmueble":"Ciceron #212, Int. 103, Polanco II Sección"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":16000.0,"fee":5568.0,"protection":"proteccion_integral","agency":"","inmueble":"Circuito Piamonte Condominio Casalvento Zirándaro"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":28457.0,"fee":6602.02,"protection":"proteccion_juridica","agency":"","inmueble":"CIRCUITO PUNTA DEL LAGO 129"},{"kam":"Ale","stage":"pendiente_vb","status":"Pendiente VB","renta":15000.0,"fee":8700.0,"protection":"proteccion_premium","agency":"","inmueble":"COSTERA MIGUEL ALEMAN NO.330, LOCAL 1, PRIMER PISO"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":20000.0,"fee":6960.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"Cto Rafael Osuna 55 Raquet Club"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Danton Valle Negrete"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":10500.0,"fee":3654.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"EMILIANO ZAPATA NO 68, MANZANA LOTE 45"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":14000.0,"fee":4872.0,"protection":"proteccion_integral","agency":"","inmueble":"ENTRE PLAYA ROSARITO Y PLAZA CORTES, CONDOMINIO 7"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"FÉLIX CUEVAS NÚM. 318, DPTO. 21, COL. DEL VALLE"},{"kam":"Majo","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"Soy Rumi","inmueble":"FORTUNATO LOZANO 2632, DEPARTAMENTO 39, BENITO JUÁREZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"HERIBERTO FRIAS 446 DEPTO 4 COL. NARVARTE C.P. 03020"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":35011.0,"fee":0,"protection":"","agency":"AKA","inmueble":"HORTENSIA NÚM. 245, CASA 6, LA FLORIDA, ALVARO OBREGON"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":7500.0,"fee":1740.0,"protection":"proteccion_juridica","agency":"","inmueble":"Ing. Claudio Castro No. 150 Oficina 8"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"JESÚS MARÍA 121, DEPTO. 204, COLONIA CENTRO, CUAUHTÉMOC"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"LONDRES NUM. 182 DESP. 502, JUAREZ, CUAUHTEMOC CP. 06600"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":14506.0,"fee":0,"protection":"","agency":"AKA","inmueble":"Mar Okhotsk 16, Planta Baja, Tacuba, Miguel Hidalgo"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"MAR OKHOTSK 3, PISO 3, TACUBA, MIGUEL HIDALGO"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"MATÍAS ROMERO 1219 DEPTO. 1, COL. DEL VALLE CENTRO"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Pendiente VB","renta":31500.0,"fee":10962.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"MIGUEL HIDALGO NÚMERO 505, COLONIA LOS RAMOS"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"NORTE 81 DPTO 2 COL. LIBERTAD, AZCAPOTZALCO, C.P. 02050"},{"kam":"Leo","stage":"enviado_firma","status":"Enviado a Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"","inmueble":"OCTANO 61 DEPTO A301, SANTA APOLONIA, C.P. 02790"},{"kam":"Ale","stage":"pendiente_vb","status":"Pendiente VB","renta":16000.0,"fee":5568.0,"protection":"proteccion_integral","agency":"","inmueble":"PASEO ALAMO #15, LOMA BONITA FRACCIONAMIENTO ZIRANDARO"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":25000.0,"fee":5800.0,"protection":"proteccion_juridica","agency":"","inmueble":"PERIFÉRICO PASEO DE LA REPÚBLICA No. 2191"},{"kam":"Majo","stage":"pendiente_vb","status":"Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Privada 17 #102, Tizayuca, Hidalgo"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":0,"fee":0,"protection":"","agency":"","inmueble":"Rafael Montiel Baltazar"},{"kam":"Sin asignar","stage":"pendiente_vb","status":"Ren - Pendiente VB","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"Independiente","inmueble":"RENOVACIÓN - Lago Zirahuen 98, Sol 105"},{"kam":"Sin asignar","stage":"enviado_firma","status":"Enviado a Firma","renta":6500.0,"fee":1508.0,"protection":"proteccion_juridica","agency":"","inmueble":"Rio Antigua núm. 311 B Fracc. Las Vegas II"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TEPOZTECO NÚM. 7, DEPTO. 9, NARVARTE, BENITO JUÁREZ"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0.0,"protection":"proteccion_integral","agency":"AKA","inmueble":"TIGRE 23 NUM. 302 COL. ACTIPAN C.P. 03230, BENITO JUAREZ"},{"kam":"Pablo","stage":"pendiente_vb","status":"Ren - Pendiente VB","renta":0,"fee":0,"protection":"","agency":"","inmueble":"VIADUCTO M ALEMAN 151 DEP A 6 CUAUHTEMOC Y VERTIZ"},{"kam":"Leo","stage":"pendiente_vb","status":"Pendiente VB","renta":30000.0,"fee":17400.0,"protection":"proteccion_premium","agency":"Remax","inmueble":"VIZCAINAS 739, COLONIA CARRETAS, QUERETARO"},{"kam":"Gabo","stage":"enviado_firma","status":"Ren - Pendiente Firma","renta":0,"fee":0,"protection":"","agency":"AKA","inmueble":"YACATAS NUM. 471, DEPTO. 402 COL. NARVARTE, BENITO JUAREZ"}];
-
-const KAMS = {
-  Majo: { full:'Maria José Arriaga', emoji:'🦋', color:'#72DDA3', bg:'#D1FAE5', tab:'majo' },
-  Gabo: { full:'Gabriel Alvarado',   emoji:'🪐', color:'#93C5FD', bg:'#DBEAFE', tab:'gabo' },
-  Ale:  { full:'Alejandra Muñoz',    emoji:'🐰', color:'#FCD34D', bg:'#FEF9C3', tab:'ale'  },
-  Leo:  { full:'Leonardo Monzalvo',  emoji:'🦁', color:'#FCA5A5', bg:'#FFE4E6', tab:'leo'  },
-};
-
-const PROT_COLORS = {
-  proteccion_integral: '#D1FAE5',
-  proteccion_juridica: '#DBEAFE',
-  proteccion_premium: '#F3E8FF',
-};
-const PROT_LABELS = {
-  proteccion_integral: 'Integral',
-  proteccion_juridica: 'Jurídica',
-  proteccion_premium: 'Premium',
-};
-const PROT_DOT = {
-  proteccion_integral: '#34D399',
-  proteccion_juridica: '#60A5FA',
-  proteccion_premium: '#A78BFA',
-};
-
-// ====================================================
-// HELPERS
-// ====================================================
-function fmt(n){ return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',minimumFractionDigits:0,maximumFractionDigits:0}).format(n); }
-function animateCount(el, target, duration=900){
-  let start=0, step=target/60;
-  let t=setInterval(()=>{
-    start=Math.min(start+step,target);
-    el.textContent=Math.round(start);
-    if(start>=target)clearInterval(t);
-  },duration/60);
+// ─── FEE CALC ───────────────────────────────────────────────────────────────
+function calcFee(prot, monto) {
+  if (!monto) return 0;
+  const p = (prot||'').toLowerCase();
+  if (p.includes('premium')) return monto * 0.58;
+  if (p.includes('jur')) return monto * 0.232;
+  return monto * 0.348; // integral
 }
 
-// ====================================================
-// BUBBLES
-// ====================================================
-function makeBubbles(){
-  const c=document.getElementById('bubblesContainer');
-  const colors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD'];
-  for(let i=0;i<14;i++){
-    const b=document.createElement('div');
-    b.className='bubble';
-    const size=Math.random()*80+30;
-    b.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*8}s`;
-    c.appendChild(b);
+// ─── BADGE HELPERS ──────────────────────────────────────────────────────────
+function protBadge(p) {
+  const s = (p||'').toLowerCase();
+  if (s.includes('premium')) return '<span class="badge badge-pre">Premium</span>';
+  if (s.includes('jur')) return '<span class="badge badge-jur">Jurídica</span>';
+  return '<span class="badge badge-int">Integral</span>';
+}
+function statusBadge(s) {
+  const t = (s||'').toLowerCase();
+  if (t.includes('elab')) return '<span class="badge badge-elab">📋 Elaboración</span>';
+  if (t.includes('falta primer')) return '<span class="badge badge-warn">🟡 Falta pago</span>';
+  if (t.includes('firmado')) return '<span class="badge badge-ok">✅ Firmado</span>';
+  return '<span class="badge badge-gray">'+s+'</span>';
+}
+function stageBadge(s) {
+  return s === 'enviado_firma'
+    ? '<span class="badge" style="background:#D1FAE5;color:#065F46">✍️ Env. Firma</span>'
+    : '<span class="badge" style="background:#FEF3C7;color:#92400E">⏳ Pend. VB</span>';
+}
+function fmtMXN(n) {
+  if (!n) return '—';
+  return '$' + Math.round(n).toLocaleString('es-MX');
+}
+
+// ─── TIMESTAMP ──────────────────────────────────────────────────────────────
+(function() {
+  const now = new Date();
+  const opts = {timeZone:'America/Mexico_City',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false};
+  document.getElementById('ts').textContent = '🕐 Actualizado: ' + now.toLocaleString('es-MX', opts).replace(',',' ');
+})();
+
+// ─── TAB NAV ────────────────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ─── COUNTER ANIM ───────────────────────────────────────────────────────────
+function animCount(el, target, dur=1000) {
+  let start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / dur, 1);
+    el.textContent = Math.round(p * target);
+    if (p < 1) requestAnimationFrame(step);
   }
+  requestAnimationFrame(step);
 }
 
-// ====================================================
-// GENERAL TAB
-// ====================================================
-function buildGeneral(){
-  const total = DATA.length;
-  const pv = DATA.filter(d=>d.contract==='primera_vez').length;
-  const ren = DATA.filter(d=>d.contract==='renovacion_mica').length;
-  const faltantes = META - total;
-  const diasRest = MONTH_DAYS - TODAY_DAY;
-  const ritmo = (total / TODAY_DAY).toFixed(1);
-  const need = diasRest > 0 ? (faltantes / diasRest).toFixed(1) : '—';
-  const pct = Math.min(100,(total/META*100)).toFixed(1);
-
-  // hero
-  setTimeout(()=>{
-    animateCount(document.getElementById('animTotal'), total);
-    document.getElementById('progressBar').style.width = pct+'%';
-    document.getElementById('progressPct').textContent = pct+'%';
-  }, 300);
-
-  document.getElementById('ritmoVal').textContent = ritmo;
-  document.getElementById('ritmoNeed').textContent = diasRest > 0 ? `Necesitas ${need} firmas/día para meta` : 'Mes terminado';
-  document.getElementById('statPV').textContent = pv;
-  document.getElementById('statRen').textContent = ren;
-  document.getElementById('statDias').textContent = diasRest;
-  document.getElementById('statFaltantes').textContent = Math.max(0,faltantes);
-  const enviados = PIPE_DATA.filter(d=>d.stage==='enviado_firma').length;
-  const p100 = total + enviados;
-  const p75  = total + Math.round(enviados * 0.75);
-  const p50  = total + Math.round(enviados * 0.50);
-  const color = v => v >= META ? '#72DDA3' : '#FFB59C';
-  document.getElementById('statProy100').textContent = p100;
-  document.getElementById('statProy100').style.color = color(p100);
-  document.getElementById('statProy75').textContent  = p75;
-  document.getElementById('statProy75').style.color  = color(p75);
-  document.getElementById('statProy50').textContent  = p50;
-  document.getElementById('statProy50').style.color  = color(p50);
-
-  buildScoreboard();
-  buildCalendar();
-  buildChart();
-  buildBreakdown();
-  buildAchievements();
-  buildPipelineResumen();
-}
-
-function buildScoreboard(){
-  const g = document.getElementById('scoreGrid');
-  const counts = {};
-  Object.keys(KAMS).forEach(k=>counts[k]=DATA.filter(d=>d.kam===k).length);
-  const maxCount = Math.max(...Object.values(counts));
-
-  g.innerHTML = Object.entries(KAMS).map(([nick,info])=>{
-    const n = counts[nick];
-    const isMvp = nick==='Majo';
-    return `<div class="score-card" style="background:${info.bg}" onclick="showTab('${info.tab}')">
-      ${isMvp?'<span class="crown">👑</span>':''}
-      <span class="score-emoji">${info.emoji}</span>
-      <div class="score-name">${info.full}</div>
-      <div class="score-nick">${nick}</div>
-      <div class="score-firmas">${n}</div>
-      <div class="score-firmas-label">firmas</div>
-      <div class="score-bar-track">
-        <div class="score-bar-fill" style="width:${(n/maxCount*100).toFixed(0)}%;background:${info.color}"></div>
-      </div>
+// ─── GENERAL INIT ───────────────────────────────────────────────────────────
+function initGeneral() {
+  const total = FIRMAS.length;
+  const pv = FIRMAS.filter(f => (f.contract_type||'').includes('primera')).length;
+  const ren = FIRMAS.filter(f => (f.contract_type||'').includes('renov')).length;
+  
+  // Hero
+  animCount(document.getElementById('hero-total'), total);
+  const pct = Math.round(total / META * 100);
+  setTimeout(() => {
+    document.getElementById('progress-fill').style.width = Math.min(pct, 100) + '%';
+  }, 200);
+  document.getElementById('pct-text').textContent = pct + '%';
+  
+  // Days
+  const today = new Date();
+  const daysElapsed = Math.min(today.getDate(), DAYS_IN_MONTH);
+  const daysLeft = DAYS_IN_MONTH - daysElapsed;
+  const ritmo = daysElapsed > 0 ? (total / daysElapsed).toFixed(1) : 0;
+  const needed = daysLeft > 0 ? ((META - total) / daysLeft).toFixed(1) : 0;
+  document.getElementById('days-text').textContent = daysLeft + ' días restantes · ' + (META - total) + ' faltantes';
+  document.getElementById('hs-pv').textContent = pv;
+  document.getElementById('hs-ren').textContent = ren;
+  document.getElementById('hs-ritmo').textContent = ritmo + '/día';
+  document.getElementById('hs-need').textContent = needed + '/día';
+  
+  // Scenarios - based on pipeline enviado_firma
+  const envFirma = PIPELINE.filter(p => p.stage === 'enviado_firma').length;
+  const opt = total + envFirma;
+  const real = total + Math.floor(envFirma * 0.75);
+  const cons = total + Math.floor(envFirma * 0.50);
+  
+  function colorNum(val) { return val >= META ? 'green' : 'orange'; }
+  document.getElementById('sc-opt').textContent = opt;
+  document.getElementById('sc-opt').className = 'scenario-num ' + colorNum(opt);
+  document.getElementById('sc-real').textContent = real;
+  document.getElementById('sc-real').className = 'scenario-num ' + colorNum(real);
+  document.getElementById('sc-cons').textContent = cons;
+  document.getElementById('sc-cons').className = 'scenario-num ' + colorNum(cons);
+  
+  // Scoreboard
+  const kamDef = [
+    {id:'majo',apodo:'Majo',emoji:'🦋',nombre:'Maria José'},
+    {id:'gabo',apodo:'Gabo',emoji:'🪐',nombre:'Gabriel'},
+    {id:'ale',apodo:'Ale',emoji:'🐰',nombre:'Alejandra'},
+    {id:'leo',apodo:'Leo',emoji:'🦁',nombre:'Leonardo'},
+  ];
+  const kamCounts = {};
+  kamDef.forEach(k => { kamCounts[k.apodo] = FIRMAS.filter(f => f.kam === k.apodo).length; });
+  const maxCount = Math.max(...Object.values(kamCounts));
+  
+  const sb = document.getElementById('scoreboard');
+  kamDef.forEach(k => {
+    const cnt = kamCounts[k.apodo];
+    const isMVP = cnt === maxCount;
+    const div = document.createElement('div');
+    div.className = 'kam-card';
+    div.onclick = () => {
+      document.querySelectorAll('.tab-btn')[['majo','gabo','ale','leo'].indexOf(k.id)+1].click();
+      document.querySelectorAll('.tab-btn')[['majo','gabo','ale','leo'].indexOf(k.id)+1].classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-'+k.id).classList.add('active');
+    };
+    div.innerHTML = `
+      ${isMVP ? '<div class="kam-crown">👑</div>' : ''}
+      <span class="kam-emoji">${isMVP ? k.emoji : k.emoji}</span>
+      <div class="kam-name">${k.nombre}</div>
+      <div class="kam-apodo">${k.apodo}</div>
+      <div class="kam-count" style="color:${cnt===maxCount?'#72DDA3':'#1F2937'}">${cnt}</div>
+      <div class="kam-sub">firmas</div>
+    `;
+    sb.appendChild(div);
+  });
+  
+  // Calendar
+  const cal = document.getElementById('calendar');
+  const days = ['Lu','Ma','Mi','Ju','Vi','Sá','Do'];
+  days.forEach(d => {
+    const h = document.createElement('div');
+    h.className = 'cal-header';
+    h.textContent = d;
+    cal.appendChild(h);
+  });
+  
+  // Day-of-week offset for May 2026 (May 1 = Friday = index 4 in Mon-based)
+  const firstDay = new Date(2026, 4, 1).getDay(); // 0=Sun
+  const offset = firstDay === 0 ? 6 : firstDay - 1; // convert to Mon-based
+  for (let i = 0; i < offset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    cal.appendChild(empty);
+  }
+  
+  // Count firmas per day
+  const dayCount = {};
+  FIRMAS.forEach(f => {
+    if (f.fecha) {
+      const d = parseInt(f.fecha.split('-')[2]);
+      dayCount[d] = (dayCount[d] || 0) + 1;
+    }
+  });
+  
+  for (let d = 1; d <= 31; d++) {
+    const cnt = dayCount[d] || 0;
+    const div = document.createElement('div');
+    const isToday = d === today.getDate() && today.getMonth() === 4 && today.getFullYear() === 2026;
+    div.className = 'cal-day' + (cnt > 0 ? ' has-firma' : '') + (isToday ? ' today' : '');
+    div.innerHTML = `<div class="cal-daynum">${d}</div>` + (cnt > 0 ? `<div class="cal-dot"></div>` : '');
+    if (cnt >= 2) {
+      div.innerHTML += `<div class="cal-badge">${cnt}</div>`;
+    }
+    cal.appendChild(div);
+  }
+  
+  // Cumulative chart
+  const ctx = document.getElementById('cumChart').getContext('2d');
+  const cumData = [];
+  let running = 0;
+  for (let d = 1; d <= 31; d++) {
+    running += (dayCount[d] || 0);
+    cumData.push(running);
+  }
+  const idealData = Array.from({length:31}, (_,i) => Math.round(META * (i+1) / 31));
+  const labels = Array.from({length:31}, (_,i) => i+1);
+  
+  drawLineChart(ctx, labels, cumData, idealData);
+  
+  // Protection breakdown
+  const protTypes = [
+    {key:'proteccion_integral', label:'Integral', fill:'#BBE3E3'},
+    {key:'proteccion_juridica', label:'Jurídica', fill:'#F3CE98'},
+    {key:'proteccion_premium', label:'Premium', fill:'#F9D3CD'},
+  ];
+  const protBD = document.getElementById('prot-breakdown');
+  protTypes.forEach(pt => {
+    const cnt = FIRMAS.filter(f => f.protection_type === pt.key).length;
+    const pct = total > 0 ? (cnt/total*100).toFixed(0) : 0;
+    protBD.innerHTML += `<div class="breakdown-row">
+      <div class="breakdown-label">${pt.label}</div>
+      <div class="breakdown-bar-bg"><div class="breakdown-fill" style="width:${pct}%;background:${pt.fill}"></div></div>
+      <div class="breakdown-count">${cnt}</div>
     </div>`;
-  }).join('');
-}
-
-function buildCalendar(){
-  const g = document.getElementById('calGrid');
-  // April 2026 starts on Wednesday (day 3, 0=Sun)
-  const startDow = 2; // Monday=0 approach: April 1 2026 = Wednesday
-  const days = ['L','M','X','J','V','S','D'];
-
-  // daily counts
-  const daily = {};
-  DATA.forEach(d=>{
-    if(d.fecha){
-      const day = parseInt(d.fecha.split('-')[2]);
-      daily[day] = (daily[day]||0)+1;
-    }
   });
-
-  let html = days.map(d=>`<div class="cal-header">${d}</div>`).join('');
-
-  // April 1 2026 is a Wednesday (index 2 in Mon-based week)
-  for(let i=0;i<2;i++) html += `<div class="cal-day empty"></div>`;
-
-  for(let day=1;day<=30;day++){
-    const count = daily[day]||0;
-    const isToday = day===TODAY_DAY;
-    const hasFirma = count>0;
-    const todayClass = isToday ? ' today-cell':'';
-    const firmaClass = hasFirma ? ' has-firma':'';
-    const badge = count>=2 ? `<span class="cal-badge">${count}</span>` : '';
-    html += `<div class="cal-day${firmaClass}${todayClass}"><span class="day-num">${day}</span>${badge}</div>`;
-  }
-  g.innerHTML = html;
-}
-
-function buildChart(){
-  const canvas = document.getElementById('chartAcum');
-  const ctx = canvas.getContext('2d');
-
-  // daily sorted
-  const daily = {};
-  DATA.forEach(d=>{
-    if(d.fecha){
-      const day = parseInt(d.fecha.split('-')[2]);
-      daily[day] = (daily[day]||0)+1;
-    }
-  });
-
-  const labels=[], acum=[], ideal=[];
-  let cum=0;
-  for(let d=1;d<=30;d++){
-    labels.push(d);
-    cum += (daily[d]||0);
-    acum.push(d<=TODAY_DAY ? cum : null);
-    ideal.push(Math.round(META/MONTH_DAYS*d));
-  }
-
-  // Simple canvas chart
-  const W=canvas.parentElement.offsetWidth||600, H=200;
-  canvas.width=W; canvas.height=H;
-
-  const PAD={top:20,right:20,bottom:30,left:40};
-  const cw=W-PAD.left-PAD.right, ch=H-PAD.top-PAD.bottom;
-  const maxY=META;
-
-  function xPx(i){return PAD.left + (i/29)*cw;}
-  function yPx(v){return PAD.top + ch - (v/maxY)*ch;}
-
-  ctx.clearRect(0,0,W,H);
-
-  // grid
-  ctx.strokeStyle='#F3F4F6'; ctx.lineWidth=1;
-  [0,30,60,90,120].forEach(v=>{
-    ctx.beginPath(); ctx.moveTo(PAD.left,yPx(v)); ctx.lineTo(W-PAD.right,yPx(v)); ctx.stroke();
-    ctx.fillStyle='#9CA3AF'; ctx.font='11px Red Hat Mono,monospace';
-    ctx.fillText(v, 4, yPx(v)+4);
-  });
-
-  // ideal line
-  ctx.beginPath(); ctx.strokeStyle='#E5E7EB'; ctx.lineWidth=2; ctx.setLineDash([5,5]);
-  ideal.forEach((v,i)=>{ i===0?ctx.moveTo(xPx(i),yPx(v)):ctx.lineTo(xPx(i),yPx(v)); });
-  ctx.stroke(); ctx.setLineDash([]);
-
-  // acum area
-  const validAcum = acum.filter(v=>v!==null);
-  const lastIdx = validAcum.length-1;
-  if(validAcum.length>0){
-    ctx.beginPath();
-    ctx.moveTo(xPx(0),yPx(acum[0]||0));
-    acum.forEach((v,i)=>{ if(v!==null) ctx.lineTo(xPx(i),yPx(v)); });
-    ctx.lineTo(xPx(lastIdx),ch+PAD.top);
-    ctx.lineTo(xPx(0),ch+PAD.top);
-    ctx.closePath();
-    ctx.fillStyle='rgba(114,221,163,0.15)'; ctx.fill();
-
-    ctx.beginPath(); ctx.strokeStyle='#72DDA3'; ctx.lineWidth=3;
-    acum.forEach((v,i)=>{ if(v!==null) i===0?ctx.moveTo(xPx(i),yPx(v)):ctx.lineTo(xPx(i),yPx(v)); });
-    ctx.stroke();
-  }
-
-  // x labels every 5 days
-  ctx.fillStyle='#9CA3AF'; ctx.font='11px Red Hat Display,sans-serif';
-  [1,5,10,15,20,25,30].forEach(d=>{
-    ctx.fillText(d, xPx(d-1)-4, H-8);
-  });
-}
-
-function buildBreakdown(){
-  // protection
-  const protCount = {};
-  DATA.forEach(d=>{ protCount[d.protection]=(protCount[d.protection]||0)+1; });
-  const total=DATA.length;
-  document.getElementById('breakdownProt').innerHTML = Object.entries(protCount)
-    .sort((a,b)=>b[1]-a[1])
-    .map(([k,v])=>`<div class="breakdown-item">
-      <div class="breakdown-dot" style="background:${PROT_DOT[k]||'#ccc'}"></div>
-      <span class="breakdown-name">${PROT_LABELS[k]||k}</span>
-      <span class="breakdown-count">${v}<span class="breakdown-pct">${(v/total*100).toFixed(0)}%</span></span>
-    </div>`).join('');
-
-  // agencies
+  
+  // Agency breakdown
   const agCount = {};
-  DATA.forEach(d=>{ if(d.agencia) agCount[d.agencia]=(agCount[d.agencia]||0)+1; });
-  const agColors=['#72DDA3','#BBE3E3','#F3CE98','#FFB59C','#F9D3CD','#C4B5FD','#FCA5A5','#6EE7B7'];
-  document.getElementById('breakdownAgencia').innerHTML = Object.entries(agCount)
-    .sort((a,b)=>b[1]-a[1]).slice(0,8)
-    .map(([k,v],i)=>`<div class="breakdown-item">
-      <div class="breakdown-dot" style="background:${agColors[i%agColors.length]}"></div>
-      <span class="breakdown-name">${k}</span>
-      <span class="breakdown-count">${v}<span class="breakdown-pct">${(v/total*100).toFixed(0)}%</span></span>
-    </div>`).join('');
-}
-
-function buildAchievements(){
-  const list = [];
-  const total = DATA.length;
-  const majoCount = DATA.filter(d=>d.kam==='Majo').length;
-  const aleCount = DATA.filter(d=>d.kam==='Ale').length;
-  const bestDay = (() => {
-    const d={}; DATA.forEach(r=>{ if(r.fecha){ const day=r.fecha.split('-')[2]; d[day]=(d[day]||0)+1; }}); 
-    return Math.max(...Object.values(d),0);
-  })();
-
-  if(total>=50) list.push({label:`${total} firmas confirmadas`,emoji:'🔥',cls:'green'});
-  if(majoCount>=20) list.push({label:`Majo: ${majoCount} firmas`,emoji:'👑',cls:'gold'});
-  if(bestDay>=7) list.push({label:`${bestDay} firmas en un día`,emoji:'⚡',cls:'gold'});
-  const prem = DATA.filter(d=>d.protection==='proteccion_premium').length;
-  if(prem>=5) list.push({label:`${prem} Premium firmados`,emoji:'💎',cls:'blue'});
-  const feeTotal = Math.round(DATA.reduce((s,d)=>s+d.fee,0));
-  list.push({label:`FEE total: ${fmt(feeTotal)}`,emoji:'💰',cls:'green'});
-
-  document.getElementById('achList').innerHTML = list.map(a=>
-    `<div class="ach-badge ${a.cls}">${a.emoji} ${a.label}</div>`
-  ).join('');
-}
-
-// ====================================================
-// KAM TABS
-// ====================================================
-function buildKamTab(nick){
-  const info = KAMS[nick];
-  const rows = DATA.filter(d=>d.kam===nick);
-  const firmas = rows.length;
-  const pv = rows.filter(d=>d.contract==='primera_vez').length;
-  const ren = rows.filter(d=>d.contract==='renovacion_mica').length;
-  const fee = rows.reduce((s,d)=>s+d.fee,0);
-  const faltaPago = rows.filter(d=>d.falta_pago);
-  const missingDate = rows.filter(d=>d.missing_date);
-  const enElab = rows.filter(d=>d.en_elaboracion);
-
-  // KPIs
-  document.getElementById(`kpi-${nick.toLowerCase()}`).innerHTML = [
-    {val:firmas,label:'Firmas'},
-    {val:fmt(fee),label:'FEE total'},
-    {val:pv,label:'Primera vez'},
-    {val:ren,label:'Renovaciones'},
-  ].map(k=>`<div class="kam-kpi"><div class="kam-kpi-val">${k.val}</div><div class="kam-kpi-label">${k.label}</div></div>`).join('');
-
-  // Alerts
-  let alerts='';
-  faltaPago.forEach(r=>{
-    alerts+=`<div class="alert yellow">⚠️ Falta primer pago · ${r.slack_id}</div>`;
-  });
-  enElab.forEach(r=>{
-    alerts+=`<div class="alert yellow">📋 Elaboración de Contrato · ${r.slack_id}</div>`;
-  });
-  missingDate.forEach(r=>{
-    if(!r.en_elaboracion)
-      alerts+=`<div class="alert red">🔴 Falta fecha · ${r.slack_id}</div>`;
-  });
-  document.getElementById(`alerts-${nick.toLowerCase()}`).innerHTML = alerts;
-
-  // Table
-  const sortedRows = [...rows].sort((a,b)=>(a.fecha||'9999')>=(b.fecha||'9999')?1:-1);
-  const tbl = document.getElementById(`table-${nick.toLowerCase()}`);
-  buildKamPipeline(nick);
-  tbl.innerHTML = `<thead><tr>
-    <th>Fecha</th><th>Tipo</th><th>Protección</th><th>Agencia</th><th>Status</th><th>Renta</th><th>FEE</th>
-  </tr></thead><tbody>${sortedRows.map(r=>{
-    const dateStr = r.fecha ? r.fecha.split('-').reverse().join('/') : '🔴 Sin fecha';
-    const ct = r.contract==='primera_vez'?'1ª vez': r.contract==='renovacion_mica'?'Renov.':'—';
-    const protClass = r.protection==='proteccion_integral'?'prot-integral':r.protection==='proteccion_juridica'?'prot-juridica':'prot-premium';
-    const stClass = r.falta_pago?'status-falta':r.en_elaboracion?'status-elab':'status-firmado';
-    const stIcon = r.falta_pago?'⚠️ ':r.en_elaboracion?'📋 ':'';
-    const ag = r.agencia||'—';
-    return `<tr>
-      <td style="font-family:'Red Hat Mono',monospace;font-size:12px;white-space:nowrap">${dateStr}</td>
-      <td>${ct}</td>
-      <td><span class="prot-tag ${protClass}">${PROT_LABELS[r.protection]||r.protection}</span></td>
-      <td style="color:#6B7280">${ag}</td>
-      <td><span class="status-tag ${stClass}">${stIcon}${r.status}</span></td>
-      <td class="fee-mono">${fmt(r.renta)}</td>
-      <td class="fee-mono" style="color:#065F46">${fmt(r.fee)}</td>
-    </tr>`;
-  }).join('')}</tbody>`;
-}
-
-// ====================================================
-// TABS
-// ====================================================
-let chartBuilt=false;
-function showTab(id){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>{
-    if(b.textContent.toLowerCase().includes(id)||b.getAttribute('onclick').includes(id))
-      b.classList.add('active');
-  });
-  if(id==='general'&&!chartBuilt){buildChart();chartBuilt=true;}
-  ['majo','gabo','ale','leo'].forEach(k=>{
-    if(id===k) buildKamTab(k.charAt(0).toUpperCase()+k.slice(1).replace('majo','Majo').replace('gabo','Gabo').replace('ale','Ale').replace('leo','Leo'));
-  });
-}
-// fix nick mapping for showTab
-const nickMap={majo:'Majo',gabo:'Gabo',ale:'Ale',leo:'Leo'};
-function showTab(id){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>{
-    if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'"))
-      b.classList.add('active');
-  });
-  if(nickMap[id]) buildKamTab(nickMap[id]);
-  if(id==='general') buildGeneral();
-}
-
-// ====================================================
-// PIPELINE
-// ====================================================
-function buildPipelineResumen(){
-  const kamEmojis = {Majo:'🦋',Gabo:'🪐',Ale:'🐰',Leo:'🦁',Pablo:'👤',Vivi:'👤','Sin asignar':'—'};
-  const kams = ['Majo','Gabo','Ale','Leo'];
-
-  // Grid por KAM
-  const grid = document.getElementById('pipeResumenGrid');
-  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:4px';
-  grid.innerHTML = kams.map(k=>{
-    const rows = PIPE_DATA.filter(d=>d.kam===k);
-    const vb = rows.filter(d=>d.stage==='pendiente_vb').length;
-    const ef = rows.filter(d=>d.stage==='enviado_firma').length;
-    const info = {Majo:{bg:'#D1FAE5',color:'#065F46'},Gabo:{bg:'#DBEAFE',color:'#1E40AF'},Ale:{bg:'#FEF9C3',color:'#92400E'},Leo:{bg:'#FFE4E6',color:'#9F1239'}}[k];
-    return `<div style="background:${info.bg};border-radius:12px;padding:14px;cursor:pointer" onclick="showTab('${k.toLowerCase()}')">
-      <div style="font-size:18px;margin-bottom:4px">${kamEmojis[k]} <span style="font-size:13px;font-weight:700;color:${info.color}">${k}</span></div>
-      <div style="display:flex;gap:10px;margin-top:8px">
-        <div>
-          <div style="font-size:20px;font-weight:800;color:#92400E">${vb}</div>
-          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Pend. VB</div>
-        </div>
-        <div style="width:1px;background:rgba(0,0,0,.1)"></div>
-        <div>
-          <div style="font-size:20px;font-weight:800;color:#5B21B6">${ef}</div>
-          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Env. Firma</div>
-        </div>
-        <div style="width:1px;background:rgba(0,0,0,.1)"></div>
-        <div>
-          <div style="font-size:20px;font-weight:800;color:#1F2937">${rows.length}</div>
-          <div style="font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:.5px">Total</div>
-        </div>
-      </div>
+  FIRMAS.forEach(f => { if (f.agencia && f.agencia !== 'None') agCount[f.agencia] = (agCount[f.agencia]||0)+1; });
+  const agSorted = Object.entries(agCount).sort((a,b) => b[1]-a[1]).slice(0,6);
+  const maxAg = agSorted[0]?.[1] || 1;
+  const agBD = document.getElementById('agency-breakdown');
+  agSorted.forEach(([ag, cnt]) => {
+    agBD.innerHTML += `<div class="breakdown-row">
+      <div class="breakdown-label" style="font-size:12px">${ag}</div>
+      <div class="breakdown-bar-bg"><div class="breakdown-fill" style="width:${cnt/maxAg*100}%;background:#72DDA3"></div></div>
+      <div class="breakdown-count">${cnt}</div>
     </div>`;
-  }).join('');
-
-  // Hallazgos automáticos
-  const hallazgos = [];
-  const totalVB = PIPE_DATA.filter(d=>d.stage==='pendiente_vb').length;
-  const totalEF = PIPE_DATA.filter(d=>d.stage==='enviado_firma').length;
-  const sinAsignar = PIPE_DATA.filter(d=>d.kam==='Sin asignar').length;
-
-  hallazgos.push({icon:'📊', text:`<b>${totalEF}</b> contratos enviados a firma y <b>${totalVB}</b> pendientes de VB en todo el equipo`, cls:'blue'});
-
-  // KAM con más carga
-  const maxKam = kams.reduce((a,b)=>PIPE_DATA.filter(d=>d.kam===b).length>PIPE_DATA.filter(d=>d.kam===a).length?b:a);
-  const maxN = PIPE_DATA.filter(d=>d.kam===maxKam).length;
-  hallazgos.push({icon:'⚡', text:`${kamEmojis[maxKam]} <b>${maxKam}</b> lidera el pipeline con <b>${maxN}</b> operaciones en trabajo`, cls:'yellow'});
-
-  if(sinAsignar>0)
-    hallazgos.push({icon:'⚠️', text:`<b>${sinAsignar}</b> operaciones sin KAM asignado en pipeline`, cls:'red'});
-
-  // Alta renta en VB
-  const bigVB = PIPE_DATA.filter(d=>d.stage==='pendiente_vb'&&d.renta>=50000);
-  if(bigVB.length>0)
-    hallazgos.push({icon:'💰', text:`<b>${bigVB.length}</b> operación${bigVB.length>1?'es':''} de alta renta (≥$50k) esperando VB`, cls:'green'});
-
-  const clsMap = {blue:'background:#DBEAFE;border:1px solid #93C5FD;color:#1E40AF', yellow:'background:#FFFBEB;border:1px solid #FCD34D;color:#92400E', red:'background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B', green:'background:#D1FAE5;border:1px solid #6EE7B7;color:#065F46'};
-  document.getElementById('pipeHallazgos').innerHTML = hallazgos.map(h=>
-    `<div style="${clsMap[h.cls]};border-radius:10px;padding:10px 14px;font-size:13px;display:flex;gap:8px;align-items:flex-start">
-      <span>${h.icon}</span><span>${h.text}</span>
-    </div>`
-  ).join('');
+  });
+  
+  // Achievements
+  const ach = document.getElementById('achievements');
+  const achList = [];
+  if (total >= 50) achList.push('🎯 50+ firmas');
+  if (total >= 60) achList.push('🔥 60+ firmas');
+  if (total >= META) achList.push('🏆 Meta alcanzada!');
+  if (Object.keys(dayCount).length >= 20) achList.push('📅 20+ días activos');
+  if (kamCounts['Majo'] >= 20) achList.push('🦋 Majo ×20');
+  if (kamCounts['Ale'] >= 20) achList.push('🐰 Ale ×20');
+  if (opt >= META) achList.push('🟢 Optimista alcanza meta');
+  achList.forEach(a => {
+    const el = document.createElement('span');
+    el.className = 'badge';
+    el.style.cssText = 'background:#1F2937;color:#72DDA3;font-size:13px;padding:6px 14px;border-radius:999px;font-weight:700';
+    el.textContent = a;
+    ach.appendChild(el);
+  });
+  
+  // Pipeline cards
+  const pipeCont = document.getElementById('pipeline-cards');
+  const kamDef2 = [
+    {apodo:'Majo',emoji:'🦋',color:'#72DDA3'},
+    {apodo:'Gabo',emoji:'🪐',color:'#BBE3E3'},
+    {apodo:'Ale',emoji:'🐰',color:'#F3CE98'},
+    {apodo:'Leo',emoji:'🦁',color:'#FFB59C'},
+  ];
+  const tabIds2 = ['majo','gabo','ale','leo'];
+  kamDef2.forEach((k, i) => {
+    const vb = PIPELINE.filter(p => p.kam === k.apodo && p.stage === 'pendiente_vb').length;
+    const ef = PIPELINE.filter(p => p.kam === k.apodo && p.stage === 'enviado_firma').length;
+    const tot = vb + ef;
+    const div = document.createElement('div');
+    div.className = 'pipe-card';
+    div.style.borderTop = '4px solid ' + k.color;
+    div.onclick = () => {
+      document.querySelectorAll('.tab-btn')[i+1].click();
+      document.querySelectorAll('.tab-btn')[i+1].classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-'+tabIds2[i]).classList.add('active');
+    };
+    div.innerHTML = `
+      <div class="pipe-card-name">${k.emoji} ${k.apodo}</div>
+      <div class="pipe-stat"><span>⏳ Pend. VB</span><span class="pipe-stat-val">${vb}</span></div>
+      <div class="pipe-stat"><span>✍️ Env. Firma</span><span class="pipe-stat-val">${ef}</span></div>
+      <div class="pipe-stat" style="font-weight:700"><span>Total</span><span class="pipe-stat-val">${tot}</span></div>
+    `;
+    pipeCont.appendChild(div);
+  });
+  
+  // Findings
+  const findEl = document.getElementById('findings');
+  const pipeLeader = kamDef2.reduce((a,b) => {
+    const ca = PIPELINE.filter(p => p.kam===a.apodo).length;
+    const cb = PIPELINE.filter(p => p.kam===b.apodo).length;
+    return ca >= cb ? a : b;
+  });
+  const pipeLeaderCount = PIPELINE.filter(p => p.kam===pipeLeader.apodo).length;
+  const highRent = PIPELINE.filter(p => p.stage==='pendiente_vb' && p.precio >= 50000);
+  const totalEnv = PIPELINE.filter(p => p.stage==='enviado_firma').length;
+  findEl.innerHTML = `
+    <div class="finding-item">💼 <span><b>${pipeLeader.emoji} ${pipeLeader.apodo}</b> lidera el pipeline con <b>${pipeLeaderCount}</b> operaciones en trabajo</span></div>
+    <div class="finding-item">✍️ <span><b>${totalEnv}</b> operaciones enviadas a firma — base para proyecciones</span></div>
+    ${highRent.length > 0 ? `<div class="finding-item">💰 <span><b>${highRent.length}</b> renta(s) de $50k+ en pendiente VB requieren atención</span></div>` : ''}
+  `;
 }
 
-function buildKamPipeline(nick){
-  const rows = PIPE_DATA.filter(d=>d.kam===nick);
-  const vb = rows.filter(d=>d.stage==='pendiente_vb').length;
-  const ef = rows.filter(d=>d.stage==='enviado_firma').length;
-  const id = nick.toLowerCase();
+// ─── LINE CHART (Canvas, no external libs) ──────────────────────────────────
+function drawLineChart(ctx, labels, actual, ideal) {
+  const W = ctx.canvas.parentElement.clientWidth - 48;
+  const H = 220;
+  ctx.canvas.width = W;
+  ctx.canvas.height = H;
+  const pad = {t:20, r:20, b:30, l:40};
+  const cW = W - pad.l - pad.r;
+  const cH = H - pad.t - pad.b;
+  const maxVal = Math.max(META + 5, ...actual, ...ideal);
+  
+  function x(i) { return pad.l + (i / (labels.length-1)) * cW; }
+  function y(v) { return pad.t + cH - (v / maxVal) * cH; }
+  
+  // Grid
+  ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 1;
+  [0, 25, 50, META].forEach(v => {
+    ctx.beginPath();
+    ctx.moveTo(pad.l, y(v)); ctx.lineTo(W-pad.r, y(v));
+    ctx.stroke();
+    ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono, monospace';
+    ctx.fillText(v, 4, y(v)+4);
+  });
+  
+  // Ideal line (dashed)
+  ctx.beginPath(); ctx.setLineDash([6,4]);
+  ctx.strokeStyle = '#D1D5DB'; ctx.lineWidth = 2;
+  ideal.forEach((v,i) => i===0 ? ctx.moveTo(x(i),y(v)) : ctx.lineTo(x(i),y(v)));
+  ctx.stroke(); ctx.setLineDash([]);
+  
+  // Actual gradient fill
+  const grad = ctx.createLinearGradient(0, pad.t, 0, H-pad.b);
+  grad.addColorStop(0, '#72DDA360'); grad.addColorStop(1, '#72DDA305');
+  ctx.beginPath();
+  actual.forEach((v,i) => i===0 ? ctx.moveTo(x(i),y(v)) : ctx.lineTo(x(i),y(v)));
+  ctx.lineTo(x(actual.length-1), y(0)); ctx.lineTo(x(0), y(0));
+  ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+  
+  // Actual line
+  ctx.beginPath();
+  ctx.strokeStyle = '#72DDA3'; ctx.lineWidth = 2.5;
+  actual.forEach((v,i) => i===0 ? ctx.moveTo(x(i),y(v)) : ctx.lineTo(x(i),y(v)));
+  ctx.stroke();
+  
+  // X labels
+  ctx.fillStyle = '#9CA3AF'; ctx.font = '10px Red Hat Mono,monospace';
+  [1,7,14,21,28,31].forEach(d => {
+    const i = d-1;
+    ctx.fillText(d, x(i)-4, H-8);
+  });
+  
+  // Meta label
+  ctx.fillStyle = '#6B7280'; ctx.font = '11px Red Hat Display,sans-serif';
+  ctx.fillText('Meta '+META, W-pad.r-50, y(META)-4);
+}
 
-  document.getElementById(`pipe-kpis-${id}`).innerHTML = [
-    {val:rows.length, label:'En pipeline', color:'#1F2937'},
-    {val:vb,          label:'Pendiente VB', color:'#92400E'},
-    {val:ef,          label:'Env. a Firma', color:'#5B21B6'},
-  ].map(k=>`<div class="pipe-kpi">
-    <div class="pipe-kpi-val" style="color:${k.color}">${k.val}</div>
-    <div class="pipe-kpi-label">${k.label}</div>
-  </div>`).join('');
-
-  const tbl = document.getElementById(`pipe-table-${id}`);
-  if(!rows.length){
-    tbl.innerHTML = `<tbody><tr><td colspan="5" style="text-align:center;color:#9CA3AF;padding:20px;font-size:13px">Sin operaciones en pipeline</td></tr></tbody>`;
-    return;
+// ─── KAM TAB INIT ───────────────────────────────────────────────────────────
+function initKamTab(apodo, tabId, color) {
+  const firmas = FIRMAS.filter(f => f.kam === apodo);
+  const pipe = PIPELINE.filter(p => p.kam === apodo);
+  const vb = pipe.filter(p => p.stage === 'pendiente_vb');
+  const ef = pipe.filter(p => p.stage === 'enviado_firma');
+  
+  const totalFee = firmas.reduce((s,f) => s + calcFee(f.protection_type, f.monto), 0);
+  const pv = firmas.filter(f => (f.contract_type||'').includes('primera')).length;
+  const ren = firmas.filter(f => (f.contract_type||'').includes('renov')).length;
+  
+  // KPIs
+  const kpis = document.getElementById(tabId+'-kpis');
+  kpis.innerHTML = `
+    <div class="kpi-card"><div class="kpi-val" style="color:${color}">${firmas.length}</div><div class="kpi-label">Firmas</div></div>
+    <div class="kpi-card"><div class="kpi-val" style="color:${color};font-size:22px">${fmtMXN(totalFee)}</div><div class="kpi-label">FEE Total</div></div>
+    <div class="kpi-card"><div class="kpi-val">${pv}</div><div class="kpi-label">Primera Vez</div></div>
+    <div class="kpi-card"><div class="kpi-val">${ren}</div><div class="kpi-label">Renovación</div></div>
+  `;
+  
+  // Mini pipeline
+  const mp = document.getElementById(tabId+'-pipe-mini');
+  mp.innerHTML = `
+    <div class="mini-pipe-card" style="border-top:3px solid #F3CE98">
+      <div class="mini-pipe-title">⏳ Pendiente VB</div>
+      <div class="mini-pipe-num">${vb.length}</div>
+    </div>
+    <div class="mini-pipe-card" style="border-top:3px solid #72DDA3">
+      <div class="mini-pipe-title">✍️ Enviado a Firma</div>
+      <div class="mini-pipe-num">${ef.length}</div>
+    </div>
+  `;
+  
+  // Alerts
+  const alEl = document.getElementById(tabId+'-alerts');
+  const faltaPago = firmas.filter(f => f.status.includes('Falta primer pago'));
+  const sinFecha = firmas.filter(f => !f.fecha);
+  const elaboracion = firmas.filter(f => f.status.includes('Elaboración'));
+  let alertHTML = '';
+  if (faltaPago.length) alertHTML += `<span class="alert-badge alert-yellow">🟡 Falta primer pago: ${faltaPago.length}</span>`;
+  if (sinFecha.length) alertHTML += `<span class="alert-badge alert-red">🔴 Sin fecha: ${sinFecha.length}</span>`;
+  if (elaboracion.length) alertHTML += `<span class="alert-badge alert-gray">📋 Elaboración de Contrato: ${elaboracion.length}</span>`;
+  alEl.innerHTML = alertHTML;
+  
+  // Firmas table
+  const ftb = document.getElementById(tabId+'-firmas-body');
+  firmas.forEach(f => {
+    const fee = calcFee(f.protection_type, f.monto);
+    const shortId = f.rent_id ? f.rent_id.substring(0,8)+'…' : '—';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="mono" title="${f.rent_id}">${shortId}</td>
+      <td>${f.fecha || '<span class="badge badge-err">🔴 Sin fecha</span>'}</td>
+      <td><span class="badge" style="background:#F3F4F6;color:#374151;font-size:10px">${f.contract_type||'—'}</span></td>
+      <td>${protBadge(f.protection_type)}</td>
+      <td style="color:#6B7280;font-size:11px">${f.agencia && f.agencia!=='None' ? f.agencia : '—'}</td>
+      <td>${statusBadge(f.status)}</td>
+      <td class="mono">${fmtMXN(f.monto)}</td>
+      <td class="mono" style="color:#059669;font-weight:700">${fmtMXN(fee)}</td>
+    `;
+    ftb.appendChild(tr);
+  });
+  
+  // Pipeline table
+  const ptb = document.getElementById(tabId+'-pipe-body');
+  pipe.forEach(p => {
+    const shortId = p.rent_id ? p.rent_id.substring(0,8)+'…' : '—';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${stageBadge(p.stage)}</td>
+      <td style="font-size:11px;color:#374151;max-width:200px">${p.inmueble||'—'}</td>
+      <td>${protBadge(p.proteccion)}</td>
+      <td style="color:#6B7280;font-size:11px">${p.agencia && p.agencia!=='None' ? p.agencia : '—'}</td>
+      <td class="mono" title="${p.rent_id}">${shortId}</td>
+      <td class="mono">${fmtMXN(p.precio)}</td>
+    `;
+    ptb.appendChild(tr);
+  });
+  
+  // MVP crown
+  const kamCounts = {Majo:0,Gabo:0,Ale:0,Leo:0};
+  FIRMAS.forEach(f => { if (kamCounts[f.kam]!==undefined) kamCounts[f.kam]++; });
+  const maxC = Math.max(...Object.values(kamCounts));
+  if ((kamCounts[apodo]||0) === maxC) {
+    const crownEl = document.getElementById(tabId+'-crown');
+    if (crownEl) crownEl.textContent = '👑';
   }
-  tbl.innerHTML = `<thead><tr>
-    <th>Etapa</th><th>Inmueble</th><th>Protección</th><th>Agencia</th><th>Renta</th>
-  </tr></thead><tbody>${rows.map(r=>{
-    const stageCls = r.stage==='pendiente_vb' ? 'stage-vb' : 'stage-firma';
-    const stageLabel = r.stage==='pendiente_vb' ? '⏳ Pend. VB' : '✍️ Env. Firma';
-    const protClass = r.protection==='proteccion_integral'?'prot-integral':r.protection==='proteccion_juridica'?'prot-juridica':r.protection==='proteccion_premium'?'prot-premium':'';
-    const protLabel = PROT_LABELS[r.protection]||'—';
-    return `<tr>
-      <td><span class="stage-pill ${stageCls}">${stageLabel}</span></td>
-      <td style="color:#374151;font-size:12px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.inmueble}">${r.inmueble}</td>
-      <td>${r.protection?`<span class="prot-tag ${protClass}">${protLabel}</span>`:'—'}</td>
-      <td style="color:#6B7280;font-size:12px">${r.agency||'—'}</td>
-      <td class="fee-mono">${r.renta>0?fmt(r.renta):'—'}</td>
-    </tr>`;
-  }).join('')}</tbody>`;
 }
 
-// ====================================================
-// INIT
-// ====================================================
-makeBubbles();
-buildGeneral();
+// ─── INIT ALL ────────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  initGeneral();
+  initKamTab('Majo','majo','#059669');
+  initKamTab('Gabo','gabo','#0284C7');
+  initKamTab('Ale','ale','#D97706');
+  initKamTab('Leo','leo','#DC2626');
+});
 </script>
 </body>
 </html>
